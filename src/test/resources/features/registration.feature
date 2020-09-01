@@ -1,4 +1,4 @@
-@smoke
+git@smoke
 Feature: Registration Scenarios
 
   @smoke
