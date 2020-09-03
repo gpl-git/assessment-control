@@ -21,7 +21,9 @@
      And I type "12345" into password field
      When I type "12345" into confirmPassword field
      When I click "Register Me" button
+     And I wait for 2 sec
      Then error message "This field is required" is displayed
+     And I wait for 2 sec
 
    Scenario: Max 254 characters (When the Last name 1 char)
      Given I open "registration" page
@@ -32,7 +34,9 @@
      And I type "12345" into password field
      When I type "12345" into confirmPassword field
      When I click "Register Me" button
+     And I wait for 2 sec
      Then confirmation message "You have been Registered." is displayed
+     And I wait for 3 sec
 
     Scenario: Min 1 characters
       Given I open "registration" page

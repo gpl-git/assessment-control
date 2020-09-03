@@ -79,8 +79,12 @@ public class RegistrationStepdefs {
         String actualMessage = getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
         assertThat(actualMessage.equals(whitespace)).isTrue();
 
+
+    }
+
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000*sec);
+        Thread.sleep(1000 * sec);
+
     }
-}
+    }
