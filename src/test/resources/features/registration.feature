@@ -14,6 +14,4 @@ Feature: Registration Scenarios
 
 
 
-
-
   
