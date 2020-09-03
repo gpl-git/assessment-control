@@ -1,5 +1,6 @@
 package definitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -63,5 +64,10 @@ public class RegistrationStepdefs {
     public void confirmationMessageIsDisplayed(String message) {
         String actualMessage = getDriver().findElement(By.xpath("//mat-card[@class='mat-card']/h4")).getText();
         assertThat(actualMessage.equals(message)).isTrue();
+    }
+
+    @And("I wait for {int} sec")
+    public void iWaitForSec(int sec) throws InterruptedException {
+        Thread.sleep(1000*sec);
     }
 }
