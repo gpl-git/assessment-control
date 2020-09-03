@@ -64,4 +64,16 @@ public class RegistrationStepdefs {
         String actualMessage = getDriver().findElement(By.xpath("//mat-card[@class='mat-card']/h4")).getText();
         assertThat(actualMessage.equals(message)).isTrue();
     }
+
+    @Then("error message {string} is displayed")
+    public void errorMessageIsDisplayed(String errorMessage) {
+        String actualMessage = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-0']")).getText();
+        assertThat(actualMessage.equals(errorMessage)).isTrue();
+    }
+
+    @Then("error {string} is displayed")
+    public void errorIsDisplayed(String whitespace) {
+        String actualMessage = getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
+        assertThat(actualMessage.equals(whitespace)).isTrue();
+    }
 }
