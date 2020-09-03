@@ -55,8 +55,10 @@ public class RegistrationStepdefs {
 
     @When("I click {string} button")
     public void iClickButton(String btnName) throws InterruptedException {
+        Thread.sleep(2000);
         getDriver().findElement(By.xpath("//span[text()='"+btnName+"']")).click();
         Thread.sleep(2000);
+
     }
 
     @Then("confirmation message {string} is displayed")
@@ -64,4 +66,6 @@ public class RegistrationStepdefs {
         String actualMessage = getDriver().findElement(By.xpath("//mat-card[@class='mat-card']/h4")).getText();
         assertThat(actualMessage.equals(message)).isTrue();
     }
-}
+
+    }
+
