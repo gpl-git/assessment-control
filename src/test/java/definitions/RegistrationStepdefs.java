@@ -1,5 +1,6 @@
 package definitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -65,6 +66,7 @@ public class RegistrationStepdefs {
         assertThat(actualMessage.equals(message)).isTrue();
     }
 
+
     @Then("error message {string} is displayed")
     public void errorMessageIsDisplayed(String errorMessage) {
         String actualMessage = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-0']")).getText();
@@ -75,5 +77,9 @@ public class RegistrationStepdefs {
     public void errorIsDisplayed(String whitespace) {
         String actualMessage = getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
         assertThat(actualMessage.equals(whitespace)).isTrue();
+
+    @And("I wait for {int} sec")
+    public void iWaitForSec(int sec) throws InterruptedException {
+        Thread.sleep(1000*sec);
     }
 }
