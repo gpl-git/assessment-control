@@ -3,6 +3,7 @@ Feature: Registration Scenarios
   @smoke
   Scenario: Registration Happy Path
     Given I open "registration" page
+    And I wait for 5 sec
     When I type "First" into firstName field
     And I type "Last" into lastName field
     And I type "test@test.com" into email field
