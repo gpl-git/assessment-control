@@ -6,4 +6,6 @@ Feature: Textual Question Text
     And I click "Quizzes" link
     And I click "Create New Quiz" button
     And I type "Test" in the Title of the quiz
+    And I click to add Option
+    Then I select "Textual" type
 

@@ -1,6 +1,7 @@
 package definitions;
 
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
@@ -21,5 +22,15 @@ public class TextualQuestionTestStepDef {
     @And("I type {string} in the Title of the quiz")
     public void iTypeInTheTitleOfTheQuiz(String title) {
         getDriver().findElement(By.xpath("//*[@formcontrolname=\"name\"]")).sendKeys(title);
+    }
+
+    @And("I click to add Option")
+    public void iClickToAddOption() {
+        getDriver().findElement(By.xpath("//*[contains(text(), 'Add Option')]")).click();
+    }
+
+    @Then("I select {string} type")
+    public void iSelectType(String type) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'Textual')]")).click();
     }
 }
