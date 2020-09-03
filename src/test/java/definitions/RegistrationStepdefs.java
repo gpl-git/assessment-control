@@ -63,5 +63,6 @@ public class RegistrationStepdefs {
     public void confirmationMessageIsDisplayed(String message) {
         String actualMessage = getDriver().findElement(By.xpath("//mat-card[@class='mat-card']/h4")).getText();
         assertThat(actualMessage.equals(message)).isTrue();
+
     }
 }
