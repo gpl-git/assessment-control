@@ -20,11 +20,6 @@ import static support.TestContext.getDriver;
 import static support.TestContext.getDriver;
 
 public class SingleChoiceQTStepdefs {
-    @And("I push {string} button")
-    public void iPushButton(String signIn) throws InterruptedException {
-        getDriver().findElement(By.xpath("//span[contains(text(),'" + signIn + "')]")).click();
-        Thread.sleep(2000);
-    }
 
 
     @And("I click {string} button to create new quiz")
@@ -48,5 +43,41 @@ public class SingleChoiceQTStepdefs {
     @And("^I wait for (\\d+) sec$")
     public void iWaitForSec(int sec) throws Exception {
         Thread.sleep(sec * 1000);
+    }
+
+    @When("I click {string} button to create single choice quiz")
+    public void iClickButtonToCreateSingleChoiceQuiz(String link) {
+        getDriver().findElement(By.xpath("//div[contains(text(),'Single-Choice')]")).click();
+    }
+
+    @And("I click {string} button to add question")
+    public void iClickButtonToAddQuestion(String createQuestion) {
+        getDriver().findElement(By.xpath("//div[@class='controls ng-star-inserted']//span[1]")).click();
+    }
+
+    @And("I type {string} into question field")
+    public void iTypeIntoQuestionField(String newQuestion) {
+        getDriver().findElement(By.xpath("//textarea[@placeholder='Question *']")).sendKeys(newQuestion);
+    }
+
+
+    @When("I type {string} into optionOne field")
+    public void iTypeIntoOptionOneField(String answerOne) {
+        getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).sendKeys(answerOne);
+    }
+
+    @And("I type {string} into optionTwo field")
+    public void iTypeIntoOptionTwoField(String answerTwo) {
+        getDriver().findElement(By.xpath("//textarea[@placeholder='Option 2*']")).sendKeys(answerTwo);
+    }
+
+    @When("I click {string} to choose first option")
+    public void iClickToChooseFirstOption(String firstOption) {
+        getDriver().findElement(By.xpath("//mat-radio-button[@id='mat-radio-6']")).click();
+    }
+
+    @And("I click {string} button to save new quiz")
+    public void iClickButtonToSaveNewQuiz(String save) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
     }
 }
