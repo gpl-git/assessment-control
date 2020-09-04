@@ -16,7 +16,7 @@ public class TextualQuestionTestStepDef {
 
     @And("I click {string} link")
     public void iClickLink(String link) {
-        getDriver().findElement(By.xpath("//a[4]//div[1]//div[2]//h5[1]")).click();
+        getDriver().findElement(By.xpath("//h5[(text()='"+link+"')]")).click();
     }
 
     @And("I type {string} in the Title of the quiz")
@@ -26,11 +26,21 @@ public class TextualQuestionTestStepDef {
 
     @And("I click to add Option")
     public void iClickToAddOption() {
-        getDriver().findElement(By.xpath("//*[contains(text(), 'Add Option')]")).click();
+        getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
     }
 
     @Then("I select {string} type")
     public void iSelectType(String type) {
-        getDriver().findElement(By.xpath("//*[contains(text(),'Textual')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(text(),'"+type+"')]")).click();
+    }
+
+    @And("I get error message {string}")
+    public void iGetErrorMessage(String error) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'This field is required')]")).isDisplayed();
+    }
+
+    @When("I click {string} button to save quiz")
+    public void iClickButtonToSaveQuiz(String arg0) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
     }
 }
