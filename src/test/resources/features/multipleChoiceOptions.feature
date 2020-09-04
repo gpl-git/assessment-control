@@ -9,6 +9,7 @@ Feature: Multiple choice question - Options
 
     When I Click "Quizzes" link
     And I click "Create New Quiz" button
+#    And I click "Create New Quiz" button
     And I type "Automation Quiz Test TanyaW" in Title of the Quiz
     And I wait for 2 sec
 #    And I click "Add Question" button
