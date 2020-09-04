@@ -1,5 +1,6 @@
 @smoke
 Feature: Registration Scenarios
+
   @smoke
   Scenario: Registration Happy Path
     Given I open "registration" page
@@ -11,6 +12,8 @@ Feature: Registration Scenarios
     When I type "12345" into confirmPassword field
     When I click "Register Me" button
     Then confirmation message "You have been Registered." is displayed
+
+
 
 
 
