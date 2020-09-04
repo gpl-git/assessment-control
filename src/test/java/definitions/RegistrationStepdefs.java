@@ -103,8 +103,10 @@ public class RegistrationStepdefs {
 
     @Then("I check {string} as correct answer in question {string}")
     public void iCheckAsCorrectAnswerInQuestion(String option, String question) {
-        String x="//*[contains(text(),'"+question+"')]/../../..//*[@placeholder='"+option+"']/../../../../..//*[input]";
-        getDriver().findElement(By.xpath(x)).click();
+        String xpath = "//*[contains(text(),'"+question+"')]/../../..//*[@placeholder='"+option+"']/../../../../..//*[input]";
+        getDriver().findElement(By.xpath(xpath)).click();
+//        String x="//*[contains(text(),'"+question+"')]/../../..//*[@placeholder='"+option+"']/../../../../..//*[input]";
+//        getDriver().findElement(By.xpath(x)).click();
     }
 }
 
