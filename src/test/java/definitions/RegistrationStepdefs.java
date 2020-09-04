@@ -59,8 +59,6 @@ public class RegistrationStepdefs {
 
     @When("I click {string} button")
     public void iClickButton(String btnName) throws InterruptedException {
-//        getDriver().findElement(By.xpath("//span[text()='"+btnName+"']")).click();
-//        Thread.sleep(2000);
         WebElement button = getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]"));
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click()", button);

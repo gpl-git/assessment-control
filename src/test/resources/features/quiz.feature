@@ -17,7 +17,7 @@ Feature: Quiz Scenarios
     And I wait for 2 sec
     When I type "Question 1" as question "Q1" option "Question *"
     And I wait for 1 sec
-    When I add up to 5 questions
+    When I add up to 3 questions
     And I wait for 5 sec
     When I click "Back To Quizzes List" button
     And I wait for 2 sec
@@ -91,5 +91,5 @@ Feature: Quiz Scenarios
     And I type "Option 1" as question "Q1" option "Option 1*"
     When I type "Option 2" as question "Q1" option "Option 2*"
     And I wait for 5 sec
-    Then I select radio button "Option 2*" as correct answer in question "Q1"
+    Then I select radio button "Option 1*" as correct answer in question "Q1"
     And I wait for 5 sec
