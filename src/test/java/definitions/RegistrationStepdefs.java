@@ -6,6 +6,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.And;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -57,9 +60,15 @@ public class RegistrationStepdefs {
 
     @When("I click {string} button")
     public void iClickButton(String btnName) throws InterruptedException {
+
         Thread.sleep(3000);
         getDriver().findElement(By.xpath("//span[text()='"+btnName+"']")).click();
         Thread.sleep(3000);
+
+
+        WebElement button = getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]"));
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript("arguments[0].click()", button);
 
     }
 
