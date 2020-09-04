@@ -14,6 +14,7 @@ Feature: Textual Question Text
     Then I select "Textual" type
     When I type "abhjkk!@#$%^&*()" in the Question field
     And I click "Save" button to save quiz
+    And I wait for 2 sec
     Then "List of Quizzes" is displayed
 
   Scenario: Textual Question: Text - The field is required
