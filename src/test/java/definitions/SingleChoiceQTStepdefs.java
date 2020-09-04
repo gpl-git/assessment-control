@@ -40,11 +40,6 @@ public class SingleChoiceQTStepdefs {
     }
 
 
-    @And("^I wait for (\\d+) sec$")
-    public void iWaitForSec(int sec) throws Exception {
-        Thread.sleep(sec * 1000);
-    }
-
     @When("I click {string} button to create single choice quiz")
     public void iClickButtonToCreateSingleChoiceQuiz(String link) {
         getDriver().findElement(By.xpath("//div[contains(text(),'Single-Choice')]")).click();
