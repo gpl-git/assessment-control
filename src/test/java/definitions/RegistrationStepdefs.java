@@ -1,8 +1,10 @@
 package definitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.en.And;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -55,9 +57,9 @@ public class RegistrationStepdefs {
 
     @When("I click {string} button")
     public void iClickButton(String btnName) throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         getDriver().findElement(By.xpath("//span[text()='"+btnName+"']")).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
     }
 
@@ -65,7 +67,44 @@ public class RegistrationStepdefs {
     public void confirmationMessageIsDisplayed(String message) {
         String actualMessage = getDriver().findElement(By.xpath("//mat-card[@class='mat-card']/h4")).getText();
         assertThat(actualMessage.equals(message)).isTrue();
-    }
 
     }
+
+
+    @Then("error message {string} is displayed")
+    public void errorMessageIsDisplayed(String errorMessage) {
+        String actualMessage = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-0']")).getText();
+        assertThat(actualMessage.equals(errorMessage)).isTrue();
+    }
+
+    @Then("error {string} is displayed")
+    public void errorIsDisplayed(String whitespace) {
+        String actualMessage = getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
+        assertThat(actualMessage.equals(whitespace)).isTrue();
+
+
+    }
+
+    @And("I wait for {int} sec")
+    public void iWaitForSec(int sec) throws InterruptedException {
+        Thread.sleep(1000 * sec);
+
+    }
+
+    @When("I Click {string} link")
+    public void iClickLink(String link) {
+        getDriver().findElement(By.xpath("//h5[contains(text(),'"+link+"')]")).click();
+    }
+
+    @And("I click {string} button contains text")
+    public void iClickButtonContainsText(String text) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'"+text+"')]")).click();
+    }
+
+    @Then("I check {string} as correct answer in question {string}")
+    public void iCheckAsCorrectAnswerInQuestion(String option, String question) {
+        String x="//*[contains(text(),'"+question+"')]/../../..//*[@placeholder='"+option+"']/../../../../..//*[input]";
+        getDriver().findElement(By.xpath(x)).click();
+    }
+}
 

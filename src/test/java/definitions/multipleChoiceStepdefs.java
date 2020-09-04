@@ -2,6 +2,7 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
 import static support.TestContext.getDriver;
@@ -101,6 +102,11 @@ public class multipleChoiceStepdefs {
     @And("I wait {int} sec")
     public void iWaitSec(int sec) throws InterruptedException {
         Thread.sleep(1000*sec);
+    }
+
+    @When("I type {string} as question title")
+    public void iTypeAsQuestionTitle(String title) {
+        getDriver().findElement(By.xpath("//*[@formcontrolname='question']")).sendKeys(title);
     }
 }
 
