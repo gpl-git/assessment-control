@@ -93,3 +93,4 @@ Feature: Quiz Scenarios
     And I wait for 5 sec
     Then I select radio button "Option 1*" as correct answer in question "Q1"
     And I wait for 5 sec
+
