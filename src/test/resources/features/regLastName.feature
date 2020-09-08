@@ -10,7 +10,9 @@
       When I type "ABC" into group field
       And I type "12345" into password field
       When I type "12345" into confirmPassword field
-      When I click "Register Me" button
+      When I click "Register Me" button contains text
+#      When I click "Register Me" button
+      And I wait for 5 sec
       Then confirmation message "You have been Registered." is displayed
 
     @smoke2
@@ -38,6 +40,7 @@
       And I type "12345" into password field
       When I type "12345" into confirmPassword field
       When I click "Register Me" button
+      And I wait for 3 sec
       Then confirmation message "You have been Registered." is displayed
 
       @smoke5

@@ -51,11 +51,14 @@ Feature: Quiz Scenarios
     Given I open "login" page
     When  I type "ask_instr@aol.com" into email field
     And I type "12345" into password field
-    When I click "Sign In" button
+    And I wait for 2 sec
+    When I click "Sign In" button contains text
+#    When I click "Sign In" button
     And I wait for 1 sec
     Then I click "Quizzes" link
     And I wait for 5 sec
-    When I click "Create New Quiz" button
+#    When I click "Create New Quiz" button
+    When I click "Create New Quiz" button contains text
     And I wait for 1 sec
     Then I type "MC Question" as quiz title
     And I add a question

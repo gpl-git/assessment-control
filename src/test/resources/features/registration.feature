@@ -11,7 +11,9 @@ Feature: Registration Scenarios
     When I type "ABC" into group field
     And I type "12345" into password field
     When I type "12345" into confirmPassword field
-    When I click "Register Me" button
+    And I wait for 3 sec
+    When I click "Register Me" button contains text
+    When I wait for 10 sec
     Then confirmation message "You have been Registered." is displayed
     And I wait for 3 sec
 
