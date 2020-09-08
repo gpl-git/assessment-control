@@ -25,8 +25,5 @@ public class AssignmentStepDefs {
         getDriver().findElement(By.xpath("//*[@formcontrolname='quizId']")).sendKeys(nameOfQuiz);
     }
 
-    @Then("I select {string} from the list of students")
-    public void iSelectFromTheListOfStudents(String student) {
-        getDriver().findElement(By.xpath(""))
-    }
+
 }
