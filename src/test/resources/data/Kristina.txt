@@ -1,2 +1,2 @@
 name: Kristina
-email: taran.krystsina@gmail.comgit
+email: taran.krystsina@gmail.com
