@@ -1,1 +1,2 @@
-aminid2013@gmail.com
+email: aminid2013@gmail.com
+name: Dilnoza
