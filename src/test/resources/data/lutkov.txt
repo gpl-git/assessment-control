@@ -1,1 +1,2 @@
- eugene.lutkov@gmail.com
+ name: Eugene
+ email: eugene.lutkov@gmail.com
