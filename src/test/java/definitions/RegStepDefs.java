@@ -21,6 +21,17 @@ public class RegStepDefs {
         }
     }
 
+    @Given("I open {string} page1")
+    public void iOpenPage1(String url) {
+        if (url.equals("registration")) {
+            getDriver().get("http://ask-qa.portnov.com/#/registration");
+        }else if (url.equals("login")){
+            getDriver().get("http://ask-qa.portnov.com/#/login");
+        }else {
+            System.out.println("Unsupported site " + url);
+        }
+    }
+
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
         Thread.sleep(sec * 1000);
