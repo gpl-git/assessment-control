@@ -4,7 +4,9 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -73,6 +75,7 @@ public class RegStepDefs {
         assertThat(userInfo.contains(userRole)).isTrue();
     }
 
+<<<<<<< HEAD
 
 
     @Then("error message {string} should be displayed")
@@ -86,5 +89,24 @@ public class RegStepDefs {
         getDriver().findElement(By.xpath("//*[@id='mat-input-3,'"+fieldName+"')]")).click();
 
 
+=======
+    @When("I click {string} link")
+    public void iClickLink(String link) {
+    List<WebElement> links = getDriver().findElements(By.xpath("//h5"));
+        for (WebElement element:links) {
+            if (element.getText().contains(link)){
+              element.click();
+            }
+
+        }
+
+
+    }
+
+    @Then("I verify {string} page is open")
+    public void iVerifyPageIsOpen(String page) {
+        String actualPage = getDriver().getCurrentUrl();
+        assertThat(actualPage.contains(page)).isTrue();
+>>>>>>> f87854dbe7b155299bd2709fdf9c665cf21b751c
     }
 }
