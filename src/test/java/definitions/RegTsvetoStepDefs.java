@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
-public class RegStepDefs {
+public class RegTsvetoStepDefs {
     @Given("I open {string} page")
     public void iOpenPage(String url) {
         if (url.equals("registration")) {
