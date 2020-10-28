@@ -75,21 +75,7 @@ public class RegStepDefs {
         assertThat(userInfo.contains(userRole)).isTrue();
     }
 
-<<<<<<< HEAD
 
-
-    @Then("error message {string} should be displayed")
-    public void errorMessageShouldBeDisplayed(String message) {
-        String messageText = getDriver().findElement(By.xpath("//*[@id='mat-error-3']")).getText();
-        assertThat(message.equals(messageText)).isTrue();
-    }
-
-    @And("I click on the {string} field")
-    public void iClickOnTheField(String fieldName) {
-        getDriver().findElement(By.xpath("//*[@id='mat-input-3,'"+fieldName+"')]")).click();
-
-
-=======
     @When("I click {string} link")
     public void iClickLink(String link) {
     List<WebElement> links = getDriver().findElements(By.xpath("//h5"));
@@ -107,6 +93,6 @@ public class RegStepDefs {
     public void iVerifyPageIsOpen(String page) {
         String actualPage = getDriver().getCurrentUrl();
         assertThat(actualPage.contains(page)).isTrue();
->>>>>>> f87854dbe7b155299bd2709fdf9c665cf21b751c
+
     }
 }
