@@ -72,4 +72,19 @@ public class RegTsvetoStepDefs {
         String userInfo = getDriver().findElement(By.xpath("//div[@class='info']")).getText();
         assertThat(userInfo.contains(userRole)).isTrue();
     }
+
+
+
+    @Then("error message {string} should be displayed")
+    public void errorMessageShouldBeDisplayed(String message) {
+        String messageText = getDriver().findElement(By.xpath("//*[@id='mat-error-3']")).getText();
+        assertThat(message.equals(messageText)).isTrue();
+    }
+
+    @And("I click on the {string} field")
+    public void iClickOnTheField(String fieldName) {
+        getDriver().findElement(By.xpath("//*[@id='mat-input-3,'"+fieldName+"')]")).click();
+
+
+    }
 }
