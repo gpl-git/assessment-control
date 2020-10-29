@@ -13,4 +13,5 @@ Feature: Registration Scenarios
     When I click "Register Me" button
     And I wait for 2 sec
     Then  confirmation message "You have been Registered." should be displayed
+    And I wait for 2 sec
 
