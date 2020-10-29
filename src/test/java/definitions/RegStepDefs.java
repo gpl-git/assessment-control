@@ -95,4 +95,18 @@ public class RegStepDefs {
         assertThat(actualPage.contains(page)).isTrue();
 
     }
+
+    @Then("error message {string} should be displayed")
+    public void errorMessageShouldBeDisplayed(String message) {
+        String messageText = getDriver().findElement(By.xpath("//*[@class='mat-error ng-star-inserted']")).getText();
+        assertThat(message.equals(messageText)).isTrue();
+
+    }
+
+    @Then("confirmation message {string} should not be displayed")
+    public void confirmationMessageShouldNotBeDisplayed(String message) {
+        String messageText = getDriver().findElement(By.xpath("//h4")).getText();
+        assertThat(message.equals(messageText)).isFalse();
+
+    }
 }
