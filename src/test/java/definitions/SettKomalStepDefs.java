@@ -28,7 +28,7 @@ public class SettKomalStepDefs {
 
 
     @And("I click {string} bttn")
-    public void iClickBttn( String signIn) {
+    public void iClickBttn(String signIn) {
         getDriver().findElement(By.xpath("//button[@type='submit']")).click();
     }
 
@@ -72,12 +72,5 @@ public class SettKomalStepDefs {
     public void iVerifyTheNameNameForStudent() {
         getDriver().findElement(By.xpath("//p[contains(text(),'STUDENT')]")).isDisplayed();
     }
-
-
-    // @Then("I click on placeholder {string}")
-    //ublic void iClickOnPlaceholder(String newName) {
-       // getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).click();
-    //}
-
 
 }
