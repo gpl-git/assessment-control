@@ -1,2 +1,0 @@
-Feature: Shilpa
-  Scenario:
