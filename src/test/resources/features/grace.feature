@@ -1,2 +1,2 @@
 Feature: Grace
-  git branch
+  Scenario: Git test
