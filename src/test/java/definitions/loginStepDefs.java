@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
-public class LoginStepDefs {
+public class loginStepDefs {
     @Given("I open {string}")
     public void iOpen(String url) {
         if (url.equals("login")) {
