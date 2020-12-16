@@ -61,8 +61,7 @@ public class QuizStepDefs {
     }
 
     @Then("I save my quiz")
-    public void iSaveMyQuiz() {
-        getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
+    public void iSaveMyQuiz() {getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
     }
 
 
