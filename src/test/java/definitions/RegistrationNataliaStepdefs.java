@@ -38,7 +38,7 @@ public class RegistrationNataliaStepdefs {
 
     @Then("error message {string} should be displayed")
     public void errorMessageShouldBeDisplayed(String error) {
-        String actError = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-5']")).getText();
+        String actError = getDriver().findElement(By.xpath("//mat-error")).getText();
         assertThat(actError.equals(error)).isTrue();
     }
 }

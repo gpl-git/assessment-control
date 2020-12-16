@@ -43,8 +43,8 @@
         | "Natalia1"        | "Should contain only latin characters" |
         | "Natalia!"        | "Should contain only latin characters" |
         | "123456"        | "Should contain only latin characters" |
-        | "!@#$%^&*()"~"        | "Should contain only latin characters" |
-        | "123456!@#$%^&*()"~"        | "Should contain only latin characters" |
+        | "!@#$"        | "Should contain only latin characters" |
+        | "123456!@#$"        | "Should contain only latin characters" |
 
 
 
