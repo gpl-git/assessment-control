@@ -38,11 +38,10 @@ public class SingleChoiceShowStopperStepDefs {
 
     @Then("{string} should be displayed on the question")
     public void shouldBeDisplayedOnTheQuestion(String asteriskShowStopper) {
-        //new WebDriverWait(getDriver(), 10, 200).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='mat-content']/mat-panel-title[contains(text(),'*')]")));
-        assertThat(getDriver().findElement(By.xpath("//span[@class='mat-content']/mat-panel-title[contains(text(),'"+asteriskShowStopper+"')]")).isDisplayed()).isTrue();
-        //String actual = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1*: Select option1')]")).getText();
-        //assertThat(actual.contains(asteriskShowStopper)).isTrue();
-        //System.out.println(actual);
+         assertThat(getDriver().findElement(By.xpath("//span[@class='mat-content']/mat-panel-title[contains(text(),'"+asteriskShowStopper+"')]")).isDisplayed()).isTrue();
+         String actual = getDriver().findElement(By.xpath("//span[@class='mat-content']/mat-panel-title[contains(text(),'"+asteriskShowStopper+"')]")).getText();
+         assertThat(actual.contains(asteriskShowStopper)).isTrue();
+         System.out.println(actual);
     }
 
 
