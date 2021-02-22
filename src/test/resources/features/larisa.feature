@@ -1,4 +1,4 @@
 Feature: Larisa Test
 
   Scenario: Practice Git command
-    Given I type git status
+    Given I create a new branch updated by Larisa
