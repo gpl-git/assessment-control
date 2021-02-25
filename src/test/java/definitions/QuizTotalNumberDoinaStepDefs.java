@@ -76,6 +76,10 @@ public class QuizTotalNumberDoinaStepDefs {
         for (int i=0 ;i< max1;i++) {
             getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
             Thread.sleep(2000);
+            getDriver().findElement(By.xpath("//div[contains(text(),'Textual')]")).click();
+            Thread.sleep(2000);
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//*[placeholder='Question*']")).sendKeys("Way QA?");
+            Thread.sleep(2000);
 
     }
 }
