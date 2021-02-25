@@ -4,7 +4,7 @@
     Background: 
       Given I go to "ask"
 
-
+    @happyPath
     Scenario: Registration Password Happy Path
       When I click register now link
       And I wait for 1 sec
@@ -18,7 +18,7 @@
       Then I verify that "You have been Registered." message is displayed
 
 
-
+    @passDoNotMatch
     Scenario: Registration Failed When Pass and ConfPass are not matching
       When I click register now link
       And I wait for 1 sec
@@ -31,6 +31,7 @@
       And click register me button
       Then I verify that "Entered passwords should match" alert message is displayed
 
+    @PassEmpty
     Scenario: Confirm Password Field Left Empty
       When I click register now link
       And I wait for 1 sec
@@ -42,7 +43,7 @@
       And click register me button
       Then I verify that "This field is required" alert message is displayed
 
-
+    @PassBothFieldsEmpty
     Scenario: Password and Confirm Password Fields Left Empty
       When I click register now link
       And I wait for 1 sec
