@@ -47,4 +47,6 @@ public class LoginStepDefs {
         String info = getDriver().findElement(By.xpath("//div[@class='info']")).getText();
         assertThat(info.contains(expRole)).isTrue();
     }
+
+
 }
