@@ -61,4 +61,5 @@ public class QuizStepDefs {
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click();", element);
     }
+
 }
