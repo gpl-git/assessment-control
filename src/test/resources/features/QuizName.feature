@@ -9,7 +9,7 @@
       And I wait for  the 2 seconds
 
       @quizname1
-      Scenario:
+      Scenario: Validate that Teacher can give an Assignment to one Student
         Then I go to the "Assignment" page
         And I wait for  the 2 seconds
         Then I push the "Create New Assignment" button
@@ -23,18 +23,14 @@
         Then I logout from teacher acoount
         And confirm logout
         And I wait for  the 2 seconds
-
         Then I enter "student7@test.com" into the email field
         And I enter "12345" into the password field
         And I click on the "Sign In" button
-
         And I wait for  the 2 seconds
-
         Then I go to my assignments
         And I wait for  the 2 seconds
         And verify that I have "Quiz Name Test" assignment
         And I wait for  the 2 seconds
-
         Then I logout from teacher acoount
         And confirm logout
         And I wait for  the 2 seconds
@@ -46,7 +42,6 @@
         And I wait for  the 2 seconds
         Then I go to the "Assignment" page
         And I wait for  the 2 seconds
-
         Then I click on the button near Quiz Name Test assignment
         And I delete Quiz Name Test assignment
         And I wait for  the 2 seconds
