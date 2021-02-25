@@ -9,6 +9,7 @@
       And I enter a valid email
       And click on the button "Request Password Reset"
       And I wait for 3 sec
+      And I see a message "Your request is confirmed"
 
 @forgotpassword2
     Scenario: Forgot password - invalid data.
@@ -33,7 +34,12 @@
 
 @forgotpassword4
      Scenario:Forgot Password - Accepts old password
-     Given I go to url "reset password" page
+     Given I go the webpage "ask"
+     When I click on "I forgot my password"
+     Then I enter my email in the email field
+     And click on the button "Request Password Reset"
+     And I wait for 2 sec
+     Then I go to url "reset password1"
      Then "Reset Password" window is displayed
      And I  enter old password  in  New Password field
      And I enter same old password in Confirm New Password

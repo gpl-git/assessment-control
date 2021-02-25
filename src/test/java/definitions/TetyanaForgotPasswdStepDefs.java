@@ -37,24 +37,24 @@ public class TetyanaForgotPasswdStepDefs {
 
     @Then("the error message {string} is displayed.")
     public void theErrorMessageIsDisplayed(String text) {
-       String info = getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Authentication failed')]")).getText();
+        String info = getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Authentication failed')]")).getText();
         assertThat(info.contains(text)).isTrue();
     }
 
     @And("I leave the email field empty")
     public void iLeaveTheEmailFieldEmpty() {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(" ");
+        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys("");
     }
 
     @Then("I verify the error message {string} will be displayed")
     public void iVerifyTheErrorMessageWillBeDisplayed(String text) {
-        String info = getDriver().findElement(By.xpath("//*[@class='mat-error ng-star-inserted'][@id='mat-error-1']")).getText();
+        String info = getDriver().findElement(By.xpath("//div[@class='mat-input-subscript-wrapper mat-form-field-subscript-wrapper']")).getText();
         assertThat(info.contains(text)).isTrue();
     }
 
-      @Given("I go to url {string} page")
-    public void iGoToUrlResetPasswordPage(String resetPassword) {
-        getDriver().get("http://ask-qa.portnov.com/#/reset-password/2042/678f568f8cdee8dd33ab66666a9fca382f0dc6aa");
+    @Given("I go to url {string} page")
+    public void iGoToUrlResetPasswordPage(String resetPassword1) {
+        getDriver().get("http://ask-qa.portnov.com/#/reset-password/1469/11182177c80aed8e6db814b15be046d16a91a1e1");
 
     }
 
@@ -98,5 +98,20 @@ public class TetyanaForgotPasswdStepDefs {
     @And("I press {string} button")
     public void iPressButton(String button) {
         getDriver().findElement(By.xpath("//button[@type='submit']")).click();
+    }
+
+    @And("I see a message {string}")
+    public void iSeeAMessage(String message) {
+        getDriver().findElement(By.xpath("//h4[contains(text(),'Your request is confirmed')]")).isDisplayed();
+    }
+
+    @Then("I go to url {string}")
+    public void iGoToUrl(String restPassword) {
+        getDriver().get("http://ask-qa.portnov.com/#/reset-password/1469/38eb76e2ba7379258f05b10bedabf5436ccdadde");
+    }
+
+    @Then("I enter my email in the email field")
+    public void iEnterMyEmailInTheEmailField() {
+        getDriver().findElement(By.xpath("//div[@class='mat-input-flex mat-form-field-flex']")).sendKeys("z_tetyana@yahoo.com");
     }
 }

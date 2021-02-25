@@ -1,5 +1,6 @@
 package definitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
 
@@ -18,6 +19,11 @@ public class LarisaHomeStepDefs {
         getDriver().findElement(By.xpath("// h5[contains(text(),'"+page+"')]")).click();
         String curUrl = getDriver().getCurrentUrl();
         assertThat(curUrl.contains(page.toLowerCase())).isTrue();
+
+    }
+
+    @And("I enter a valid email{int}")
+    public void iEnterAValidEmail(int arg0) {
 
     }
 }
