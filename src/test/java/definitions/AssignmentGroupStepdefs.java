@@ -4,6 +4,9 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import static support.TestContext.getDriver;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,7 +31,6 @@ public class AssignmentGroupStepdefs {
     public void iClickToSeeTheListOfGroups() {
         getDriver().findElement(By.xpath("//span[text()='All']")).click();
     }
-
 
     @And("I choose group {string}")
     public void iChooseGroup(String group) {
@@ -61,9 +63,41 @@ public class AssignmentGroupStepdefs {
         assertThat(actualMes.contains(errorMes)).isTrue();
     }
 
-    @Then("I go to page {string} and see assignment")
-    public void iGoToPageAndSeeAssignment(String page) {
-        String actualPage = getDriver().findElement(By.xpath("//*[contains(text(), '"+page+"')]")).getText();
-        assertThat(actualPage.contains(page)).isTrue();
+    @Then("quiz {string} is displayed on the list of assignments")
+    public void quizIsDisplayedOnTheListOfAssignments(String quizTitle) {
+        List<WebElement> titles = getDriver().findElements(By.xpath("//mat-panel-title"));
+        for (WebElement element : titles) {
+            if (element.getText().contains(quizTitle)) {
+                element.isDisplayed();
+            }
+        }
+    }
+
+    @Then("I delete assignment with quiz {string}")
+    public void iDeleteAssignmentWithQuiz(String quiz) {
+        List<WebElement> titles = getDriver().findElements(By.xpath("//mat-panel-title"));
+        for (WebElement element : titles) {
+            if (element.getText().contains(quiz)) {
+                element.isDisplayed();
+                getDriver().findElement(By.xpath("//button[@class='mat-icon-button mat-primary']")).click();
+                getDriver().findElement(By.xpath("//span[text()='Delete Assignment']")).click();
+                wait(3000);
+                getDriver().findElement(By.xpath("//button[@class='mat-button mat-warn']")).click();
+                wait(3000);
+                break;
+            }
+        }
+    }
+
+    public static void wait(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }

@@ -15,11 +15,13 @@
       Then I click to see the list of groups
       And I choose group "ABC"
       And I click to see the list of quizzes
+      And I wait for 2 sec
       And I choose "BDD" quiz
       And I click Select All button
       And I click Give Assignment button
       And I wait for 2 sec
-      Then I go to page "List of Assignments" and see assignment
+      Then quiz "BDD" is displayed on the list of assignments
+      Then I delete assignment with quiz "BDD"
 
     @assignmentGroup2
     Scenario: Validate quiz assignment by group - Can't assign without selecting a quiz
