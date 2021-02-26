@@ -6,7 +6,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -27,7 +26,7 @@ public class SingleChoiceQuestStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(password);
     }
 
-    @When("I click on {string}")
+    @When("I click {string} btn")
     public void iClickOn(String button) {
         getDriver().findElement(By.xpath("//span[contains(text(),'Sign In')]")).click();
     }
@@ -64,8 +63,8 @@ public class SingleChoiceQuestStepDefs {
     }
 
     @Then("I check {string} checkbox")
-    public void iCheckCheckbox(String showStopper) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'Show-Stopper')]")).click();
+    public void iCheckCheckbox(String checkbox) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'"+checkbox+"')]")).click();
     }
 
     @And("I verify that {string} present")
@@ -91,7 +90,7 @@ public class SingleChoiceQuestStepDefs {
 
     @Then("I check {string} radio-button")
     public void iCheckRadioButton(String correctAnswer) {
-        getDriver().findElement(By.xpath("//*[@name='mat-radio-group-46']")).click();
+        getDriver().findElement(By.xpath("//label[contains(text(),'" +correctAnswer+ "')]/../../../../../..//div[@class='mat-radio-container']")).click();
     }
 
     @And("I click on Preview button")
@@ -111,8 +110,8 @@ public class SingleChoiceQuestStepDefs {
     }
 
     @And("I click on {string} mat-button")
-    public void iClickOnMatButton(String createAssignment) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'Create New Assignment')]")).click();
+    public void iClickOnMatButton(String button) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'"+button+"')]")).click();
     }
 
     @Then("I choose group {string}")
@@ -123,16 +122,16 @@ public class SingleChoiceQuestStepDefs {
     @And("I choose quiz DONT DELETE")
     public void iChooseQuizDontDelete() {
         getDriver().findElement(By.xpath("//mat-select[@placeholder='Select Quiz To Assign']")).click();
-
     }
 
-    @And("I choose Student Five")
-    public void iChooseStudentFive() {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='selectedUsers']")).click();
+
+    @And("I check {string}")
+    public void iCheck(String checkbox) {
+        getDriver().findElement(By.xpath("//mat-pseudo-checkbox[@class='mat-pseudo-checkbox mat-pseudo-checkbox-checked']")).click();
     }
 
-    @And("I click {string}")
-    public void iClick(String giveAssignment) {
+    @And("I click on the {string}")
+    public void iClickOnThe(String giveAssignment) {
         getDriver().findElement(By.xpath("//span[contains(text(),'Give Assignment')]")).click();
     }
 

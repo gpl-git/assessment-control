@@ -9,7 +9,7 @@
     Scenario: Verify '*' symbol is displayed when creating show stopper single question quiz
       When I type "qa@ask.com" into email field
       And I type "12345" into password field
-      When I click on "Sign in"
+      When I click "Sign in" btn
       And I wait for 1 sec
       Then I verify that user role "TEACHER" is displayed
       When I go to "Quizzes" section
@@ -28,7 +28,7 @@
     Scenario: Verify that 'show stopper' on preview
       When I type "qa@ask.com" into email field
       And I type "12345" into password field
-      When I click on "Sign in"
+      When I click "Sign in" btn
       And I wait for 1 sec
       Then I verify that user role "TEACHER" is displayed
       When I go to "Quizzes" section
@@ -55,24 +55,25 @@
     Scenario: Verify 'Show stopper sign' is displayed when student start the quiz
       When I type "qa@ask.com" into email field
       And I type "12345" into password field
-      When I click on "Sign in"
+      When I click "Sign in" btn
       And I wait for 1 sec
       Then I verify that user role "TEACHER" is displayed
       When I go to "Assignments" part
       And I click on "Create New Assignment" mat-button
       And I wait for 2 sec
-      Then I choose group "CAB"
+      Then I choose group "ABC"
       And I wait for 1 sec
       And I choose quiz DONT DELETE
       And I wait for 2 sec
-      And I choose Student Five
-      And I click "Give Assignment"
+      And I check "Student Four"
+      And I wait for 2 sec
+      And I click on the "Give Assignment"
       And I wait for 2 sec
       When I log out
       And I confirm logging out
       Then I type student email "student5@test.com" into email field
       And I type "12345" into password field
-      When I click on "Sign in"
+      When I click "Sign in" btn
       And I wait for 1 sec
       Then I verify that student role "STUDENT" is displayed
       When I click on Go To My Assignments
