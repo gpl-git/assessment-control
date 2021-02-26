@@ -100,8 +100,10 @@ public class QuizTotalNumberDoinaStepDefs {
         executor.executeScript("arguments[0].click();", element);
     }
 
-    @Then("I slect quiz  {string}")
-    public void iSlectQuiz(String quiz) {
+
+
+    @Then("I select quiz  {string}")
+    public void iSelectQuiz(String quiz) {
         WebElement element = getDriver().findElement(By.xpath("//div[@dir='ltr']/../../../..//span[contains(text(),'Graded automatically')]"));
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click();", element);
@@ -117,7 +119,7 @@ public class QuizTotalNumberDoinaStepDefs {
 //    }
 
     @And("I click {string}")
-    public void iClick(String assigment) {
+    public void iClick (String quiz){
       WebElement element = getDriver().findElement(By.xpath("//span[contains(text(),'Give Assignment')]"));
       JavascriptExecutor executor = (JavascriptExecutor) getDriver();
       executor.executeScript("arguments[0].click();", element);
@@ -133,10 +135,7 @@ public class QuizTotalNumberDoinaStepDefs {
 
     }
 
-    @Then("I choose a {string}")
-    public void iChooseA(String student) {
-        getDriver().findElement(By.xpath("//mat-list-option[29]")).click();
-    }
+
 
     @When("I choose {string}")
     public void iChoose(String myassignments) {
@@ -144,6 +143,12 @@ public class QuizTotalNumberDoinaStepDefs {
         JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         executor.executeScript("arguments[0].click();", element);
 
-       ;
+
+    }
+
+
+    @Then("I choose a Student")
+    public void iChooseAStudent() {
+        getDriver().findElement(By.xpath("//mat-list-option[29]")).click();
     }
 }

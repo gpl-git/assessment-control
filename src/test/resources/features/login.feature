@@ -11,7 +11,7 @@
       And I wait for 1 sec
       Then I verify that user is logged in at "home" page
       And  I verify that "TEACHER" user role is displayed
-      Then I
+
 
 
 

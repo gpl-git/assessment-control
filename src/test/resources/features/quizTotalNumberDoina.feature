@@ -53,13 +53,11 @@
           And I click on "Assignments" button
           Then I wait for 3 sec
           And I click "Create New Assignment" button
-          #Then I select "Group Filter"
           Then I wait for 3 sec
-          Then I choose a "Student"
-          #And I select group "N001"
+          Then I choose a Student
           And I wait for 2 sec
           Then I select "Select Quiz To Assign"
-          Then I slect quiz  "Graded automatically"
+          Then I select quiz  "Graded automatically"
           And I wait for 2 sec
           And  I click "Give Assignment"
           Then I click on "Log Out" button
