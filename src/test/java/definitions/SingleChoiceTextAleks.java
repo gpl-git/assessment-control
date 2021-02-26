@@ -1,20 +1,19 @@
 package definitions;
 
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 import static support.TestContext.getDriver;
 
 public class SingleChoiceTextAleks {
-    @And("I click {string} radiobutton")
-    public void iClickRadiobutton(String radioBttn) {
-        getDriver().findElement(By.xpath("//label[@for='mat-radio-18-input']//div[@class='mat-radio-inner-circle']")).click();
+    @And("I click on {string} radiobutton for correct answer")
+    public void iClickOnRadiobutton(String opt1RadioBttn) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'Option 1')]/..//..//..//..//..//..//div[@class='mat-radio-container']")).click();
+    }
+
+    @And("I type {string} into {string} text field")
+    public void iTypeIntoTextField(String txt, String txtField) {
+        getDriver().findElement(By.xpath("//textarea[@placeholder='"+txtField+"*']")).sendKeys(txt);
 
     }
 }

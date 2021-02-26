@@ -19,7 +19,27 @@ Feature: Single choice question text
     And I wait for 1 sec
     And I type "Qwerty@#$@!$#221" into "Q1" question input field
     And I wait for 1 sec
-    And I click "first" radiobutton
+    And I click on "option 1" radiobutton for correct answer
+    And I type "bla&^%#$" into "Option 1" text field
+    And I type "alb@!@#$%" into "Option 2" text field
+    And I click on "Save" button
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
