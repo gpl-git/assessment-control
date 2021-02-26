@@ -132,12 +132,12 @@ public class valQuizMltpQsStepDefs {
     }
 
     @And("I verify that question {string} is displayed")
-    public void iVerifyThatQuestionIsDisplayed(String questionName) {
+    public void iVerifyThatQuestionIsDisplayed(String quesName) {
 
-        String qN = getDriver().findElement(By.xpath("//h3[contains(text(),'"+questionName+"')]")).getText();
+        String qN = getDriver().findElement(By.xpath("//h3[contains(text(),'"+quesName+"')]")).getText();
 
         System.out.println(qN);
-//        assertThat(qN.contains(questionName)).isTrue();
+//        assertThat(qN.contains(quesName)).isTrue();
 
     }
 
