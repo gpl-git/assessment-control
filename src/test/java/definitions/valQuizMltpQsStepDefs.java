@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+
+import static org.hamcrest.MatcherAssert.assertThat;
 import static support.TestContext.getDriver;
 
 public class valQuizMltpQsStepDefs {
@@ -99,8 +101,9 @@ public class valQuizMltpQsStepDefs {
     }
 
 
-    @Then("I verify that the quiz {string} is saved and question {string} is displayed")
-    public void iVerifyThatTheQuizIsSavedAndQuestionIsDisplayed(String quizTitle, String questionName) {
+
+    @Then("I verify that the quiz {string} is saved")
+    public void iVerifyThatTheQuizIsSaved(String quizTitle) {
         List<WebElement> allQuizzes = getDriver().findElements(By.xpath("//mat-panel-title"));
         for (WebElement quiz : allQuizzes) {
             if (quiz.getText().contains(quizTitle)) {
@@ -108,27 +111,35 @@ public class valQuizMltpQsStepDefs {
                 WebElement oneQuiz = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]"));
                 JavascriptExecutor executor = (JavascriptExecutor) getDriver();
                 executor.executeScript("arguments[0].click();", oneQuiz);
+
+
+            }
+        }
+    }
+
+    @Then("I click {string} button in quiz {string}")
+    public void iClickButtonInQuiz(String button, String quizTitle) {
+        List<WebElement> allQuizzes = getDriver().findElements(By.xpath("//mat-panel-title"));
+        for (WebElement quiz : allQuizzes) {
+            if (quiz.getText().contains(quizTitle)) {
+                quiz.click();
             }
         }
 
-
-        WebElement previewButton = getDriver().findElement(By.xpath("//span[contains(text(),'Preview')]"));
+        WebElement previewButton = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//*[text()='"+button+"']"));
         JavascriptExecutor executor1 = (JavascriptExecutor) getDriver();
         executor1.executeScript("arguments[0].click();", previewButton);
-
-//        String qN = getDriver().findElement(By.xpath("//h5[contains(text(),'"+questionName+"')]")).getText();
-//        JavascriptExecutor executor2 = (JavascriptExecutor) getDriver();
-//        executor2.executeScript("arguments[0].click();", qN);
-
-        //getDriver().findElement(By.xpath("//h5[contains(text(),'"+questionName+"')]")).isDisplayed();
-
-        JavascriptExecutor executor2 = (JavascriptExecutor) getDriver();
-        WebElement qN = getDriver().findElement(By.xpath("//h5[contains(text(),'"+questionName+"')]"));
-        executor2.executeScript("return arguments[0].text", qN);
-
-
     }
 
+    @And("I verify that question {string} is displayed")
+    public void iVerifyThatQuestionIsDisplayed(String questionName) {
+
+        String qN = getDriver().findElement(By.xpath("//h3[contains(text(),'"+questionName+"')]")).getText();
+
+        System.out.println(qN);
+//        assertThat(qN.contains(questionName)).isTrue();
+
+    }
 
 
     @Then("I enter white spaces into {int} default options field of {string}")
@@ -139,6 +150,9 @@ public class valQuizMltpQsStepDefs {
 
         }
     }
+
+
+
 }
 
 

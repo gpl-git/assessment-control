@@ -11,7 +11,7 @@
       And I wait for 2 sec
       And I click the "Create New Quiz" button
       And I wait for 2 sec
-      Then I enter title "Multiple-Choice question" into quiz field
+      Then I enter title "AMultiple-Choice question" into quiz field
       And I click button to add a question
       And I wait for 2 sec
       Then I choose "Multiple-Choice" question
@@ -71,7 +71,11 @@
       Then I select first and last correct option from 2 option "Q1" question
       Then I click the "Save" button
       And I wait for 2 sec
-      Then I verify that the quiz "Multiple-Choice question" is saved and question "Multiple-Choice question is added/saved when option(s) text field has input(s)" is displayed
+      Then I verify that the quiz "Multiple-Choice question" is saved
+      And I wait for 2 sec
+      Then I click "Preview" button in quiz "Multiple-Choice question"
+      And I verify that question "Multiple-Choice question is added/saved when option(s) text field has input(s)" is displayed
+      And I wait for 2 sec
 
     @quiz_m_o6
     Scenario: Verify error message is displayed if Multiple-Choice question option text field has no input
