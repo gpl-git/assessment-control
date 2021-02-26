@@ -11,7 +11,8 @@ import java.util.List;
 
 import static support.TestContext.getDriver;
 
-public class QuizStepDefs {
+public class
+QuizStepDefs {
     @And("I enter {string} into quiz title field")
     public void iEnterIntoQuizTitleField(String title) {
         getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(title);
