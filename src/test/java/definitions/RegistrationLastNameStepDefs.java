@@ -12,7 +12,7 @@ import static support.TestContext.getDriver;
 public class RegistrationLastNameStepDefs {
     @Given("I navigate to registration page")
     public void iNavigateToRegistrationPage() {
-        getDriver().get("http://ask-stage.portnov.com/#/registration");
+        getDriver().get("http://ask-qa.portnov.com/#/registration");
     }
 
     @When("I type first name {string}")

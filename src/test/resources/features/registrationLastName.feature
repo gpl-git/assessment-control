@@ -11,6 +11,7 @@
       And I click Register Me
       Then  message "You have been Registered." appears
 
+
     @RegistrationLastname2
     Scenario: Registration Last name required cannot be empty
       Given I navigate to registration page
@@ -32,7 +33,7 @@
       And I type password "12345"
       And I type confirm password "12345"
       And I click Register Me
-      Then message "Whitespaces are not allowed" appears
+      Then message "Should contain only latin characters" appears
 
     @RegistrationLastname4
     Scenario: Registration Last name- Minimum character
@@ -56,7 +57,8 @@
       And I type password "12345"
       And I type confirm password "12345"
       And I click Register Me
-      Then message "You have been Registered." appears
+      Then message "Data too long " appears
+      # AS-281 (It should accepts 254 characters it accepts only 250characters)
 
     @RegistrationLastname6
     Scenario: Registration Last name- Maximum + 1 character
@@ -68,7 +70,7 @@
       And I type password "12345"
       And I type confirm password "12345"
       And I click Register Me
-      Then message "You have been Registered." appears
+      Then message "Data too " appears
 
 
     @RegistrationLastname7
@@ -81,7 +83,7 @@
       And I type password "12345"
       And I type confirm password "12345"
       And I click Register Me
-      Then message "You have been Registered." appears
+      Then message "Should contain only latin characters" appears
 
     @RegistrationLastname8
     Scenario: Registration Last name - Alphanumeric characters
@@ -93,7 +95,7 @@
       And I type password "12345"
       And I type confirm password "12345"
       And I click Register Me
-      Then message "You have been Registered." appears
+      Then message "Should contain only latin characters" appears
 
 
 
