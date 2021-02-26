@@ -58,7 +58,7 @@
       And I type confirm password "12345"
       And I click Register Me
       Then message "Data too long " appears
-      # AS-281 (It should accepts 254 characters it accepts only 250characters)
+      # AS-281 Bug report (It should accepts 254 characters it accepts only 250characters)
 
     @RegistrationLastname6
     Scenario: Registration Last name- Maximum + 1 character
