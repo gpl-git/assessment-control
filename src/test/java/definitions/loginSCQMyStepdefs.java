@@ -29,7 +29,7 @@ public class loginSCQMyStepdefs {
 
     @And("I click {string} byAK")
     public void iClickByAK(String button) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'" + button + "')]")).click();
+        getDriver().findElement(By.xpath("//span[contains(text(),'"+button+"')]")).click();
     }
 
     @And("I navigate to {string} page from main menu byAK")

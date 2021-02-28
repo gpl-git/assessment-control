@@ -1,7 +1,7 @@
 @loginSCQ
   Feature: Login SCQ
 
-      Background: : Login as a teacher
+      Background: :Login as a teacher
       Given I go  to "http://ask-qa.portnov.com/#/login"
       And I login with "ask_instr@aol.com" email and "12345" password byAK
       And I click "Sign In" byAK

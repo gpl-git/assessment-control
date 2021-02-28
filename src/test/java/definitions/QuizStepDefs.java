@@ -22,7 +22,7 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//mat-icon[text()='add_circle']")).click();
     }
 
-    @Then("I select {string} question")
+    @Then("I select {string} question byDI")
     public void iSelectQuestion(String questionType) {
         getDriver().findElement(By.xpath("//div[contains(text(),'"+questionType+"')]")).click();
     }
@@ -46,7 +46,7 @@ public class QuizStepDefs {
     }
 
     @And("I delete {string} quiz")
-    public void iDeleteQuiz(String title) {
+    public void git iDeleteQuiz(String title) {
         List<WebElement> titles = getDriver().findElements(By.xpath("//mat-panel-title"));
 
         for (WebElement element:titles) {
