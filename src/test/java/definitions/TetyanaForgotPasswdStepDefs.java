@@ -54,7 +54,7 @@ public class TetyanaForgotPasswdStepDefs {
 
     @Given("I go to url {string} page")
     public void iGoToUrlResetPasswordPage(String resetPassword1) {
-        getDriver().get("http://ask-qa.portnov.com/#/reset-password/1469/11182177c80aed8e6db814b15be046d16a91a1e1");
+        getDriver().get("http://ask-qa.portnov.com/#/reset-password/2127/0ce3c56dcbc8e9c94c423a56c5e39d6295fd7443");
 
     }
 
@@ -74,19 +74,9 @@ public class TetyanaForgotPasswdStepDefs {
         getDriver().findElement(By.xpath("//input[@id='mat-input-1']")).sendKeys("56789");
     }
 
-    @And("I  enter old password  in  New Password field")
-    public void iEnterOldPasswordInNewPasswordField() {
-        getDriver().findElement(By.xpath("//input[@id='mat-input-0']")).sendKeys("12345");
-    }
-
-    @And("I enter same old password in Confirm New Password")
-    public void iEnterSameOldPasswordInConfirmNewPassword() {
-        getDriver().findElement(By.xpath("//input[@id='mat-input-1']")).sendKeys("12345");
-    }
-
     @Then("Your Password was Changed message is displayed")
     public void yourPasswordWasChangedMessageIsDisplayed() {
-        getDriver().findElement(By.xpath("//h4[contains(text(),'Your Password was Changed')]")).isDisplayed();
+        getDriver().findElement(By.xpath("//div[@class='icon-wrapper']")).isDisplayed();
     }
 
     @Then("error message {string} is displayed")
@@ -106,12 +96,22 @@ public class TetyanaForgotPasswdStepDefs {
     }
 
     @Then("I go to url {string}")
-    public void iGoToUrl(String restPassword) {
-        getDriver().get("http://ask-qa.portnov.com/#/reset-password/1469/38eb76e2ba7379258f05b10bedabf5436ccdadde");
+    public void iGoToUrl(String restMyPassword) {
+        getDriver().get("http://ask-qa.portnov.com/#/reset-password/2127/ea983571e9705c032c4bef4f6a0c3c2b868a77a5");
     }
 
-    @Then("I enter my email in the email field")
+    @And("I enter my email in the email field")
     public void iEnterMyEmailInTheEmailField() {
-        getDriver().findElement(By.xpath("//div[@class='mat-input-flex mat-form-field-flex']")).sendKeys("z_tetyana@yahoo.com");
+        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys("garsontransportation@yahoo.com");
+    }
+
+    @And("I enter old password in Confirm New Password")
+    public void iEnterOldPasswordInConfirmNewPassword() {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys("12345");
+    }
+
+    @And("I  enter old password  in  New Password field")
+    public void iEnterOldPasswordInNewPasswordField() {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys("12345");
     }
 }

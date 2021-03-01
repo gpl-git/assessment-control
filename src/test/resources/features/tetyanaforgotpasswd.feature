@@ -27,6 +27,7 @@
        Given I go the webpage "ask"
        When I click on "I forgot my password"
        And I leave the email field empty
+       And I wait for 2 sec
        And click on the button "Request Password Reset"
        And I wait for 2 sec
        Then I verify the error message "This field is required" will be displayed
@@ -36,13 +37,15 @@
      Scenario:Forgot Password - Accepts old password
      Given I go the webpage "ask"
      When I click on "I forgot my password"
-     Then I enter my email in the email field
+     And I wait for 2 sec
+     And I enter my email in the email field
      And click on the button "Request Password Reset"
      And I wait for 2 sec
-     Then I go to url "reset password1"
+     Then I go to url "reset my password "
      Then "Reset Password" window is displayed
      And I  enter old password  in  New Password field
-     And I enter same old password in Confirm New Password
+     And I wait for 2 sec
+     And I enter old password in Confirm New Password
      And I press "reset" button
      And I wait for 2 sec
      Then Your Password was Changed message is displayed
@@ -51,6 +54,7 @@
      Scenario: Forgot Password: Password and Confirm Password do not match
      Given I go to url "reset password" page
      Then "Reset Password" window is displayed
+     And I wait for 1 sec
      And I type "12345" in the New Password field
      And I type "56789" in the Confirm New Password field
      And I wait for 3 sec
