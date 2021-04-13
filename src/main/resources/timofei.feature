@@ -1,2 +1,2 @@
 Feature: Test file
-  Scenario: Test scenario
+  Scenario: Test scenario 1
