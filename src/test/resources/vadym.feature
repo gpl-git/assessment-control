@@ -1,4 +1,3 @@
 Feature: git
-
-  Scenario work with git
+  Scenario: work with git
 
