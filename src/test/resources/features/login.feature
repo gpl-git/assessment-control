@@ -1,7 +1,7 @@
-@login @smoke
+@login
   Feature: Login Scenarios
 
-    @login @smoke
+    @smoke
     Scenario: Login as Teacher
       Given I open "login" page
       When  I type "qa@ask.com" into email filed
@@ -12,7 +12,7 @@
       And I wait for 2 sec
 
 
-    @login @smoke
+   @regression
     Scenario: Login as Student
       Given I open "login" page
       When  I type "student1@test.com" into email filed
