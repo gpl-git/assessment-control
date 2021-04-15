@@ -5,6 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -46,16 +47,16 @@ public class Quiz_Galina_Stepdefs {
     public boolean isDisplayed(String quizTitle) {
         List<WebElement> elements = getDriver().findElements(By.xpath("//mat-panel-title"));
 
-        return elements.stream().anyMatch(e->e.getText().trim().equals(quizTitle));
+        return elements.stream().anyMatch(e -> e.getText().trim().equals(quizTitle));
 
 
     }
+
     @Then("{string} is displayed on the list of quizzes")
     public void isDisplayedOnTheListOfQuizzes(String quizTitle) throws InterruptedException {
 
 //        System.out.println(isDisplayed(quizTitle));
 //        assertThat(isDisplayed(quizTitle)).isTrue();
-
 
 //        for (WebElement title : titles) {
 //            if (title.getText().equals(quizTitle)) {
@@ -68,25 +69,28 @@ public class Quiz_Galina_Stepdefs {
 //            }
 //
 //        }
-        List<WebElement> elements = getDriver().findElements(By.xpath("//mat-panel-title"));
-        assertThat(elements.stream().anyMatch(e -> e.getText().trim().equals(quizTitle))).isTrue();
+//        List<WebElement> elements = getDriver().findElements(By.xpath("//mat-panel-title"));
+//        assertThat(elements.stream().anyMatch(e -> e.getText().trim().equals(quizTitle))).isTrue();
 
-//        WebElement expectedText= getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]"));
-//        assertThat(expectedText.isDisplayed()).isTrue();
-
+        WebElement expectedText = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]"));
+        assertThat(expectedText.isDisplayed()).isTrue();
     }
 
     @And("I click {string} and {string} in the list of quizzes")
     public void iClickAndInTheListOfQuizzes(String quizTitle, String btnName) throws InterruptedException {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + quizTitle + "')]")).click();
         Thread.sleep(1000);
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]/../../..//*[contains(text(),'"+btnName+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + quizTitle + "')]/../../..//*[contains(text(),'" + btnName + "')]")).click();
 
+        Thread.sleep(2000);
+//        WebElement overlay = getDriver().findElement(By.xpath("//div[@class='cdk-overlay-pane']"));
+        getDriver().switchTo().activeElement().sendKeys(Keys.TAB);
+        getDriver().switchTo().activeElement().click();
+//   getDriver().findElement(By.xpath("//div[@class='cdk-overlay-container']//button[contains(@class,'mat-warn')]")).click();
+//        WebElement confirmDelete =  getDriver().findElement(By.xpath("//ac-modal-confirmation//span[contains(text(),'Delete')]"));
+//        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+//        executor.executeScript("arguments[0].click();", confirmDelete);
         Thread.sleep(3000);
-    //   getDriver().findElement(By.xpath("//div[@class='cdk-overlay-container']//button[contains(@class,'mat-warn')]")).click();
-        WebElement confirmDelete =  getDriver().findElement(By.xpath("//div[@class='cdk-overlay-container']//button[contains(@class,'mat-warn')]"));
-        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-        executor.executeScript("arguments[0].click();", confirmDelete);
 
     }
 }
