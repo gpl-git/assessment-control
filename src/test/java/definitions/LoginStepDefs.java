@@ -7,6 +7,8 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.Random;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
@@ -69,5 +71,15 @@ public class LoginStepDefs {
     public void messageShouldBeDisplayed(String message) {
         String actualMessage = getDriver().findElement(By.xpath("//mat-error")).getText();
         assertThat(actualMessage).isEqualTo(message);
+    }
+
+    @When("I type new email")
+    public void iTypeNewEmail() {
+        Random randomGenerator = new Random();
+        int randonInt = randomGenerator.nextInt(1000);
+        String newEmail ="test"+randonInt+"@abc.com";
+        getDriver().findElement(By.xpath("//input[@formcontrolname ='email']")).sendKeys(newEmail);
+        System.out.println(newEmail);
+
     }
 }
