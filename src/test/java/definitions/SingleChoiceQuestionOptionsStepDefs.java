@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -55,13 +56,6 @@ public class SingleChoiceQuestionOptionsStepDefs {
         getDriver().findElement(By.xpath("//mat-dialog-container//span[contains(text(),'Delete')]")).click();
     }
 
-    @Then("{string} is not displayed on the list of quizzes")
-    public void isNotDisplayedOnTheListOfQuizzes(String quiz) {
-        List<WebElement> titles = getDriver().findElements(By.xpath("//mat-panel-title"));
-        for (WebElement element : titles) {
-            assertThat(element.getText().contains(quiz)).isFalse();
-        }
-    }
 
     @And("I click {string} button for the {string} quiz")
     public void iClickButtonForTheQuiz(String button, String quiz) {
