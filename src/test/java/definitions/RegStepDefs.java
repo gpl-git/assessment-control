@@ -19,20 +19,12 @@ public class RegStepDefs {
         getDriver().findElement(By.xpath("//*[@formcontrolname='lastName']")).sendKeys(lastName);
     }
 
-    @And("I type {string} into registration email field")
-    public void iTypeIntoRegistrationEmailField(String email) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys(email);
-    }
 
     @And("I type {string} into group code")
     public void iTypeIntoGroupCode(String groupCode) {
         getDriver().findElement(By.xpath("//*[@formcontrolname='group']")).sendKeys(groupCode);
     }
 
-    @And("I type {string} into registration password field")
-    public void iTypeIntoRegistrationPasswordField(String password) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='password']")).sendKeys(password);
-    }
 
     @And("I type {string} into confirmation field")
     public void iTypeIntoConfirmationField(String passConfirm) {
@@ -45,22 +37,17 @@ public class RegStepDefs {
 
     }
 
-
     @Then("I verify user registration message {string}")
-    public void iVerifyUserRegistrationMessage(String regMessage) {
-        String actualMessage = getDriver().findElement(By.xpath("//*[@class='mat-card']")).getText();
-        assertThat(actualMessage.equals(regMessage));
+    public void iVerifyUserRegistrationMessage(String message) {
+        String actualName = getDriver().findElement(By.xpath("//*[@class='mat-card']")).getText();
+        assertThat(actualName).isEqualTo(message);
     }
 
-    @Then("password error message {string} is displayed")
-    public void passwordErrorMessageIsDisplayed(String errorMessage) {
-       String actualMessage = getDriver().findElement(By.xpath("//*[@role='alert']")).getText();
-       assertThat(actualMessage.equals(errorMessage));
-    }
 
     @And("I click confirmation field")
     public void iClickConfirmationField() {
         getDriver().findElement(By.xpath("//*[@formcontrolname='confirmPassword']")).click();
 
     }
+
 }
