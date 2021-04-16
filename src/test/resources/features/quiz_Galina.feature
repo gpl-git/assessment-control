@@ -22,4 +22,5 @@
       When I click "Save" button
       And I wait for 1 sec
       Then "Test Quiz Galina" is displayed on the list of quizzes
-      And I wait for 2 sec
+      And I wait for 1 sec
+      And I click "Test Quiz Galina" and "Delete" in the list of quizzes
