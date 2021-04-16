@@ -82,4 +82,13 @@ public class LoginStepDefs {
         System.out.println(newEmail);
 
     }
+
+    @And("I type new email into email field")
+    public void iTypeNewEmailIntoEmailField() {
+        Random randomGenerator = new Random();
+        int randonInt = randomGenerator.nextInt(1000);
+        String newEmail ="stud"+randonInt+"@test.com";
+        getDriver().findElement(By.xpath("//input[@formcontrolname ='email']")).sendKeys(newEmail);
+        System.out.println(newEmail);
+    }
 }
