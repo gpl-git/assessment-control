@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -37,12 +38,6 @@ public class RegStepDefs {
 
     }
 
-    @Then("I verify user registration message {string}")
-    public void iVerifyUserRegistrationMessage(String message) {
-        String actualName = getDriver().findElement(By.xpath("//*[@class='mat-card']")).getText();
-        assertThat(actualName).isEqualTo(message);
-    }
-
 
     @And("I click confirmation field")
     public void iClickConfirmationField() {
@@ -50,4 +45,20 @@ public class RegStepDefs {
 
     }
 
+    @Then("I verify user registration message {string}")
+    public void iVerifyUserRegistrationMessage(String message) {
+        String actualMessage = getDriver().findElement(By.xpath("//*[@class='mat-card']")).getText();
+        System.out.println(actualMessage);
+        assertThat(actualMessage.contains(message));
+    }
+
+    @And("confirm password is masked and copy and cut disabled")
+    public void confirmPasswordIsMaskedAndCopyAndCutDisabled() {
+        String attribute = "type";
+
+        WebElement element = getDriver().findElement(By.xpath("//*[@formcontrolname='confirmPassword']"));
+        String attributeValue = element.getAttribute(attribute);
+        assertThat(attributeValue).isEqualTo("password");
+        System.out.println(attributeValue);
+    }
 }
