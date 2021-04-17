@@ -53,12 +53,11 @@ public class QuizTitleDaryaStepdefs {
   public void iClickAddQuestionButton() {
     String actErMess = getDriver().findElement(By.xpath("//simple-snack-bar")).getText();
 
-
-  @Then("Error message should not be displayed")
-  public void errorMessageShouldNotBeDisplayed() {
-      assertThat(getDriver().findElement(By.xpath("//input[contains(@class,'mat-input')]/../../..//mat-error[@role='alert'])")).isDisplayed()).isFalse();
-    }
-  }
+//  @Then("Error message should not be displayed")
+//  public void errorMessageShouldNotBeDisplayed() {
+//      assertThat(getDriver().findElement(By.xpath("//input[contains(@class,'mat-input')]/../../..//mat-error[@role='alert'])")).isDisplayed()).isFalse();
+//    }
+//  }
 
 //  @Then("^element with xpath \"([^\"]*)\" should not be displayed$")
 //  public void elementWithXpathShouldNotBeDisplayed(String xpath) {
@@ -71,7 +70,6 @@ public class QuizTitleDaryaStepdefs {
 //    String actMessage = getDriver().findElement(By.xpath("//simple-snack-bar")).getText();
 //    System.out.println(actMessage);
 //    assertThat(actMessage.contains(message)).isTrue();
-
 
 //    List<WebElement> elements = getDriver().findElement(By.xpath("//input[contains(@class,'mat-input')]/../../..//mat-error[@role='alert'])")).getText();
 //    if (elements.isEmpty())
@@ -88,6 +86,5 @@ public class QuizTitleDaryaStepdefs {
 //  }
 //}
 
-
-
-
+  }
+}
