@@ -16,7 +16,7 @@ Feature: Single Choice Question - Options
 #    6. Create Single Choice Question with Max 15 + 1 choices
 #    7. Create Single Choice Question with Max 1000 + 1 characters
 
-  @option1
+  @options1
   Scenario: Create Single Choice Question with valid information
     When I click on "Quizzes" link
     And I wait for 1 sec
@@ -47,7 +47,7 @@ Feature: Single Choice Question - Options
     And I refresh the page
     And I wait for 1 sec
 
-  @option2
+  @options2
   Scenario: Empty option fields
     When I click on "Quizzes" link
     And I wait for 1 sec
@@ -62,7 +62,7 @@ Feature: Single Choice Question - Options
     When I click "Save" button
     Then alert for empty field is displayed
 
-  @option3
+  @options3
   Scenario: 15 + 1 choices
     When I click on "Quizzes" link
     And I wait for 1 sec
@@ -118,7 +118,7 @@ Feature: Single Choice Question - Options
     And I refresh the page
 
 
-  @option4
+  @options4
   Scenario: Other text area is included
     When I click on "Quizzes" link
     And I wait for 1 sec
@@ -149,7 +149,7 @@ Feature: Single Choice Question - Options
     When I wait for 2 sec
     And I refresh the page
 
-  @option5
+  @options5
   Scenario: 1000 + 1 characters
     When I click on "Quizzes" link
     And I wait for 1 sec
@@ -179,7 +179,7 @@ Feature: Single Choice Question - Options
     When I wait for 2 sec
     And I refresh the page
 
-  @option6
+  @options6
   Scenario: Max 15 choices
     When I click on "Quizzes" link
     And I wait for 1 sec
@@ -231,8 +231,8 @@ Feature: Single Choice Question - Options
     When I wait for 2 sec
     And I refresh the page
 
-  @option7
-  Scenario: 1000 + 1 characters
+  @options7
+  Scenario: 1000 characters
     When I click on "Quizzes" link
     And I wait for 1 sec
     Then I click "Create New Quiz" button
