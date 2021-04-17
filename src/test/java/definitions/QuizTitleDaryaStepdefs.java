@@ -8,7 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
-public class quiz_title_Darya_stepdefs {
+public class QuizTitleDaryaStepdefs {
 
   @Given("I navigate to {string} page")
   public void iNavigateToPage(String url) {
@@ -51,7 +51,7 @@ public class quiz_title_Darya_stepdefs {
 
   @Then("I click add question button")
   public void iClickAddQuestionButton() {
-    string actErMess = getDriver().findElement(By.xpath("//simple-snack-bar")).getText();
+    String actErMess = getDriver().findElement(By.xpath("//simple-snack-bar")).getText();
 
 
   @Then("Error message should not be displayed")
