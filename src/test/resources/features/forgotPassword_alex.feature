@@ -5,8 +5,9 @@ Feature: Forgot Password Scenarios
             Preconditions: account a.kaladzinski@aol.com / TestPSW_123 exists
     When I navigate to "http://ask-qa.portnov.com/#/login" page
     And I wait for 1 seconds
-    And I click element with xpath "//a[contains(text(), 'I forgot my password')]"
+    And I click "I forgot my password" link
     And I enter "a.kaladzinski@aol.com" into the field with xpath "//input[@formcontrolname='email']"
+    And I enter "a.kaladzinski@aol.com" into the Email field
     And I click button with text "Request Password Reset"
     And I navigate to "https://mail.aol.com/" page
     And I enter "a.kaladzinski@aol.com" into the field with xpath "//input[@id='login-username']"

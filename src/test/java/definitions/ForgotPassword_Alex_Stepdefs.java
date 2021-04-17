@@ -19,24 +19,10 @@ public class ForgotPassword_Alex_Stepdefs {
         getDriver().get(url);
     }
 
-//    @Then("I copy randomly generated email string")
-//    public void iCopyRandomlyGeneratedEmailString() {
-//        localName = getDriver().findElement(By.id("userName")).getAttribute("value");
-//        domainName = getDriver().findElement(By.xpath("//div[@id='domnamserch']/input[2]")).getAttribute("value");
-//        String email = localName + "@" + domainName;
-//        System.out.println(email);
-//    }
 
     @And("I click button with text {string}")
     public void iClickButtonWithText(String text) {
         getDriver().findElement(By.xpath("//span[contains(text(),'" + text + "')]")).click();
-    }
-
-
-    @And("I enter {string} into the field with xpath {string}")
-    public void iEnterIntoTheFieldWithXpath(String input, String xpath) {
-        getDriver().findElement(By.xpath(xpath)).sendKeys(input);
-
     }
 
     @And("I enter randomly generated email into the field with xpath {string}")
@@ -66,11 +52,6 @@ public class ForgotPassword_Alex_Stepdefs {
         assertThat(actualText.equals(expectedText)).isTrue();
     }
 
-    @And("I click element with xpath {string}")
-    public void iClickElementWithXpath(String xpath) {
-        getDriver().findElement(By.xpath(xpath)).click();
-    }
-
     @And("I click element with a linktext {string}")
     public void iClickElementWithALinktext(String linktext) {
         getDriver().findElement(By.linkText(linktext)).click();
@@ -97,4 +78,16 @@ public class ForgotPassword_Alex_Stepdefs {
         assertThat(actualMessage.equals(expectedMessage)).isTrue();
 
     }
+
+    @And("I click {string} link")
+    public void iClickLink(String text) {
+        getDriver().findElement(By.xpath("//a[contains(text(), '" + text + "')]")).click();
+
+    }
+
+    @And("I enter {string} into the Email field")
+    public void iEnterIntoTheEmailField(String text) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(text);
+    }
+
 }
