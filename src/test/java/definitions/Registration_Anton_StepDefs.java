@@ -10,7 +10,7 @@ import java.util.Random;
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
-public class RegestrationEmail_Anton_StepDefs {
+public class Registration_Anton_StepDefs {
 
 
     @When("I type {string} into First Name filed")
@@ -47,9 +47,15 @@ public class RegestrationEmail_Anton_StepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(Cpassword);
     }
 
-    @Then("Message {string} should be displayed")
+    @Then("error message {string} should be displayed")
     public void messageShouldBeDisplayed(String message) {
         String actualMessage = getDriver().findElement(By.xpath("//simple-snack-bar")).getText();
+    }
+
+    @Then("Message {string} should be displayed")
+    public void MessageShouldBeDisplayed(String message) {
+        String actualMessage = getDriver().findElement(By.xpath("//mat-error")).getText();
+        assertThat(actualMessage).isEqualTo(message);
     }
 }
 

@@ -1,4 +1,4 @@
-@regestration
+@registration
 Feature: Registration email scenarios
 
 
@@ -88,6 +88,6 @@ Feature: Registration email scenarios
     Then I type "12345" into Confirm Password filed
     When I click "Register Me" button
     And I wait for 1 sec
-    Then Message "User already exists and activated" should be displayed
+    Then error message "User already exists and activated" should be displayed
 
 
