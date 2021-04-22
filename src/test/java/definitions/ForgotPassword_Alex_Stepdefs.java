@@ -5,9 +5,11 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
 
+import javax.imageio.plugins.tiff.BaselineTIFFTagSet;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.stream;
 import static support.TestContext.getDriver;
 
 public class ForgotPassword_Alex_Stepdefs {
@@ -43,7 +45,7 @@ public class ForgotPassword_Alex_Stepdefs {
 
     @And("I click to open Reset your password email")
     public void iClickToOpenResetYourPasswordEmail() {
-        getDriver().findElement(By.xpath("//*[@id='email-table']/a[1]/div[2]")).click();
+        getDriver().findElement(By.xpath("//span[@title='Reset Your Password']")).click();
     }
 
     @Then("element with text {string} is present")
@@ -62,20 +64,6 @@ public class ForgotPassword_Alex_Stepdefs {
         for(String winHandle : getDriver().getWindowHandles()){
             getDriver().switchTo().window(winHandle);
         }
-    }
-
-    @Then("user's credentials {string} are present at element with xpath {string}")
-    public void userSCredentialsArePresentAtElementWithXpath(String expectedCredentials, String xpath) {
-        String actualCredentials = getDriver().findElement(By.xpath(xpath)).getText();
-        assertThat(actualCredentials.equals(expectedCredentials)).isTrue();
-    }
-
-
-    @Then("warning message with text {string} is present at element with xpath {string}")
-    public void warningMessageWithTextIsPresentAtElementWithXpath(String expectedMessage, String xpath) {
-        String actualMessage = getDriver().findElement(By.xpath(xpath)).getText();
-        System.out.println(actualMessage);
-        assertThat(actualMessage.equals(expectedMessage)).isTrue();
 
     }
 
@@ -90,4 +78,70 @@ public class ForgotPassword_Alex_Stepdefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(text);
     }
 
+    @And("I enter {string} into the Usermane field")
+    public void iEnterIntoTheUsermaneField(String email) {
+        getDriver().findElement(By.id("login-username")).sendKeys(email);
+    }
+
+    @And("I click Next button")
+    public void iClickNextButton() {
+        getDriver().findElement(By.id("login-signin")).click();
+    }
+
+    @And("I enter {string} into Password Field")
+    public void iEnterIntoPasswordField(String password) {
+        getDriver().findElement(By.id("login-passwd")).sendKeys(password);
+    }
+
+    @And("I click Inbox link")
+    public void iClickInboxLink() {
+        getDriver().findElement(By.id("inboxNode")).click();
+    }
+
+    @And("I click to open {string} email")
+    public void iClickToOpenEmail(String emailName) {
+        getDriver().findElement(By.xpath("//span[@title='" + emailName + "']")).click();
+    }
+
+
+    @And("I enter {string} into New password field")
+    public void iEnterIntoNewPasswordField(String password) {
+        getDriver().findElement(By.xpath("//input[@placeholder='New Password']")).sendKeys(password);
+    }
+
+    @And("I enter {string} into Confirm New Password field")
+    public void iEnterIntoConfirmNewPasswordField(String password) {
+        getDriver().findElement(By.xpath("//input[@placeholder='Confirm New Password']")).sendKeys(password);
+    }
+
+    @And("I enter {string} into Email field at ask page")
+    public void iEnterIntoEmailFieldAtAskPage(String email) {
+        getDriver().findElement(By.xpath("//input[@placeholder='Email *']")).sendKeys(email);
+    }
+
+    @And("I enter {string} into Password field at ask page")
+    public void iEnterIntoPasswordFieldAtAskPage(String pswd) {
+        getDriver().findElement(By.xpath("//input[@placeholder='Password *']")).sendKeys(pswd);
+    }
+
+    @Then("user's credentials {string} are present at the top left corner of the page")
+    public void userSCredentialsArePresentAtTheTopLeftCornerOfThePage(String expectedCredentials) {
+        String actualCredentials = getDriver().findElement(By.xpath("//header/div[2]/h3")).getText();
+        assertThat(actualCredentials.equals(expectedCredentials)).isTrue();
+
+    }
+
+    @Then("snack-bar with text {string} is present")
+    public void snackBarWithTextIsPresent(String expectedMessage) {
+        String actualMessage = getDriver().findElement(By.xpath("//body/div[1]")).getText();
+        System.out.println(actualMessage);
+        assertThat(actualMessage.equals(expectedMessage)).isTrue();
+    }
+
+    @Then("warning message with text {string} is present")
+    public void warningMessageWithTextIsPresent(String expectedMessage) {
+        String actualMessage = getDriver().findElement(By.xpath("//mat-error")).getText();
+        System.out.println(actualMessage);
+        assertThat(actualMessage.equals(expectedMessage)).isTrue();
+    }
 }
