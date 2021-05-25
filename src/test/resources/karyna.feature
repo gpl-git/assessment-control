@@ -1,5 +1,5 @@
 @karyna
-  Feature: Practice git commands
+  Feature: bla-bla
 
     @karyna1
-    Scenario: My first git experience
+    Scenario: Practice
