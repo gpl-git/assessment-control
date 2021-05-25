@@ -2,4 +2,4 @@
   Feature: bla-bla
 
     @karyna1
-    Scenario: Practice
+    Scenario: Practice Git Commands
