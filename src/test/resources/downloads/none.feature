@@ -1,3 +1,0 @@
-ssd
-  asdf
-  sdag
