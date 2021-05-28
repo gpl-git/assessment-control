@@ -4,7 +4,16 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.en_old.Ac;
+import org.assertj.core.api.BooleanAssert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
+import javax.swing.*;
 
 import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,7 +67,7 @@ public class TextQShowStopStepDefs {
 
     @Then("I should see a {string} text")
     public void iShouldSeeAText(String text) {
-        String actual= getDriver().findElement(By.xpath("//*[contains(text(),'"+text+"')]")).getText();
+        String actual= getDriver().findElement(By.xpath("//*[@class='show-stopper ng-star-inserted']")).getText();
         assertThat(actual.contains(text)).isTrue();
 
     }
@@ -84,7 +93,7 @@ public class TextQShowStopStepDefs {
 
     @When("I choose quiz title as {string}")
     public void iChooseQuizTitleAs(String title) {
-        getDriver().findElement(By.xpath("//*[contains(text(),'Karyna Show-Stopper')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(text(),'"+title+"')]")).click();
     }
 
     @When("I click on {string} drop-down list")
@@ -109,13 +118,13 @@ public class TextQShowStopStepDefs {
 
     @When("I add points to {int}")
     public void iAddPointsTo(int points) {
-        for (points=0; points<5; points ++){
+        for (int i=0; i<=points; i ++){
             getDriver().findElement(By.xpath("//*[@class='buttons']//*[contains(text(),'+')]")).click();
         }
     }
 
 
-    @Then("I should not see a {string} text")
+    @Then("I should not see a result of submitted assignment as {string}")
     public void iShouldNotSeeAText(String text) {
         String actual = getDriver().findElement(By.xpath("//*[@class='result']")).getText();
         assertThat(actual.contains(text)).isFalse();
@@ -123,7 +132,7 @@ public class TextQShowStopStepDefs {
 
     @When("I delete quiz {string} from the list")
     public void iDeleteQuizFromTheList(String title) throws InterruptedException {
-        getDriver().findElement(By.xpath("//*[contains(text(),'Karyna Show-Stopper')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(text(),'"+title+"')]")).click();
         Thread.sleep(1000);
         getDriver().findElement(By.xpath("//*[contains(text(),'"+title+"')]/../../..//*[text()='Delete']")).click();
     }
@@ -164,5 +173,39 @@ public class TextQShowStopStepDefs {
     public void questionNumberShouldBeIndicatedWithAn(String num, String ast) {
         String req=getDriver().findElement(By.xpath("//*[contains(text(),'Q"+num+"')]")).getText();
         assertThat(req.contains(ast)).isTrue();
+    }
+
+    @And("I should see a result of a submitted assignment as {string}")
+    public void iShouldSeeAResultOfASubmittedAssignmentAs(String text) {
+        String actual=getDriver().findElement(By.xpath("//*[@class='failed-show-stopper ng-star-inserted']")).getText();
+        assertThat(actual.contains(text)).isTrue();
+    }
+
+    @When("I type text {string} for option {int} for question number {int}")
+    public void iTypeTextForOptionForQuestionNumber(String text, int option, int question) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'Q"+question+":')]/../../..//*[@placeholder='Option "+option+"*']")).sendKeys(text);
+    }
+
+    @And("I choose correct option {int} for question number {int}")
+    public void iChooseCorrectOptionForQuestionNumber(int opt, int que) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'Q"+que+"')]/../../..//*[@placeholder='Option "+opt+"*']/../../../../..//mat-radio-button")).click();
+    }
+
+    @When("I decrease passing rate from {int} percent to {int} percent")
+    public void iDecreasePassingRateFromPercentToPercent(int old, int pass) {
+        int difference = old - pass - 1;
+        for (int i = 0; i <= difference; i++) {
+            getDriver().findElement(By.xpath("//*[text()='-']")).click();
+        }
+    }
+
+    @And("I choose correct option {string} for question number {int}")
+    public void iChooseCorrectOptionForQuestionNumber(String answer, int num) {
+        getDriver().findElement(By.xpath("//*[text()='Question "+num+" / 3']/..//*[contains(text(),'"+answer+"')]")).click();
+    }
+
+    @Then("I should see result {string} for assignment {string}")
+    public void iShouldSeeResultForAssignment(String result, String assign) {
+        getDriver().findElement(By.xpath("//*[text()='"+assign+"']/..//*[@class='"+result+"']")).isDisplayed();
     }
 }
