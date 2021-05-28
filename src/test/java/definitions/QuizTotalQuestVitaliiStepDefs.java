@@ -12,27 +12,21 @@ public class QuizTotalQuestVitaliiStepDefs {
     String quizTitle = "QuizTotalQuestion";
 
     @Given("I created a quiz with {int} total question")
-    public void iCreatedAQuizWithTotalQuestion(int questNumber) throws InterruptedException {
-        if (questNumber == 1) {
+    public void iCreatedAQuizWithTotalQuestion(int num) throws InterruptedException {
+       if (num >= 1) {
             getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(quizTitle);
             getDriver().findElement(By.xpath("//*[@class='mat-icon material-icons']")).click();
-            getDriver().findElement(By.xpath("//*[contains(text(),'Q1')]/../../..//*[contains(text(),'Textual')]")).click();
-            getDriver().findElement(By.xpath("//*[contains(text(),'Q1')]/../../..//*[@placeholder='Question *']")).sendKeys("Question Example");
-            getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
-        } else if (questNumber == 50) {
-            getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(quizTitle);
-            getDriver().findElement(By.xpath("//*[@class='mat-icon material-icons']")).click();
-            for (int i = 1; i < 50; ++i) {
+            for (int i = 1; i < num; ++i) {
                 getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[contains(text(),'Textual')]")).click();
                 getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question Example");
                 getDriver().findElement(By.xpath("//*[@class='mat-icon material-icons']")).click();
-                Thread.sleep(100);
+                Thread.sleep(200);
             }
-            getDriver().findElement(By.xpath("//*[contains(text(),'Q50')]/../../..//*[contains(text(),'Textual')]")).click();
-            getDriver().findElement(By.xpath("//*[contains(text(),'Q50')]/../../..//*[@placeholder='Question *']")).sendKeys("Question Example");
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q"+num+"')]/../../..//*[contains(text(),'Textual')]")).click();
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q"+num+"')]/../../..//*[@placeholder='Question *']")).sendKeys("Question Example");
             getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
         } else {
-            System.out.println("A quiz with " + questNumber + " questions does not supported in this test");
+            System.out.println("A quiz with " + num + " questions does not supported in this test");
         }
     }
 

@@ -23,7 +23,7 @@
       When I delete the quiz
 
     @quizTotalQuestions2
-    Scenario: Verify a quiz with 50 question has the quiz card with 50 "Total Questions"
+    Scenario: Verify a quiz with X question has the quiz card with X "Total Questions"
       Given I created a quiz with 50 total question
       When I wait for 2 sec
       When I click on the quiz card
