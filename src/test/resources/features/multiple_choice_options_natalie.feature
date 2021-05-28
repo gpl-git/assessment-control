@@ -18,9 +18,10 @@ Feature: Multiple Choice Question - Options
     Given I type "1 Multiple Choice Automation" as quiz title
     When I add a question
     And I select "Multiple-Choice" question type
-    And I type "hgfjkdhgkfdjhgkjfdhgjkfdhgjkfdhjkghfdjkghfdjkhgkjfdhgjkdhgkjhdjkghjdkghkjdhgjkdhgjkdhgjkdhgjkhdjkghdkjhgjkdhgkdjhgkdhgjkdhgdjhgjdkghdjkhgjdhgkdhgdkhgkjdhgjkdhgjkdhgkdhkjghdkghdjkhgjdkhgjkdhgjdhgkjhdkjghdkjhgjkdhgkdhgghjkdhgdkjhghdjkhgkjdhjkgdhgdjkhghgdkjhgfjkdhgkfdjhgkjfdhgjkfdhgjkfdhjkghfdjkghfdjkhgkjfdhgjkdhgkjhdjkghjdkghkjdhgjkdhgjkdhgjkdhgjkhdjkghdkjhgjkdhgkdjhgkdhgjkdhgdjhgjdkghdjkhgjdhgkdhgdkhgkjdhgjkdhgjkdhgkdhkjghdkghdjkhgjdkhgjkdhgjdhgkjhdkjghdkjhgjkdhgkdhgghjkdhgdkjhghdjkhgkjdhjkgdhgdjkhghgdkjhgfjkdhgkfdjhgkjfdhgjkfdhgjkfdhjkghfdjkghfdjkhgkjfdhgjkdhgkjhdjkghjdkghkjdhgjkdhgjkdhgjkdhgjkhdjkghdkjhgjkdhgkdjhgkdhgjkdhgdjhgjdkghdjkhgjdhgkdhgdkhgkjdhgjkdhgjkdhgkdhkjghdkghdjkhgjdkhgjkdhgjdhgkjhdkjghdkjhgjkdhgkdhgghjkdhgdkjhghdjkhgkjdhjkgdhgdjkhghgdkjhgfjkdhgkfdjhgkjfdhgjkfdhgjkfdhjkghfdjkghfdjkhgkjfdhgjkdhgkjhdjkghjdkghkjdhgjkdhgjkdhgjkdhgjkhdjkghdkjhgjkdhgkdjhgkdhgjkdhgdjhgjdkghdjkhgjdhgkdhgdkhgkjdhgjkdhgjkdhgkdhkjghdkghdjkhgjdkhgjkdhgjdhgkjhdkjghdkjhgjkdhgkdhgghjkdhgdkjhghdjkhgkjdh" as question "Q1" text field "Question *"
-    When I type "jgfkgjkf" as question "Q1" option field "Option 1*"
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 2*"
+    And I type "Question 1" as question "Q1" text field "Question *"
+    When I type "" 1000 characters as question "Q1" option field "Option 1*"
+    And I wait for 2 sec
+    And I type "" 1000 characters as question "Q1" option field "Option 2*"
     And I wait for 2 sec
     And I check "Option 1*" as correct answer in "Q1"
     When I click "Save" button
@@ -34,14 +35,15 @@ Feature: Multiple Choice Question - Options
     Given I type "1 Multiple Choice Automation" as quiz title
     When I add a question
     And I select "Multiple-Choice" question type
-    And I type "hgfjkdhgkfdjhgkjfdhgjkfdhgjkfdhjkghfdjkghfdjkhgkjfdhgjkdhgkjhdjkghjdkghkjdhgjkdhggjkdhgjkdhgjkhdjkghdkjhgjkdhgkdfjhgkdhgjkdhgdjhgjdkghdjkhgjdhgkdhgdkhgkjdhgjkdhgjkdhgkdhkjghdkghdjkhgjdkhgjkdhgjdhgkjhdkjghdkjhgjkdhgkdhgghjkdhgdkjhghdjkhgkjdhjkgdhgdjkhghgdkjhgfjkdhgkfdjhgkjfdhgjkfdhgjkfdhjkghfdjkghfdjkhgkjfdhgjkdhgkjhdjkghjdkghkjdhgjkdhgjkdhgjkdhgjkhdjkghdkjhgjkdhgkdjhgkdhgjkdhgdjhgjdkghdjkhgjdhgkdhgdkhgkjdhgjkdhgjkdhgkdhkjghdkghdjkhgjdkhgjkdhgjdhgkjhdkjghdkjhgjkdhgkdhgghjkdhgdkjhghdjkhgkjdhjkgdhgdjkhghgdkjhgfjkdhgkfdjhgkjfdhgjkfdhgjkfdhjkghfdjkghfdjkhgkjfdhgjkdhgkjhdjkghjdkghkjdhgjkdhgjkdhgjkdhgjkhdjkghdkjhgjkdhgkdjhgkdhgjkdhgdjhgjdkghdjkhgjdhgkdhgdkhgkjdhgjkdhgjkdhgkdhkjghdkghdjkhgjdkhgjkdhgjdhgkjhdkjghdkjhgjkdhgkdhgghjkdhgdkjhghdjkhgkjdhjkgdhgdjkhghgdkjhgfjkdhgkfdjhgkjfdhgjkfdhgjkfdhjkghfdjkghfdjkhgkjfdhgjkdhgkjhdjkghjdkghkjdhgjkdhgjkdhgjkdhgjkhdjkghdkjhgjkdhgkdjhgkdhgjkdhgdjhgjdkghdjkhgjdhgkdhgdkhgkjdhgjkdhgjkdhgkdhkjghdkghdjkhgjdkhgjkdhgjdhgkjhdkjghdkjhgjkdhgkdhgghjkdhgdkjhghdjkhgkjdh" as question "Q1" text field "Question *"
-    When I type "jgfkgjkf" as question "Q1" option field "Option 1*"
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 2*"
+    And I type "Question 1" as question "Q1" text field "Question *"
+    When I type "" 1001 characters as question "Q1" option field "Option 1*"
+    And I type "" 1001 characters as question "Q1" option field "Option 2*"
     And I wait for 2 sec
     And I check "Option 1*" as correct answer in "Q1"
+#   Known issue - SA-532
     When I click "Save" button
     And I wait for 2 sec
-    Then quiz "1 Multiple Choice Automation" should be displayed on the list of quizzes
+    Then quiz "1 Multiple Choice Automation" shouldn't be displayed on the list of quizzes
     When I delete "1 Multiple Choice Automation" from the list of quizzes
     And I wait for 1 sec
 
@@ -50,9 +52,9 @@ Feature: Multiple Choice Question - Options
     Given I type "1 Multiple Choice Automation" as quiz title
     When I add a question
     And I select "Multiple-Choice" question type
-    And I type "h" as question "Q1" text field "Question *"
-    When I type "jgfkgjkf" as question "Q1" option field "Option 1*"
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 2*"
+    And I type "Question 1" as question "Q1" text field "Question *"
+    When I type "j" as question "Q1" option field "Option 1*"
+    And I type "j" as question "Q1" option field "Option 2*"
     And I wait for 2 sec
     And I check "Option 1*" as correct answer in "Q1"
     When I click "Save" button
@@ -68,8 +70,8 @@ Feature: Multiple Choice Question - Options
     Given I type "1 Multiple Choice Automation" as quiz title
     When I add a question
     And I select "Multiple-Choice" question type
-    And I type "hgfjkdhg" as question "Q1" text field "Question *"
-    When I type "jgfkgjkf" as question "Q1" option field "Option 1*"
+    And I type "Question 1" as question "Q1" text field "Question *"
+    When I type "Option1 text" as question "Q1" option field "Option 1*"
     And I click "Save" button
     And I wait for 2 sec
     Then "Quiz is not completed. Check highlighted with \"red\" areas" should appear
@@ -82,36 +84,10 @@ Feature: Multiple Choice Question - Options
     And I type "hgfjkdhgkfd" as question "Q1" text field "Question *"
     When I type "jgfkgjkf" as question "Q1" option field "Option 1*"
     And I type "jgkfjgkfj" as question "Q1" option field "Option 2*"
-    When I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 3*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 4*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 5*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 6*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 7*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 8*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 9*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 10*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 11*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 12*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 13*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 14*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 15*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 16*"
-    And I wait for 2 sec
+    When I add option in "" question up to 16 choices
+    And I wait for 3 sec
     And I check "Option 1*" as correct answer in "Q1"
+#   Issue was created - SA-673
     When I click "Save" button
     And I wait for 2 sec
     When I click on "Quizzes" link
@@ -144,32 +120,7 @@ Feature: Multiple Choice Question - Options
     And I type "hgfjkdhgkfd" as question "Q1" text field "Question *"
     When I type "jgfkgjkf" as question "Q1" option field "Option 1*"
     And I type "jgkfjgkfj" as question "Q1" option field "Option 2*"
-    When I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 3*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 4*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 5*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 6*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 7*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 8*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 9*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 10*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 11*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 12*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 13*"
-    And I click on add option
-    And I type "jgkfjgkfj" as question "Q1" option field "Option 14*"
-    And I click on add option
-    And I type "jgfkgjkf" as question "Q1" option field "Option 15*"
+    When I add option in "" question up to 15 choices
     And I wait for 2 sec
     And I check "Option 1*" as correct answer in "Q1"
     When I click "Save" button
