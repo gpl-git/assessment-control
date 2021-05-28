@@ -43,6 +43,7 @@ public class QuizStepDefs {
 
     @And("I click on {string} link")
     public void iClickOnLink(String link) {
+
         getDriver().findElement(By.xpath("//h5[text()='"+link+"']")).click();
     }
 

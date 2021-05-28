@@ -1,6 +1,7 @@
 package definitions;
 
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
@@ -43,6 +44,28 @@ public class EmailStepDefs {
         getDriver().findElement(By.id("mat-error-24")).getText();
 
     }
+
+    @Then("{string} message should not be displayed")
+    public void messageShouldNotBeDisplayed(String errorMessage) {
+        getDriver().findElement(By.xpath("//*[@id='mat-error-5']")).getText();
+    }
+
+    @When("I type {string} into First Name field")
+    public void iTypeIntoFirstNameField(String FirstName) {
+        getDriver().findElement(By.xpath("//input[@id='mat-input-2']")).click();
+    }
+
+    @And("I type {string} into Last Name field")
+    public void iTypeIntoLastNameField(String LastName){
+        getDriver().findElement(By.xpath("//input[@id='mat-input-3']")).click();
+    }
+
+    @And("I type {string} into Group Code field")
+    public void iTypeIntoGroupcodeField(String Group_Code) {
+        getDriver().findElement(By.xpath("//input[@id='mat-input-5']")).click();
+    }
+
+
 }
 
 
