@@ -59,6 +59,7 @@ public class QuizTotalQuestVitaliiStepDefs {
 
     @When("I delete the quiz")
     public void iDeleteTheQuiz() throws InterruptedException {
+        Thread.sleep(500);
         getDriver().findElement(By.xpath("//*[contains(text(),'" + quizTitle + "')]/../../..//span[text()='Delete']")).click();
         getDriver().findElement(By.xpath("//*[@aria-label='Close dialog']/*[text()='Delete']")).click();
         Thread.sleep(1000);
