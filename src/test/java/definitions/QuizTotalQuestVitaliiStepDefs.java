@@ -3,27 +3,29 @@ package definitions;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class QuizTotalQuestVitaliiStepDefs {
-    String quizTitle = "QuizTotalQuestion";
+    String titleGenerator = RandomStringUtils.random(2, 1, 99, false, true);
+    String quizTitle = "QuizTotalQuestion" + titleGenerator;
 
     @Given("I created a quiz with {int} total question")
     public void iCreatedAQuizWithTotalQuestion(int num) throws InterruptedException {
-       if (num >= 1) {
+        if (num >= 1) {
             getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(quizTitle);
             getDriver().findElement(By.xpath("//*[@class='mat-icon material-icons']")).click();
             for (int i = 1; i < num; ++i) {
                 getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[contains(text(),'Textual')]")).click();
-                getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question Example");
+                getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question " + i + "");
                 getDriver().findElement(By.xpath("//*[@class='mat-icon material-icons']")).click();
                 Thread.sleep(200);
             }
-            getDriver().findElement(By.xpath("//*[contains(text(),'Q"+num+"')]/../../..//*[contains(text(),'Textual')]")).click();
-            getDriver().findElement(By.xpath("//*[contains(text(),'Q"+num+"')]/../../..//*[@placeholder='Question *']")).sendKeys("Question Example");
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + num + "')]/../../..//*[contains(text(),'Textual')]")).click();
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + num + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question " + num + "");
             getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
         } else {
             System.out.println("A quiz with " + num + " questions does not supported in this test");

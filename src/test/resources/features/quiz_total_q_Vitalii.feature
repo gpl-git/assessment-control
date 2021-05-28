@@ -32,4 +32,3 @@
       When I open the preview of the quiz
       Then I verify the string "Question 1 / 50" is displayed in the preview mode
       When I delete the quiz
-
