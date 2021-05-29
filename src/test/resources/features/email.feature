@@ -5,24 +5,16 @@
       Given I open "registration" page
       When I type in new email field
       And I wait for 3 sec
-@email1
-    Scenario: Validate email error
+@email2
+    Scenario: Validate email field
       Given I open "registration" page
-      When I type "abc123" into email field
+      When I type "abc123@gmail.com" into email field
      And I wait for 1 sec
       Then I click on "Register me " button
       And I wait for 1 sec
-      Then "Should be a valid email address" message should be displayed
+      Then "Should be a valid email address" message should not be displayed
       And I wait for 2 sec
-@email2
-    Scenario: Validate empty email field
-      Given I open "registration" page
-      When I type "" into email field
-      And I wait for 1 sec
-      Then I click on "Register me " button
-      And I wait for 1 sec
-      Then  "This field is required" message should be displayed
-      And I wait for 1 sec
+
 
 @email3
     Scenario: Validate special character in email field
@@ -48,9 +40,8 @@
          | "ewhfdwuedgwndskfewfowjfadbsjbceidjasbdiewufdzxcgvhbjnkjybfshhajh@gmail.com" |   "" |
          | "ewhfdwuedgwndskfewfowjfadbsjbceidjasbdiewufdzxcgvhbjnkjybfshhajh567@gmail.com" |   "Should be a valid email address" |
          | "abc  @gmail.com" |   "Should be a valid email address" |
-
-
-
+         | "" |   "Should be a valid email address" |
+         | "abc123" |   "Should be a valid email address" |
 
 
 
