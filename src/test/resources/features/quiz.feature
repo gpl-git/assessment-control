@@ -30,3 +30,5 @@
      And I delete "Quiz title Sample" from the list of quizzes
      And I wait for 3 sec
 
+
+
