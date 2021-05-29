@@ -29,6 +29,3 @@
      Then quiz "Quiz title Sample" should be displayed on the list of quizzes
      And I delete "Quiz title Sample" from the list of quizzes
      And I wait for 3 sec
-
-
-
