@@ -41,3 +41,12 @@
       Then I click Sign In button on login page
   
       Then I should see page title as "Assessment Control @ Portnov"
+
+
+    @forgotpassword2
+    Scenario: Forgot password and give invalid email
+      And I click on element forgot password
+      When I type invalid "email" in the element "field"
+      And I click request password reset
+      And I wait for 2 sec
+      Then pop-up message should be displayed "Authentication failed. User not found or password does not match"

@@ -32,6 +32,7 @@ public class ForgotPasswordIonStepdefs {
 
     }
 
+
     @And("I click request password reset")
     public void iClickRequestPasswordReset() {
         getDriver().findElement(By.xpath("//span[contains(text(),'Request Password Reset')]")).click();
@@ -140,4 +141,16 @@ public class ForgotPasswordIonStepdefs {
     }
 
 
+
+    @When("I type invalid {string} in the element {string}")
+    public void iTypeInvalidInTheElement(String arg0, String xpath) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys("1234567890987654321@gmail.com");
+
+    }
+
+    @Then("pop-up message should be displayed {string}")
+    public void popUpMessageShouldBeDisplayed(String text) {
+        String s=getDriver().findElement(By.xpath("/*[contains(text(),'"+text+"')]")).getText();
+        assertThat(s.contains(text)).isTrue();
+    }
 }
