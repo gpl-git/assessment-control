@@ -52,11 +52,13 @@
       And I wait for 1 sec
       Then pop-up message should display Authentication failed.
 
+
     @forgotpassword3
     Scenario: Forgot password text message
       And I click on element forgot password
       Then I see message "Warning!"
       And I wait for 5 sec
+
 
     @forgotpassword4
     Scenario: Verify if the link to change the password is sent to the user’s email
@@ -198,7 +200,6 @@
       And I click request password reset
       And I wait for 2 sec
       Then message should be displayed "Your request is confirmed"
-
       And I wait for 2 sec
       Then I navigate to my email
       Then I type my "test123456789123456712@gmail.com" to sign in page
@@ -207,7 +208,6 @@
       Then I type "Ab123456789!@Cd" into password field on sign in page
       And  I click on second next button
       And I wait for 3 sec
-
       And I click on new email in inbox field
       And I wait for 2 sec
       And I click the "reset" button
@@ -218,15 +218,11 @@
       And I wait for 3 sec
       And I type "12345" into Confirm New Password field
       And I click reset button on page reset password
-
-
       And I wait for 2 sec
       Then message is displayed "Your Password was Changed"
-
       Then I navigate to my email
       And  I click on second next button
       And I wait for 3 sec
-
       And I click on new email in inbox field
       And I wait for 2 sec
       And I click the "reset" button
