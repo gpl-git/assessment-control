@@ -4,7 +4,9 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -57,8 +59,8 @@ public class ForgotPasswordIonStepdefs {
 
 
 
-    @And("I click on {string} button")
-    public void iClickOnButton(String reset) {
+    @And("I click the {string} button")
+    public void iClickTheButton(String reset) {
         getDriver().findElement(By.xpath("//*[contains(text(),'Reset Password')]")).click();
 
 
@@ -149,8 +151,33 @@ public class ForgotPasswordIonStepdefs {
     }
 
     @Then("pop-up message should be displayed {string}")
-    public void popUpMessageShouldBeDisplayed(String text) {
+    public void popUpMessageShouldBeDisplayed(String text) throws InterruptedException {
         String s=getDriver().findElement(By.xpath("/*[contains(text(),'"+text+"')]")).getText();
         assertThat(s.contains(text)).isTrue();
+
+    }
+
+    @Then("pop-up message should display Authentication failed.")
+    public void popUpMessageShouldDisplayAuthenticationFailed() {
+        String s=getDriver().findElement(By.xpath("//*[contains(text(),'Authentication failed. User not found or password does not match')]")).getText();
+        Assert.assertEquals(s,"Authentication failed. User not found or password does not match");
+    }
+
+    @Then("I see message {string}")
+    public void iSeeMessage(String message) {
+        String m = getDriver().findElement(By.xpath("//*[contains(text(),'"+message+"')]")).getText();
+        assertThat(m.contains(message)).isTrue();
+    }
+
+    @Then("error message is displayed {string} under new password field")
+    public void errorMessageIsDisplayedUnderNewPasswordField(String errorM) {
+        String e = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-0']")).getText();
+        assertThat(e.equals(errorM)).isTrue();
+    }
+
+    @Then("error message is displayed {string} under confirm new password field")
+    public void errorMessageIsDisplayedUnderConfirmNewPasswordField(String errorM) {
+        String e = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-1']")).getText();
+        assertThat(e.equals(errorM)).isTrue();
     }
 }
