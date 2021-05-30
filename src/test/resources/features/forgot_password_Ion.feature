@@ -44,7 +44,7 @@
 
 
     @forgotpassword2
-    Scenario: Forgot password and give invalid email
+    Scenario: Forgot password and invalid email
       And I click on element forgot password
       When I type invalid "email" in the element "field"
       And I click request password reset
