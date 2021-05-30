@@ -8,6 +8,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
@@ -31,7 +33,6 @@ public class ForgotPasswordIonStepdefs {
     @When("I type valid {string} in the element {string}")
     public void iTypeValidInTheElement(String email, String xpath) {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys("test123456789123456712@gmail.com");
-
     }
 
 
@@ -43,7 +44,7 @@ public class ForgotPasswordIonStepdefs {
 
     @Then("message should be displayed {string}")
     public void messageShouldBeDisplayed(String text) {
-        String s=getDriver().findElement(By.xpath("//h4[contains(text(),'"+text+"')]")).getText();
+        String s = getDriver().findElement(By.xpath("//h4[contains(text(),'" + text + "')]")).getText();
         assertThat(s.contains(text)).isTrue();
     }
 
@@ -58,13 +59,11 @@ public class ForgotPasswordIonStepdefs {
     }
 
 
-
     @And("I click the {string} button")
     public void iClickTheButton(String reset) {
         getDriver().findElement(By.xpath("//*[contains(text(),'Reset Password')]")).click();
-
-
-//        getDriver().switchTo().window()
+        ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(1)); //switches to new tab
     }
 
 
@@ -76,13 +75,13 @@ public class ForgotPasswordIonStepdefs {
 
     @And("I click reset button on page reset password")
     public void iClickResetButtonOnPageResetPassword() {
-        getDriver().findElement(By.xpath("//button[@class='mat-raised-button mat-primary']")).click();
+        getDriver().findElement(By.xpath("//button[@type='submit']")).click();
     }
 
 
     @Then("message is displayed {string}")
     public void messageIsDisplayed(String text) {
-        String s=getDriver().findElement(By.xpath("//*[contains(text(),'Your Password was Changed')]")).getText();
+        String s = getDriver().findElement(By.xpath("//*[contains(text(),'Your Password was Changed')]")).getText();
         assertThat(s.contains(text)).isTrue();
     }
 
@@ -97,7 +96,6 @@ public class ForgotPasswordIonStepdefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(newPass);
     }
 
-
     @And("I click Back To Login Page button")
     public void iClickBackToLoginPageButton() {
         getDriver().findElement(By.xpath("//span[contains(text(),'Back To Login Page')]")).click();
@@ -108,17 +106,14 @@ public class ForgotPasswordIonStepdefs {
         getDriver().findElement(By.xpath("//input[@id='mat-input-2']")).sendKeys(email);
     }
 
-
     @Then("I type {string} into password field on page login")
     public void iTypeIntoPasswordFieldOnPageLogin(String pass) {
         getDriver().findElement(By.xpath("//input[@id='mat-input-3']")).sendKeys(pass);
-
-
     }
+
     @Then("I type my {string} to sign in page")
     public void iTypeMyToSignInPage(String email) {
         getDriver().findElement(By.xpath("//input[@id='identifierId']")).sendKeys(email);
-
     }
 
     @And("I click on first next button")
@@ -142,30 +137,26 @@ public class ForgotPasswordIonStepdefs {
         getDriver().findElement(By.xpath("//span[contains(text(),'Sign In')]")).click();
     }
 
-
-
     @When("I type invalid {string} in the element {string}")
     public void iTypeInvalidInTheElement(String arg0, String xpath) {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys("1234567890987654321@gmail.com");
-
     }
 
     @Then("pop-up message should be displayed {string}")
     public void popUpMessageShouldBeDisplayed(String text) throws InterruptedException {
-        String s=getDriver().findElement(By.xpath("/*[contains(text(),'"+text+"')]")).getText();
+        String s = getDriver().findElement(By.xpath("//*[contains(text(),'" + text + "')]/../simple-snack-bar")).getText();
         assertThat(s.contains(text)).isTrue();
-
     }
 
     @Then("pop-up message should display Authentication failed.")
     public void popUpMessageShouldDisplayAuthenticationFailed() {
-        String s=getDriver().findElement(By.xpath("//*[contains(text(),'Authentication failed. User not found or password does not match')]")).getText();
-        Assert.assertEquals(s,"Authentication failed. User not found or password does not match");
+        String s = getDriver().findElement(By.xpath("//*[contains(text(),'Authentication failed. User not found or password does not match')]")).getText();
+        Assert.assertEquals(s, "Authentication failed. User not found or password does not match");
     }
 
     @Then("I see message {string}")
     public void iSeeMessage(String message) {
-        String m = getDriver().findElement(By.xpath("//*[contains(text(),'"+message+"')]")).getText();
+        String m = getDriver().findElement(By.xpath("//*[contains(text(),'" + message + "')]")).getText();
         assertThat(m.contains(message)).isTrue();
     }
 
@@ -179,5 +170,17 @@ public class ForgotPasswordIonStepdefs {
     public void errorMessageIsDisplayedUnderConfirmNewPasswordField(String errorM) {
         String e = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-1']")).getText();
         assertThat(e.equals(errorM)).isTrue();
+    }
+
+    @Then("I click on last email message from {string}")
+    public void iClickOnLastEmailMessageFrom(String arg0) {
+        getDriver().findElement(By.xpath("//img[@class='ajT']")).click();
+    }
+
+    @And("I click the {string} button second time")
+    public void iClickTheButtonSecondTime(String arg0) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'Reset Password')]")).click();
+        ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs.get(2));
     }
 }
