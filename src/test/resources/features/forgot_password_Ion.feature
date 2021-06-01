@@ -15,17 +15,17 @@ Feature: Testing Forgot Password page
     Then I navigate to my email
     Then I type my "test123456789123456712@gmail.com" to sign in page
     And I click on first next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     Then I type "Ab123456789!@Cd" into password field on sign in page
     And  I click on second next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I click on new email in inbox field
     And I wait for 2 sec
     Then I click on last email message from "assessment.portnov@gmail.com"
     And I click the "reset" button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "12345" into New Password field
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "12345" into Confirm New Password field
     And I click reset button on page reset password
     And I wait for 2 sec
@@ -49,7 +49,7 @@ Feature: Testing Forgot Password page
   Scenario: Forgot password text message
     And I click on element forgot password
     Then I see message "Warning!"
-    And I wait for 5 sec
+    And I wait for 2 sec
 
   @forgotpassword4
   Scenario: Verify if the link to change the password is sent to the user’s email
@@ -62,15 +62,15 @@ Feature: Testing Forgot Password page
     Then I navigate to my email
     Then I type my "test123456789123456712@gmail.com" to sign in page
     And I click on first next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     Then I type "Ab123456789!@Cd" into password field on sign in page
     And  I click on second next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I click on new email in inbox field
     And I wait for 2 sec
     Then I click on last email message from "assessment.portnov@gmail.com"
     And I click the "reset" button
-    And I wait for 3 sec
+    And I wait for 2 sec
 
   @forgotpassword5
   Scenario: Verify if the new password field can be empty
@@ -83,15 +83,15 @@ Feature: Testing Forgot Password page
     Then I navigate to my email
     Then I type my "test123456789123456712@gmail.com" to sign in page
     And I click on first next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     Then I type "Ab123456789!@Cd" into password field on sign in page
     And  I click on second next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I click on new email in inbox field
     And I wait for 2 sec
     Then I click on last email message from "assessment.portnov@gmail.com"
     And I click the "reset" button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I click reset button on page reset password
     Then error message is displayed "This field is required" under new password field
     Then error message is displayed "This field is required" under confirm new password field
@@ -107,17 +107,17 @@ Feature: Testing Forgot Password page
     Then I navigate to my email
     Then I type my "test123456789123456712@gmail.com" to sign in page
     And I click on first next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     Then I type "Ab123456789!@Cd" into password field on sign in page
     And  I click on second next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I click on new email in inbox field
     And I wait for 2 sec
     Then I click on last email message from "assessment.portnov@gmail.com"
     And I click the "reset" button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "12" into New Password field
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "12" into Confirm New Password field
     And I click reset button on page reset password
     Then error message is displayed "Too short. Should be at least 5 characters" under new password field
@@ -143,9 +143,9 @@ Feature: Testing Forgot Password page
     And I wait for 2 sec
     Then I click on last email message from "assessment.portnov@gmail.com"
     And I click the "reset" button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "1234 5" into New Password field
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "1234 5" into Confirm New Password field
     And I click reset button on page reset password
     Then error message is displayed "Whitespaces are not allowed" under new password field
@@ -163,19 +163,20 @@ Feature: Testing Forgot Password page
     Then I navigate to my email
     Then I type my "test123456789123456712@gmail.com" to sign in page
     And I click on first next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     Then I type "Ab123456789!@Cd" into password field on sign in page
     And  I click on second next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I click on new email in inbox field
     And I wait for 2 sec
     Then I click on last email message from "assessment.portnov@gmail.com"
     And I click the "reset" button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "12345" into New Password field
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "54321" into Confirm New Password field
     And I click reset button on page reset password
+    And I wait for 1 sec
     Then error message is displayed "Entered passwords should match" under confirm new password field
     And I wait for 2 sec
 
@@ -190,20 +191,20 @@ Feature: Testing Forgot Password page
     Then I navigate to my email
     Then I type my "test123456789123456712@gmail.com" to sign in page
     And I click on first next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     Then I type "Ab123456789!@Cd" into password field on sign in page
     And  I click on second next button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I click on new email in inbox field
     And I wait for 2 sec
     Then I click on last email message from "assessment.portnov@gmail.com"
     And I click the "reset" button
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "12345" into New Password field
-    And I wait for 3 sec
+    And I wait for 2 sec
     And I type "12345" into Confirm New Password field
     And I click reset button on page reset password
-    And I wait for 2 sec
+    And I wait for 4 sec
     Then message is displayed "Your Password was Changed"
     Then I navigate to my email
     And I wait for 1 sec

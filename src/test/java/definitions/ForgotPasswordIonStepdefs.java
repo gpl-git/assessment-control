@@ -172,10 +172,13 @@ public class ForgotPasswordIonStepdefs {
         assertThat(e.equals(errorM)).isTrue();
     }
 
+
     @Then("I click on last email message from {string}")
     public void iClickOnLastEmailMessageFrom(String arg0) {
         getDriver().findElement(By.xpath("//img[@class='ajT']")).click();
     }
+
+
 
     @And("I click the {string} button second time")
     public void iClickTheButtonSecondTime(String arg0) {
