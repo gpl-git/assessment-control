@@ -25,31 +25,35 @@ public class EmailStepDefs {
 
     }
 
+
+
     @Then("{string} message should be displayed")
     public void messageShouldBeDisplayed(String expectedError) {
-       getDriver().findElement(By.xpath("//*[@id='mat-error-5']")).getText();
+       getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
 
     }
 
-
-    @Then("I click on {string} button")
-    public void iClickOnButton(String btnName) {
-        getDriver().findElement(By.xpath("//button[@class='mat-raised-button mat-primary']")).click();
-
+    @Then("I click on Register Me button")
+    public void iClickOnButtonButton() {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Register Me')]"));
     }
+
+//   @Then("I click on {string} button")
+//    public void iClickOnButton(String button) {
+//       getDriver().findElement(By.xpath("//button[@class='mat-raised-button mat-primary']")).click();
+//  }
 
 
     @Then("error message {string} message should be displayed")
     public void errorMessageMessageShouldBeDisplayed(String expectedError) {
-        getDriver().findElement(By.id("mat-error-24")).getText();
+        getDriver().findElement(By.xpath("//*[contains(text(),'This field is required')]")).getText();
 
     }
 
     @Then("{string} message should not be displayed")
     public void messageShouldNotBeDisplayed(String errorMessage) {
-        getDriver().findElement(By.xpath("//*[@id='mat-error-5']")).getText();
+        getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
     }
-
 
 
 
