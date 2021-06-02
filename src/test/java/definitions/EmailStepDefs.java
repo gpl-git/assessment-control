@@ -8,14 +8,15 @@ import org.openqa.selenium.By;
 
 import java.util.Random;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class EmailStepDefs {
     @When("I type in new email field")
     public void iTypeInNewEmailField() {
         Random randomGenerator = new Random();
-        int randomInt  =  randomGenerator.nextInt(100);
-        getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys("test"+randomInt+"@abc.com");
+        int randomInt = randomGenerator.nextInt(100);
+        getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys("test" + randomInt + "@abc.com");
     }
 
 
@@ -26,10 +27,9 @@ public class EmailStepDefs {
     }
 
 
-
     @Then("{string} message should be displayed")
     public void messageShouldBeDisplayed(String expectedError) {
-       getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
+        getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
 
     }
 
@@ -50,14 +50,20 @@ public class EmailStepDefs {
 
     }
 
-    @Then("{string} message should not be displayed")
-    public void messageShouldNotBeDisplayed(String errorMessage) {
-        getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
+//    @Then("{string} message should not be displayed")
+//    public void messageShouldNotBeDisplayed(String errorMessage) {
+//        getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getText();
+//    }
+
+    @Then("{string} page should appear")
+    public void pageShouldAppear(String regMessage) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'You have been Registered.')]"));
+    }
     }
 
 
 
-}
+
 
 
 

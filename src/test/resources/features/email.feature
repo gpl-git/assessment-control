@@ -1,4 +1,4 @@
-@Email
+@email
 
 Feature: Email scenarios
 
@@ -11,15 +11,20 @@ Feature: Email scenarios
   @email2
   Scenario: Validate email field-Happy path
     Given I open "registration" page
+    When I type "abc" into first name filed
+    And I type "xyz" into last name field
     When I type "abc123@gmail.com" into email field
     And I wait for 1 sec
+    When I type "ABC" into group code field
+    And I type "12345" into New Password field
+    Then I type "12345" into Confirm New Password field
     Then I click on "Register Me" button
     And I wait for 1 sec
-    Then "Should be a valid address" message should not be displayed
+    Then "You have been Registered." page should appear
     And I wait for 1 sec
 
   @email3
-  Scenario: Validate empty field in email field
+  Scenario: Validate empty  email field
     Given I open "registration" page
     When I type "" into email field
     And I wait for 2 sec
