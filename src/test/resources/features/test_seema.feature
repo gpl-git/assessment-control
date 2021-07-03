@@ -1,5 +1,5 @@
 @git commands
-  Feature: Test seema
-    Scenario: Practicing Git Commands
-      Given I learn git
+  Feature: Test git hub
+    Scenario: Practice my Git Commands
+      Given I'm learning git commands
 
