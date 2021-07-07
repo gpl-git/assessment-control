@@ -1,4 +1,5 @@
-@test
-Feature: Test Ekaterina
-  Scenario: Practicing Git Commands
-    Given I learn gitGit
+           @test
+             Feature: Test Ekaterina
+
+            Scenario:  Practicing Git Commands
+              Given I learn gitGit
