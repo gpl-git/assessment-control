@@ -9,7 +9,7 @@
       And I wait for 1 sec
       Then I verify current url as "home"
       When I click on "Quizzes" tab
-      And I wait for 1 sec
+      And I wait for 2 sec
 
     @regression
     Scenario: Create a quiz
