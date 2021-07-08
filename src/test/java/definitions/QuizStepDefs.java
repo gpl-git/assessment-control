@@ -4,12 +4,16 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class QuizStepDefs {
+    String titleGenerator = RandomStringUtils.random(2, 1, 99, false, true);
+    String quizTitle = "QuizTitle" + titleGenerator;
+
     @Given("I go to {string} page")
     public void iGoToPage(String page) {
         switch (page){
@@ -44,7 +48,7 @@ public class QuizStepDefs {
 
     @When("I click on {string} button")
     public void iClickOnButton(String btnName) {
-        getDriver().findElement(By.xpath("//span[text()='"+btnName+"']")).click();
+           getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
     }
 
     @Then("I verify current url as {string}")
@@ -88,4 +92,44 @@ public class QuizStepDefs {
     public void iSelectAsCorrectOptionIn(String optionNum, String questionNum) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='"+optionNum+"']/../../../../../mat-radio-button")).click();
     }
-}
+
+    @Then("quiz {string} should be displayed on the list of quizzes")
+    public void quizShouldBeDisplayedOnTheListOfQuizzes(String title) {
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]")).isDisplayed()).isTrue();
+
+    }
+
+    @And("I delete {string} from the list of quizzes")
+    public void iDeleteFromTheListOfQuizzes(String title) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]")).click();
+        Thread.sleep(1000);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]/../../..//span[text()='Delete']")).click();
+        getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
+        Thread.sleep(2000);
+
+    }
+
+    @When("I create quiz title")
+    public void iCreateQuizTitle() {
+
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(quizTitle);
+    }
+
+    @When("I create quiz with {int} questions")
+    public void iCreateQuizWithQuestions(int numQuestions) throws InterruptedException {
+        if (numQuestions >= 1) {
+            getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(quizTitle);
+            getDriver().findElement(By.xpath("//*[@class='mat-icon material-icons']")).click();
+            for (int i = 1; i < numQuestions; ++i) {
+                getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[contains(text(),'Textual')]")).click();
+                getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question " + i + "");
+                getDriver().findElement(By.xpath("//*[@class='mat-icon material-icons']")).click();
+                Thread.sleep(200);
+            }
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + numQuestions + "')]/../../..//*[contains(text(),'Textual')]")).click();
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + numQuestions + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question " + numQuestions + "");
+            getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
+        }
+
+    }
+ }
