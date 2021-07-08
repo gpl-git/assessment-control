@@ -34,8 +34,8 @@
       And I wait for 1 sec
       And I wait for 1 sec
       When I create quiz with 7 questions
-      
-      
+
+
 
 
 
