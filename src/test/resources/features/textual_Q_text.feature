@@ -15,58 +15,75 @@
     Scenario: Create a Textual Question
       When I click on "Create New Quiz" button
       And I wait for 2 sec
-      And I type "Elvira Quiz" as quiz title
+      And I type "Banana Quiz" as quiz title
       When I add a question
       And I select "Textual" question type
-      When I type question text "Elvira's Question1" into "Q1"
+      When I type question text "Banana Question1" into "Q1"
       And I wait for 3 sec
-      And I click on save button
+      When I click on "Save" button
+      And I wait for 3 sec
+      Then quiz "Banana Quiz" should be displayed on the list of quizzes
+      And I wait for 2 sec
+      And I delete "Banana Quiz" from the list of quizzes
       And I wait for 1 sec
+
+    @textual
+    Scenario Outline: Create a Textual Question - parameterized
+      When I click on "Create New Quiz" button
+      And I wait for 2 sec
+      And I type "Banana Quiz" as quiz title
+      When I add a question
+      And I select "Textual" question type
+      When I type question text <questionText> into <qestionNum>
+      And I wait for 2 sec
+      When I click on <btnName1> button
+      And I wait for 3 sec
+      Then quiz "Banana Quiz" should be displayed on the list of quizzes
+      And I wait for 2 sec
+      And I delete "Banana Quiz" from the list of quizzes
+      And I wait for 1 sec
+      Examples:
+       | questionText                       | qestionNum | btnName1 |
+       | "Banana Question1"                 | "Q1"       | "Save"   |
+       | "a"                                | "Q1"       | "Save"   |
+       | "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam ante id magna dictum, volutpat suscipit odio blandit. Donec dictum diam dolor, non sagittis mi rutrum ut. Mauris accumsan massa eget tellus viverra, sed porta magna cursus. Maecenas laoreet diam tellus, at aliquam ante lobortis ac. Nulla vel elit vel erat accumsan feugiat. Curabitur pharetra bibendum eleifend. Donec ac laoreet metus, vitae pharetra magna. Phasellus condimentum ligula tortor, a dictum risus eleifend quis. Etiam sit amet suscipit lacus. Nunc a tincidunt lectus, eu aliquet mauris. Praesent efficitur mollis velit, vel finibus nunc sagittis a. Duis massa turpis, laoreet eu vulputate nec, sollicitudin quis tortor. Duis mollis imperdiet lectus eu posuere. Cras eu ultricies massa. Phasellus mollis pharetra pulvinar. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam elit nulla, luctus in est vel, maximus volutpat orci. Vestibulum molestie urna vitae consectet" | "Q1"       | "Save"   |
+       | "ADFvhu&)%@oN;]350/Qgk Wq@&^.mnb"  | "Q1"       | "Save"   |
 
 
     @textual2
-    Scenario: Verify that field is required
+    Scenario: Verify error messages for Textual question - text
       When I click on "Create New Quiz" button
       And I wait for 2 sec
-      And I type "Elvira Quiz" as quiz title
+      And I type "Banana Quiz" as quiz title
       When I add a question
       And I select "Textual" question type
-      And I click on save button
+      When I type question text "" into "Q1"
+      And I wait for 1 sec
+      When I click on "Save" button
       And I wait for 1 sec
       Then error message "This field is required" should be displayed
 
     @textual3
-    Scenario: Verify min 1 character
+    Scenario Outline: Verify error messages for Textual question - text parameterized
       When I click on "Create New Quiz" button
       And I wait for 2 sec
-      And I type "Elvira Quiz" as quiz title
+      And I type "Banana Quiz" as quiz title
       When I add a question
       And I select "Textual" question type
-      When I type question text "a" into "Q1"
-      And I wait for 3 sec
-      And I click on save button
+      When I type question text <questionText> into <qestionNum>
       And I wait for 1 sec
+      When I click on "Save" button
+      And I wait for 1 sec
+      Then error message <errorMess> should be displayed
+      Examples:
+       | questionText | qestionNum | errorMess                |
+       | ""           | "Q1"       | "This field is required" |
 
-    @textual4
-    Scenario: Verify max 1000 characters
-      When I click on "Create New Quiz" button
-      And I wait for 2 sec
-      And I type "Elvira Quiz" as quiz title
-      When I add a question
-      And I select "Textual" question type
-      When I type question text "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam ante id magna dictum, volutpat suscipit odio blandit. Donec dictum diam dolor, non sagittis mi rutrum ut. Mauris accumsan massa eget tellus viverra, sed porta magna cursus. Maecenas laoreet diam tellus, at aliquam ante lobortis ac. Nulla vel elit vel erat accumsan feugiat. Curabitur pharetra bibendum eleifend. Donec ac laoreet metus, vitae pharetra magna. Phasellus condimentum ligula tortor, a dictum risus eleifend quis. Etiam sit amet suscipit lacus. Nunc a tincidunt lectus, eu aliquet mauris. Praesent efficitur mollis velit, vel finibus nunc sagittis a. Duis massa turpis, laoreet eu vulputate nec, sollicitudin quis tortor. Duis mollis imperdiet lectus eu posuere. Cras eu ultricies massa. Phasellus mollis pharetra pulvinar. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam elit nulla, luctus in est vel, maximus volutpat orci. Vestibulum molestie urna vitae consectet" into "Q1"
-      And I wait for 3 sec
-      And I click on save button
-      And I wait for 1 sec
+   # Known issue max + 1 characters ASKJ-324
+       | "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam ante id magna dictum, volutpat suscipit odio blandit. Donec dictum diam dolor, non sagittis mi rutrum ut. Mauris accumsan massa eget tellus viverra, sed porta magna cursus. Maecenas laoreet diam tellus, at aliquam ante lobortis ac. Nulla vel elit vel erat accumsan feugiat. Curabitur pharetra bibendum eleifend. Donec ac laoreet metus, vitae pharetra magna. Phasellus condimentum ligula tortor, a dictum risus eleifend quis. Etiam sit amet suscipit lacus. Nunc a tincidunt lectus, eu aliquet mauris. Praesent efficitur mollis velit, vel finibus nunc sagittis a. Duis massa turpis, laoreet eu vulputate nec, sollicitudin quis tortor. Duis mollis imperdiet lectus eu posuere. Cras eu ultricies massa. Phasellus mollis pharetra pulvinar. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam elit nulla, luctus in est vel, maximus volutpat orci. Vestibulum molestie urna vitae consectetd"           | "Q1"       | "Should not accept more than 1000 characters" |
 
-    @textual5
-    Scenario: Verify allowable characters: Alphanumeric & Sp. characters
-      When I click on "Create New Quiz" button
-      And I wait for 2 sec
-      And I type "Elvira Quiz" as quiz title
-      When I add a question
-      And I select "Textual" question type
-      When I type question text "ADFvhu&)%@oN;]350/Qgk Wq@&^.mnb" into "Q1"
-      And I wait for 3 sec
-      And I click on save button
-      And I wait for 1 sec
+   # Known issues Allows empty input by using space character ASKJ-327
+       | "  "           | "Q1"       | "This field is required" |
+
+
+
