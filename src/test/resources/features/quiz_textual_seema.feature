@@ -11,7 +11,8 @@ Feature: Quiz textual scenarios
     Then I verify opened current url as "home"
     When I click on tab "Quizzes"
     And I wait for2 sec
-
+@regressionquiz1
+    Scenario: Create Textual Quiz
     When I click the "Create New Quiz" button
     And I wait for 4 sec
     When I type "seema Quiz" as Quiz title
