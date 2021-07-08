@@ -10,7 +10,7 @@ Feature: Login Scenario
     Then I verify current url as "home" N.R.
 
 
-  Scenario Outline: Login with right credentials
+  Scenario Outline: Login with wrong functional specification  credentials
     Given I go to "Login" page N.R.
     When I type <email> into email field N.R.
     And I type <pwd> into password field N.R.
