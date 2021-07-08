@@ -5,7 +5,7 @@
       Given I go to "login" page
       When I type "ask_instr@aol.com" into email field
       And I type "12345" into password field
-      When I click on "Sign In" button
+      When I click otn "Sign In" button
       And I wait for 1 sec
       Then I verify current url as "home"
       When I click on "Quizzes" tab
