@@ -1,4 +1,4 @@
-@quiz @regression
+git chech@quiz @regression
   Feature: Quiz Scenarios
 
     Background:
