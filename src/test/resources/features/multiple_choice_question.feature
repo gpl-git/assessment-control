@@ -93,4 +93,23 @@ Feature: Multiple Choice Question - Option
   Scenario: Verify that max 15 choices allowed
     When I click on "Create New Quiz" button
     And I wait for 1 sec
+    And I type quiz title "Olena Quiz"
+    When I add a question
+    And I select "Multiple" question type
+    And I create quiz with 15 choices
+    When I click on "Save" button
+    And I wait for 1 sec
+    Then quiz "Olena Quiz" should be displayed on the list of quizzes
+
+  @multiple6
+  Scenario: Verify error message for max +1 choices
+    When I click on "Create New Quiz" button
+    And I wait for 1 sec
+    And I type quiz title "Olena Quiz"
+    When I add a question
+    And I select "Multiple" question type
+    And I create quiz with 16 choices
+    When I click on "Save" button
+    And I wait for 1 sec
+    Then I verify that error message contains "Max 15 choices allowed"
 
