@@ -12,14 +12,85 @@ Feature: Multiple Choice Question - Option
     And I wait for 1 sec
 
   @multiple1
-  Scenario: Max 1000 characters allowed
+  Scenario: Verify that max 1000 characters allowed in Question
     When I click on "Create New Quiz" button
-    And I type "Quiz" as quiz title
+    And I wait for 1 sec
+    And I type quiz title "Olena Quiz"
     When I add a question
     And I select "Multiple" question type
     When I type question text "hbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgc" into "Q1"
-    And I wait for 1 sec
+    And I wait for 2 sec
     And I type "Option 1" as option "Option 1*" into "Q1"
+    And I wait for 2 sec
     And I type "Option 2" as option "Option 2*" into "Q1"
-    When I select "Option 2*" as correct option in "Q1"
-    And I wait for 4 sec
+    And I wait for 2 sec
+    And I select correct option in "Q1" as "Option 1*"
+    And I wait for 1 sec
+    When I click on "Save" button
+    And I wait for 1 sec
+    Then quiz "Olena Quiz" should be displayed on the list of quizzes
+
+  @multiple2
+  Scenario: Verify that max 1000 characters allowed in Option
+    When I click on "Create New Quiz" button
+    And I wait for 1 sec
+    And I type quiz title "Olena Quiz"
+    When I add a question
+    And I select "Multiple" question type
+    When I type question text "Text question is here" into "Q1"
+    And I wait for 2 sec
+    And I type "hbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgc" as option "Option 1*" into "Q1"
+    And I wait for 2 sec
+    And I type "hbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgc" as option "Option 2*" into "Q1"
+    And I wait for 2 sec
+    And I select correct option in "Q1" as "Option 1*"
+    And I wait for 1 sec
+    When I click on "Save" button
+    And I wait for 1 sec
+    Then quiz "Olena Quiz" should be displayed on the list of quizzes
+
+  @multiple3
+  Scenario: Verify error message for max +1 characters in Question
+    When I click on "Create New Quiz" button
+    And I wait for 1 sec
+    And I type quiz title "Olena Quiz"
+    When I add a question
+    And I select "Multiple" question type
+    When I type question text "shbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgc" into "Q1"
+    And I wait for 2 sec
+    And I type "Option 1" as option "Option 1*" into "Q1"
+    And I wait for 2 sec
+    And I type "Option 2" as option "Option 2*" into "Q1"
+    And I wait for 2 sec
+    And I select correct option in "Q1" as "Option 1*"
+    And I wait for 1 sec
+    When I click on "Save" button
+    And I wait for 1 sec
+#      Known issus max+1 characters ASKJ-
+    Then I verify that error message contains "Max 1000 characters allowed"
+
+  @multiple4
+  Scenario: Verify error message for max +1 characters in Option
+    When I click on "Create New Quiz" button
+    And I wait for 1 sec
+    And I type quiz title "Olena Quiz"
+    When I add a question
+    And I select "Multiple" question type
+    When I type question text "Text question is here" into "Q1"
+    And I wait for 2 sec
+    And I type "shbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgc" as option "Option 1*" into "Q1"
+    And I wait for 2 sec
+    And I type "shbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgcshbvlsvhydvgc" as option "Option 2*" into "Q1"
+    And I wait for 2 sec
+    And I select correct option in "Q1" as "Option 1*"
+    And I wait for 1 sec
+    When I click on "Save" button
+    And I wait for 1 sec
+#      Known issus max+1 characters ASKJ-
+    Then I verify that error message contains "Max 1000 characters allowed"
+
+  @multiple5
+  Scenario: Verify that max 15 choices allowed
+    When I click on "Create New Quiz" button
+    And I wait for 1 sec
+
