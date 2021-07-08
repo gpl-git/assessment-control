@@ -35,4 +35,9 @@ public class NikitaSLoginStepDefs {
         String actualUrl = getDriver().getCurrentUrl();
         assertThat(actualUrl.contains(curUrl)).isTrue();
     }
+
+    @And("if error massage - print error massage")
+    public void ifErrorMassagePrintErrorMassage() {
+
+    }
 }
