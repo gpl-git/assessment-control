@@ -34,9 +34,12 @@ Feature: Quiz Scenarios with 5 Multiple-Choice questions
   @quiz @regression
   Scenario: Quiz with 5 Multiple-Choice questions using loop
     When I click on "Create New Quiz" button
-    And I wait for 3 sec
-    And I create quiz title
-    And I wait for 2 sec
+    And I wait for 1 sec
+    And I type "Tatiana Quiz 5MCQ" as quiz title
+    And I wait for 1 sec
     When I create quiz with 5 Multiple-Choice questions
-    And I wait for 2 sec
-
+    And I wait for 1 sec
+# Then I verify that quiz is displayed on the list
+    Then quiz "Tatiana Quiz 5MCQ" should be displayed on the list of quizzes
+# And I delete quiz from the list of quizzes
+    And I delete "Tatiana Quiz 5MCQ" from the list of quizzes

@@ -1,10 +1,12 @@
 package definitions;
 
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class crQuiz5MultQuestStepDefTatK {
@@ -32,33 +34,28 @@ public class crQuiz5MultQuestStepDefTatK {
             for (int i = 1; i < numQuestions; ++i) {
                 Thread.sleep(1000);
                 getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[contains(text(), 'Multiple')]")).click();
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question example " + i + "");
-                Thread.sleep(2000);
-                getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).sendKeys("Question " + i + "");
-                getDriver().findElement(By.xpath("//textarea[@placeholder='Option 2*']")).sendKeys("Question " + i + "");
-                Thread.sleep(2000);
-
-                //failed getDriver().findElement(By.xpath("//*[contains(text(),'Option "+i+"*')]/../../../../../..//input[@type='checkbox']")).click();
-                //failed getDriver().findElement(By.xpath("//div[@class='mat-checkbox-ripple mat-ripple']/../../../../..//*[contains(text(),'Option 1*')] ")).click();
-                //failed tDriver().findElement(By.xpath("//*[contains(text(),'Q "+i+"')]/../../../..//*[contains(text(),'Option "+i+"*')]/../../../../../..//input[@type='checkbox']")).click();
-                //failed getDriver().findElement(By.xpath("//*[contains(text(),'Option 1*')]/../../../../../..//*[@class='mat-checkbox-frame']")).click();
-                //failed  getDriver().findElement(By.xpath("//*[contains(text(),'Option 1*')]/../../../../../..//*[@class='mat-checkbox-label']")).click();
-
-                getDriver().findElement(By.xpath("//*[contains(text(),'Option 1*')]/../../../../../..//*[@type='checkbox']/..")).click();
-                Thread.sleep(2000);
+                Thread.sleep(1000);
+                getDriver().findElement(By.xpath("(//*[contains(text(),'Q" + i + "')]/../../../..//textarea[@placeholder='Option 1*'])[" + i + "]")).sendKeys("Option 1");
+                getDriver().findElement(By.xpath("(//*[contains(text(),'Q" + i + "')]/../../../..//textarea[@placeholder='Option 2*'])[" + i + "]")).sendKeys("Option 2");
+                getDriver().findElement(By.xpath("(//*[contains(text(),'Q" + i + "')]/../../../..//textarea[@placeholder='Option 2*']/../../../../..//*[input])[" + i + "]")).click();
+                Thread.sleep(1000);
                 getDriver().findElement(By.xpath("//mat-icon[contains(text(), 'add_circle')]")).click();
-                Thread.sleep(2000);
             }
 
-//            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + numQuestions + "')]/../../..//*[contains(text(),'Multiple-Choice')]")).click();
-//            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + numQuestions + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question " + numQuestions + "");
-//            getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
+            Thread.sleep(1000);
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + numQuestions + "')]/../../..//*[contains(text(), 'Multiple')]")).click();
+            Thread.sleep(1000);
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q" + numQuestions + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question example " + numQuestions + "");
+            Thread.sleep(1000);
+            getDriver().findElement(By.xpath("(//*[contains(text(),'Q" + numQuestions + "')]/../../../..//textarea[@placeholder='Option 1*'])[" + numQuestions + "]")).sendKeys("Option 1");
+            getDriver().findElement(By.xpath("(//*[contains(text(),'Q" + numQuestions + "')]/../../../..//textarea[@placeholder='Option 2*'])[" + numQuestions + "]")).sendKeys("Question2");
+            getDriver().findElement(By.xpath("(//*[contains(text(),'Q" + numQuestions + "')]/../../../..//textarea[@placeholder='Option 2*']/../../../../..//*[input])[" + numQuestions + "]")).click();
+            Thread.sleep(1000);
+            getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
+            Thread.sleep(1000);
         }
     }
 }
 
-//failed getDriver().findElement(By.xpath("//*[@placeholder='Option "+i+"*']/../../../../..//input[@type='checkbox']/../../../..//*[contains(text(),'Option "+i+"*')]")).click();
-// failed getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + i + "')]/../../..//textarea[@placeholder='" + i + "']/../../../../../mat-checkbox")).click();
-// failed getDriver().findElement(By.xpath("//*[@placeholder='Option "+i+"*']/../../../../..//textarea[@placeholder='" + i + "']/../../../../../mat-checkbox")).click();
-// failed getDriver().findElement(By.xpath("//*[@placeholder='Option "+i+"*']/../../../../..//mat-checkbox")).click();
