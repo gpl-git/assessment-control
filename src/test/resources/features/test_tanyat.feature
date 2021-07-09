@@ -2,4 +2,4 @@
   Feature: test TanyaT
 
     Scenario: Practicing Git Command
-      Given I learn git
+      Given I learn git and github
