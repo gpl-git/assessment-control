@@ -39,3 +39,4 @@ Feature: Quiz Scenarios with 5 Multiple-Choice questions
     And I wait for 2 sec
     When I create quiz with 5 Multiple-Choice questions
     And I wait for 2 sec
+

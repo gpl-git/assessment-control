@@ -44,6 +44,7 @@ public class crQuiz5MultQuestStepDefTatK {
                 //failed tDriver().findElement(By.xpath("//*[contains(text(),'Q "+i+"')]/../../../..//*[contains(text(),'Option "+i+"*')]/../../../../../..//input[@type='checkbox']")).click();
                 //failed getDriver().findElement(By.xpath("//*[contains(text(),'Option 1*')]/../../../../../..//*[@class='mat-checkbox-frame']")).click();
                 //failed  getDriver().findElement(By.xpath("//*[contains(text(),'Option 1*')]/../../../../../..//*[@class='mat-checkbox-label']")).click();
+
                 getDriver().findElement(By.xpath("//*[contains(text(),'Option 1*')]/../../../../../..//*[@type='checkbox']/..")).click();
                 Thread.sleep(2000);
                 getDriver().findElement(By.xpath("//mat-icon[contains(text(), 'add_circle')]")).click();
