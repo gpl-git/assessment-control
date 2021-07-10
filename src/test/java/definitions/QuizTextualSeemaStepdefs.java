@@ -4,6 +4,9 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.openqa.selenium.By;
 
 import static java.lang.Thread.sleep;
@@ -11,6 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class QuizTextualSeemaStepdefs {
+    String titleGenerator= RandomStringUtils.random(2,1,99,false,true);
+    String quizTitle="Quiz Title"+titleGenerator;
     @Given("I open {string} page")
     public void iOpenPage(String page) {
         switch (page){
@@ -61,7 +66,7 @@ public class QuizTextualSeemaStepdefs {
     }
     @When("I click the {string} button")
     public void iClickTheButton(String bttn) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'Create New Quiz')]")).click();
+        getDriver().findElement(By.xpath("//span[contains(text(),'"+bttn+"')]")).click();
     }
 
 
@@ -87,33 +92,59 @@ public class QuizTextualSeemaStepdefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Question *']")).sendKeys(questionText);
     }
 
-    @And("I add second question")
-    public void iAddSecondQuestion() {
-        getDriver().findElement(By.xpath("//mat-icon[text()='add_circle']")).click();
-    }
 
-    @And("I select {string} as ques type")
-    public void iSelectAsQuesType(String quesType) {
-        getDriver().findElement(By.xpath("//div[contains(text(),'"+quesType+"')]")).click();
-    }
-
-    @When("I type next text {string} into{string}")
-    public void iTypeNextTextInto(String questionText, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Question *']")).sendKeys(questionText);
-    }
 
 
     @When("I click on button {string}")
     public void iClickOnButton(String btn) {
-        getDriver().findElement(By.xpath("//span[contains(text(),' Save')]"));
+        getDriver().findElement(By.xpath("//span[contains(text(),' Save')]")).click();
+
 
     }
 
 
-    @And("I verify current Url as{string}")
-    public void iVerifyCurrentUrlAs(String curUrl) {
-        String actualUrl=getDriver().getCurrentUrl();
-        assertThat(actualUrl.contains(curUrl)).isTrue();
+    @Then("I verify {string} should be displayed in list of quizzes")
+    public void iVerifyShouldBeDisplayedInListOfQuizzes(String title) {
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]")).isDisplayed()).isTrue();
+    }
+
+    @Then("I delete {string} from quizzes list")
+    public void iDeleteFromQuizzesList(String title) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]")).click();
+        Thread.sleep(1000);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]/../../..//span[text()='Delete']")).click();
+        getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
+        Thread.sleep(2000);
+    }
+
+
+    @When("I create a quiz title")
+    public void iCreateAQuizTitle() {
+
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(quizTitle);
+
+    }
+
+    @When("I create quiz with number of question {int} SP")
+    public void iCreateQuizWithNumberOfQuestionSP(int numQuestions) throws InterruptedException {
+        if (numQuestions >= 1) {
+            getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(quizTitle);
+            getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
+            for (int i = 1; i < numQuestions; ++i) {
+                getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[contains(text(),'Textual')]")).click();
+                Thread.sleep(300);
+                getDriver().findElement(By.xpath("//*[contains(text(),'Q" + i + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question " + i + "");
+                Thread.sleep(300);
+                getDriver().findElement(By.xpath("//*[@class='mat-icon material-icons']")).click();
+                Thread.sleep(300);
+                getDriver().findElement(By.xpath("//*[contains(text(),'Q" + numQuestions + "')]/../../..//*[contains(text(),'Textual')]")).click();
+                Thread.sleep(300);
+                getDriver().findElement(By.xpath("//*[contains(text(),'Q" + numQuestions + "')]/../../..//*[@placeholder='Question *']")).sendKeys("Question " + numQuestions + "");
+                Thread.sleep(300);
+                getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
+
+            }
+        }
+
     }
 }
-
