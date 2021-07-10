@@ -78,6 +78,7 @@ Feature: Test set for single choice question with showstopper
     And I type "5" as option number 3 into question number 1
     Then I select option number 2 as the correct option of the 1 question
     And I click "Show-Stopper" checkbox in 1 question
+    And I wait for 4 sec
     When I add a question
     And I wait for 1 sec
     Then I select "Single" question type in question number 2

@@ -43,7 +43,7 @@ public class SinChoQuWiShowVladDefs {
 
     @Then("I select option number {int} as the correct option of the {int} question")
     public void iSelectOptionNumberAsTheCorrectOptionOfTheQuestion(int optionNum, int questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Option "+optionNum+"*']/..")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Option "+optionNum+"*']/.")).click();
     }
 
     @And("I verify {string} checkbox of the {int} question is checked off")
