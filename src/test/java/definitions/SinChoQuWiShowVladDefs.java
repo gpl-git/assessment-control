@@ -17,7 +17,7 @@ public class SinChoQuWiShowVladDefs {
 
     @And("I select {string} question type in question number {int}")
     public void iSelectQuestionTypeInQuestionNumber(String questionType, int questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//div[contains(text(),'"+questionType+"')]/.")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//div[contains(text(),'"+questionType+"')]")).click();
     }
 
     @Then("I move question number {int} {string}")
@@ -43,7 +43,7 @@ public class SinChoQuWiShowVladDefs {
 
     @Then("I select option number {int} as the correct option of the {int} question")
     public void iSelectOptionNumberAsTheCorrectOptionOfTheQuestion(int optionNum, int questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Option "+optionNum+"*']/../../../../../mat-radio-button")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Option "+optionNum+"*']/..")).click();
     }
 
     @And("I verify {string} checkbox of the {int} question is checked off")
