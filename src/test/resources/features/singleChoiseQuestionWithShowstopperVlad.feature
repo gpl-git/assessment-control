@@ -21,7 +21,8 @@ Feature: Test set for single choice question with showstopper
     And I type "4" as option "Option 2*" into "Q1"
     When I select "Option 2*" as correct option in "Q1"
     And I wait for 1 sec
-    Then I check "Show-stopper" checkbox in 1 question
+    Then I check "Show-Stopper" checkbox in 1 question
+#    Use "Show-Stopper" or "text area", depending on which checkbox you need
     And I wait for 3 sec
 
 
