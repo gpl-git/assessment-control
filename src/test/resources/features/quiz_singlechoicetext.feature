@@ -32,23 +32,28 @@ Feature: Quiz Single Scenarios
   Scenario Outline: Quiz Random Title for question parameterised av
     When I click on the button "Create New Quiz" av
     And I wait for 2 second av
-    When I create quiz title av
+    And I type "AS Quiz SC" as quiz title
     And I wait for 2 second av
     When I add the question av
     Then I select "Single" type question av
-    When I type <int> characters as question text into <qNum> av
+    When I type <intQ> characters as question text into <qNum> av
     And I type "Option 1" as option "Option 1*" into the "Q1" av
     And I type "Option 2" as option "Option 2*" into the "Q1" av
     Then I select "Option 2*" as the correct option in "Q1" av
+    And I click on the button "Save" av
     And I wait for 2 second av
-    When I click on the button "Save" av
-    And I wait for 1 second av
+    #And I validate that the element "conMess" is present av
+    And I wait for 2 second av
+    Then quiz "AS Quiz SC" should be displayed on the list of quizzes av
+    #Then quiz "QuizTitle" should be displayed on the list of quizzes av
+    And I delete "AS Quiz SC" from the list of quizzes av
     Examples:
-      | int  | qNum |
-      | 1001 | "Q1" |
-      | 40   | "Q1" |
+      | intQ | qNum |
+      | 1000 | "Q1" |
       | 1    | "Q1" |
-      | 555  | "Q1" |
+      | 999  | "Q1" |
+    # issue Max+1  too long characters but throws no error message
+      | 1001 | "Q1" |
 
 
   @regression4
@@ -59,20 +64,21 @@ Feature: Quiz Single Scenarios
     And I wait for 2 second av
     When I add the question av
     Then I select "Single" type question av
-    When I type <int> characters as question text into <qNum> av
-    And I type <int> characters as option "Option 1*" into the "Q1" av
-    And I type <int> characters as option "Option 2*" into the "Q1" av
+    When I type <intQ> characters as question text into <qNum> av
+    And I type <intOp1> characters as option "Option 1*" into the "Q1" av
+    And I type <intOp2> characters as option "Option 2*" into the "Q1" av
     Then I select "Option 2*" as the correct option in "Q1" av
     And I wait for 2 second av
     When I click on the button "Save" av
+
     And I wait for 1 second av
     Examples:
-      | int  | qNum | int  | int |
-      | 40   | "Q1" | 30   | 20  |
-      | 1    | "Q1" | 20   | 30  |
-      | 1001 | "Q1" | 1001 | 10  |
-      | 1    | "Q1" | 1    | 1   |
-      | 499  | "Q1" | 499  | 499 |
+      | intQ | qNum | intOp1 | intOp2 |
+      | 40   | "Q1" | 30     | 20     |
+      | 1    | "Q1" | 20     | 30     |
+      | 1001 | "Q1" | 1001   | 10     |
+      | 1    | "Q1" | 1      | 1      |
+      | 499  | "Q1" | 499    | 499    |
 
   @regression5
   Scenario: Quiz Random Title av
@@ -83,10 +89,11 @@ Feature: Quiz Single Scenarios
     When I add the question av
     Then I select "Single" type question av
     When I type question text as "" into "Q1" av
-    And I type "" as option "Option 1*" into the "Q1" av
-    And I type "" as option "Option 2*" into the "Q1" av
+    And I type "Option 1" as option "Option 1*" into the "Q1" av
+    And I type "Option 2" as option "Option 2*" into the "Q1" av
     Then I select "Option 2*" as the correct option in "Q1" av
     And I wait for 2 second av
-    When I click on the button "Save" av
-    Then field required message should be displayed
+    Then message with the "This field is required" should be displayed av
+    And I wait for 2 second av
+    
 

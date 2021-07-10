@@ -141,11 +141,21 @@ public class QuizsingleChoiceTextStepDefs {
 
     }
 
-    @Then("field required message should be displayed")
-    public void fieldRequiredMessageShouldBeDisplayed() {
-        getDriver().findElement(By.xpath("//mat-error[contains(text(), ' This field is required')]/../../..//textarea[@placeholder='Question *']")).getText();
 
+    @Then("message with the {string} should be displayed av")
+    public void messageWithTheStringShouldBeDisplayedAv(String errMess) {
+        String actMess = getDriver().findElement(By.xpath("//mat-error")).getText();
+        assertThat(actMess.equals(errMess)).isTrue();
     }
+
+
+    @And("I validate that the element {string} is present av")
+    public void iValidateThatTheElementIsPresentAv(String conMess) {
+        String actMess = getDriver().findElement(By.xpath("//mat-error")).getText();
+        assertThat(actMess.equals(conMess)).isTrue();
+    }
+
+
 }
 
 
