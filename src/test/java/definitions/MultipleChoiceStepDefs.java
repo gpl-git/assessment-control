@@ -15,20 +15,21 @@ public class MultipleChoiceStepDefs {
 
     @And("I select correct option in {string} as {string}")
     public void iSelectCorrectOptionInAs(String questionNmbr, String optionNmbr) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNmbr+"')]/../../..//textarea[@placeholder='"+optionNmbr+"']/../../../../../mat-checkbox")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questionNmbr + "')]/../../..//textarea[@placeholder='" + optionNmbr + "']/../../../../../mat-checkbox")).click();
 
     }
 
+    @When("I create a MC question with {int} choices")
+    public void iCreateAMCQuestionWithChoices(int num) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//[@Placeholder='Question ']")).sendKeys("Question Text");
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//[@Placeholder='Option 1']")).sendKeys("Option1 Text");
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//[@Placeholder='Option 2']")).sendKeys("Option2 Text");
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//[@Placeholder='Option 2']/../../../../..//*[input]")).click();
 
-    @And("I create quiz with {int} choices")
-    public void iCreateQuizWithChoices(int questionsNum) throws InterruptedException {
-        if (questionsNum >= 1) {
-            for (int i = 1; i < questionsNum; ++i)
-            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionsNum+"')]/../../..//textarea[@placeholder='Question *']")).sendKeys("Text is here");
-            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionsNum+"')]/../../..//textarea[@placeholder='Option 1*']")).sendKeys("Text is here");
-            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionsNum+"')]/../../..//textarea[@placeholder='Option 2*']")).sendKeys("Text is here");
-            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionsNum+"')]/../../..//textarea[@placeholder='Option 1*']/../../../../../mat-checkbox")).click();
-        Thread.sleep(200);
+        for (int i = 3; i<= num ; i ++){
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q1')]/../../..//*[contains(text(),'Add Option')]")).click();
+            String xpath = "//*[contains(text(),'Q1')]/../../..//*[@placeholder='Option " + i + "*']";
+            getDriver().findElement(By.xpath(xpath)).sendKeys("Option " + i);
         }
     }
 }

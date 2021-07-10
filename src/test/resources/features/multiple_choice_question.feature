@@ -29,6 +29,7 @@ Feature: Multiple Choice Question - Option
     When I click on "Save" button
     And I wait for 1 sec
     Then quiz "Olena Quiz" should be displayed on the list of quizzes
+    And I delete "Olena Quiz" from the list of quizzes
 
   @multiple2
   Scenario: Verify that max 1000 characters allowed in Option
@@ -48,6 +49,7 @@ Feature: Multiple Choice Question - Option
     When I click on "Save" button
     And I wait for 1 sec
     Then quiz "Olena Quiz" should be displayed on the list of quizzes
+    And I delete "Olena Quiz" from the list of quizzes
 
   @multiple3
   Scenario: Verify error message for max +1 characters in Question
@@ -96,10 +98,12 @@ Feature: Multiple Choice Question - Option
     And I type quiz title "Olena Quiz"
     When I add a question
     And I select "Multiple" question type
-    And I create quiz with 15 choices
+    When I create a MC question with 15 choices
+    And I wait for 1 sec
     When I click on "Save" button
     And I wait for 1 sec
     Then quiz "Olena Quiz" should be displayed on the list of quizzes
+    And I delete "Olena Quiz" from the list of quizzes
 
   @multiple6
   Scenario: Verify error message for max +1 choices
@@ -108,7 +112,8 @@ Feature: Multiple Choice Question - Option
     And I type quiz title "Olena Quiz"
     When I add a question
     And I select "Multiple" question type
-    And I create quiz with 16 choices
+    When I create a MC question with 16 choices
+    And I wait for 1 sec
     When I click on "Save" button
     And I wait for 1 sec
     Then I verify that error message contains "Max 15 choices allowed"
