@@ -3,7 +3,7 @@
 
 
 
-    @regression
+    @groupcode
     Scenario Outline: Registration Group Code - Parameterized
       Given I navigate to "registration" page
       When I type "Mario" into first name field
@@ -22,7 +22,7 @@
         | "N"       | "You have been Registered." |
         | "ninTEN"  | "You have been Registered." |
 
-    @regression1
+    @groupcode1
     Scenario: Validation/Error Message - Registration Group Code Parameterized
       Given I navigate to "registration" page
       When I type "Mario" into first name field
@@ -35,7 +35,7 @@
       And I wait for 2 sec
       Then I confirm that error message "Too long. Should be no more than 6 characters" is displayed
 
-    @regression2
+    @groupcode2
     Scenario Outline: Validation/Error Message - Registration Group Code Parameterized
       Given I navigate to "registration" page
       When I type "Mario" into first name field
@@ -51,3 +51,4 @@
         | groupCode | notification                                    |
         | "ninTEND" | "Too long. Should be no more than 6 characters" |
         | ""        | "This field is required" |
+        | "ni  TE"  | "Whitespaces should not be allowed" |
