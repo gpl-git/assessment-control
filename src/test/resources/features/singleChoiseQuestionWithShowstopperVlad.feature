@@ -16,12 +16,14 @@ Feature: Test set for single choice question with showstopper
     And I wait for 1 sec
     Then I type "SCQST1 Quiz" as quiz title
     When I add a question
-    And I select "Single" question type using Vlad's method
-    Then I type question text "2+2=?" into "Q1"
-    And I type "5" as option "Option 1*" into "Q1"
-    And I type "4" as option "Option 2*" into "Q1"
-    Then I select "Option 2*" as correct option in "Q1"
-    And I check "Show-Stopper" checkbox in 1 question
+    And I select "Single" question type in question number 1
+    Then I type "2+2=?" into title of the 1 question
+    And I add extra option to the 1 question
+    And I type "0" as option number 1 into question number 1
+    And I type "4" as option number 2 into question number 1
+    And I type "5" as option number 3 into question number 1
+    Then I select option number 2 as the correct option of the 1 question
+    And I click "Show-Stopper" checkbox in 1 question
 #    Use "Show-Stopper" or "text area", depending on which checkbox you need
     Then I wait for 2 sec
 
@@ -39,12 +41,14 @@ Feature: Test set for single choice question with showstopper
     And I wait for 1 sec
     Then I type "SCQST2 Quiz" as quiz title
     When I add a question
-    And I select "Single" question type
-    Then I type question text "2+2=?" into "Q1"
-    And I type "5" as option "Option 1*" into "Q1"
-    And I type "4" as option "Option 2*" into "Q1"
-    Then I select "Option 2*" as correct option in "Q1"
-    And I check "Show-Stopper" checkbox in 1 question
+    And I select "Single" question type in question number 1
+    Then I type "2+2=?" into title of the 1 question
+    And I add extra option to the 1 question
+    And I type "0" as option number 1 into question number 1
+    And I type "4" as option number 2 into question number 1
+    And I type "5" as option number 3 into question number 1
+    Then I select option number 2 as the correct option of the 1 question
+    And I click "Show-Stopper" checkbox in 1 question
     When I click on "Save" button
     And I wait for 1 sec
     Then quiz "SCQST2 Quiz" should be displayed on the list of quizzes
@@ -66,7 +70,7 @@ Feature: Test set for single choice question with showstopper
     And I wait for 1 sec
     Then I type "SCQST3 Quiz" as quiz title
     When I add a question
-    And I select "Single" question type
+    And I select "Single" question type in question number 1
     Then I type "2+2=?" into title of the 1 question
     And I add extra option to the 1 question
     And I type "0" as option number 1 into question number 1
@@ -75,7 +79,7 @@ Feature: Test set for single choice question with showstopper
     Then I select option number 2 as the correct option of the 1 question
     And I click "Show-Stopper" checkbox in 1 question
     When I add a question
-    Then I select "Multiple" question type
+    Then I select "Multiple" question type in question number 2
     And I type "Which of these is fruit?" into title of the 2 question
     Then I add extra option to the 2 question
     And I add extra option to the 2 question
@@ -88,6 +92,12 @@ Feature: Test set for single choice question with showstopper
     Then I select option number 1 as the correct option of the 2 question
     And I select option number 2 as the correct option of the 2 question
     And I select option number 4 as the correct option of the 2 question
-    And I move question number 2 "Up"
+    Then I move question number 2 "Up"
 #    Use "Up" or "Down" depending on your need
-    And I wait for 3 sec
+    And I verify "Show-Stopper" checkbox of the 2 question is checked off
+    And I wait for 4 sec
+    When I click on "Save" button
+    And I wait for 1 sec
+    Then quiz "SCQST3 Quiz" should be displayed on the list of quizzes
+    And I delete "SCQST3 Quiz" from the list of quizzes
+    Then I wait for 2 sec
