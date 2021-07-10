@@ -1,6 +1,7 @@
 @scqst
 Feature: Test set for single choice question with showstopper
 #This feature was made by Vladimir Borisov and is related to ASKJ-648 issue
+#All TCs were written to be as close to their originals as possible
 
   @scqst1
   Scenario: Verify we can create a "Single Choice Question - Show-Stopper"
@@ -15,7 +16,7 @@ Feature: Test set for single choice question with showstopper
     And I wait for 1 sec
     Then I type "SCQST1 Quiz" as quiz title
     When I add a question
-    And I select "Single" question type
+    And I select "Single" question type using Vlad's method
     Then I type question text "2+2=?" into "Q1"
     And I type "5" as option "Option 1*" into "Q1"
     And I type "4" as option "Option 2*" into "Q1"
@@ -48,6 +49,7 @@ Feature: Test set for single choice question with showstopper
     And I wait for 1 sec
     Then quiz "SCQST2 Quiz" should be displayed on the list of quizzes
     And I delete "SCQST2 Quiz" from the list of quizzes
+#    deletion step was added to ensure DB is not cluttered with multiple clones of the same quiz
     Then I wait for 2 sec
 
   @scqst3
@@ -59,15 +61,25 @@ Feature: Test set for single choice question with showstopper
     When I click on "Sign In" button
     And I wait for 1 sec
     When I click on "Quizzes" tab
-    Then I wait for 1 sec
-    And I click on "Create New Quiz" button
     And I wait for 1 sec
-    And I type "SCQST1 Quiz" as quiz title
+    Then I click on "Create New Quiz" button
+    And I wait for 1 sec
+    Then I type "SCQST3 Quiz" as quiz title
     When I add a question
-    Then I select "Single" question type
-    And I type question text "2+2=?" into "Q1"
-    And I type "2" as option "Option 1*" into "Q1"
+    And I select "Single" question type
+    Then I type "2+2=?" into title of the 1 question
+    And I type "5" as option "Option 1*" into "Q1"
     And I type "4" as option "Option 2*" into "Q1"
-    And I type "5" as option "Option 3*" into "Q1"
-    When I select "Option 2*" as correct option in "Q1"
-    And I wait for 4 sec
+    Then I select "Option 2*" as correct option in "Q1"
+    And I check "Show-Stopper" checkbox in 1 question
+    When I add a question
+    And I select "Multiple" question type
+    Then I type question text "Which of these is fruit?" into "Q1"
+    And I add extra option to 2 question
+    And I add extra option to 2 question
+    And I add extra option to 2 question
+    And I type "Apple" as option number 1 into question number 1
+
+    Then I move question 2 "Up"
+#    Use "Up" or "Down" depending on your need
+    And I wait for 3 sec
