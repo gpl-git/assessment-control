@@ -79,7 +79,9 @@ Feature: Test set for single choice question with showstopper
     Then I select option number 2 as the correct option of the 1 question
     And I click "Show-Stopper" checkbox in 1 question
     When I add a question
+    And I wait for 1 sec
     Then I select "Multiple" question type in question number 2
+    And I wait for 4 sec
     And I type "Which of these is fruit?" into title of the 2 question
     Then I add extra option to the 2 question
     And I add extra option to the 2 question
@@ -93,8 +95,9 @@ Feature: Test set for single choice question with showstopper
     And I select option number 2 as the correct option of the 2 question
     And I select option number 4 as the correct option of the 2 question
     Then I move question number 2 "Up"
+    And I switch to
 #    Use "Up" or "Down" depending on your need
-    And I verify "Show-Stopper" checkbox of the 2 question is checked off
+#    And I verify "Show-Stopper" checkbox of the 2 question is checked off
     And I wait for 4 sec
     When I click on "Save" button
     And I wait for 1 sec
