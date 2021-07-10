@@ -68,18 +68,26 @@ Feature: Test set for single choice question with showstopper
     When I add a question
     And I select "Single" question type
     Then I type "2+2=?" into title of the 1 question
-    And I type "5" as option "Option 1*" into "Q1"
-    And I type "4" as option "Option 2*" into "Q1"
-    Then I select "Option 2*" as correct option in "Q1"
-    And I check "Show-Stopper" checkbox in 1 question
+    And I add extra option to the 1 question
+    And I type "0" as option number 1 into question number 1
+    And I type "4" as option number 2 into question number 1
+    And I type "5" as option number 3 into question number 1
+    Then I select option number 2 as the correct option of the 1 question
+    And I click "Show-Stopper" checkbox in 1 question
     When I add a question
-    And I select "Multiple" question type
-    Then I type question text "Which of these is fruit?" into "Q1"
-    And I add extra option to 2 question
-    And I add extra option to 2 question
-    And I add extra option to 2 question
-    And I type "Apple" as option number 1 into question number 1
-
-    Then I move question 2 "Up"
+    Then I select "Multiple" question type
+    And I type "Which of these is fruit?" into title of the 2 question
+    Then I add extra option to the 2 question
+    And I add extra option to the 2 question
+    And I add extra option to the 2 question
+    Then I type "Apple" as option number 1 into question number 2
+    And I type "Orange" as option number 2 into question number 2
+    And I type "Parrot" as option number 3 into question number 2
+    And I type "Mango" as option number 4 into question number 2
+    And I type "Potato" as option number 5 into question number 2
+    Then I select option number 1 as the correct option of the 2 question
+    And I select option number 2 as the correct option of the 2 question
+    And I select option number 4 as the correct option of the 2 question
+    And I move question number 2 "Up"
 #    Use "Up" or "Down" depending on your need
     And I wait for 3 sec
