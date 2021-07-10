@@ -20,16 +20,15 @@ public class MultipleChoiceStepDefs {
     }
 
     @When("I create a MC question with {int} choices")
-    public void iCreateAMCQuestionWithChoices(int num) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//[@Placeholder='Question ']")).sendKeys("Question Text");
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//[@Placeholder='Option 1']")).sendKeys("Option1 Text");
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//[@Placeholder='Option 2']")).sendKeys("Option2 Text");
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//[@Placeholder='Option 2']/../../../../..//*[input]")).click();
-
-        for (int i = 3; i<= num ; i ++){
-            getDriver().findElement(By.xpath("//*[contains(text(),'Q1')]/../../..//*[contains(text(),'Add Option')]")).click();
-            String xpath = "//*[contains(text(),'Q1')]/../../..//*[@placeholder='Option " + i + "*']";
-            getDriver().findElement(By.xpath(xpath)).sendKeys("Option " + i);
+    public void iCreateAMCQuestionWithChoices(int num) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//*[@placeholder='Question *']")).sendKeys("Question Text");
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//*[@placeholder='Option 1*']")).sendKeys("Option1 Text");
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../../..//*[@placeholder='Option 1*']/../../../../..//*[input]")).click();
+        for (int i = 2; i< num ; i ++){
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@placeholder='Option " + i + "*']")).sendKeys("Option " + i + "*");
+            getDriver().findElement(By.xpath("//*[@class='mat-raised-button mat-accent']/span[contains(text(),'Add Option')]")).click();
+        }
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@placeholder='Option " + num + "*']")).sendKeys("Option " + num + "*");
+        Thread.sleep(2000);
         }
     }
-}

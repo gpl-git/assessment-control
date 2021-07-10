@@ -116,5 +116,6 @@ Feature: Multiple Choice Question - Option
     And I wait for 1 sec
     When I click on "Save" button
     And I wait for 1 sec
+#      Known issus max+1 characters ASKJ-
     Then I verify that error message contains "Max 15 choices allowed"
 
