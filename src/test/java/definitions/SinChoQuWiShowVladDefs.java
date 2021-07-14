@@ -1,5 +1,7 @@
 package definitions;
 
+//This steps definition was made by Vladimir Borisov for singleChoiseQuestionWithShowstopperVlad feature
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
@@ -10,42 +12,53 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 
-
 public class SinChoQuWiShowVladDefs {
     @Then("I click {string} checkbox in {string} question")
     public void iClickCheckboxInQuestion(String checkBox, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//span[contains(text(),'"+checkBox+"')]/../..//input/..")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//span[contains(text(),'" + checkBox + "')]/../..//input/..")).click();
     }
 
     @And("I select {string} question type in question number {string}")
     public void iSelectQuestionTypeInQuestionNumber(String questionType, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//div[contains(text(),'"+questionType+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//div[contains(text(),'" + questionType + "')]")).click();
     }
 
     @Then("I move question number {string} {string}")
     public void iMoveQuestionNumber(String questionNum, String upDownButton) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//span[contains(text(),'Move Question "+upDownButton+"')]/..")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//span[contains(text(),'Move Question " + upDownButton + "')]/..")).click();
 
     }
 
     @And("I add extra option to the {string} question")
     public void iAddExtraOptionToTheQuestion(String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//span[contains(text(),'Add Option')]/..")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//span[contains(text(),'Add Option')]/..")).click();
     }
 
     @And("I type {string} as option number {string} into question number {string}")
     public void iTypeAsOptionNumberIntoQuestionNumber(String optionValue, String optionNum, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Option "+optionNum+"*']")).sendKeys(optionValue);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//textarea[@placeholder='Option " + optionNum + "*']")).sendKeys(optionValue);
     }
 
     @Then("I type {string} into title of the {string} question")
     public void iTypeIntoTitleOfTheQuestion(String questionValue, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[contains(@placeholder,'Question')]")).sendKeys(questionValue);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//textarea[contains(@placeholder,'Question')]")).sendKeys(questionValue);
     }
 
-    @Then("I select option number {string} as the correct option of the {string} question")
-    public void iSelectOptionNumberAsTheCorrectOptionOfTheQuestion(String optionNum, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Option "+optionNum+"*']/../../../../../mat-radio-button")).click();
+    @Then("I select option number {string} as the correct option of the {string} question of {string} type")
+            public void iSelectOptionNumberAsTheCorrectOptionOfTheQuestionOfType(String optionNum, String questionNum, String questionType) {
+        switch (questionType) {
+            case "Single": {
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//textarea[@placeholder='Option " + optionNum + "*']/../../../../../mat-radio-button")).click();
+                break;
+            }
+            case "Multiple": {
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//textarea[@placeholder='Option " + optionNum + "*']/../../../../..//input/..")).click();
+                break;
+            }
+            default: {
+                System.out.println("Please select Single or Multiple type of question");
+            }
+        }
     }
 
     @And("I verify {string} checkbox of the {string} question is checked off")
