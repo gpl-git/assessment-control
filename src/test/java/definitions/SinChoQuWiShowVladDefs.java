@@ -4,6 +4,8 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -45,7 +47,7 @@ public class SinChoQuWiShowVladDefs {
     }
 
     @Then("I select option number {string} as the correct option of the {string} question of {string} type")
-            public void iSelectOptionNumberAsTheCorrectOptionOfTheQuestionOfType(String optionNum, String questionNum, String questionType) {
+    public void iSelectOptionNumberAsTheCorrectOptionOfTheQuestionOfType(String optionNum, String questionNum, String questionType) {
         switch (questionType) {
             case "Single": {
                 getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/../../..//textarea[@placeholder='Option " + optionNum + "*']/../../../../../mat-radio-button")).click();
@@ -72,9 +74,19 @@ public class SinChoQuWiShowVladDefs {
 
     @Then("I switch to {string} question")
     public void iSwitchToQuestion(String questionNum) {
-//        Draft code
-//        getDriver().switchTo().defaultContent();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q" + questionNum + "')]/..")).click();
+    }
+
+
+    @Then("I verify {string} of {string} question of {string} quiz is Show-Stopper")
+    public void iVerifyOfQuestionOfQuizIsShowstopper(String questionNum, String questionTotal, String title) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]")).click();
+        Thread.sleep(1000);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]/../../..//span[text()='Preview']")).click();
+        String Label = "Show-Stopper Question";
+        System.out.println(Label);
+        Thread.sleep(2000);
+        String actualLabel = getDriver().findElement(By.xpath("//h5[contains(text(),'Question " + questionNum + " / " + questionTotal + "')]/../p[contains(@class,'show-stopper')]")).getText();
+        assertThat(actualLabel.contains(Label)).isTrue();
     }
 }
-
-

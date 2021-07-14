@@ -86,11 +86,12 @@ Feature: Test set for single choice question with showstopper
     And I select option number "2" as the correct option of the "2" question of "Multiple" type
     And I select option number "4" as the correct option of the "2" question of "Multiple" type
     Then I move question number "2" "Up"
+    And I wait for 1 sec
+    And I switch to "2" question
 #    Use "Up" or "Down" depending on your need
-#    And I verify "Show-Stopper" checkbox of the "2" question is checked off
-    And I wait for 4 sec
-#    When I click on "Save" button
-#    And I wait for 1 sec
-#    Then quiz "SCQST3 Quiz" should be displayed on the list of quizzes
+    When I click on "Save" button
+    And I wait for 2 sec
+    Then quiz "SCQST3 Quiz" should be displayed on the list of quizzes
+    And I verify "2" of "2" question of "SCQST3 Quiz" quiz is Show-Stopper
 #    And I delete "SCQST3 Quiz" from the list of quizzes
-#    Then I wait for 2 sec
+    Then I wait for 4 sec
