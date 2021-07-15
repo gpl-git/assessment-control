@@ -72,6 +72,7 @@ Feature: Test set for single choice question with showstopper
     And I click "Show-Stopper" checkbox in "1" question
     When I add a question
     Then I select "Multiple" question type in question number "2"
+    And I wait for 2 sec
     And I type "Which of these is fruit?" into title of the "2" question
     Then I add extra option to the "2" question
     And I add extra option to the "2" question
@@ -86,12 +87,15 @@ Feature: Test set for single choice question with showstopper
     And I select option number "2" as the correct option of the "2" question of "Multiple" type
     And I select option number "4" as the correct option of the "2" question of "Multiple" type
     Then I move question number "2" "Up"
+    #    Use "Up" or "Down" depending on your need
     And I wait for 1 sec
-    And I switch to "2" question
-#    Use "Up" or "Down" depending on your need
     When I click on "Save" button
     And I wait for 2 sec
     Then quiz "SCQST3 Quiz" should be displayed on the list of quizzes
-    And I verify "2" of "2" question of "SCQST3 Quiz" quiz is Show-Stopper
-#    And I delete "SCQST3 Quiz" from the list of quizzes
-    Then I wait for 4 sec
+    And I wait for 1 sec
+    Then I verify "2" question of "SCQST3 Quiz" quiz is Show-Stopper and delete quiz
+    And I delete "SCQST3 Quiz" from the list of quizzes
+    And I wait for 2 sec
+#    This Scenario will fail due, to the bug ASKJ-320
+#    If you change question # from 2 to 1 in line 96 it will be fully successful
+#    Sometimes scenario will fail at line 76. In that case repeat it all over after short break.
