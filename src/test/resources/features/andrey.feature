@@ -1,3 +1,3 @@
 Feature: Test Git Exercise
 
-  Scenario: Test
+  Scenario: Test New
