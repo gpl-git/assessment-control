@@ -31,8 +31,15 @@ public class LastNameStepdefs {
 
     @Then("I verify that I revive a {string} message")
     public void iVerifyThatIReviveAMessage(String message) {
-        assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'"+message+"')]")).isDisplayed()).isTrue();
+        String confirmation = getDriver().findElement(By.xpath("//h4")).getText();
+//        assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'" + message + "')]")).isDisplayed()).isTrue();
+        assertThat(confirmation.equals(message)).isTrue();
     }
 
 
+    @Then("I verify that {string} error message")
+    public void iVerifyThatErrorMessage(String message) {
+        String actualMessage = getDriver().findElement(By.xpath("//mat-error")).getText();
+        assertThat(actualMessage.equals(message)).isTrue();
+    }
 }
