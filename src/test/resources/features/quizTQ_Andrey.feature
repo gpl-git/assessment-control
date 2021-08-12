@@ -1,12 +1,7 @@
 @quizTQ
 Feature: Quiz - Total Questions Scenarios
-"""Automation Test Set JUL-128
-@CucumberOptions(
-        plugin = {"pretty", "html:target/cucumber", "json:target/cucumber/report.json"},
-        features = "src/test/resources/features",
-        glue = {"definitions", "support"},
-        tags = {"@quizTQ", "not @ignore"}
-)"""
+# Automation Test Set JUL-128
+
 
   Background:
     Given I open "login" page
@@ -51,7 +46,7 @@ Feature: Quiz - Total Questions Scenarios
 
   @quizTQ4 @ignore
   Scenario: JUL-135. Verify the Quiz with number of questions 51 cannot be created
-    """ Opened bug JUL-180"""
+#    Opened bug JUL-180
     When I type "! Quiz4" as a quiz title
     Then I am creating 51 "Textual" questions
     And click on "Save" button
