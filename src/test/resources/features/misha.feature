@@ -1,4 +1,4 @@
 @GetStudy
   Feature: misha
     Scenario: i study git
-      When i start
+      When i start doig thst
