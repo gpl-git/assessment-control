@@ -91,19 +91,16 @@ public class PredefinedStepDefs {
 
     @And("I delete {string} from the list of quizzes")
     public void iDeleteFromTheListOfQuizzes(String quizTitle) throws InterruptedException {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
-        Thread.sleep(1500);
-
-        //  Find button "Delete" inside of Quiz in the list of quizzes
-        List<WebElement> webElements = getDriver().findElements(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/../../..//span[contains(text(),'Delete')]"));
-
-        if (!webElements.isEmpty()) {
-            for (WebElement webElement : webElements) {
-                webElement.click();
-                Thread.sleep(1500);
-                getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
-                Thread.sleep(1500);
-            }
+        List<WebElement> quizzes = getDriver().findElements(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]"));
+        for (WebElement quiz : quizzes) {
+            quiz.click();
+            Thread.sleep(1500);
+            getDriver().findElement(
+                            By.xpath("//mat-expansion-panel[contains(@class, 'expanded')]//mat-panel-title[contains(text(),'" + quizTitle + "')]/../../..//span[contains(text(),'Delete')]"))
+                    .click();
+            Thread.sleep(1000);
+            getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
+            Thread.sleep(1000);
         }
     }
 }
