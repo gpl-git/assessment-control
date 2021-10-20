@@ -5,6 +5,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -12,19 +15,19 @@ import static support.TestContext.getDriver;
 public class PredefinedStepDefs {
     @Given("I open {string} page")
     public void iOpenPage(String url) {
-        if (url.equals("login")){
+        if (url.equals("login")) {
             getDriver().get("http://ask-qa.portnov.com/#/login");
-        }else if(url.equals("registration")){
+        } else if (url.equals("registration")) {
             getDriver().get("http://ask-qa.portnov.com/#/registration");
-        }else {
-            System.out.println("This site "+url+ "is not supported");
+        } else {
+            System.out.println("This site " + url + "is not supported");
 
         }
     }
 
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000+sec);
+        Thread.sleep(1000 * sec);
     }
 
     @When("I type {string} into email field")
@@ -40,12 +43,12 @@ public class PredefinedStepDefs {
 
     @When("I click {string} button")
     public void iClickButton(String btnName) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
+        getDriver().findElement(By.xpath("//span[contains(text(),'" + btnName + "')]")).click();
     }
 
     @When("I click on {string} menu")
     public void iClickOnMenu(String menuItem) {
-        getDriver().findElement(By.xpath("//h5[contains(text(),'"+menuItem+"')]")).click();
+        getDriver().findElement(By.xpath("//h5[contains(text(),'" + menuItem + "')]")).click();
     }
 
     @When("I type {string} as quiz title")
@@ -60,36 +63,43 @@ public class PredefinedStepDefs {
 
     @When("I select {string} question type")
     public void iSelectQuestionType(String questionType) {
-        getDriver().findElement(By.xpath("//div[contains(text(),'"+questionType+"')]")).click();
+        getDriver().findElement(By.xpath("//div[contains(text(),'" + questionType + "')]")).click();
     }
 
     @And("I type {string} into {string}")
     public void iTypeInto(String qText, String qNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+qNum+"')]/../../..//textarea[@formcontrolname='question']")).sendKeys(qText);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + qNum + "')]/../../..//textarea[@formcontrolname='question']")).sendKeys(qText);
     }
 
     @When("I type {string} as {string} into {string}")
     public void iTypeAsInto(String optionText, String optionNum, String qNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+qNum+"')]/../../..//textarea[@placeholder='"+optionNum+"']")).sendKeys(optionText);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + qNum + "')]/../../..//textarea[@placeholder='" + optionNum + "']")).sendKeys(optionText);
     }
 
     @And("I select {string} as correct option in {string}")
     public void iSelectAsCorrectOptionIn(String optionNum, String qNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+qNum+"')]/../../..//textarea[@placeholder='"+optionNum+"']/../../../../..//mat-radio-button")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + qNum + "')]/../../..//textarea[@placeholder='" + optionNum + "']/../../../../..//mat-radio-button")).click();
     }
 
     @Then("{string} is displayed on the list of quizzes")
     public void isDisplayedOnTheListOfQuizzes(String quizTitle) {
-       assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isTrue();
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).isDisplayed()).isTrue();
 
     }
 
     @And("I delete {string} from the list of quizzes")
     public void iDeleteFromTheListOfQuizzes(String quizTitle) throws InterruptedException {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
-        Thread.sleep(1000);
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Test Quiz Predefined')]/../../..//span[contains(text(),'Delete')]")).click();
-        getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
-        Thread.sleep(1000);
+
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
+        Thread.sleep(1500);
+        List<WebElement> webElements = getDriver().findElements(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/../../..//span[contains(text(),'Delete')]"));
+        if (!webElements.isEmpty()) {
+            for (WebElement webElement : webElements) {
+                webElement.click();
+                Thread.sleep(1500);
+                getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
+                Thread.sleep(1500);
+            }
+        }
     }
 }
