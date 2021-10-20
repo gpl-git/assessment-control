@@ -7,7 +7,9 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -89,10 +91,12 @@ public class PredefinedStepDefs {
 
     @And("I delete {string} from the list of quizzes")
     public void iDeleteFromTheListOfQuizzes(String quizTitle) throws InterruptedException {
-
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
         Thread.sleep(1500);
+
+        //  Find button "Delete" inside of Quiz in the list of quizzes
         List<WebElement> webElements = getDriver().findElements(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/../../..//span[contains(text(),'Delete')]"));
+
         if (!webElements.isEmpty()) {
             for (WebElement webElement : webElements) {
                 webElement.click();
