@@ -4,7 +4,11 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Random;
@@ -67,5 +71,22 @@ public class MultChoiceQuestOptsStepsDefs {
     @When("Clear the field {string}")
     public void clearTheField(String fieldPlaceholder) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[contains(@placeholder, '" + fieldPlaceholder + "')]")).clear();
+    }
+
+    @When("I add a question {int} times")
+    public void iAddAQuestionTimes(int size){
+        String xpath = "//span[@class='mat-button-wrapper' and contains(text(), 'Add Option')]/../..//button";
+        for (int i = size; i > 2; i--) {
+            WebElement element = getDriver().findElement(By.xpath(xpath));
+            element.click();
+        }
+    }
+
+    @And("I fill out all fields {string} with text {string}")
+    public void iFillOutFieldsWithText(String fieldPlaceholder, String text){
+        List<WebElement> options = getDriver().findElements(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[contains(@placeholder, '" + fieldPlaceholder + "')]"));
+        for (WebElement option : options) {
+            option.sendKeys(text);
+        }
     }
 }
