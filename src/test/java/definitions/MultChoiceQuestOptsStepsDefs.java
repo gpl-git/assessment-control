@@ -58,4 +58,14 @@ public class MultChoiceQuestOptsStepsDefs {
             Thread.sleep(1000);
         }
     }
+
+    @Then("Alert message below {string} field is displayed")
+    public void alertMessageBelowFieldIsDisplayed(String optionPlaceholder) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[contains(@placeholder,'" + optionPlaceholder + "')]/../../..//mat-error")).isDisplayed();
+    }
+
+    @When("Clear the field {string}")
+    public void clearTheField(String fieldPlaceholder) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[contains(@placeholder, '" + fieldPlaceholder + "')]")).clear();
+    }
 }
