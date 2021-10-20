@@ -140,3 +140,22 @@ Feature: Multiple Choice Question - Options
     Then "Dmitry K Multiple Choice Options Quiz" is not displayed on the list of quizzes
     When I wait for 1 sec
     And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+
+  @predefined8
+  Scenario: Multiple Choice Options Field doesn't accept a space bar without a text (empty field)
+    When I click "Create New Quiz" button
+    And I wait for 2 sec
+    When I type "Dmitry K Multiple Choice Options Quiz" as quiz title
+    And I add a question
+    When I select "Multiple-Choice" question type
+    And I wait for 2 sec
+    And I type "Multiple Choice Question 1" into "Q1"
+    When I checked "Option 1"
+    And I checked "Option 2"
+    When I type " " as "Option 1*" into "Q1"
+    And I type " " as "Option 2*" into "Q1"
+    When I push button "Save"
+    And I wait for 2 sec
+    Then "Dmitry K Multiple Choice Options Quiz" is not displayed on the list of quizzes
+    When I wait for 1 sec
+    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
