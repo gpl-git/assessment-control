@@ -121,3 +121,22 @@ Feature: Multiple Choice Question - Options
     Then "Dmitry K Multiple Choice Options Quiz" is displayed on the list of quizzes
     And I wait for 2 sec
     And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+
+  @predefined7
+  Scenario: Multiple Choice Question Type Doesn't Accepts 16 Choices (max number + 1)
+    When I click "Create New Quiz" button
+    And I wait for 2 sec
+    When I type "Dmitry K Multiple Choice Options Quiz" as quiz title
+    And I add a question
+    When I select "Multiple-Choice" question type
+    And I wait for 1 sec
+    And I type "Multiple Choice Question 1" into "Q1"
+    When I add a question 16 times
+    When I fill out all fields "Option" with text "Akjh234^%&O"
+    And I checked "Option 1"
+    And I checked "Option 2"
+    When I push button "Save"
+    And I wait for 1 sec
+    Then "Dmitry K Multiple Choice Options Quiz" is not displayed on the list of quizzes
+    When I wait for 1 sec
+    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
