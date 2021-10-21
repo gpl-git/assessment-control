@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
+
 public class PredefinedStepDefs {
     @Given("I open {string} page")
     public void iOpenPage(String url) {
@@ -24,7 +25,7 @@ public class PredefinedStepDefs {
 
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000+sec);
+        Thread.sleep(1000 * sec);
     }
 
     @When("I type {string} into email field")
@@ -80,7 +81,7 @@ public class PredefinedStepDefs {
 
     @Then("{string} is displayed on the list of quizzes")
     public void isDisplayedOnTheListOfQuizzes(String quizTitle) {
-       assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isTrue();
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isTrue();
 
     }
 
