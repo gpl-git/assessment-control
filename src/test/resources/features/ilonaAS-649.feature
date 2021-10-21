@@ -63,14 +63,14 @@
     Scenario: Registration - Password
       Then I enter first name "Il"
       Then I enter last name "Ne"
-      Then I enter email "m@m.e"
+      Then I enter new email
       Then I enter group "123"
       Then I enter passworrd "Za!12"
       Then I enter Confirm password "Za!12"
       Then I click Register Me
-      And I wait for 2 sec
+      And I wait for 4 sec
       Then page with message "You have been Registered." opened
-      And I wait for 2 sec
+      And I wait for 4 sec
 
     @predefined8
     Scenario Outline: Registration - Password - Outline

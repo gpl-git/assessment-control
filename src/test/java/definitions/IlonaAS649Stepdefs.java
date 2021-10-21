@@ -4,10 +4,12 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
 
+import java.util.Random;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
-public class IlonaStepdefs {
+public class IlonaAS649Stepdefs {
     @Given("I navigate to {string} page")
     public void iNavigateToPage(String url) {
         if (url.equals("registration")){
@@ -30,7 +32,7 @@ public class IlonaStepdefs {
 
     @Then("error message {string}")
     public void errorMessage(String error) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='password']")).submit();
+        getDriver().findElement(By.xpath("//*[@formcontrolname='password']")).click();
     String acterror=getDriver().findElement(By.xpath("//mat-error[contains(text(),'"+error+"')]")).getText();
         System.out.println(acterror);
         assertThat(acterror.equals(error)).isTrue();
@@ -83,7 +85,20 @@ public class IlonaStepdefs {
 
     @Then("page with message {string} opened")
     public void pageWithMessageOpened(String registered) {
-        assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'You have been Registered')]")).isDisplayed()).isTrue();
+        String actreg=getDriver().findElement(By.xpath("//h4")).getText();
+        assertThat(actreg.equals(registered)).isTrue();
+       // assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'You have been Registered')]")).isDisplayed()).isTrue();
+
+    }
+
+    @Then("I enter new email")
+    public void iEnterNewEmail() {
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(100);
+        String newEmail = "username"+ randomInt +"@gmail.com";
+        System.out.println(newEmail);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(newEmail);
+
 
     }
 }
