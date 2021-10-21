@@ -86,11 +86,11 @@
       And I wait for 2 sec
       Examples:
         | pas     | confpass  | registered                            |
-        | "Za!12" | "Za!12"   | "Your registration is completed now." |
-        | "!@#$%^&*(" | "!@#$%^&*("| "Your registration is completed now." |
-        | "ZXCVBNM" | "ZXCVBNM"   | "Your registration is completed now." |
-        | "zxcvbnm" | "zxcvbnm"   | "Your registration is completed now." |
-        | "123456!@#$%^&*()ZAQWSXfvgbcgzbgb" | "123456!@#$%^&*()ZAQWSXfvgbcgzbgb"   | "Your registration is completed now." |
+        | "Za!12" | "Za!12"   | "You have been Registered." |
+        | "!@#$%^&*(" | "!@#$%^&*("| "You have been Registered." |
+        | "ZXCVBNM" | "ZXCVBNM"   | "You have been Registered." |
+        | "zxcvbnm" | "zxcvbnm"   | "You have been Registered." |
+        | "123456!@#$%^&*()ZAQWSXfvgbcgzbgb" | "123456!@#$%^&*()ZAQWSXfvgbcgzbgb"   | "You have been Registered." |
 
 
 
