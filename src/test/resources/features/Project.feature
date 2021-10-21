@@ -18,6 +18,40 @@
     @predefined2
     Scenario: The field is required
       And I enter "Title of the Quiz"
+      And I will wait for 2 sec
+      And I Delete "Title of the Quiz" title of the quiz in input field
+      And I click on plus sign "Add Quiz" on a page
+      And I will wait for 2 sec
+      And error message "This field is required" should be displayed
+
+    @predefined3
+    Scenario: 1000 alphanumeric characters
+      When I enter 1000 alphanumeric characters
+      And I click on plus sign "Add Quiz" on a page
+
+    @predefined4
+    Scenario: 1000+1 character
+      When I type 1001 alphanumeric characters
+      And I click on plus sign "Add Quiz" on a page
+      And error message "Max length 1000 characters" should be displayed on a screen
+
+    @predefined5
+    Scenario: Space instead of input in quiz of title
+      When I leave " " in title field
+      And I click on plus sign "Add Quiz" on a page
+      And  error message "Title can not be empty" should be displayed on a screen under input field
+
+    @predefined6
+    Scenario: happy path for Tile of the Quiz input field
+      When I type "Q" into title quiz field
+      And I click on plus sign "Add quiz" on a page
+
+
+
+
+
+
+
 
 
 

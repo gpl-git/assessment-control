@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>ProjectMyStepdefs.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ProjectMyStepdefs.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">definitions</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">cucumber.api.java.en.And</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">cucumber.api.java.en.Given</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">cucumber.api.java.en.Then</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">cucumber.api.java.en.When</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.apache.commons.lang3.RandomStringUtils</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.By</span><span class="s0">;</span>
+
+<span class="s0">import static </span><span class="s1">org.assertj.core.api.Assertions.assertThat</span><span class="s0">;</span>
+<span class="s0">import static </span><span class="s1">support.TestContext.getDriver</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">ProjectMyStepdefs {</span>
+    <span class="s1">@Given(</span><span class="s2">&quot;I navigate to sign in {string} page&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iNavigateToSignInPage(String page) {</span>
+        <span class="s0">switch </span><span class="s1">(page){</span>
+            <span class="s0">case </span><span class="s2">&quot;quiz&quot;</span><span class="s1">:</span>
+                <span class="s1">getDriver ().get ( </span><span class="s2">&quot;http://ask-qa.portnov.com/#/login&quot; </span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+            <span class="s0">case </span><span class="s2">&quot;quiz production&quot;</span><span class="s1">:</span>
+                <span class="s1">getDriver ().get ( </span><span class="s2">&quot;http://ask.portnov.com/#/login&quot; </span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+            <span class="s0">default</span><span class="s1">:</span>
+                <span class="s1">System.out.println ( </span><span class="s2">&quot;This site is not for you&quot; </span><span class="s1">)</span><span class="s0">;</span>
+
+
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Then(</span><span class="s2">&quot;I should see page title contains {string}&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iShouldSeePageTitleContains(String title) {</span>
+        <span class="s1">getDriver ().getTitle ()</span><span class="s0">;</span>
+        <span class="s1">System.out.println ( getDriver ().getTitle () )</span><span class="s0">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s1">@Then(</span><span class="s2">&quot;I log in as a teacher with valid credentials where email is {string} and password is{string}&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iLogInAsATeacherWithValidCredentialsWhereEmailIsAndPasswordIs(String email</span><span class="s0">, </span><span class="s1">String password) {</span>
+        <span class="s1">getDriver ().findElement ( By.xpath ( </span><span class="s2">&quot;//*[@formcontrolname='email']&quot; </span><span class="s1">) ).sendKeys ( email )</span><span class="s0">;</span>
+        <span class="s1">getDriver ().findElement ( By.xpath ( </span><span class="s2">&quot;//*[@formcontrolname='password']&quot; </span><span class="s1">) ).sendKeys ( password )</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;I will click {string} button&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iWillClickButtonOnAPage(String buttonName) {</span>
+        <span class="s1">getDriver().findElement(By.xpath(</span><span class="s2">&quot;//span[contains(text(),'&quot;</span><span class="s1">+buttonName+</span><span class="s2">&quot;')]&quot;</span><span class="s1">)).click()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+
+    <span class="s1">@And(</span><span class="s2">&quot;I will wait for {int} sec&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iWillWaitForSec(</span><span class="s0">int </span><span class="s1">sec) </span><span class="s0">throws </span><span class="s1">InterruptedException {</span>
+        <span class="s1">Thread.sleep ( </span><span class="s3">2000</span><span class="s1">+sec )</span><span class="s0">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s1">@When(</span><span class="s2">&quot;I click on {string} menu in a left corner of the screen&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iClickOnMenuInALeftCornerOfTheScreen(String menuItem) {</span>
+        <span class="s1">getDriver().findElement(By.xpath(</span><span class="s2">&quot;//h5[contains(text(),'&quot;</span><span class="s1">+menuItem+</span><span class="s2">&quot;')]&quot;</span><span class="s1">)).click()</span><span class="s0">;</span>
+<span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;I type {string} in a quiz title field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iTypeInAQuizTitleField(String titleField) {</span>
+        <span class="s1">getDriver().findElement(By.xpath(</span><span class="s2">&quot;//*[@formcontrolname='name']&quot;</span><span class="s1">)).sendKeys(titleField)</span><span class="s0">;</span>
+
+<span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;I enter {string}&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iEnter(String title) {</span>
+        <span class="s1">getDriver ().findElement ( By.xpath (</span><span class="s2">&quot;//*[@formcontrolname='name']&quot;  </span><span class="s1">) ).sendKeys ( title )</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;I Delete {string} title of the quiz in input field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iDeleteTitleOfTheQuizInInputField(String arg0) {</span>
+        <span class="s1">getDriver ().findElement ( By.xpath ( </span><span class="s2">&quot;//*[@formcontrolname='name']&quot;  </span><span class="s1">) ).clear ()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;I click on plus sign {string} on a page&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iClickOnPlusSignOnAPage(String sign) {</span>
+        <span class="s1">getDriver ().findElement ( By.xpath ( </span><span class="s2">&quot;//*[contains(text(), 'add_circle')]&quot; </span><span class="s1">) ).click ()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;error message {string} should be displayed&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">errorMessageShouldBeDisplayed(String expectedMessage) {</span>
+        <span class="s1">String actualMessage = getDriver ().findElement ( By.xpath ( </span><span class="s2">&quot;//*[contains(text(), 'This field is required')]&quot; </span><span class="s1">) ).getText ()</span><span class="s0">;</span>
+        <span class="s1">System.out.println ( actualMessage )</span><span class="s0">;</span>
+        <span class="s1">assertThat ( actualMessage.equals ( expectedMessage ) ).isTrue ()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@When(</span><span class="s2">&quot;I enter {int} alphanumeric characters&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iEnterAlphanumericCharacters(</span><span class="s0">int </span><span class="s1">number) {</span>
+        <span class="s0">boolean </span><span class="s1">useLetters = </span><span class="s0">true;</span>
+        <span class="s0">boolean </span><span class="s1">useNumbers = </span><span class="s0">true;</span>
+        <span class="s1">String generatedString = RandomStringUtils.random ( number</span><span class="s0">, </span><span class="s1">useLetters</span><span class="s0">, </span><span class="s1">useNumbers )</span><span class="s0">;</span>
+
+        <span class="s1">getDriver ().findElement ( By.xpath ( </span><span class="s2">&quot;//*[@formcontrolname='name']&quot; </span><span class="s1">) ).sendKeys ( generatedString )</span><span class="s0">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s1">@When(</span><span class="s2">&quot;I type {int} alphanumeric characters&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iTypeAlphanumericCharacters(</span><span class="s0">int </span><span class="s1">alphanumericCharacters) {</span>
+        <span class="s1">{</span>
+            <span class="s0">boolean </span><span class="s1">useLetters = </span><span class="s0">true;</span>
+            <span class="s0">boolean </span><span class="s1">useNumbers = </span><span class="s0">true;</span>
+            <span class="s1">String generatedString = RandomStringUtils.random ( alphanumericCharacters</span><span class="s0">, </span><span class="s1">useLetters</span><span class="s0">, </span><span class="s1">useNumbers )</span><span class="s0">;</span>
+            <span class="s1">getDriver ().findElement ( By.xpath ( </span><span class="s2">&quot;//*[@formcontrolname='name']&quot; </span><span class="s1">) ).sendKeys ( generatedString )</span><span class="s0">;</span>
+        <span class="s1">}</span>
+
+<span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;error message {string} should be displayed on a screen&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">errorMessageShouldBeDisplayedOnAScreen(String message) {</span>
+        <span class="s1">String actualMessage = getDriver ().findElement ( By.xpath ( </span><span class="s2">&quot;//*[contains(text(), 'Max length is 1000 characters')]&quot; </span><span class="s1">) ).getText ()</span><span class="s0">;</span>
+        <span class="s1">System.out.println ( actualMessage )</span><span class="s0">;</span>
+        <span class="s1">assertThat ( actualMessage.equals ( message ) ).isTrue ()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@When(</span><span class="s2">&quot;I leave {string} in title field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iLeaveInTitleField(String space) {</span>
+        <span class="s1">getDriver ().findElement ( By.xpath (</span><span class="s2">&quot;//*[@formcontrolname='name']&quot; </span><span class="s1">) ).sendKeys (space)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;error message {string} should be displayed on a screen under input field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">errorMessageShouldBeDisplayedOnAScreenUnderInputField(String errorMessage) {</span>
+        <span class="s1">String actualMessage = getDriver ().findElement (By.name (</span><span class="s2">&quot;Max length 1000 characters&quot;</span><span class="s1">) ).getText ()</span><span class="s0">;</span>
+        <span class="s1">System.out.println ( actualMessage )</span><span class="s0">;</span>
+        <span class="s1">assertThat ( actualMessage.equals ( errorMessage ) ).isTrue ()</span><span class="s0">;</span>
+
+
+<span class="s1">}</span>
+
+    <span class="s1">@When(</span><span class="s2">&quot;I type {string} into title quiz field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iTypeIntoTitleQuizField(String letter) {</span>
+        <span class="s1">getDriver ().findElement ( By.xpath (</span><span class="s2">&quot;//*[@formcontrolname='name']&quot;  </span><span class="s1">) ).sendKeys ( letter )</span><span class="s0">;</span>
+
+<span class="s1">}</span>
+<span class="s1">}</span>
+
+</pre>
+</body>
+</html>
