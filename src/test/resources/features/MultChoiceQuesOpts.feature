@@ -176,7 +176,7 @@ Feature: Multiple Choice Question - Options
     Then The overlay warning window with warning
     And Alert message with text "*Choose at least one correct answer" should be displayed
 
-  @predefined4
+  @predefined10
   Scenario: Multiple Choice Options Field accepts 2 characters (minimum + 1)
     When I click "Create New Quiz" button
     And I wait for 2 sec
@@ -191,5 +191,6 @@ Feature: Multiple Choice Question - Options
     When I push button "Save"
     And I wait for 1 sec
     Then "Dmitry K Multiple Choice Options Quiz" is not displayed on the list of quizzes
+    And Alert message with text "This field is required" should be displayed
     And I wait for 2 sec
     And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
