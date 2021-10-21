@@ -74,7 +74,7 @@ public class MultChoiceQuestOptsStepsDefs {
     }
 
     @When("I add a question {int} times")
-    public void iAddAQuestionTimes(int size){
+    public void iAddAQuestionTimes(int size) {
         String xpath = "//span[@class='mat-button-wrapper' and contains(text(), 'Add Option')]/../..//button";
         for (int i = size; i > 2; i--) {
             WebElement element = getDriver().findElement(By.xpath(xpath));
@@ -83,7 +83,7 @@ public class MultChoiceQuestOptsStepsDefs {
     }
 
     @And("I fill out all fields {string} with text {string}")
-    public void iFillOutFieldsWithText(String fieldPlaceholder, String text){
+    public void iFillOutFieldsWithText(String fieldPlaceholder, String text) {
         List<WebElement> options = getDriver().findElements(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[contains(@placeholder, '" + fieldPlaceholder + "')]"));
         for (WebElement option : options) {
             option.sendKeys(text);
@@ -99,7 +99,7 @@ public class MultChoiceQuestOptsStepsDefs {
 
     @And("Alert message with text {string} should be displayed")
     public void alertMessageWithTextShouldBeDisplayed(String message) {
-        String xpath = "//div[contains(text(), 'Choose at least one correct answer')]";
+        String xpath = "//*[contains(text(), '" + message + "')]";
         WebElement element = getDriver().findElement(By.xpath(xpath));
         assertThat(element.isDisplayed());
     }
