@@ -39,7 +39,7 @@ public class PredefinedStepDefs {
     }
 
     @When("I click {string} button")
-    public void iClickButton(String btnName) {
+    public void giClickButton(String btnName) {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
     }
 
