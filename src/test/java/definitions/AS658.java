@@ -2,9 +2,11 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class AS658 {
@@ -67,6 +69,16 @@ public class AS658 {
     public void iHitButton(String btn) {
         getDriver().findElement(By.xpath("//*[@type='button']/span[1][contains(text(),'"+btn+"')]")).click();
 
+    }
+
+    @Then("message {string} can be observed on the screen")
+    public void messageCanBeObservedOnTheScreen(String arg0) {
+        assertThat(getDriver().findElement(By.xpath("//mat-error[contains(text(),'field')]")).isDisplayed()).isTrue();
+    }
+
+    @Then("{string} button is not active")
+    public void buttonIsNotActive(String btn) {
+        assertThat(getDriver().findElement(By.xpath("//*[@type='button']/span[1][contains(text(),'"+btn+"')]")).isDisplayed()).isFalse();
     }
 }
 
