@@ -4,12 +4,13 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java8.En;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
-public class PredefinedStepDefs {
+public class  PredefinedStepDefs {
     @Given("I open {string} page")
     public void iOpenPage(String url) {
         if (url.equals("login")){
@@ -21,6 +22,7 @@ public class PredefinedStepDefs {
 
         }
     }
+
 
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
@@ -92,4 +94,6 @@ public class PredefinedStepDefs {
         getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
         Thread.sleep(1000);
     }
+
+
 }
