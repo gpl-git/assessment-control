@@ -89,4 +89,18 @@ public class MultChoiceQuestOptsStepsDefs {
             option.sendKeys(text);
         }
     }
+
+    @Then("The overlay warning window with warning")
+    public void iCanSeeOverlayWarningWindowWithWarning() {
+        String xpath = "//div[@class='cdk-overlay-pane']";
+        WebElement element = getDriver().findElement(By.xpath(xpath));
+        assertThat(element.isDisplayed());
+    }
+
+    @And("Alert message with text {string} should be displayed")
+    public void alertMessageWithTextShouldBeDisplayed(String message) {
+        String xpath = "//div[contains(text(), 'Choose at least one correct answer')]";
+        WebElement element = getDriver().findElement(By.xpath(xpath));
+        assertThat(element.isDisplayed());
+    }
 }
