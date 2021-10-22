@@ -80,7 +80,7 @@ public class PredefinedStepDefs {
 
     @Then("{string} is displayed on the list of quizzes")
     public void isDisplayedOnTheListOfQuizzes(String quizTitle) {
-       assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isTrue();
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isTrue();
 
     }
 
