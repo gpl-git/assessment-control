@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
-
 public class PredefinedStepDefs {
     @Given("I open {string} page")
     public void iOpenPage(String url) {
@@ -25,7 +24,7 @@ public class PredefinedStepDefs {
 
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000 * sec);
+        Thread.sleep(1000+sec);
     }
 
     @When("I type {string} into email field")
