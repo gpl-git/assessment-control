@@ -86,7 +86,8 @@ public class IlonaAS649Stepdefs {
     @Then("page with message {string} opened")
     public void pageWithMessageOpened(String registered) {
         String actreg=getDriver().findElement(By.xpath("//h4")).getText();
-        assertThat(actreg.equals(registered)).isTrue();
+       // assertThat(actreg.equals(registered)).isTrue();
+        assertThat(actreg).isEqualTo(registered);
        // assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'You have been Registered')]")).isDisplayed()).isTrue();
 
     }
