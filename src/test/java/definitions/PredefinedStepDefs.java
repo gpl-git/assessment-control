@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class PredefinedStepDefs {
-    @Given("I open {string} page")
+    @Given("I open {string} page") //1
     public void iOpenPage(String url) {
         if (url.equals("login")){
             getDriver().get("http://ask-qa.portnov.com/#/login");
@@ -22,28 +22,28 @@ public class PredefinedStepDefs {
         }
     }
 
-    @And("I wait for {int} sec")
+    @And("I wait for {int} sec")//5
     public void iWaitForSec(int sec) throws InterruptedException {
         Thread.sleep(1000+sec);
     }
 
-    @When("I type {string} into email field")
+    @When("I type {string} into email field") //2
     public void iTypeIntoEmailField(String email) {
         getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys(email);
     }
 
-    @And("I type {string} into the password field")
+    @And("I type {string} into the password field") //3
     public void iTypeIntoThePasswordField(String pwd) {
         getDriver().findElement(By.xpath("//*[@formcontrolname='password']")).sendKeys(pwd);
 
     }
 
-    @When("I click {string} button")
+    @When("I click {string} button") //4
     public void iClickButton(String btnName) {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
     }
 
-    @When("I click on {string} menu")
+    @When("I click on {string} menu") //6
     public void iClickOnMenu(String menuItem) {
         getDriver().findElement(By.xpath("//h5[contains(text(),'"+menuItem+"')]")).click();
     }
