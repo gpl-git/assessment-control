@@ -28,7 +28,7 @@ Feature: Multiple Choice Question - Options
     And I wait for 1 sec
     Then "Dmitry K Multiple Choice Options Quiz" is displayed on the list of quizzes
     And I wait for 2 sec
-    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+    And I delete elements "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
 
   @predefined2
   Scenario: Multiple Choice Options Field Doesn't Accepts 1000+1 char (max char + 1)
@@ -64,7 +64,7 @@ Feature: Multiple Choice Question - Options
     And I wait for 1 sec
     Then "Dmitry K Multiple Choice Options Quiz" is displayed on the list of quizzes
     And I wait for 2 sec
-    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+    And I delete elements "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
 
   @predefined4
   Scenario: Multiple Choice Options Field accepts 2 characters (minimum + 1)
@@ -83,7 +83,7 @@ Feature: Multiple Choice Question - Options
     And I wait for 1 sec
     Then "Dmitry K Multiple Choice Options Quiz" is displayed on the list of quizzes
     And I wait for 2 sec
-    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+    And I delete elements "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
 
   @predefined5
   Scenario: Multiple Choice Options Field is empty
@@ -120,7 +120,7 @@ Feature: Multiple Choice Question - Options
     And I wait for 1 sec
     Then "Dmitry K Multiple Choice Options Quiz" is displayed on the list of quizzes
     And I wait for 2 sec
-    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+    And I delete elements "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
 
   @predefined7
   Scenario: Multiple Choice Question Type Doesn't Accepts 16 Choices (max number + 1)
@@ -139,7 +139,7 @@ Feature: Multiple Choice Question - Options
     And I wait for 1 sec
     Then "Dmitry K Multiple Choice Options Quiz" is not displayed on the list of quizzes
     When I wait for 1 sec
-    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+    And I delete elements "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
 
   @predefined8
   Scenario: Multiple Choice Options Field doesn't accept a space bar without a text (empty field)
@@ -158,7 +158,7 @@ Feature: Multiple Choice Question - Options
     And I wait for 2 sec
     Then "Dmitry K Multiple Choice Options Quiz" is not displayed on the list of quizzes
     When I wait for 1 sec
-    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+    And I delete elements "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
 
   @predefined9
   Scenario: Multiple Choice Question Options doesn't let to save the question without selecting at least 1 correct answer
@@ -193,4 +193,4 @@ Feature: Multiple Choice Question - Options
     Then "Dmitry K Multiple Choice Options Quiz" is not displayed on the list of quizzes
     And Alert message with text "This field is required" should be displayed
     And I wait for 2 sec
-    And I delete "Dmitry K Multiple Choice Options Quiz" from the list of quizzes
+    And I delete elements "Dmitry K Multiple Choice Options Quiz" from the list of quizzes

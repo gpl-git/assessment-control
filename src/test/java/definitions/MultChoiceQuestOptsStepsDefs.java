@@ -22,6 +22,21 @@ public class MultChoiceQuestOptsStepsDefs {
         getDriver().findElement(By.xpath("//textarea[contains(@placeholder, '" + option + "')]/../../../../../mat-checkbox")).click();
     }
 
+    @And("I delete elements {string} from the list of quizzes")
+    public void iDeleteFromTheListOfQuizzes(String quizTitle) throws InterruptedException {
+        List<WebElement> quizzes = getDriver().findElements(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]"));
+        for (WebElement quiz : quizzes) {
+            quiz.click();
+            Thread.sleep(1500);
+            getDriver().findElement(
+                            By.xpath("//mat-expansion-panel[contains(@class, 'expanded')]//mat-panel-title[contains(text(),'" + quizTitle + "')]/../../..//span[contains(text(),'Delete')]"))
+                    .click();
+            Thread.sleep(1000);
+            getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
+            Thread.sleep(1000);
+        }
+    }
+
     @And("Input test-data {int} chars into field {string}")
     public void inputTestDataIntoField(int stringLength, String optionField) {
 
