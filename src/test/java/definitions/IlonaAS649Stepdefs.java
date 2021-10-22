@@ -1,5 +1,6 @@
 package definitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
@@ -101,6 +102,11 @@ public class IlonaAS649Stepdefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(newEmail);
 
 
+    }
+
+    @And("I click outside of windows")
+    public void iClickOutsideOfWindows() {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).click();
     }
 }
 

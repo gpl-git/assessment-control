@@ -8,6 +8,7 @@
     Scenario: Registration - Password/Confirm Password
       Then I enter passworrd "1"
       And I wait for 3 sec
+      And I click outside of windows
       Then error message "Should be at least 5 characters"
       And I wait for 1 sec
 
@@ -15,6 +16,7 @@
     Scenario Outline: Registration - Password error messages - Outline
       Then I enter passworrd <pas>
       And I wait for 1 sec
+      And I click outside of windows
       Then error message <error>
       And I wait for 2 sec
       Examples:
@@ -29,12 +31,14 @@
     Scenario: v
       Then I enter Confirm password "1"
       And I wait for 1 sec
+      And I click outside of windows
       Then error message "Should be at least 5 characters"
       And I wait for 1 sec
     @predefined4
     Scenario Outline: Registration - Confirm Password - Outline
       Then I enter Confirm password <confpass>
       And I wait for 1 sec
+      And I click outside of windows
       Then error message <error>
       And I wait for 2 sec
       Examples:
@@ -52,6 +56,7 @@
       Then I enter passworrd "Za!12"
       Then I enter Confirm password "Za!21"
       And I wait for 2 sec
+      And I click outside of windows
       Then the error message "Entered passwords should match" is displayed
       And I wait for 2 sec
 
