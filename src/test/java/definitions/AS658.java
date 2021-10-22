@@ -80,6 +80,11 @@ public class AS658 {
     public void buttonIsNotActive(String btn) {
         assertThat(getDriver().findElement(By.xpath("//*[@type='button']/span[1][contains(text(),'"+btn+"')]")).isDisplayed()).isFalse();
     }
+
+    @Then("{string} button is active")
+    public void buttonIsActive(String btn) {
+        assertThat(getDriver().findElement(By.xpath("//*[@type='button']/span[1][contains(text(),'"+btn+"')]")).isDisplayed()).isTrue();
+    }
 }
 
 
