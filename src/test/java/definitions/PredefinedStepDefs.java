@@ -24,7 +24,7 @@ public class PredefinedStepDefs {
 
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000+sec);
+        Thread.sleep(1000*sec);
     }
 
     @When("I type {string} into email field")
