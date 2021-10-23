@@ -10,7 +10,7 @@
       And I wait for 3 sec
       And I click outside of windows
       Then error message "Should be at least 5 characters"
-      And I wait for 1 sec
+      And I wait for 2 sec
 
     @predefined2
     Scenario Outline: Registration - Password error messages - Outline
