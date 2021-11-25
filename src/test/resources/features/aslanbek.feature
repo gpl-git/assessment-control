@@ -3,4 +3,4 @@
 
     @test1
     Scenario: My first Git project
-      Given
+      Given I open my URL
