@@ -3,4 +3,5 @@
 
   @test1
   Scenario: My first Git project
-  Given I create conflict with Artem
+  Given I create conflict with Galina
+
