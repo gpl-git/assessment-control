@@ -3,4 +3,5 @@
 
   @test1
   Scenario: My first Git project
-  Given
+  Given I create conflict with Galina
+
