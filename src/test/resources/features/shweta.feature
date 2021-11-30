@@ -3,4 +3,4 @@
 
     @test1
     Scenario: My First Git Project
-      Given
+      Given I create  a conflict with Shweta
