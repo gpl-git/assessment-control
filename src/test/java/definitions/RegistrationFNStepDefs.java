@@ -34,10 +34,6 @@ public class RegistrationFNStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='firstName']")).clear();
     }
 
-    @Then("first name error message should not be displayed")
-    public void firstNameErrorMessageShouldNotBeDisplayed() {
-        assertThat(getDriver().findElement(By.xpath("//mat-form-field[1]//mat-error[1]")).isDisplayed()).isFalse();
-    }
 
     @When("I type {string} into Last Name field")
     public void iTypeIntoLastNameField(String lastName) {
@@ -57,7 +53,7 @@ public class RegistrationFNStepDefs {
 
     @Then("confirmation message {string} should be displayed")
     public void confirmationMessageShouldBeDisplayed(String confMsg){
-        String res = getDriver().findElement(By.xpath("//h4[contains(text(),'Registered.')]")).getText();
+        String res = getDriver().findElement(By.xpath("//h4")).getText();
         assertThat(res.contains(confMsg));
     }
 

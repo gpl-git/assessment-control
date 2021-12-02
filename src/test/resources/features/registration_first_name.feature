@@ -30,8 +30,6 @@ Feature: Registration - first name
       | firstName |
       | "名前"     |
       | "Имя"     |
-      | "ਨਾਮ"      |
-      | "नाम"     |
 
   @RegistrationFirstName
   Scenario Outline: First Name field accepts Alpha Numeric and Special characters
