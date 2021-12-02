@@ -24,7 +24,7 @@ Feature: Registration - first name
     When I type <firstName> into the First Name field
     And I click "Register Me" button
     And I wait for 1 sec
-    And an alert message "Incorrect string value: '\xD0\x98\xD0\xBC\xD1\x8F...' for column 'name' at row 1 " should be displayed
+    And an alert message "Incorrect string value: " should be displayed
 
     Examples:
       | firstName |
@@ -64,7 +64,7 @@ Feature: Registration - first name
 
   @RegistrationFirstName
   Scenario: First Name field accepts 254 characters
-    When I type "ggfplngkyenilssdioohseigdovgxelqqnsblaiadcsyrdakqfjmemsehzekdirzhfaaivlbojggwxwxtwglmxaaxxjsizodoaaaxaykubulgbxizooqejdciheyhlrxhwastkopanxzfidgkvnletgpjhsbctsfohxqlkizffhizkmpjsujovszopsggqgntpzehlftblidtezwoeedxprwurowtspjawybvqduzvpjvmmknatrjtxdftabxx" into the First Name field
+    When I type Alpha Numeric Characters 254 into the First Name field
     And I click "Register Me" button
     And I switch to a new window
     And I wait for 2 sec
@@ -73,7 +73,7 @@ Feature: Registration - first name
 
   @RegistrationFirstName
   Scenario: First Name field does not accept 254+1 characters
-    When I type "ggfplngkyenilssdioohseigdovgxelqqnsblaiadcsyrdakqfjmemsehzekdirzhfaaivlbojggwxwxtwglmxaaxxjsizodoaaaxaykubulgbxizooqejdciheyhlrxhwastkopanxzfidgkvnletgpjhsbctsfohxqlkizffhizkmpjsujovszopsggqgntpzehlftblidtezwoeedxprwurowtspjawybvqduzvpjvmmknatrjtxdftabxxz" into the First Name field
+    When I type Alpha Numeric Characters 255 into the First Name field
     And I click "Register Me" button
     And I wait for 1 sec
     And an alert message "Data too long for column 'name' at row 1 " should be displayed

@@ -3,6 +3,7 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 
@@ -72,8 +73,8 @@ public class RegistrationFNStepDefs {
 
     @And("an alert message {string} should be displayed")
     public void anAlertMessageShouldContainText(String alertFN) {
-        String actual = getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Incorrect')]")).getText();
-        assertThat(actual.equals(alertFN));
+        String actual = getDriver().findElement(By.xpath("//simple-snack-bar")).getText();
+        assertThat(actual.contains(alertFN));
 
     }
 
@@ -81,6 +82,17 @@ public class RegistrationFNStepDefs {
     public void errorShouldBeDisplayed(String errorFN) {
         String actual = getDriver().findElement(By.xpath("//input[@formcontrolname='firstName']/../../..//mat-error")).getText();
         assertThat(actual.equals(errorFN));
+    }
+
+    @When("I type Alpha Numeric Characters {int} into the First Name field")
+    public void iTypeAlphaNumericCharactersIntoTheFirstNameField(int number) {
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
+
+        System.out.println(generatedString);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='firstName']")).sendKeys(generatedString);
+
     }
 }
 
