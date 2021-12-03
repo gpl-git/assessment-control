@@ -14,7 +14,7 @@
     @registrationEmail1
     Scenario: Email field is required
       Then I validate Email field displays the error message "This field is required"
-      And I wait for 2 sec
+      And I wait for 1 sec
 
 
     @registrationEmail2

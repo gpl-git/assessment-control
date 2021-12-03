@@ -104,10 +104,10 @@ public class RegistrationEmailStepDefs {
 
     }
 
-    @And("I wait for {int} sec")
-    public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000*sec);
-    }
+//    @And("I wait for {int} sec")
+//    public void iWaitForSec(int sec) throws InterruptedException {
+//        Thread.sleep(1000*sec);
+//    }
 
     @When("I type {int} characters before {string} and {int} characters after")
     public void iTypeCharactersBeforeAndCharactersAfter(int num, String port, int num1) {
