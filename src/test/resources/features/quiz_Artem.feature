@@ -2,36 +2,36 @@
 Feature: Testing 'Settings - Change Your Password' feature
 
   Background:
-    Given I go to "login" page
-    When I type "mordashov_artem@hotmail.com" into email field
-    And I type "QA123" into password field
-    When I click "Sign In" button
-    And I wait for 1 sec
+    Given I go to the "login" page
+    When I type "mordashov_artem@hotmail.com" into that email field
+    And I type "QA123" into that password field
+    When I click that "Sign In" button
+    And I will wait for 1 sec
 
   @passwordCorrect
   Scenario: Check with correct password
 
-    When I click on "Settings" link
+    When I click on that "Settings" link
     Then I click "Change Your Password" button
     And I wait for 1 sec
-    Then I type "QA123" into Password area in popup window
-    And I type "QA123" into New Password area in popup window
-    Then I type "QA123" into Confirm New Password area in popup window
+    Then I type "QA123" into the Password area in popup window
+    And I type "QA123" into the New Password area in popup window
+    Then I type "QA123" into the Confirm New Password area in popup window
     And I wait for 1 sec
-    Then I click on "Change" button
+    Then I click at that "Change" button
     And I wait for 1 sec
 
    @passwordWrong
    Scenario: Check with incorrect password
 
      When I click on "Settings" link
-     Then I click "Change Your Password" button
+     Then I click that "Change Your Password" button
      And I wait for 1 sec
-     Then I type "QA125" into Password area in popup window
-     And I type "QA123" into New Password area in popup window
-     Then I type "QA123" into Confirm New Password area in popup window
-     And I wait for 1 sec
-     Then I click on "Change" button
+     Then I type "QA125" into the Password area in popup window
+     And I type "QA123" into the New Password area in popup window
+     Then I type "QA123" into the Confirm New Password area in popup window
+     And I wait for 2 sec
+     Then I click at that "Change" button
      And I wait for 2 sec
      Then I check that the error message "Authentication failed. User not found or password" is present
 
@@ -41,9 +41,9 @@ Feature: Testing 'Settings - Change Your Password' feature
        When I click on "Settings" link
        Then I click "Change Your Password" button
        And I wait for 1 sec
-       Then I type "QA123" into Password area in popup window
-       And I type "" into New Password area in popup window
-       Then I type "" into Confirm New Password area in popup window
+       Then I type "QA123" into the Password area in popup window
+       And I type "" into the New Password area in popup window
+       Then I type "" into the Confirm New Password area in popup window
        Then the message "This field is required" is present
 
   @passwordCorrect
@@ -52,9 +52,9 @@ Feature: Testing 'Settings - Change Your Password' feature
     When I click on "Settings" link
     Then I click "Change Your Password" button
     And I wait for 1 sec
-    Then I type "QA123" into Password area in popup window
-    And I type " " into New Password area in popup window
-    Then I type " " into Confirm New Password area in popup window
+    Then I type "QA123" into the Password area in popup window
+    And I type " " into the New Password area in popup window
+    Then I type " " into the Confirm New Password area in popup window
     Then the message "Whitespaces are not allowed" is present
 
   @passwordCorrect
@@ -63,9 +63,9 @@ Feature: Testing 'Settings - Change Your Password' feature
     When I click on "Settings" link
     Then I click "Change Your Password" button
     And I wait for <sec> sec
-    Then I type <password> into Password area in popup window
-    And I type <newPassword> into New Password area in popup window
-    Then I type <confirmNewPassword> into Confirm New Password area in popup window
+    Then I type <password> into the Password area in popup window
+    And I type <newPassword> into the New Password area in popup window
+    Then I type <confirmNewPassword> into the Confirm New Password area in popup window
     Then the message <errorMessage> is present
     Examples:
      | sec | password | newPassword | confirmNewPassword | errorMessage                      |
@@ -81,9 +81,9 @@ Feature: Testing 'Settings - Change Your Password' feature
     When I click on "Settings" link
     Then I click "Change Your Password" button
     And I wait for <sec> sec
-    Then I type <password> into Password area in popup window
-    And I type <newPassword> into New Password area in popup window
-    Then I type <confirmNewPassword> into Confirm New Password area in popup window
+    Then I type <password> into the Password area in popup window
+    And I type <newPassword> into the New Password area in popup window
+    Then I type <confirmNewPassword> into the Confirm New Password area in popup window
     Then the message <errorMessage> is present
     Examples:
       | sec | password | newPassword                         | confirmNewPassword                   | errorMessage   |
@@ -101,7 +101,7 @@ Feature: Testing 'Settings - Change Your Password' feature
     When I click on "Settings" link
     Then I click "Change Your Password" button
     And I wait for 1 sec
-    Then I type "QA123" into Password area in popup window
-    And I type "QA123" into New Password area in popup window
-    Then I type "QA123" into Confirm New Password area in popup window
+    Then I type "QA123" into the Password area in popup window
+    And I type "QA123" into the New Password area in popup window
+    Then I type "QA123" into the Confirm New Password area in popup window
     Then the password in password field is hidden
