@@ -30,16 +30,16 @@
       Then confirmation message <confirmationMessage> should be displayed
 
       Examples:
-        | email                                                                                                                               | confirmationMessage          |
-        | "lesia.vinichen@gmail.com"                                                                                                          | " You have been Registered." |
-        | "7lesia-@gmail.com"                                                                                                                 | " You have been Registered." |
-        | "qwqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqw@gmail.com"                                                        | " You have been Registered." |
-        | "q@gmail.com"                                                                                                                       | " You have been Registered." |
-        | "lesia@qwqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwq.com"                                                         | " You have been Registered." |
-        | "lesia@q.com"                                                                                                                       | " You have been Registered." |
-        | "lesia@qmail.qwqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwq"                                                       | " You have been Registered." |
-        | "lesia@qmail.q"                                                                                                                     | " You have been Registered." |
-        | "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq@lgmailgmailgmailgmailgmailgmailgmailgmailgma.comcomcomcomcomcomcomcomcomcomcomcomcomcom"  | " You have been Registered." |
+        | email                                                                            | confirmationMessage          |
+        | "lesia.vinichen@gmail.com"                                                       | " You have been Registered." |
+        | "7lesia-@gmail.com"                                                              | " You have been Registered." |
+        | "qwqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwqw@gmail.com"     | " You have been Registered." |
+        | "q@gmail.com"                                                                    | " You have been Registered." |
+        | "lesia@qwqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwq.com"      | " You have been Registered." |
+        | "lesia@q.com"                                                                    | " You have been Registered." |
+        | "lesia@qmail.qwqqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqwqqwqwq"    | " You have been Registered." |
+        | "lesia@qmail.q"                                                                  | " You have been Registered." |
+
 
 
     @registrationEmail3
