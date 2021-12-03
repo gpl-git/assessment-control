@@ -35,16 +35,6 @@ public class RegistrationFNStepDefs {
     }
 
 
-    @When("I type {string} into Last Name field")
-    public void iTypeIntoLastNameField(String lastName) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='lastName']")).sendKeys(lastName);
-    }
-
-    @And("I type {string} into Group Code field")
-    public void iTypeIntoGroupCodeField(String grCode) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='group']")).sendKeys(grCode);
-    }
-
     @And("I type {string} into confirm password field")
     public void iTypeIntoConfirmPasswordField(String confPsw) {
         getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(confPsw);
