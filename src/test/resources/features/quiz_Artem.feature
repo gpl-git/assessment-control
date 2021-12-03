@@ -105,3 +105,4 @@ Feature: Testing 'Settings - Change Your Password' feature
     And I type "QA123" into New Password area in popup window
     Then I type "QA123" into Confirm New Password area in popup window
     Then the password in password field is hidden
+
