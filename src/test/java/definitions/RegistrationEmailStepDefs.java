@@ -65,16 +65,16 @@ public class RegistrationEmailStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='group']")).sendKeys(group);
     }
 
-    @Then("I type {string} into confirm password field")
-    public void iTypeIntoConfirmPasswordField(String confPass) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(confPass);
-    }
+//    @Then("I type {string} into confirm password field")
+//    public void iTypeIntoConfirmPasswordField(String confPass) {
+//        getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(confPass);
+//    }
 
-    @Then("confirmation message {string} should be displayed")
-    public void confirmationMessageShouldBeDisplayed(String confirmationMessage) {
-        String actualMessage= getDriver().findElement(By.xpath("//h4")).getText();
-        assertThat(actualMessage.equals(confirmationMessage));
-    }
+//    @Then("confirmation message {string} should be displayed")
+//    public void confirmationMessageShouldBeDisplayed(String confirmationMessage) {
+//        String actualMessage= getDriver().findElement(By.xpath("//h4")).getText();
+//        assertThat(actualMessage.equals(confirmationMessage));
+//    }
 
     @Then("I type {int} characters into Email field")
     public void iTypeCharactersIntoEmailField(int number) {{
@@ -109,17 +109,19 @@ public class RegistrationEmailStepDefs {
         Thread.sleep(1000*sec);
     }
 
-//    @When("I type {int} characters before {string} and {int} characters after")
-//    public void iTypeCharactersBeforeAndCharactersAfter(int num, String port, int num1) {
-//        boolean useLetters = true;
-//        boolean useNumbers = true;
-//        boolean useCharacters = true;
-//        String generatedString = RandomStringUtils.random(num, useLetters, useNumbers);
-//        String generatedString1 = RandomStringUtils.random(num1, useLetters, useNumbers);
-//        getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys(generatedString+port+generatedString1);
-//
-//
-//    }
+    @When("I type {int} characters before {string} and {int} characters after")
+    public void iTypeCharactersBeforeAndCharactersAfter(int num, String port, int num1) {
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        boolean useCharacters = true;
+        String generatedString = RandomStringUtils.random(num, useLetters, useNumbers);
+        String generatedString1 = RandomStringUtils.random(num1, useLetters, useNumbers);
+        String newEmail=generatedString+port+generatedString1+".com";
+        System.out.println(newEmail);
+        getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys(generatedString+port+generatedString1);
+
+
+    }
 
 }
 

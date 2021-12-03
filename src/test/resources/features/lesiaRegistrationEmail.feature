@@ -41,12 +41,12 @@
         | "lesia@qmail.q"                                                                  | " You have been Registered." |
 
 
-
     @registrationEmail3
-    Scenario: Validate Email field can except max characters
-      Then I type 128 characters into Email field
-      Then confirmation message " You have been Registered." should be displayed
-      And I wait for 2 sec
+    Scenario: Validate Email field can except max characters (total 128)
+      When I type 64 characters before "@" and 59 characters after
+      And confirmation message " You have been Registered." should be displayed
+      And I wait for 1 sec
+
 
     @registrationEmail4
     Scenario Outline: Validate possible inputs into email field Negative TCs
@@ -69,13 +69,8 @@
 
 
     @registrationEmail5
-    Scenario: Validate Email field can except before @gmail.com
-      When I type new email with 64 characters before "@gmail.com"
-      And I wait for 2 sec
-
-#    @registrationEmail6
-#    Scenario: Validate Email field can except 128 char after @gmail.com
-#      When I type 64 characters before "@" and 63 characters after
-#      And I wait for 5 sec
-
-
+    Scenario: Validate Email field doesn't except 128+1 characters
+      When I type 64 characters before "@" and 60 characters after
+      #known issue in Jira OCT-776
+      And I validate Email field displays the error message "Should be a valid email address"
+      And I wait for 1 sec
