@@ -13,6 +13,7 @@ public class SingleChoiceQuestionOptionsStepDefs {
     public void iAddNewOptionTo(int optionCount, String questionNum) {
         for (int i=0; i<optionCount; i++){
             getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//span[contains(text(),'Add Option')]")).click();
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Option "+(i+3)+"*']")).sendKeys("Option " + (i+3));
         }
     }
 
@@ -36,8 +37,11 @@ public class SingleChoiceQuestionOptionsStepDefs {
         assertThat(getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]/..")).isEnabled()).isFalse();
     }
 
-    @And("I click on {string} button")
-    public void iClickOnButton(String btnName) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
+    @Then("The sample in {string} should have {string} in {string}")
+    public void theSampleInShouldHaveIn(String optionNum, String optionText, String questionNum) {
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='"+optionNum+"']")).getText().equals(optionText));
     }
+
+
+
 }

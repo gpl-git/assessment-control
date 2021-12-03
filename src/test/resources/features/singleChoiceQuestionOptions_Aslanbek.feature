@@ -17,25 +17,12 @@ Feature: Single Choice Questions Options
     And I wait for 1 sec
 
   @options1
-  Scenario: Max 15 choices
+  Scenario: Max allowed 15 option choices
     When I type "Question 1" into "Q1"
     When I type "Option 1" as "Option 1*" into "Q1"
     When I type "Option 2" as "Option 2*" into "Q1"
     When I add 13 new option to "Q1"
     And I wait for 2 sec
-    When I type "Option 3" as "Option 3*" into "Q1"
-    When I type "Option 4" as "Option 4*" into "Q1"
-    When I type "Option 5" as "Option 5*" into "Q1"
-    When I type "Option 6" as "Option 6*" into "Q1"
-    When I type "Option 7" as "Option 7*" into "Q1"
-    When I type "Option 8" as "Option 8*" into "Q1"
-    When I type "Option 9" as "Option 9*" into "Q1"
-    When I type "Option 10" as "Option 10*" into "Q1"
-    When I type "Option 11" as "Option 11*" into "Q1"
-    When I type "Option 12" as "Option 12*" into "Q1"
-    When I type "Option 13" as "Option 13*" into "Q1"
-    When I type "Option 14" as "Option 14*" into "Q1"
-    When I type "Option 15" as "Option 15*" into "Q1"
     And I select "Option 2*" as correct option in "Q1"
     When I click "Save" button
     And I wait for 2 sec
@@ -49,20 +36,6 @@ Feature: Single Choice Questions Options
     When I type "Option 2" as "Option 2*" into "Q1"
     When I add 14 new option to "Q1"
     And I wait for 2 sec
-    When I type "Option 3" as "Option 3*" into "Q1"
-    When I type "Option 4" as "Option 4*" into "Q1"
-    When I type "Option 5" as "Option 5*" into "Q1"
-    When I type "Option 6" as "Option 6*" into "Q1"
-    When I type "Option 7" as "Option 7*" into "Q1"
-    When I type "Option 8" as "Option 8*" into "Q1"
-    When I type "Option 9" as "Option 9*" into "Q1"
-    When I type "Option 10" as "Option 10*" into "Q1"
-    When I type "Option 11" as "Option 11*" into "Q1"
-    When I type "Option 12" as "Option 12*" into "Q1"
-    When I type "Option 13" as "Option 13*" into "Q1"
-    When I type "Option 14" as "Option 14*" into "Q1"
-    When I type "Option 15" as "Option 15*" into "Q1"
-    When I type "Option 16" as "Option 16*" into "Q1"
     And I select "Option 2*" as correct option in "Q1"
     When I click "Save" button
     And I wait for 2 sec
@@ -94,18 +67,38 @@ Feature: Single Choice Questions Options
     Then The error message "Quiz is not completed." should be displayed
 
   @options5
-  Scenario: Option 1: Settings-Move option up
+  Scenario: For Option 1: Settings-Move option up should be disabled
     When I type "Question 1" into "Q1"
     And I click on "settings" in "Option 1*" in question "Q1"
     Then element "Move option up" should be disabled
     And I wait for 2 sec
 
   @options6
-  Scenario: Option 2: Settings-Move option up
+  Scenario: For Option 2: Settings-Move option up should switch texts of option 1 and option 2
     When I type "Question 1" into "Q1"
     When I type "Option 1" as "Option 1*" into "Q1"
     When I type "Option 2" as "Option 2*" into "Q1"
     And I click on "settings" in "Option 2*" in question "Q1"
     And I wait for 2 sec
-    And I click on "Move option up" button
+    And I click "Move option up" button
     And I wait for 2 sec
+    Then The sample in "Option 1*" should have "Option 2" in "Q1"
+
+  @options7
+  Scenario: Options cannot be empty
+    When I type "Question 1" into "Q1"
+    And I select "Option 2*" as correct option in "Q1"
+    When I click "Save" button
+    And I wait for 2 sec
+    Then The error message "Quiz is not completed." should be displayed
+
+  @options8
+  Scenario: Options cannot be filled only with white space
+    When I type "Question 1" into "Q1"
+    When I type " " as "Option 1*" into "Q1"
+    When I type " " as "Option 2*" into "Q1"
+    And I select "Option 2*" as correct option in "Q1"
+    When I click "Save" button
+    And I wait for 2 sec
+    Then The error message "Quiz is not completed." should be displayed
+
