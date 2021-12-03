@@ -12,7 +12,7 @@ Feature: Quiz Scenarios
 
   Scenario: Create a quiz
     When I click "Create New Quiz" button
-    And I wait for 1 sec
+    And I wait for 4 sec
     And I type "Galina Quiz" as quiz title
     When I add a question
     And I select "Single" question type
@@ -22,7 +22,7 @@ Feature: Quiz Scenarios
     When I type "Option 2" as "Option 2*" into "Q1"
     And I select "Option 2*" as correct option in "Q1"
     When I click "Save" button
-    And I wait for 2 sec
+    And I wait for 3 sec
     Then quiz "Galina Quiz" should be displayed on the list of quizzes
     And I delete "Galina Quiz" from the list of quizzes
 
