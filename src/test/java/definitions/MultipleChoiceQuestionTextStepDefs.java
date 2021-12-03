@@ -33,8 +33,8 @@ public class MultipleChoiceQuestionTextStepDefs {
     }
 
 
-    @When("I click on the {string} button")
-    public void iClickOnTheButton(String buttonName) {
+    @When("I click on that {string} button")
+    public void iClickOnThatButton(String buttonName) {
         getDriver().findElement(By.xpath("//span[contains(text(),'" + buttonName + "')]")).click();
     }
 

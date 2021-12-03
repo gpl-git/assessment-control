@@ -89,4 +89,6 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[text()='Delete']")).click();
         Thread.sleep(1000);
     }
+
+
 }
