@@ -34,4 +34,4 @@
       And I click on "Change Role"
       And I wait for 2 sec
       Then I validate that "STUDENT" is displayed
-      And I wait for 2 sec
+      And I wait for 1 sec
