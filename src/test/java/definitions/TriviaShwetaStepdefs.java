@@ -35,9 +35,13 @@ public class TriviaShwetaStepdefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys("12345");
     }
 
-    @When("I click on {string} button")
-    public void iClickOnButton(String button) {
+//    @When("I click on {string} button")
+//    public void iClickOnButtonShweta(String button) {
+//    }
+    @And("I click on {string} button Shweta")
+    public void iClickOnButtonShweta(String button) {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+button+"')]")).click();
+
     }
 
     @Given("I click {string} link")
@@ -231,18 +235,19 @@ public class TriviaShwetaStepdefs {
 //        System.out.println( "actualUrl : " + actualUrl);
 //    }
 
-    @Then("quiz should not get saved")
-    public void quizShouldNotGetSaved() {
-        String actualUrl = getDriver().getCurrentUrl();
-        assertThat(actualUrl.contains("/quiz-builder/"));
-
-    }
+ //   @Then("quiz should not get saved")
+//    public void quizShouldNotGetSaved() {
+//        String actualUrl = getDriver().getCurrentUrl();
+//        assertThat(actualUrl.contains("/quiz-builder/"));
+//
+//    }
 
     @Then("I should still be at {string} page")
     public void iShouldStillBeAtPage(String expectedUrl) {
         String actualUrl = getDriver().getCurrentUrl();
         System.out.println( "actualUrl : " + actualUrl);
-        Assert.assertTrue(actualUrl.contains("expectedUrl"));
+        Assert.assertTrue(actualUrl.contains(expectedUrl));
     }
+
 }//button/mat-icon[text()='arrow_downward']
 //button/span[contains(text(), 'Close')]

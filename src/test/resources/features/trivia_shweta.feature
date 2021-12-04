@@ -28,7 +28,7 @@
     And I type "option Three" in third option
     Then I select "option TWO" and "option Three" correct choices
     Then I wait for 2 sec
-    And I click on "Save" button
+    And I click on "Save" button Shweta
     Then I wait for 2 sec
     Then quiz with text "A Trivia By Shweta" should be displayed
     Then I wait for 2 sec
@@ -63,7 +63,7 @@
     And I wait for 2 sec
     #Asserting that option one was moved back to first option position
     Then "option ONE" should be at first position
-    And I click on "Save" button
+    And I click on "Save" button Shweta
     And I wait for 2 sec
     Then quiz with text "A Trivia By Shweta" should be displayed
     Then I wait for 2 sec
@@ -89,7 +89,7 @@
     And I wait for 5 sec
     Then I click on "delete" option button
     Then total number of options should be 4
-    And I click on "Save" button
+    And I click on "Save" button Shweta
     And I wait for 2 sec
     Then quiz with text "A Trivia By Shweta" should be displayed
     Then I wait for 2 sec
@@ -170,10 +170,10 @@
     And I type " " in second option
     Then I select " " as correct choices
     And I wait for 2 sec
-    Then I click on "Save" button
+    Then I click on "Save" button Shweta
     And I wait for 5 sec
     #Asserting that app doesn't allow saving question with empty options
     Then I should still be at "quiz-builder" page
-    #Then quiz should not get saved
+  #  Then quiz should not get saved
 
 
