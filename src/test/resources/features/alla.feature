@@ -1,6 +1,5 @@
 @git
 
-
 Feature: Git practice
 
   @git1
