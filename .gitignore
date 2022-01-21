@@ -1,3 +1,5 @@
-.idea/
-target/
-*.iml
+/target/
+.DS_Store
+.directory
+/.idea/
+/*.iml
