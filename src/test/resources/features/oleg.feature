@@ -4,6 +4,6 @@
   Feature: Git practice
 
     @git1
-    Scenario: My first git commands
+    Scenario: Conflict with Oleg
 
       Given
