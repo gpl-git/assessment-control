@@ -3,4 +3,4 @@ Feature: Git Practice
 
   @git1
   Scenario: My First Commit
-    Given
+    Given I create a conflict with Serhii
