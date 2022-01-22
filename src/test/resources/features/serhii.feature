@@ -3,4 +3,4 @@
 
     @git1
     Scenario: My first git commands
-      Given
+      Given I create conflict with Serhii
