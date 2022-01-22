@@ -4,4 +4,4 @@
 
     @git1
     Scenario: My first git commands
-      Given
+      Given This exer
