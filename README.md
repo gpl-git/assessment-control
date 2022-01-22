@@ -1,7 +1,5 @@
 # **assessment-control** project
 
-Practical SQA
-
 ## How to push your changes to **GitHub**
 
 ### 1
