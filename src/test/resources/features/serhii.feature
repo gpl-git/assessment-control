@@ -3,4 +3,4 @@
 
     @git1
     Scenario: My first git commands
-      Given
+      Given I don't want any conflicts with Galina =)
