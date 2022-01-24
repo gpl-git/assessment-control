@@ -18,13 +18,13 @@
       Then "Should be at least 5 characters" error message should be displayed
       And I wait for 2 sec
       When I clear password field
-      And I type "Student123" into password field
+      And I type "Ab1#%" into password field
       And I wait for 2 sec
-      When I type "Student12" into confirm password field
+      When I type "Ab1@*2" into confirm password field
       Then "Entered passwords should match" error text should pop up
       And I wait for 2 sec
       When I clear confirm password field
-      And I type "Student123" into confirm password field
+      And I type "Ab1#%" into confirm password field
       And I click on register me button
       And I wait for 2 sec
       Then registration confirmation page should be displayed
