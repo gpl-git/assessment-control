@@ -3,6 +3,7 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,5 +40,23 @@ public class MultipleChoiceQuestionAndreiVStepdefs {
     @Then("The PREVIEW MODE window should be displayed")
     public void theWindowShouldBeDisplayed() {
         getDriver().findElement(By.xpath("//mat-dialog-container/ac-quiz-preview")).isDisplayed();
+    }
+
+    @When("I type {string} into required fields in {string}")
+    public void iTypeIntoRequiredFieldsIn(String message, String questionNumber) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+questionNumber+"')]/../../..//textarea[@formcontrolname='question']")).sendKeys(message);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+questionNumber+"')]/../../..//textarea[@placeholder='Option 1*']")).sendKeys(message);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+questionNumber+"')]/../../..//textarea[@placeholder='Option 2*']")).sendKeys(message);
+    }
+
+    @When("I type {int} characters into {string}")
+    public void iTypeCharactersInto(int numChars, String questionNumber) {
+        int length = numChars;
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+questionNumber+"')]/../../..//textarea[@formcontrolname='question']")).sendKeys(generatedString);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+questionNumber+"')]/../../..//textarea[@placeholder='Option 1*']")).sendKeys(generatedString);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+questionNumber+"')]/../../..//textarea[@placeholder='Option 2*']")).sendKeys(generatedString);
     }
 }
