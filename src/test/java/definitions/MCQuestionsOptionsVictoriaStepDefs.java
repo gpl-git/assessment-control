@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 import static support.TestContext.getDriver;
 
-public class MCQuestionsOptionsStepDefs {
+public class MCQuestionsOptionsVictoriaStepDefs {
     @When("I click {string} button vk")
     public void iClickButtonVk(String btnName) {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+ btnName +"')]")).click();
