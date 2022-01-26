@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
-public class QuoteStepDefs {
+public class SergeizdoQuoteStepDefs {
     @Given("I go to {string} page")
     public void iGoToPage(String url) {
         if(url.equals("login")) {
@@ -83,15 +83,38 @@ public class QuoteStepDefs {
 
     @Then("quiz {string} should be displayed on the list of quizzes")
     public void quizShouldBeDisplayedOnTheListOfQuizzes(String quizTitle) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]")).click();
         assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]")).isDisplayed()).isTrue();
     }
 
     @And("I delete {string}")
     public void iDelete(String quizTitle) throws InterruptedException {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]")).click();
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]/../../..//span[text()='Delete']")).click();
         getDriver().findElement(By.xpath("//div[@class ='mat-dialog-actions']//span[text()='Delete']")).click();
         Thread.sleep(1000);
 
+    }
+
+
+    @And("I check a Show-Stopper question checkbox in {string}")
+    public void iCheckAShowStopperQuestionCheckboxIn(String questionNumber) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//span[contains(text(),'Show-Stopper')]")).click();
+    }
+
+
+    @And("I click on Preview of {string}")
+    public void iClickOnPreviewOf(String quizTitle) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '"+quizTitle+"')]/../../..//span[text()='Preview']")).click();
+        Thread.sleep(1000);
+    }
+
+    @Then("Show-Stopper Question should be displayed in preview")
+    public void showStopperQuestionShouldBeDisplayedInPreview() {
+        assertThat(getDriver().findElement(By.xpath("//p[contains(text(),'Show-Stopper Question')]")).isDisplayed()).isTrue();
+    }
+
+    @And("I click close")
+    public void iClickClose() {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Close')]")).click();
     }
 }
