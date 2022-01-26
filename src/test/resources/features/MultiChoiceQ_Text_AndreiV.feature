@@ -32,7 +32,7 @@
           | "ASDFghjkl"              |
           | "!@#$%^&*()"             |
 #     Spaces only !
-          | " "                      |`
+          | " "                      |
 
       @mcq_text2
       Scenario: The field is required - not entering any field
