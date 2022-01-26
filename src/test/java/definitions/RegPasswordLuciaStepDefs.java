@@ -31,7 +31,7 @@ public class RegPasswordLuciaStepDefs {
     }
     @And("I click on register me button")
     public void iClickOnRegisterMeButton() {
-        getDriver().findElement(By.xpath("//span[text()='Register Me']")).click();g
+        getDriver().findElement(By.xpath("//span[text()='Register Me']")).click();
     }
 
     @Then("{string} error text should be displayed")
