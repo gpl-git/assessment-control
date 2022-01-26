@@ -22,7 +22,7 @@
       And I type"Option 2" as "Option 2*" into "Q1"
       And I select "Option 1*" as correct option in "Q1"
       When I click "Save" button
-       And I wait for 1 sec
+      And I wait for 1 sec
       Then quiz "Sample Test Quiz" should be displayed on the list of quizzes
       And I delete "Sample Test Quiz"
       
