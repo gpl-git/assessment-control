@@ -36,7 +36,8 @@ Feature: Automate end-to-end test case 2.7 (Component Design)
 
 
     When I click "Log Out" link
-    Then I click "Log Out" button
+    Then "Confirmation Window" should be present
+    Then I click "Log Out" option
     Given I go to "login" page
     And I wait for 2 sec
     When I type "student1@test.com" into email field
@@ -46,6 +47,8 @@ Feature: Automate end-to-end test case 2.7 (Component Design)
     When I click "My Assignments" link
     And I click "Go To Assignment" button
     And I wait for 2 sec
+
+
     
 
 

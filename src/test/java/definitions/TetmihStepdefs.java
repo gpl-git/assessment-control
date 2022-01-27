@@ -42,9 +42,15 @@ public class TetmihStepdefs {
     }
 
 
+    @Then("{string} should be present")
+    public void shouldBePresent(String confirmation) {
+        getDriver().findElement(By.xpath("//mat-dialog-container[@id='mat-dialog-19']")).isDisplayed();
+    }
 
-
-
+    @Then("I click {string} option")
+    public void iClickOption(String LogOutButton) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Log Out')]")).click();
+    }
 
 
 }
