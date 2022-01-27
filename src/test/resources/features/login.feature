@@ -135,6 +135,7 @@
       And I click on button "Sign In"
       And I wait for 5 sec
       Then I will be redirected to my profile
+      And I wait for 5 sec
 
 
 
