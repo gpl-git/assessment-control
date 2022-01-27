@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.Random;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
@@ -28,15 +29,18 @@ public class Jira_DEC733_OlgaBStepDefs {
         }
     }
 
+
     @When("I type {string} into email field")
     public void iTypeIntoEmailField(String email) {
         getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys(email);
     }
 
+
     @And("I type {string} into password field")
     public void iTypePasswordIntoPasswordField(String password) {
         getDriver().findElement(By.xpath("//*[@formcontrolname='password']")).sendKeys(password);
     }
+
 
     @When("I click {string} button")
     public void iClickButton(String btnName) {
@@ -47,7 +51,6 @@ public class Jira_DEC733_OlgaBStepDefs {
     @And("I wait for {int} sec")
     public void iWaitForIntSec(int sec) throws InterruptedException {
         Thread.sleep(sec * 1000);
-
     }
 
 
@@ -80,26 +83,30 @@ public class Jira_DEC733_OlgaBStepDefs {
         getDriver().findElement(By.xpath("//*[contains(text(),'" + questionType + "')]")).click();
     }
 
+
     @When("I type {string} into {string}")
     public void iTypeInto(String questionText, String questionNumber) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNumber + "')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText);
     }
+
 
     @And("I type{string} as {string} into {string}")
     public void iTypeAsInto(String optionText, String optionNumber, String questionNumber) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNumber + "')]/../../..//textarea[@placeholder='" + optionNumber + "']")).sendKeys(optionText);
     }
 
+
     @And("I select {string} as correct option in {string}")
     public void iSelectAsCorrectOptionIn(String optionNumber, String questionNumber) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNumber + "')]/../../..//textarea[@placeholder='" + optionNumber + "']/../../../../../mat-radio-button")).click();
-
     }
+
 
     @Then("quiz {string} should be displayed on the list of quizzes")
     public void quizShouldBeDisplayedOnTheListOfQuizzes(String quizTitle) {
         assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + quizTitle + "')]")).isDisplayed()).isTrue();
     }
+
 
     @And("I delete {string}")
     public void iDelete(String quizTitle) throws InterruptedException {
@@ -107,23 +114,11 @@ public class Jira_DEC733_OlgaBStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + quizTitle + "')]/../../..//span[text()='Delete']")).click();
         getDriver().findElement(By.xpath("//div[@class ='mat-dialog-actions']//span[text()='Delete']")).click();
         Thread.sleep(1000);
-
     }
 
 
-    @When("I enter {int} alphanumeric characters")
-    public void iEnterAlphanumericCharacters(int number) {
-
-        boolean useLetters = true;
-        boolean useNumbers = true;
-        String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
-        //System.out.println(generatedString);
-        getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(generatedString);
-
-    }
-
-    @And("I type new Email")
-    public void iTypeNewEmail() {
+             @And("I type new Email")
+             public void iTypeNewEmail() {
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(100);
         String newEmail = "test" + randomInt + "@test.com";
@@ -131,13 +126,40 @@ public class Jira_DEC733_OlgaBStepDefs {
     }
 
 
-    @When("I click on {string} in the student list")
-    public void iClickOnInTheStudentList(String name) {
-        List<WebElement> studentNames = getDriver().findElements(By.xpath("//mat-list-option"));
-        for (WebElement item : studentNames) {
-            if (item.getText().contains(name)) {
-                item.click();
-            }
-        }
+    @When("I  enter {int} alphanumeric characters into {string}")
+    public void iEnterIntAlphanumericCharactersInto(int number, String questionNumber) {
+
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNumber + "')]/../../..//textarea[@formcontrolname='question']")).sendKeys(generatedString);
     }
+
+
+    @Then("Error message {string} should be displayed")
+    public void errorMessageShouldBeDisplayed(String errorMes) {
+        String error = getDriver().findElement(By.xpath("//mat-error")).getText();
+        System.out.println(error);
+        assertThat(error.equals(errorMes));
+    }
+
+
+    @When("I enter {string} characters into {string}")
+    public void iEnterAlphanumericCharactersInto(String space, String questionNumber) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNumber + "')]/../../..//textarea[@formcontrolname='question']")).sendKeys(space);
+    }
+
+//    @Then("Error messages {string} should be displayed")
+//    public void errorMessagesShouldBeDisplayed(String errorMessage) {
+//        String error = getDriver().findElement(By.xpath("//mat-error")).getText();
+//        System.out.println(error);
+//        assertThat(error.equals(errorMessage)).isFalse();
+//    }
+
+    @Then("quiz {string} should be not displayed on the list of quizzes")
+    public void quizShouldBeNotDisplayedOnTheListOfQuizzes(String quizTitle) {
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + quizTitle + "')]")).isDisplayed()).isFalse();
+    }
+
+//
 }
