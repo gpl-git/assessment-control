@@ -93,7 +93,7 @@ Feature: Jira task DEC-733 Verify Textual Question - Text in Quiz
         And I wait for 3 sec
         And I click "Save" button
         And I wait for 2 sec
-        Then quiz "OBQuiz" should be displayed on the list of quizzes
+        Then Error message "No more than 1000 characters" should be displayed
         And I delete "OBQuiz"
 
 #       Known  Bug DEC-407
@@ -113,4 +113,5 @@ Feature: Jira task DEC-733 Verify Textual Question - Text in Quiz
     Then quiz "OBQuiz" should be displayed on the list of quizzes
     And I delete "OBQuiz"
 
-
+#  When a space character is entered, the application should contain an error message "No special characters".
+#  Need a bug report.

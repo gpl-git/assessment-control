@@ -117,8 +117,8 @@ public class Jira_DEC733_OlgaBStepDefs {
     }
 
 
-             @And("I type new Email")
-             public void iTypeNewEmail() {
+    @And("I type new Email")
+    public void iTypeNewEmail() {
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(100);
         String newEmail = "test" + randomInt + "@test.com";
@@ -149,17 +149,11 @@ public class Jira_DEC733_OlgaBStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + questionNumber + "')]/../../..//textarea[@formcontrolname='question']")).sendKeys(space);
     }
 
-//    @Then("Error messages {string} should be displayed")
-//    public void errorMessagesShouldBeDisplayed(String errorMessage) {
-//        String error = getDriver().findElement(By.xpath("//mat-error")).getText();
-//        System.out.println(error);
-//        assertThat(error.equals(errorMessage)).isFalse();
-//    }
+
 
     @Then("quiz {string} should be not displayed on the list of quizzes")
     public void quizShouldBeNotDisplayedOnTheListOfQuizzes(String quizTitle) {
         assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(), '" + quizTitle + "')]")).isDisplayed()).isFalse();
     }
-
-//
 }
+
