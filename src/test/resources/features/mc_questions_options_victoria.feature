@@ -79,11 +79,38 @@
       And I verify that only 2 options left in a question
 
 
-
-
-
-
-
+    @multiple_choice_options_5
+    Scenario: Multiple Choice Question - Can create question with 15 options
+      When I click "Create New Quiz" button vk
+      And I wait for 1 sec
+      And I type "MC Question - 15 options (vica Jan 27)" as the quiz title vk
+      And I add a question vk
+      And I wait for 2 sec
+      And I select "Multiple-Choice" question type vk
+      And I wait for 2 sec
+      Then I verify that "checkbox" element is present vk
+      And I wait for 2 sec
+      And I type "test" into Q1 vk
+      And I wait for 2 sec
+      When I add 13 options by clicking "Add Option" button vk
+      And I wait for 2 sec
+      And I type "option answer" into 15 options
+      And I wait for 2 sec
+      And I check the correct answer 2
+      And I wait for 2 sec
+      And I click "Save" button vk
+      And I wait for 2 sec
+      Then quiz "MC Question - 15 options (vica Jan 27)" should be displayed on the list of quizzes vk
+      When I select quiz "MC Question - 15 options (vica Jan 27)"
+      And I wait for 2 sec
+      And I click Preview button vk
+      And I wait for 2 sec
+      Then I verify that 15 options are present vk
+      And I wait for 2 sec
+      And I click "Close" button vk
+      And I wait for 2 sec
+      When I select quiz "MC Question - 15 options (vica Jan 27)"
+      And I delete "MC Question - 15 options (vica Jan 27)" vk
 
 
 
