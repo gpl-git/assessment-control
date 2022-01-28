@@ -32,10 +32,10 @@ Feature: Single Choice Question - Options
     * radio button #1 titled <brief_text> is visible
     * radio button #2 titled <brief_text> is visible
     Examples:
-      | text   | brief_text |
-      | "a\nb" | "a b"      |
-#      | "[:ascii-nc:]" | "[:ascii-nc:]" |
-#      | "[:Ax1000:]"   | "[:Ax1000:]"   |
+      | text           | brief_text     |
+      | "a\nb"         | "a b"          |
+      | "[:ascii-nc:]" | "[:ascii-nc:]" |
+      | "[:Ax1000:]"   | "[:Ax1000:]"   |
 
   Scenario: Moving options
     * I click element titled "Create New Quiz"
