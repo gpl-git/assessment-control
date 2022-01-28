@@ -4,6 +4,8 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.bytebuddy.utility.RandomString;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
 import static support.TestContext.getDriver;
@@ -34,19 +36,6 @@ public class RegPasswordLuciaStepDefs {
         getDriver().findElement(By.xpath("//span[text()='Register Me']")).click();
     }
 
-    @Then("{string} error text should be displayed")
-    public void errorTextShouldBeDisplayed(String text) {
-        String error = getDriver().findElement(By.xpath("//div[contains(@class,'ng-tns-c9-6')]/mat-error[text()='This field is required']")).getText();
-        System.out.println(error);
-        assertThat(error.equals(text));
-    }
-
-    @Then("{string} error message should pop up")
-    public void errorMessageShouldPopUp(String message) {
-        String error = getDriver().findElement(By.xpath("//mat-error[text()='Whitespaces are not allowed']")).getText();
-        System.out.println(error);
-        assertThat(error.equals(message));
-    }
 
     @When("I clear password field")
     public void iClearPasswordField() {
@@ -55,7 +44,7 @@ public class RegPasswordLuciaStepDefs {
 
     @Then("{string} error message should be displayed")
     public void errorMessageShouldBeDisplayed(String message) {
-        String error = getDriver().findElement(By.xpath("//mat-error[contains(text(),'5 characters')]")).getText();
+        String error = getDriver().findElement(By.xpath("//mat-error")).getText();
         System.out.println(error);
         assertThat(error.equals(message));
     }
@@ -66,14 +55,7 @@ public class RegPasswordLuciaStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(confirmPass);
     }
 
-    @Then("{string} error text should pop up")
-    public void errorTextShouldPopUp(String warning) {
-        String error = getDriver().findElement(By.xpath("//mat-error[text()='Entered passwords should match']")).getText();
-        System.out.println(error);
-        assertThat(error.equals(warning));
-    }
-
-    @When("I clear confirm password field")
+       @When("I clear confirm password field")
     public void iClearConfirmPasswordField() {
         getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).clear();
     }
@@ -82,4 +64,15 @@ public class RegPasswordLuciaStepDefs {
     public void registrationConfirmationPageShouldBeDisplayed() {
         assertThat(getDriver().findElement(By.xpath("//h4[text()='You have been Registered.']")).isDisplayed()).isTrue();
     }
-}
+
+    @When("I type {string} into the password field")
+    public void iTypeIntoThePasswordField(String textPass) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(textPass);
+    }
+
+    @And("I type {string} into the confirm password field")
+    public void iTypeIntoTheConfirmPasswordField(String textConfPass) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(textConfPass);
+    }
+
+    }
