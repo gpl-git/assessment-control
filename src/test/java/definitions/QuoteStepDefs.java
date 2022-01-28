@@ -34,7 +34,7 @@ public class QuoteStepDefs {
     }
 
     @When("I click {string} button")
-    public void iClickButton(String btnName) {
+    public void   cleaiClickButton(String btnName) {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
 
 
@@ -94,4 +94,6 @@ public class QuoteStepDefs {
         Thread.sleep(1000);
 
     }
+
+
 }
