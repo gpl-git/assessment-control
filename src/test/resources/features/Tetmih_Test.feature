@@ -33,20 +33,47 @@ Feature: Automate end-to-end test case 2.7 (Component Design)
     Then I select "Tetmih Quiz" quiz
     And I wait for 2 sec
     Then I click on “Student One” in the student list
-
-
-    When I click "Log Out" link
-    Then "Confirmation Window" should be present
-    Then I click "Log Out" option
-    Given I go to "login" page
+    And I click "Give Assignment" button
     And I wait for 2 sec
+    When I click "Log Out" link
+    Then "Confirmation" message should be displayed
+    And I wait for 2 sec
+    Then I click "Log Out" button
+    And I wait for 2 sec
+    Then I go to "Login" page
     When I type "student1@test.com" into email field
     And I type "12345" into password field
     When I click "Sign In" button
     And I wait for 1 sec
     When I click "My Assignments" link
-    And I click "Go To Assignment" button
     And I wait for 2 sec
+    Then I click "Go To Assessment" button tm
+    And I wait for 2 sec
+    And I click "Option 1" radio-button tm
+    And I wait for 2 sec
+    Then I click "Submit My Answers" button
+    And I wait for 2 sec
+    Then I click "Ok" button ttm
+    When I click "Log Out" link
+    Then "Confirmation" message should be displayed
+    And I wait for 2 sec
+    Then I click "Log Out" button
+    And I wait for 2 sec
+    Then I go to "Login" page
+    When I type "ask_instr@aol.com" into email field
+    And I type "12345" into password field
+    When I click "Sign In" button
+    And I wait for 1 sec
+    When I click "Quizzes" link
+    And I wait for 2 sec
+    And I delete "Tetmih Quiz"
+
+
+
+
+
+    
+
 
 
     

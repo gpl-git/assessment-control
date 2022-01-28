@@ -42,9 +42,9 @@ public class TetmihStepdefs {
     }
 
 
-    @Then("{string} should be present")
-    public void shouldBePresent(String confirmation) {
-        getDriver().findElement(By.xpath("//mat-dialog-container[@id='mat-dialog-19']")).isDisplayed();
+    @Then("{string} message should be displayed")
+    public void messageShouldBeDisplayed(String confirmation) {
+        getDriver().findElement(By.xpath("//mat-dialog-container/ac-modal-confirmation")).isDisplayed();
     }
 
     @Then("I click {string} option")
@@ -53,5 +53,20 @@ public class TetmihStepdefs {
     }
 
 
+    @Then("I click {string} button tm")
+    public void iClickButtonTm(String assessments) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Go To Assessment')]")).click();
+    }
+
+    @And("I click {string} radio-button tm")
+    public void iClickRadioButtonTm(String radioButton) {
+        getDriver().findElement(By.xpath("//div[@class='mat-radio-container']")).click();
+    }
+
+    @Then("I click {string} button ttm")
+    public void iClickButtonTtm(String okButton) {
+        getDriver().findElement(By.xpath("//*/span[contains(text(),'Ok')]")).click();
+
+    }
 }
 
