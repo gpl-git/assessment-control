@@ -1,5 +1,7 @@
 @git
-  Feature: git practice
+
+Feature: git practice
 
     @git1
     Scenario:My first git command
+      Given:
