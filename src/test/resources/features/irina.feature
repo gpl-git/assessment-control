@@ -6,4 +6,7 @@
       Scenario: My first Pull Request
         Given
         When
+        And
+        Then
+
 
