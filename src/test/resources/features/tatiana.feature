@@ -1,5 +1,5 @@
 @testGit
 
   Feature: Learning Branching
-    Scenario:  My first Pull Request
+    Scenario:  My Second Pull Request
       Given
