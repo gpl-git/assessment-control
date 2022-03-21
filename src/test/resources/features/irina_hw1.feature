@@ -5,3 +5,5 @@
       Scenario: HW pull request
         Given
 #      comment 1
+#      comment 2
+        When
