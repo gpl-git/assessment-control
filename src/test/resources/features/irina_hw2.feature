@@ -3,3 +3,6 @@
     @test2
       Scenario: I switch to second branch
 #      Blah blah
+#        Given I
+#        Then
+#        And
