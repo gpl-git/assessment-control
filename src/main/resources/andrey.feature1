@@ -4,3 +4,6 @@
 
     @testGit1
     Scenario: My First Pul Request
+      Given
+      And
+gi
