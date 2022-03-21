@@ -5,3 +5,4 @@
       Scenario: HW pull request
         Given
 #      comment 1
+#     File renamed
