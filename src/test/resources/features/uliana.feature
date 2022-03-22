@@ -4,4 +4,4 @@
 
     @testgit1
     Scenario: My first pull request
-      Given
+      Given I go to CaliforniaConflict
