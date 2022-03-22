@@ -8,3 +8,4 @@
 @test2
    Scenario: Update a branch -Liliana
      Given I learn git commands
+           git status
