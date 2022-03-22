@@ -3,7 +3,10 @@
   Feature: Learning Branching
 
     @testGit1
-    Scenario: My First Pul Request
-      Given
-      And
-gi
+    Scenario: My Second Pull Request
+
+
+
+
+
+
