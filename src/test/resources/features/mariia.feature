@@ -2,4 +2,7 @@
 
   Feature: Learning Branching
 
-    @testGit 1t
+    @testGit
+    Scenario:
+      Then
+      And
