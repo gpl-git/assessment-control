@@ -2,4 +2,4 @@
 
   Feature: Learning Branching
     Scenario:  My Second Pull Request
-      Given
+      Given "Conflict with Galina"
