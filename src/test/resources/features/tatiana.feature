@@ -2,4 +2,4 @@
 
   Feature: Learning Branching
     Scenario:  My Second Pull Request
-      Given
+      Given I create a conflict with Tatiana
