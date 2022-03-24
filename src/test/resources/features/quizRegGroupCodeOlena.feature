@@ -1,4 +1,4 @@
-@quizReistration
+@quizRegistration
 
 Feature: Quiz Scenarios
   Background:
@@ -29,6 +29,7 @@ Feature: Quiz Scenarios
   @registrGroupCode2
   Scenario: Group Code field is required, can’t be empty
     Then message "This field is required" should be displayed
+    And I wait for 2 sec
 
   @registrGroupCode3
   Scenario: Min 1 characters
@@ -46,12 +47,13 @@ Feature: Quiz Scenarios
     When I delete "FirstTest_Olena LastTest_Olena" user
 
   @registrGroupCode4
-  Scenario: Max 10 characters
-    And I type "qwertyuiopas" into "Group Code" field
+  Scenario: Max 10 + 1 characters
+    And I type "qwertyuiops" into "Group Code" field
     When I click button "Register Me"
     And I wait for 2 sec
     Then message "Should no more than 10 characters" should be displayed
 
+#   bug FEB-638 Registration: can be registered with a whitespace space in group code field
   @registrGroupCode1
   Scenario: White spaces are not allowed
     And I type "qwerty 1!1" into "Group Code" field
