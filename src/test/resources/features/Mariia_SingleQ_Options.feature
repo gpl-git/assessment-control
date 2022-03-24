@@ -81,6 +81,26 @@
       And I wait for 1 sec
       And I delete "Test Quiz - Single"
 
+    Scenario: Change the options
+      And I click button "Create New Quiz"
+      And I wait for 1 sec
+      When I type "Test Quiz - Single" as quiz title
+      And I add a question
+      When I select "Single" question type
+      When I type "Question 1" into "Q1"
+      And I type "Option 1" as "Option 1*" into "Q1"
+      And I type "Option 2" as "Option 2*" into "Q1"
+      And I click icon "settings"
+      And I wait for 5 sec
+      And I click button "Move option down"
+      And I wait for 3 sec
+      When I select "Option 1*" as correct option in "Q1"
+      And I click button "Save"
+      And I wait for 1 sec
+      Then quiz "Test Quiz - Single" should be displayed on the list of quizzes
+      And I wait for 1 sec
+      And I delete "Test Quiz - Single"
+
     Scenario: Max 15 answer choices
       And I click button "Create New Quiz"
       And I wait for 1 sec

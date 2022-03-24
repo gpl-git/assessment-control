@@ -104,9 +104,4 @@ public class SingleOptionsStepDefs {
         getDriver().findElement(By.xpath("(//span[@class='mat-button-wrapper'])[1]")).click();
     }
 
-
-    @And("I click field {string}")
-    public void iClickField(String swap) {
-        getDriver().findElement(By.xpath("(//button[@class='mat-menu-item'])[3]")).click();
     }
-}
