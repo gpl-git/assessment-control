@@ -3,7 +3,9 @@ package definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -32,7 +34,7 @@ public class changeUserNameNatalliaStepDefs {
 
     @Then("I click on {string} button")
     public void iClickOnButton(String buttonName) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'"+buttonName+"')]")).click();
+        getDriver().findElement(By.xpath("//button/span[contains(text(),'"+buttonName+"')]")).click();
     }
 
     @And("I pick {string} menu item")
@@ -77,11 +79,6 @@ public class changeUserNameNatalliaStepDefs {
         }
     }
 
-    @Then("I erase full {string} field")
-    public void iEraseFullField(String nameOfInput) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='"+nameOfInput+"']")).clear();
-    }
-
     @Then("I type {string} in full name field")
     public void iTypeInFullNameField(String newName) {
         getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(newName);
@@ -92,4 +89,37 @@ public class changeUserNameNatalliaStepDefs {
     public void iVerifyThatANewNameDisplays(String newName) {
         assertThat(getDriver().findElement(By.xpath("//mat-card")).getText().contains(newName)).isTrue();
     }
+
+
+    @Then("I type special string {int} characters before and {int} after space in full name field")
+    public void iTypeSpecialStringCharactersBeforeAndAfterSpaceInFullNameField(int numBefore, int numAfter) {
+        int lengthBefore = numBefore;
+        int lengthAfter = numAfter;
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        boolean useCharacters = true;
+        String generatedStringBefore = RandomStringUtils.random(lengthBefore, useLetters, useNumbers);
+        String generateStringAfter = RandomStringUtils.random(lengthAfter, useLetters, useCharacters);
+        //System.out.println(generatedString);
+        getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(generatedStringBefore+" "+generateStringAfter);
+    }
+
+
+    @Then("I verify that the error message {string} is displayed")
+    public void iVerifyThatTheErrorMessageIsDisplayed(String lengthError) {
+        String actError = getDriver().findElement(By.xpath("//mat-error")).getText();
+        System.out.println(actError);
+        assertThat(actError.equals(lengthError));
+    }
+
+    @Then("I verify that the error message is displayed")
+    public void iVerifyThatTheErrorMessageIsDisplayed() {
+        assertThat(getDriver().findElement(By.xpath("//mat-error")).isDisplayed()).isTrue();
+    }
+
+    @Then("I erase name field")
+    public void iEraseNameField(){
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
+    }
+
 }
