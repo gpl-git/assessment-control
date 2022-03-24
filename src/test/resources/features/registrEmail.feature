@@ -100,6 +100,7 @@
 
     @registrEmail7
     Scenario: Max 63 + 1 characters on the right of @ domain before top-level domain
+      #Known issue #FEB-346 - 63 +1 characters are accepted
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
       And I type "test@dana123krutovtestdaatahhmj.kjlknvjhyu1hjbjhjhjkjgukgjbhu15bkjhtg.com" into "Email" field
@@ -112,6 +113,7 @@
 
     @registrEmail8
     Scenario: Email without top-level domain
+      #Known issue #FEB-663 - email without top level domain allowed
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
       And I type "test_1@test" into "Email" field
@@ -156,6 +158,7 @@
 
     @registrEmail11
     Scenario: Max 128 + 1 characters on the right of @ domain
+      #Known issue #FEB-357 - misleading error message
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
       And I type "jdkvsb12khednvmlwejknsfvrh_jfnsjhidnfkjdvbjsdmnvdukfsh_nklefhofd@jdkvsb12khednvmlwejknsfkvrhjfnsjhihdnfkjdvbjsdmnvdukfshnklef.com" into "Email" field
@@ -168,6 +171,7 @@
 
     @registrEmail12
       Scenario: The @ domain is missing
+      And I type "TestLast" into "Last Name" field
       And I type "TestLast" into "Last Name" field
       And I type "test.com" into "Email" field
       And I type "TestGroup" into "Group Code" field
