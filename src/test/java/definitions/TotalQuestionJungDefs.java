@@ -4,7 +4,10 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -71,7 +74,7 @@ public class TotalQuestionJungDefs {
 
     @Then("I check the quiz {string} displayed on the list of quizzes")
     public void iCheckTheQuizDisplayedOnTheListOfQuizzes(String quizTitle) {
-        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isTrue();
+        assertThat(getDriver().findElement(By.xpath("//mat-accordion[@class='mat-accordion']//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isTrue();
     }
 
     @And("I delete the {string}")
@@ -118,4 +121,85 @@ public class TotalQuestionJungDefs {
     public void iCanSeeTheOverQuizMessage(int quizNumber, String quizMessage) {
         System.out.println("No more than "+quizNumber+" questions allowed is displayed: "+getDriver().findElement(By.xpath("//div[@class='cdk-overlay-container']//*[contains(text(), '"+quizMessage+ "')]")).isDisplayed());
     }
+
+    @And("I add up to {int} questions")
+    public void iAddUpToQuestions(int quizNumber) throws InterruptedException {
+        for (int i =1; i<=quizNumber; i++){
+
+            Random randomGenerator = new Random();
+            int randomType = randomGenerator.nextInt(3);
+            String questionType = "0";
+            String k = Integer.toString(i);
+            int length = randomGenerator.nextInt(30);
+            boolean useLetters = true;
+            boolean useNumbers = true;
+            String questionText = RandomStringUtils.random(length, useLetters, useNumbers);
+
+            if (randomType == 0){
+                questionType = "Textual";
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//*[contains(text(),'"+questionType+"')]")).click();
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText+k+k);
+//                Thread.sleep(1000);
+
+            }else if (randomType == 1){
+                questionType = "Single-Choice";
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//*[contains(text(),'"+questionType+"')]")).click();
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText+k+k);
+//                Thread.sleep(1000);
+                for (int l = 1; l<=2; l++){
+                    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//span[contains(text(), 'Add Option')]")).click();
+//                    Thread.sleep(1000);
+                }
+                for (int o=1; o<=4; o++){
+                    int lengthOp = randomGenerator.nextInt(30);
+                    String optionText = RandomStringUtils.random(lengthOp, useLetters, useNumbers);
+                    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@placeholder='Option "+o+"*']")).sendKeys(optionText+o+o);
+                }
+                int answerNumber = randomGenerator.nextInt(3);
+                int ans = answerNumber + 1;
+//                Thread.sleep(1000);
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@placeholder='Option "+ans+"*']/../../../../../mat-radio-button")).click();
+
+            }else if (randomType == 2){
+                questionType = "Multiple-Choice";
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//*[contains(text(),'"+questionType+"')]")).click();
+                getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText+k+k);
+                Thread.sleep(1000);
+                for (int l = 1; l<=2; l++){
+                    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//span[contains(text(), 'Add Option')]")).click();
+//                    Thread.sleep(1000);
+                }
+                for (int o=1; o<=4; o++){
+                    int lengthOp = randomGenerator.nextInt(30);
+                    String optionText = RandomStringUtils.random(lengthOp, useLetters, useNumbers);
+                    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@placeholder='Option "+o+"*']")).sendKeys(optionText+o+o);
+                }
+
+
+                    int answerNumber = randomGenerator.nextInt(2);
+                    int ans = answerNumber + 1;
+                    int ans1 = answerNumber +2;
+//                    Thread.sleep(1000);
+                    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@placeholder='Option " +ans+ "*']/../../../../../mat-checkbox")).click();
+                    getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@placeholder='Option " +ans1+ "*']/../../../../../mat-checkbox")).click();
+
+            }else {
+                System.out.println(randomType);
+            }
+//            Thread.sleep(2000);
+            if (i<quizNumber) {
+                getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
+                Thread.sleep(1000);
+            }else{}
+
+//            String k = Integer.toString(i);
+////            System.out.println(k+", "+randomType+", "+questionType);
+//            Thread.sleep(4000);
+//            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//*[contains(text(),'"+questionType+"')]")).click();
+//            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q"+k+":')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText);
+//            Thread.sleep(1000);
+        }
+    }
+
+
 }
