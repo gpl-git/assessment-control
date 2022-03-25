@@ -50,7 +50,7 @@
     Scenario: Max 64 characters on the left of @ domain
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
-      And I type "bjdkvsb12khednvmlwejknsfkvrh_jfnsjhidnfkjdvbjsdmnvdukfsh_nklefof@test.com" into "Email" field
+      And I enter 64 alphanumeric characters on the left of @domain as email
       And I type "TestGroup" into "Group Code" field
       And I type "12345" into "Password" field
       And I type "12345" into "Confirm Password" field
@@ -70,7 +70,7 @@
     Scenario: Max 64 + 1 characters on the left of @ domain
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
-      And I type "bjdkvsb12khednvmlwejknsfkvrh_jfnsjhidnfkjdvbjsdmnvdukfsh_nklef4ag@test.com" into "Email" field
+      And I enter 65 alphanumeric characters on the left of @domain as email
       And I type "TestGroup" into "Group Code" field
       And I type "12345" into "Password" field
       And I type "12345" into "Confirm Password" field
@@ -79,10 +79,10 @@
       Then message "Should be a valid email address" should be displayed
 
     @registrEmail6
-    Scenario: Max 63 characters on the right of @ domain before top-level domain
+    Scenario: Max 63 characters on the right of @ and before top-level domain
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
-      And I type "test@dana123krutovtestdatahhmj.kjlknvjhyu1hjbjhjhjkjgukgjbhu15bkjhtg.com" into "Email" field
+      And I enter 63 alphanumeric characters on the right of @ before top-level domain as email
       And I type "TestGroup" into "Group Code" field
       And I type "12345" into "Password" field
       And I type "12345" into "Confirm Password" field
@@ -99,16 +99,17 @@
       When I delete "TestFirst TestLast" user
 
     @registrEmail7
-    Scenario: Max 63 + 1 characters on the right of @ domain before top-level domain
-      #Known issue #FEB-346 - 63 +1 characters are accepted
+    Scenario: Max 63 + 1 characters on the right of @ and before top-level domain
+      #Known issue #FEB-346 - 63 +1 characters are accepted - now it is not accepted
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
-      And I type "test@dana123krutovtestdaatahhmj.kjlknvjhyu1hjbjhjhjkjgukgjbhu15bkjhtg.com" into "Email" field
+#      And I type "test@dana123krutovtestdaatahhmj.kjlknvjhyu1hjbjhjhjkjgukgjbhu15bkjhtg.com" into "Email" field
+      And I enter 64 alphanumeric characters on the right of @ before top-level domain as email
       And I type "TestGroup" into "Group Code" field
       And I type "12345" into "Password" field
       And I type "12345" into "Confirm Password" field
       When I click button "Register Me"
-      And I wait for 2 sec
+      And I wait for 3 sec
       Then message "Should be a valid email address" should be displayed
 
     @registrEmail8
@@ -128,7 +129,7 @@
     Scenario: Max 128 characters
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
-      And I type "jdkvsb12khednvmlwejknsfkvrh_jfnsjhidnfkjdvbjsdmnvdukfsh_nklefofd@jdkvsb12khednvmlwejknsfkvrhjfnsjhidnfkjdvbjsdmnvdukfshnklef.com" into "Email" field
+      And I enter 62 @ 61 alphanumeric characters .com as email
       And I type "TestGroup" into "Group Code" field
       And I type "12345" into "Password" field
       And I type "12345" into "Confirm Password" field
@@ -146,9 +147,10 @@
 
     @registrEmail10
     Scenario: Max 128  + 1 characters on the left of @ domain
+      #New - misleading error message
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
-      And I type "jdkvsb12khednvmlwejknsfkvrh_jfnsjhidnfkjdvbjsdmnvdukfsh_nklefhofd@jdkvsbjhkhednvmlwejknsfkvrhjfnsjhidnfkjdvbjsdmnvdukfshnklef.com" into "Email" field
+      And I enter 63 @ 61 alphanumeric characters .com as email
       And I type "TestGroup" into "Group Code" field
       And I type "12345" into "Password" field
       And I type "12345" into "Confirm Password" field
@@ -161,7 +163,7 @@
       #Known issue #FEB-357 - misleading error message
       When I type "TestFirst" into "First Name" field
       And I type "TestLast" into "Last Name" field
-      And I type "jdkvsb12khednvmlwejknsfvrh_jfnsjhidnfkjdvbjsdmnvdukfsh_nklefhofd@jdkvsb12khednvmlwejknsfkvrhjfnsjhihdnfkjdvbjsdmnvdukfshnklef.com" into "Email" field
+      And I enter 62 @ 62 alphanumeric characters .com as email
       And I type "TestGroup" into "Group Code" field
       And I type "12345" into "Password" field
       And I type "12345" into "Confirm Password" field
@@ -192,3 +194,4 @@
       When I click button "Register Me"
       And I wait for 2 sec
       Then message "Should be a valid email address" should be displayed
+
