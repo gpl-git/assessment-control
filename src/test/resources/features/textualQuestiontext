@@ -1,0 +1,26 @@
+@TQTtext
+
+Feature: Textual Question - Text
+  Background:
+    Given I go to "login" page
+    When I type "eudyldgreat@boranora.com" into email field
+    And I enter "12345" as password
+    When I click button "Sign In"
+    And I wait for 1 sec
+    When I click on "Quizzes" menu item
+    And I wait for 1 sec
+
+
+  @TQTtext1
+  Scenario: Automate test set "Textual Question - Text"
+    And I click button "Create New Quiz"
+    And I wait for 3 sec
+    When I type "Test Quiz - Igor" as quiz title
+    And I add question
+    When I select "Textual" question type
+    When I  type "Tell me about yourself" into "Q1"
+    And I click button "Save"
+    And I wait for 2 sec
+    Then quiz "Test Quiz - Igor" should be displayed on the list of quizzes
+    And I wait for 2 sec
+    And I delete "Test Quiz - Igor"
