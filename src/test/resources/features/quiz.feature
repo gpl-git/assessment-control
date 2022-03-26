@@ -13,15 +13,16 @@
     Scenario: Create a Quiz
       And I click button "Create New Quiz"
       And I wait for 1 sec
-      When I type "Test Quiz - Galina" as quiz title
+      When I type "Test Quiz - A" as quiz title
       And I add a question
-      When I select "Single" question type
+      And I wait for 5 sec
+      When I select "Single-Choice" question type
       When I type "Question 1" into "Q1"
       And I type "Option 1" as "Option 1*" into "Q1"
       And I type "Option 2" as "Option 2*" into "Q1"
       When I select "Option 1*" as correct option in "Q1"
       And I click button "Save"
       And I wait for 1 sec
-      Then quiz "Test Quiz - Galina" should be displayed on the list of quizzes
+      Then quiz "Test Quiz - A" should be displayed on the list of quizzes
       And I wait for 1 sec
-      And I delete "Test Quiz - Galina"
+      And I delete "Test Quiz - A"
