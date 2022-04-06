@@ -19,6 +19,7 @@ public class RegistrEmailStepDefs {
         assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'"+message+"')]")).isDisplayed()).isTrue();
     }
 
+
     @And("I delete {string} user")
     public void iDeleteUser(String fullName) throws InterruptedException {
         getDriver().findElement(By.xpath("//*[contains(text(),'"+fullName+"')]")).click();

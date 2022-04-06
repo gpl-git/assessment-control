@@ -1,5 +1,6 @@
 @quizRegistration
 
+
 Feature: Quiz Scenarios
   Background:
     Given I go to "registration" page
