@@ -3,4 +3,4 @@
 
     @test1
     Scenario: Git
-      Given I leran git
+      Given I learn git
