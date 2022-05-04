@@ -4,3 +4,4 @@
     @test1
     Scenario: Git
       Given I learn git
+      Then I update the file
