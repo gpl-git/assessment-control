@@ -3,5 +3,5 @@
 
     @test1
     Scenario: Git
-      Given I learn git
+      Given I create a conflict with Hemlata
       Then I update the file
