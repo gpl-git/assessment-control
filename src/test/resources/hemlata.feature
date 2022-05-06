@@ -3,5 +3,5 @@
 
     @test1
     Scenario: Git
-      Given create a conflict with Hemlata
+      Given I create conflict with Galina
       Then I update the file
