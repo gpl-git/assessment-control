@@ -5,3 +5,6 @@
     Scenario: Git
       Given I learn Git
       And I add new line of code
+      And I code more
+      And I resolve conflict
+
