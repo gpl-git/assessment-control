@@ -1,2 +1,0 @@
-@test
-  Feature: Git Commands
