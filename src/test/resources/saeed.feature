@@ -3,4 +3,4 @@
 
     @test1
     Scenario: Git
-      Given I learn Git
+      Given fix conflict
