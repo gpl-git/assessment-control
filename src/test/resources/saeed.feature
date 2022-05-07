@@ -3,4 +3,6 @@
 
     @test1
     Scenario: Git
-      Given fix conflict
+      Given I learn Git
+      And I add new line and with conflict
+
