@@ -16,7 +16,7 @@ public class Hooks {
         getDriver().manage().deleteAllCookies();
     }
 
-    @After(order = 0)
+   /* @After(order = 0)
     public void scenarioEnd(Scenario scenario) {
         if (scenario.isFailed()) {
             TakesScreenshot screenshotTaker = (TakesScreenshot) getDriver();
@@ -24,5 +24,5 @@ public class Hooks {
             scenario.embed(screenshot, "image/png");
         }
         TestContext.teardown();
-    }
+    }*/
 }
