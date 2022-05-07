@@ -5,6 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 //    //mat-panel-title[contains(text(),'Q2')]/../../..//textarea[@placeholder='Option 3*']/../../../../..//*[@class='mat-icon material-icons']
 
@@ -39,5 +40,33 @@ public class dmytro_SingleChoiceQuestionStepdefs {
     public void iDeleteTheOptionOnQuestion(String optionNum, String questionNumber) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//textarea[@placeholder='"+optionNum+"']/../../../../..//*[@class='mat-icon material-icons']")).click();
         getDriver().findElement(By.xpath("//*[contains(text(),'Delete Option')]/..")).click();
+    }
+
+    @And("I verify {string} has {int} choices")
+    public void iVerifyHasChoices(String title, int num) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]/..")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Dmytro Single')]/../../..//*[contains(text(),'Preview')]/..")).click();
+//        System.out.println(getDriver().findElements(By.xpath("//*[@class='mat-radio-container']")).size());
+        assertThat(getDriver().findElements(By.xpath("//*[@class='mat-radio-container']")).size()==num).isTrue();
+        getDriver().findElement(By.xpath("//span[contains(text(),'Close')]/..")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]/..")).click();
+
+//        assertThat(getDriver().findElement(By.xpath("//*[@class='mat-radio-container']")))
+    }
+
+    @And("I create {int} options with input {string} in {string}")
+    public void iCreateOptionsWithInputIn(int numOptions, String text, String questionNum) {
+        for(int i=0;i<numOptions;i++) {
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[contains(text(), 'Add Option')]/..")).click();
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='Option "+(i+3)+"*']")).sendKeys(text);
+//            System.out.println(i);
+
+        }
+    }
+
+    @And("I verify that I can't delete option {string} in {string}")
+    public void iVerifyThatICanTDeleteOptionIn(String optionNum, String questionNumber) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//textarea[@placeholder='"+optionNum+"']/../../../../..//*[@class='mat-icon material-icons']")).click();
+        assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'Delete Option')]/..")).isEnabled()).isFalse();
     }
 }
