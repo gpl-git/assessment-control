@@ -4,25 +4,21 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import jdk.jfr.Registered;
 import org.openqa.selenium.By;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class MyStepDefs {
-    @Given("I go to {string} page")
-    public void iGoToPage(String url) {
-        if (url.equals("login")) {
-            getDriver().get("http://ask-qa.portnov.com/#/login");
-        } else if (url.equals("registration")) {
-            getDriver().get("http://ask-qa.portnov.com/#/registration");
 
-    }
-}
 
-    @When("I type {string} into firstName field")
+
+  @When("I type {string} into firstName field")
     public void iTypeIntoFirstNameField(String firstName) {
-        getDriver().findElement(By.xpath("//input[@placeholder='First Name']")).sendKeys(firstName);
-    }
+      getDriver().findElement(By.xpath("//input[@id='mat-input-0']")).sendKeys(firstName);
+  }
+
 
 
     @Then("I type {string} into lastName field")
@@ -59,8 +55,15 @@ public class MyStepDefs {
         getDriver().findElement(By.xpath("//span[contains(text(),'Register Me')]")).click();
     }
 
-    @Given("I navigate to {string} page")
-    public void iNavigateToPage(String registration) {
 
-    }
+  @Then("I confirm {string}")
+  public void iConfirm(String Registered) {
+    assertThat(!getDriver().findElement(By.xpath("//h4[contains(text(),'"+Registered+"')]")).isDisplayed()).isTrue();
+  }
+
+  @Then("error message {string} should displayed")
+  public void errorMessageShouldDisplayed(String required) {
+    assertThat(getDriver().findElement(By.xpath("//*[text(),'"+required+"')]")).isDisplayed()).isTrue();
+
+  }
 }

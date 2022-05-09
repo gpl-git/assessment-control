@@ -1,4 +1,4 @@
-/*package definitions;
+package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -88,4 +88,4 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//div[@mat-dialog-actions]//span[text()='Delete']")).click();
         Thread.sleep(1000);
     }
-}*/
+}
