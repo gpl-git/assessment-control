@@ -30,7 +30,7 @@
       And I wait about 1 sec
       And I make sure that Showstopper score is available
       Then I go back
-      And I wait about 1 sec
+      And I wait about 2 sec
       Then I delete this quiz "0 Textual Question- Showstopper PAUL"
 
     @tqss2
@@ -44,7 +44,6 @@
       And I wait about 1 sec
       Then I press Preview button for "0 Textual Question- Showstopper PAUL" quiz
       And I wait about 1 sec
-      #modal window block my code !
       Then I make sure that Quiz with a showstopper in Preview displays a red label
       Then I delete this quiz "0 Textual Question- Showstopper PAUL"
 
@@ -62,7 +61,7 @@
       And I wait about 2 sec
       Then I make sure that The question number is displayed with an asterisk – Q* once the show-stopper checkmark is selected
       Then I go back
-      And I wait about 1 sec
+      And I wait about 2 sec
       Then I delete this quiz "0 Textual Question- Showstopper PAUL"
 
     @tqss4
@@ -72,11 +71,16 @@
       And I ask my question - "Question"
       Then I mark question like Showstopper
       Then I press - Add Question
-      #rewrite all below
-      Then I select Textual question
+      And I wait for 1 sec
+      Then I select Textual new question
       And I wait about 1 sec
       And I ask my another question - "Question"
-      Then I mark question like Showstopper
+      And I wait about 1 sec
+      Then I mark new question like Showstopper
+      And I wait about 1 sec
+      Then I make sure that Maximum one Show-Stopper question in a quiz
+
+
 
 
 

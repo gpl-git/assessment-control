@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import java.util.Iterator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.jsoup.helper.Validate.isTrue;
 import static support.TestContext.getDriver;
 
 public class TextualQuestionShowstopperPaulStepdefs {
@@ -27,10 +28,10 @@ public class TextualQuestionShowstopperPaulStepdefs {
         getDriver().findElement(By.xpath("//input[@placeholder='Password *']")).sendKeys(pass);
     }
 
-    @And("I press {string} button")
-    public void iPressButton(String button) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'"+button+"')]")).click();
-    }
+//    @And("I press {string} button")
+//    public void iPressButton(String button) {
+//        getDriver().findElement(By.xpath("//span[contains(text(),'"+button+"')]")).click();
+//    }
 
     @And("I go to {string} menu option")
     public void iGoToMenuOption(String menuOpt) {
@@ -118,16 +119,34 @@ public class TextualQuestionShowstopperPaulStepdefs {
 
     @Then("I make sure that The question number is displayed with an asterisk – Q* once the show-stopper checkmark is selected")
     public void iMakeSureThatTheQuestionNumberIsDisplayedWithAnAsteriskQOnceTheShowStopperCheckmarkIsSelected() {
-        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1*: Question')]")).equals("Q1*: Question"));
+        String q1 = getDriver().findElement(By.xpath("(//mat-panel-title)")).getText();
+        assertThat(q1.contains("*")).isTrue();
     }
 
     @Then("I make sure that Quiz with a showstopper in Preview displays a red label")
     public void iMakeSureThatQuizWithAShowstopperInPreviewDisplaysARedLabel() {
-        assertThat(getDriver().findElement(By.xpath("//p[contains(text(),'Show-Stopper Question')]")).isDisplayed()).isTrue();
+        assertThat(getDriver().findElement(By.xpath("//div[@class='cdk-overlay-pane']//p")).isDisplayed()).isTrue();
     }
 
     @And("I ask my another question - {string}")
     public void iAskMyAnotherQuestion(String question) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'new empty question')]/../../..//textarea[@formcontrolname='question']")).sendKeys(question);
+    }
+
+    @Then("I select Textual new question")
+    public void iSelectTextualNewQuestion() {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q2: new empty question')]/../../..//div[contains(text(),'Textual')]")).click();
+    }
+
+    @Then("I mark new question like Showstopper")
+    public void iMarkNewQuestionLikeShowstopper() {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q2:')]/../../..//span[contains(text(),'Show-Stopper')]")).click();
+    }
+
+
+    @Then("I make sure that Maximum one Show-Stopper question in a quiz")
+    public void iMakeSureThatMaximumOneShowStopperQuestionInAQuiz() {
+        String q1 = getDriver().findElement(By.xpath("(//mat-panel-title)[1]")).getText();
+        assertThat(q1.contains("*")).isFalse();
     }
 }
