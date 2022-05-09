@@ -52,7 +52,7 @@ public class alla_MC_optionsStepdefs {
 
     @And("I enter {string} as quiz {string} A.F.")
     public void iEnterAsQuizAF(String text, String title) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='"+title+"']")).sendKeys(text);
+        getDriver().findElement(By.xpath("//*[@formcontrolname='" + title + "']")).sendKeys(text);
     }
 
     @And("I click on Add Question A.F.")
@@ -108,12 +108,12 @@ public class alla_MC_optionsStepdefs {
 
     @Then("I click on settings in {string}")
     public void iClickOnSettingsIn(String optionNum) {
-        getDriver().findElement(By.xpath("//*[contains(text(),'"+optionNum+"')]/../../../../../..//*[contains(@class,'icons')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(text(),'" + optionNum + "')]/../../../../../..//*[contains(@class,'icons')]")).click();
     }
 
     @And("I click on {string}")
     public void iClickOn(String settingsOption) {
-        getDriver().findElement(By.xpath("//*[contains(text(),'"+settingsOption+"')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(text(),'" + settingsOption + "')]")).click();
     }
 
     @Then("error message is displayed A.F.")
@@ -123,7 +123,7 @@ public class alla_MC_optionsStepdefs {
 
     @When("I choose {string} as a correct answer")
     public void iChooseAsACorrectAnswer(String optionNum) {
-        getDriver().findElement(By.xpath("//*[contains(text(),'"+optionNum+"')]/../../../../../..//*[contains(@class,'inner')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(text(),'" + optionNum + "')]/../../../../../..//*[contains(@class,'inner')]")).click();
     }
 
 //    @Then("error message is not displayed A.F.")

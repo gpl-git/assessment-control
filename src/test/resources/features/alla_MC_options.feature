@@ -49,41 +49,41 @@ Feature: Options
     And I click on "Move option up"
     And I wait for 2 sec A.F.
 
-   @MCoption5
-   Scenario: Move option down in a multiple-choice question
-     When I fill out "Option 1*" and "Option 2*" fields
-     Then I click on settings in "Option 1*"
-     And I wait for 2 sec A.F.
-     And I click on "Move option down"
-     And I wait for 2 sec A.F.
+  @MCoption5
+  Scenario: Move option down in a multiple-choice question
+    When I fill out "Option 1*" and "Option 2*" fields
+    Then I click on settings in "Option 1*"
+    And I wait for 2 sec A.F.
+    And I click on "Move option down"
+    And I wait for 2 sec A.F.
 
-   @MCoption6
-   Scenario: Delete option from a multiple-choice question
-     When I click button "Add Option" A.F.
-     Then I click on settings in "Option 3*"
-     And I wait for 2 sec A.F.
-     And I click on "Delete Option"
-     And I wait for 2 sec A.F.
+  @MCoption6
+  Scenario: Delete option from a multiple-choice question
+    When I click button "Add Option" A.F.
+    Then I click on settings in "Option 3*"
+    And I wait for 2 sec A.F.
+    And I click on "Delete Option"
+    And I wait for 2 sec A.F.
 
-   @MCoption7
-   Scenario: Close option settings menu
-     Then I click on settings in "Option 2*"
-     And I wait for 2 sec A.F.
-     And I click on "Close Menu"
-     And I wait for 2 sec A.F.
+  @MCoption7
+  Scenario: Close option settings menu
+    Then I click on settings in "Option 2*"
+    And I wait for 2 sec A.F.
+    And I click on "Close Menu"
+    And I wait for 2 sec A.F.
 
-   @MCoption8
-   Scenario: Select options for the correct answers
-     When I click button "Add Option" A.F.
-     And I click button "Add Option" A.F.
-     Then I fill out "Option 1*" and "Option 2*" fields
-     And I fill out "Option 3*" and "Option 4*" fields
-     When I click button "Save" A.F.
-     And I wait for 2 sec A.F.
-     Then error message is displayed A.F.
-     When I choose "Option 1*" as a correct answer
-     And I choose "Option 3*" as a correct answer
-     And I wait for 2 sec A.F.
+  @MCoption8
+  Scenario: Select options for the correct answers
+    When I click button "Add Option" A.F.
+    And I click button "Add Option" A.F.
+    Then I fill out "Option 1*" and "Option 2*" fields
+    And I fill out "Option 3*" and "Option 4*" fields
+    When I click button "Save" A.F.
+    And I wait for 2 sec A.F.
+    Then error message is displayed A.F.
+    When I choose "Option 1*" as a correct answer
+    And I choose "Option 3*" as a correct answer
+    And I wait for 2 sec A.F.
 #     Then error message is not displayed A.F.
 
   @MCoption9
