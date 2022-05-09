@@ -16,7 +16,7 @@ Feature: Quiz - Total Questions
   Scenario: Maximum number of questions in the quiz
     Given I Go to login page
     When I sign in with credential email:"frinsk@noisemails.com", password:"Par0l"
-    And I create new quiz "Maximum number of questions in the quiz" with 50 "single-choice" questions
+    And I create new quiz "Maximum number of questions in the quiz" with 5 "single-choice" questions
     And I save the quiz
     And I wait for 1 sec
     Then quiz "Maximum number of questions in the quiz" should be displayed on the list of quizzes
@@ -37,8 +37,9 @@ Feature: Quiz - Total Questions
     When I sign in with credential email:"frinsk@noisemails.com", password:"Par0l"
     And I find the quiz "Maximum number of questions in the quiz" and push Edit button
     And I delete question number 1
+    And I wait for 1 sec
     And I save the quiz
     And I wait for 1 sec
-    Then quiz "Maximum number of questions in the quiz" should be displayed on the list of quizzes
+    Then title of quiz "Maximum number of questions in the quiz" should contain "4 Question(s)"
     Then I delete the quiz "Maximum number of questions in the quiz"
     And I wait for 1 sec

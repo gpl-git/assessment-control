@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import static support.TestContext.getDriver;
 
-public class QuizTotalQuestionsStepdefs {
+public class QuizTotalQuestions_Ali_Stepdefs {
 
 
     @Given("I Go to login page")
@@ -135,6 +135,18 @@ public class QuizTotalQuestionsStepdefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1:')]/../../..")).click();
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1:')]/../../..//span[contains(text(),'Delete Question')]")).click();
         getDriver().findElement(By.xpath("(//mat-dialog-container//button)[2]")).click();
+    }
+
+    @Then("title of quiz {string} should contain {string}")
+    public void titleOfQuizShouldContain(String quizName, String numberOfQuestions) {
+        List<WebElement> quizzes = getDriver().findElements(By.xpath("//mat-expansion-panel-header"));
+        for (WebElement quiz : quizzes) {
+            if (quiz.getText().contains(quizName)) {
+                System.out.println(quiz.getText());
+                Assert.assertTrue(quiz.getText().contains(numberOfQuestions));
+                break;
+            }
+        }
     }
 }
 
