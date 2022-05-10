@@ -40,13 +40,17 @@ public class MCQAndreiStepDefs {
     public void iPreviewQuiz(String title) throws InterruptedException {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]")).click();
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'00 Galina Demo Quiz')]/../../..//span[contains(text(),'Preview')]")).click();
-        getDriver().findElement(By.xpath("//span[contains(text(),'Close')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]/../../..//span[contains(text(),'Delete')]")).click();
-        getDriver().findElement(By.xpath("//div[@mat-dialog-actions]//span[text()='Delete']")).click();
+//        getDriver().findElement(By.xpath("//span[contains(text(),'Close')]")).click();
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+title+"')]/../../..//span[contains(text(),'Delete')]")).click();
+//        getDriver().findElement(By.xpath("//div[@mat-dialog-actions]//span[text()='Delete']")).click();
         Thread.sleep(1000);
 
 }
 
+    @And("The option  {string} will be displayed")
+    public void theOptionWillBeDisplayed(String text) {
+        getDriver().findElement(By.xpath("//textarea[@id='mat-input-12']"));
+    }
 }
 
 

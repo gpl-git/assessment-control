@@ -29,6 +29,8 @@ Feature: Multiple Choice Question - Other
     And I wait for 2 sec
     And I preview quiz "00 Galina Demo Quiz"
     And I wait for 2 sec
+    And The option  "other" will be displayed
+    And I wait for 2 sec
     
 
 
