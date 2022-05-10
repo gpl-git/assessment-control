@@ -89,14 +89,19 @@ public class alla_MC_optionsStepdefs {
         Thread.sleep(1000);
     }
 
+    @And("error message {string} should be displayed A.F.")
+    public void errorMessageShouldBeDisplayedAF(String msg) {
+
+    }
+
     @Then("{string} is displayed")
     public void isDisplayed(String optionNum) {
         assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@placeholder='" + optionNum + "']")).isDisplayed()).isTrue();
     }
 
-    @When("I enter in {string} whitespaces only")
-    public void iEnterInWhitespacesOnly(String optionNum) throws InterruptedException {
-        getDriver().findElement(By.xpath("//*[@placeholder='" + optionNum + "']")).sendKeys("   ");
+    @When("I enter in {string} whitespaces {string} only")
+    public void iEnterInWhitespacesOnly(String optionNum, String whitespaces) throws InterruptedException {
+        getDriver().findElement(By.xpath("//*[@placeholder='" + optionNum + "']")).sendKeys(whitespaces);
         Thread.sleep(1000);
     }
 
@@ -131,8 +136,8 @@ public class alla_MC_optionsStepdefs {
 //        assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'correct answer')]")).isDisplayed()).isFalse();
 //    }
 
-    @When("I add {int} options to multiple-choice question")
-    public void iAddOptionsToMultipleChoiceQuestion(int num) {
+    @When("I add up to {int} options to multiple-choice question A.F.")
+    public void iAddUpToOptionsToMultipleChoiceQuestionAF(int num) {
         for(int i=3; i<=num; i++){
             getDriver().findElement(By.xpath("//*[contains(text(),'Add Option')]")).click();
             getDriver().findElement(By.xpath("//*[@placeholder= '"+ "Option " + i + "*"+"']")).sendKeys("Option" + i);

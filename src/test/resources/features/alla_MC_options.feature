@@ -29,6 +29,7 @@ Feature: Options
 #   input 1001 characters
     Then I type in "Option 2*" field negative test
 #   Known issue bug number MAR22-537
+    And error message "Max length is 1000 characters" should be displayed A.F.
 
   @MCoption2
   Scenario: Add option to multiple-choice question
@@ -38,7 +39,7 @@ Feature: Options
 
   @MCoption3
   Scenario: Verify that MC_options fields does not accepts whitespaces only
-    When I enter in "Option 2*" whitespaces only
+    When I enter in "Option 2*" whitespaces "   " only
     And I wait for 2 sec A.F.
 
   @MCoption4
@@ -89,7 +90,7 @@ Feature: Options
   @MCoption9
   Scenario: Verify that more than 15 options cannot be added to multiple-choice question
     When I fill out "Option 1*" and "Option 2*" fields
-    Then I add 16 options to multiple-choice question
+    Then I add up to 16 options to multiple-choice question A.F.
 #   Known issue bug number MAR22-533
     And I wait for 2 sec A.F.
     And I delete question A.F.
