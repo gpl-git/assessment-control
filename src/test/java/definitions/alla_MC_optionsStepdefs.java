@@ -72,26 +72,19 @@ public class alla_MC_optionsStepdefs {
     }
 
     //  input 1000 characters
-    @When("I type in {string} field positive test")
-    public void iTypeInFieldPositiveTest(String optionNum) throws InterruptedException {
-        String str = "OptionText";
+    @When("I type {string} in {string} field positive test")
+    public void iTypeInFieldPositiveTest(String str, String optionNum) throws InterruptedException {
         String optionText = str.repeat(100);
         getDriver().findElement(By.xpath("//*[@placeholder='" + optionNum + "']")).sendKeys(optionText);
         Thread.sleep(1000);
     }
 
     //  input 1001 characters
-    @Then("I type in {string} field negative test")
-    public void iTypeInFieldNegativeTest(String optionNum) throws InterruptedException {
-        String str = "OptionText";
+    @Then("I type {string} in {string} field negative test")
+    public void iTypeInFieldNegativeTest(String str, String optionNum) throws InterruptedException {
         String optionText = str.repeat(100) + '1';
         getDriver().findElement(By.xpath("//*[@placeholder='" + optionNum + "']")).sendKeys(optionText);
         Thread.sleep(1000);
-    }
-
-    @And("error message {string} should be displayed A.F.")
-    public void errorMessageShouldBeDisplayedAF(String msg) {
-
     }
 
     @Then("{string} is displayed")
@@ -121,6 +114,12 @@ public class alla_MC_optionsStepdefs {
         getDriver().findElement(By.xpath("//*[contains(text(),'" + settingsOption + "')]")).click();
     }
 
+    @Then("{string} field should contain text {string}")
+    public void fieldShouldContainText(String optionNum, String txt) {
+        String newtxt = getDriver().findElement(By.xpath("//*[@placeholder='"+optionNum+"']")).getAttribute("value");
+        assertThat(newtxt.equals(txt)).isTrue();
+    }
+
     @Then("error message is displayed A.F.")
     public void errorMessageIsDisplayedAF() {
         assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'correct answer')]")).isDisplayed()).isTrue();
@@ -130,11 +129,6 @@ public class alla_MC_optionsStepdefs {
     public void iChooseAsACorrectAnswer(String optionNum) {
         getDriver().findElement(By.xpath("//*[contains(text(),'" + optionNum + "')]/../../../../../..//*[contains(@class,'inner')]")).click();
     }
-
-//    @Then("error message is not displayed A.F.")
-//    public void errorMessageIsNotDisplayedAF() {
-//        assertThat(getDriver().findElement(By.xpath("//*[contains(text(),'correct answer')]")).isDisplayed()).isFalse();
-//    }
 
     @When("I add up to {int} options to multiple-choice question A.F.")
     public void iAddUpToOptionsToMultipleChoiceQuestionAF(int num) {
@@ -148,6 +142,11 @@ public class alla_MC_optionsStepdefs {
     public void iDeleteQuestionAF() {
         getDriver().findElement(By.xpath("//*[contains(text(),'Q1')]/../../..//*[contains(text(),'Delete')]")).click();
         getDriver().findElement(By.xpath("//*[contains(text(),'Confirmation')]/../..//*[contains(text(),'Delete')]")).click();
+    }
+
+    @Then("{string} should not be displayed A.F.")
+    public void shouldNotBeDisplayedAF(String optionNum) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@placeholder='" + optionNum + "']")).isDisplayed();
     }
 
     @And("I back to quizzes list A.F.")

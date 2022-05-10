@@ -25,11 +25,11 @@ Feature: Options
   @MCoption1
   Scenario: Max 1000 characters accepted in MC_options fields
 #   input 1000 characters
-    When I type in "Option 1*" field positive test
+    When I type "OptionText" in "Option 1*" field positive test
 #   input 1001 characters
-    Then I type in "Option 2*" field negative test
+    Then I type "OptionText" in "Option 2*" field negative test
 #   Known issue bug number MAR22-537
-    And error message "Max length is 1000 characters" should be displayed A.F.
+#   Error message "Max length is 1000 characters" should be displayed
 
   @MCoption2
   Scenario: Add option to multiple-choice question
@@ -41,6 +41,7 @@ Feature: Options
   Scenario: Verify that MC_options fields does not accepts whitespaces only
     When I enter in "Option 2*" whitespaces "   " only
     And I wait for 2 sec A.F.
+#   Error message should be displayed
 
   @MCoption4
   Scenario: Move option up in a multiple-choice question
@@ -48,6 +49,8 @@ Feature: Options
     Then I click on settings in "Option 2*"
     And I wait for 2 sec A.F.
     And I click on "Move option up"
+    Then "Option 1*" field should contain text "Option 2*"
+    And "Option 2*" field should contain text "Option 1*"
     And I wait for 2 sec A.F.
 
   @MCoption5
@@ -56,6 +59,8 @@ Feature: Options
     Then I click on settings in "Option 1*"
     And I wait for 2 sec A.F.
     And I click on "Move option down"
+    Then "Option 1*" field should contain text "Option 2*"
+    And "Option 2*" field should contain text "Option 1*"
     And I wait for 2 sec A.F.
 
   @MCoption6
@@ -64,7 +69,7 @@ Feature: Options
     Then I click on settings in "Option 3*"
     And I wait for 2 sec A.F.
     And I click on "Delete Option"
-    And I wait for 2 sec A.F.
+    Then "Option 3*" should not be displayed A.F.
 
   @MCoption7
   Scenario: Close option settings menu
@@ -85,13 +90,18 @@ Feature: Options
     When I choose "Option 1*" as a correct answer
     And I choose "Option 3*" as a correct answer
     And I wait for 2 sec A.F.
-#     Then error message is not displayed A.F.
+    Then I click button "Save" A.F.
+    And I wait for 2 sec A.F.
+    Then quiz "Multiple-Choice Question: Options" is displayed on the list of quizzes
+    And I wait for 2 sec A.F.
+    And I delete quiz "Multiple-Choice Question: Options"
 
   @MCoption9
   Scenario: Verify that more than 15 options cannot be added to multiple-choice question
     When I fill out "Option 1*" and "Option 2*" fields
     Then I add up to 16 options to multiple-choice question A.F.
 #   Known issue bug number MAR22-533
+#   Error message "Max 15 Options can be added" should be displayed
     And I wait for 2 sec A.F.
     And I delete question A.F.
     And I wait for 2 sec A.F.
