@@ -44,7 +44,10 @@
       And I wait about 1 sec
       Then I press Preview button for "0 Textual Question- Showstopper PAUL" quiz
       And I wait about 1 sec
-      Then I make sure that Quiz with a showstopper in Preview displays a red label
+      Then I verify quiz "0 Textual Question- Showstopper PAUL" in "Preview" and "Question" is displayed a red label
+#      Then I make sure that Quiz with a showstopper in Preview displays a red label
+      Then I press "Close" button
+      And I wait about 2 sec
       Then I delete this quiz "0 Textual Question- Showstopper PAUL"
 
     @tqss3
