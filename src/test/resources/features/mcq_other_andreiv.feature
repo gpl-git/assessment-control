@@ -30,6 +30,8 @@ Feature: Multiple Choice Question - Other
     And I preview quiz "00 Galina Demo Quiz"
     And I wait for 2 sec
     And The option  "other" will be displayed
+    And I close quiz
+    And I delete quiz title "00 Galina Demo Quiz"
     And I wait for 2 sec
     
 
