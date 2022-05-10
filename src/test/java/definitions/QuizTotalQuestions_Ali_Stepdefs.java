@@ -5,6 +5,8 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.List;
@@ -36,9 +38,9 @@ public class QuizTotalQuestions_Ali_Stepdefs {
 
         By questionTypeRadioButton = questionType.equalsIgnoreCase("Single-Choice") ? By.xpath("(.//mat-radio-button)[2]") : By.xpath("(.//mat-radio-button)[3]");
         By correctAnswerChoice = questionType.equalsIgnoreCase("Single-Choice") ? By.xpath("(.//mat-radio-button)[4]") : By.xpath("(.//mat-checkbox)[1]");
+        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
         for (int i = 0; i < questionsNumber; i++) {
-            getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            Thread.sleep(200);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-icon[contains(text(),'add_circle')]")));
             getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
             WebElement questionPanel = getDriver().findElements(By.xpath("//mat-expansion-panel")).get(i);
             Thread.sleep(300);
@@ -48,7 +50,6 @@ public class QuizTotalQuestions_Ali_Stepdefs {
             questionPanel.findElement(By.xpath("(.//*[@formcontrolname='option'])[2]")).sendKeys("Option number: 2");
             questionPanel.findElement(correctAnswerChoice).click();
         }
-        //getDriver().findElement(By.xpath("//span[contains(text(),'Save')]/..")).click();
     }
 
     @And("I save the quiz")
@@ -102,9 +103,9 @@ public class QuizTotalQuestions_Ali_Stepdefs {
         By questionTypeRadioButton = questionType.equalsIgnoreCase("Single-Choice") ? By.xpath("(.//mat-radio-button)[2]") : By.xpath("(.//mat-radio-button)[3]");
         By correctAnswerChoice = questionType.equalsIgnoreCase("Single-Choice") ? By.xpath("(.//mat-radio-button)[4]") : By.xpath("(.//mat-checkbox)[1]");
         List<WebElement> questionsList = getDriver().findElements(By.xpath("//mat-expansion-panel"));
+        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
         for (int i = questionsList.size(); i < questionsList.size() + questionsNumber; i++) {
-            getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            Thread.sleep(200);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-icon[contains(text(),'add_circle')]")));
             getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
             WebElement questionPanel = getDriver().findElements(By.xpath("//mat-expansion-panel")).get(i);
             questionPanel.click();

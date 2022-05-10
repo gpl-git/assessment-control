@@ -37,6 +37,7 @@ Feature: Quiz - Total Questions
     And I save the quiz
     And I wait for 1 sec
     Then title of quiz "Maximum number of questions in the quiz" should contain "50 Question(s)"
+    And I wait for 2 sec
     Then I delete the quiz "Maximum number of questions in the quiz"
-    And I wait for 1 sec
+
 
