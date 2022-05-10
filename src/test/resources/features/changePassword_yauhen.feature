@@ -6,23 +6,8 @@
     And I input credentials at login page "rerjkrf2@mailpluss.com" and "123456"
     And sleep 1 sec
     And I click "Sign In" button
-    And sleep 2 sec
+    And sleep 1 sec
 
-      @ChangePass5
-    Scenario Outline: Change short and spaces password outline
-      Given I select in left menu "Settings"
-      And sleep 1 sec
-      And I click "Change Your Password" button
-      And sleep 1 sec
-      When I input old password <oldPass>
-      When I input new password and confirm <newPass> <confpass>
-      Examples:
-        | oldPass  | newPass | confpass |
-        | "123456" | "1234"  | ""  |
-        | "123456" | "12 34"  | "12 34 "  |
-        | "123456" | "1234"  | "12345"  |
-        | "123456" | "12 34"  | "1234567"  |
-        | "123456" | "1235674"  | "12 34"  |
 
 
       @ChangePass6
@@ -58,3 +43,21 @@
         Then I select in left menu "Log Out"
         And I click "Log Out" button
         And sleep 1 sec
+
+
+    @ChangePass7
+    Scenario Outline: Change short and spaces password outline2
+      Given I select in left menu "Settings"
+      And sleep 1 sec
+      And I click "Change Your Password" button
+      And sleep 1 sec
+      When I input old password <oldPass>
+      When I input new password and confirm <newPass> <confpass> and see error messages <errorMessage1> <errorMessage2>
+      And sleep 1 sec
+      Examples:
+       | oldPass     | newPass    | confpass     | errorMessage1     | errorMessage2     |
+       | "123456"      | "1234"     | "" | "Should be at least 5 characters" | "This field is required" |
+       | "123456"      | "12 34"     | "12 34" | "Whitespaces are not allowed" | "Whitespaces are not allowed" |
+       | "123456"      | "1234"     | "12345" | "Should be at least 5 characters" | "Entered passwords should match" |
+       | "123456"      | "12 34"     | "1234567" | "Whitespaces are not allowed" | "Entered passwords should match" |
+       | "123456"      | "1234567"     | "12 34" | "no message" | "Whitespaces are not allowed" |

@@ -100,76 +100,6 @@ import static org.assertj.core.api.Assertions.assertThat;
         getDriver().findElement(By.xpath("//ac-modal-change-password//span[contains(text(),'"+butName+"')]")).click();
         }
 
-        @When("I input new password and confirm {string} {string}")
-        public void iInputNewPasswordAndConfirm(String newPass, String confpass) throws InterruptedException {
-            getDriver().findElement(By.xpath("//ac-modal-change-password//input[@formcontrolname='newPassword']")).sendKeys(newPass);
-            Thread.sleep(1000*1);
-            getDriver().findElement(By.xpath("//ac-modal-change-password//input[@formcontrolname='confirmPassword']")).click();
-            Thread.sleep(1000*1);
-            getDriver().findElement(By.xpath("//mat-dialog-container")).click();
-            Thread.sleep(1000*1);
-            boolean contSpaceNewPass;
-            boolean contSpaceConfirm;
-
-            //check spaces
-
-            if (newPass.contains(" "))            {
-                contSpaceNewPass = true;
-            }
-            else {contSpaceNewPass = false;}
-
-            if (confpass.contains(" "))            {
-                contSpaceConfirm = true;
-            }
-            else {contSpaceConfirm = false;}
-
-
-            //check new password field
-
-            if (newPass.length()<5 && !contSpaceNewPass) {
-                boolean snackbox1 = getDriver().findElement(By.xpath("//mat-form-field[2]//mat-error[1]")).isDisplayed();
-                String text1 = getDriver().findElement(By.xpath("//mat-form-field[2]//mat-error[1]")).getText();
-                assertThat(snackbox1).isTrue();
-                assertThat(text1).isEqualTo("Should be at least 5 characters");
-                boolean snackbox2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).isDisplayed();
-                String text2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
-                assertThat(snackbox2).isTrue();
-            }
-            else if (contSpaceNewPass) {
-                String text1 = getDriver().findElement(By.xpath("//mat-form-field[2]//mat-error[1]")).getText();
-                assertThat(text1).isEqualTo("Whitespaces are not allowed");
-
-            }
-
-            else {boolean snackbox1 = false;
-                boolean snackbox2 = false;
-                assertThat(snackbox1).isFalse();
-                assertThat(snackbox2).isFalse();}
-
-            getDriver().findElement(By.xpath("//ac-modal-change-password//input[@formcontrolname='confirmPassword']")).sendKeys(confpass);
-            Thread.sleep(1000*1);
-
-
-            if(confpass.length() < 1 && !contSpaceNewPass)
-            {boolean snackbox2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).isDisplayed();
-                String text2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
-                assertThat(snackbox2).isTrue();
-                assertThat(text2).isEqualTo("This field is required");}
-             else if(confpass.length() >= 5 && confpass.length() <= 1 && !contSpaceConfirm) {
-                String text2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
-                assertThat(text2).isEqualTo("Should be at least 5 characters");
-                           }
-             else if(!newPass.equals(confpass) && !contSpaceConfirm){
-                String text2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
-                assertThat(text2).isEqualTo("Entered passwords should match");}
-            else if (contSpaceConfirm) {
-                String text1 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
-                assertThat(text1).isEqualTo("Whitespaces are not allowed");}
-             else {
-               boolean snackbox2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).isDisplayed();
-               assertThat(snackbox2).isFalse();
-                }
-            }
 
         @Then("I input long new password {int} from symbols")
         public void iInputLongNewPasswordFromSymbols(int passLength) {
@@ -195,4 +125,89 @@ import static org.assertj.core.api.Assertions.assertThat;
             getDriver().findElement(By.xpath("//ac-modal-change-password//input[@formcontrolname='password']")).sendKeys(longPSWD);
 
         }
+
+
+        @When("I input new password and confirm {string} {string} and see error messages {string} {string}")
+        public void iInputNewPasswordAndConfirmAndSeeErrorMessages(String newPass, String confpass, String errorMessage1, String errorMessage2)
+                throws InterruptedException{
+            getDriver().findElement(By.xpath("//ac-modal-change-password//input[@formcontrolname='newPassword']")).sendKeys(newPass);
+            Thread.sleep(1000*1);
+            getDriver().findElement(By.xpath("//ac-modal-change-password//input[@formcontrolname='confirmPassword']")).click();
+            Thread.sleep(1000*1);
+            getDriver().findElement(By.xpath("//mat-dialog-container")).click();
+            Thread.sleep(1000*1);
+            boolean contSpaceNewPass = false;
+            boolean contSpaceConfirm = false;
+
+            //check spaces
+
+            if (newPass.contains(" "))            {
+                contSpaceNewPass = true;
+            }
+            else {contSpaceNewPass = false;}
+
+            if (confpass.contains(" "))            {
+                contSpaceConfirm = true;
+            }
+            else {contSpaceConfirm = false;}
+
+
+            //check new password field
+
+            if (newPass.length()<5 && !contSpaceNewPass) {
+                boolean snackbox1 = getDriver().findElement(By.xpath("//mat-form-field[2]//mat-error[1]")).isDisplayed();
+                String text1 = getDriver().findElement(By.xpath("//mat-form-field[2]//mat-error[1]")).getText();
+                assertThat(snackbox1).isTrue();
+                assertThat(text1).isEqualTo(errorMessage1);
+                //boolean snackbox2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).isDisplayed();
+               // String text2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
+               // assertThat(snackbox2).isTrue();
+               // assertThat(text2).isEqualTo(errorMessage2);
+                System.out.println("Error message: "+ text1);
+               // System.out.println("Error message: "+ text2);
+            }
+            else if (contSpaceNewPass) {
+                String text1 = getDriver().findElement(By.xpath("//mat-form-field[2]//mat-error[1]")).getText();
+                assertThat(text1).isEqualTo("Whitespaces are not allowed");
+                System.out.println("Error message7: "+ text1);
+
+            }
+
+            else {boolean snackbox1 = false;
+                boolean snackbox2 = false;
+                assertThat(snackbox1).isFalse();
+                assertThat(snackbox2).isFalse();}
+
+            getDriver().findElement(By.xpath("//ac-modal-change-password//input[@formcontrolname='confirmPassword']")).sendKeys(confpass);
+            Thread.sleep(1000*1);
+
+
+            if(confpass.length() < 1 && !contSpaceNewPass)
+            {boolean snackbox2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).isDisplayed();
+                String text2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
+                assertThat(snackbox2).isTrue();
+                assertThat(text2).isEqualTo("This field is required");
+                System.out.println("Error message3: "+ text2);}
+
+            else if(confpass.length() >= 5 && confpass.length() <= 1 && !contSpaceConfirm) {
+                String text2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
+                assertThat(text2).isEqualTo("Should be at least 5 characters");
+                System.out.println("Error message4: "+ text2);
+            }
+            else if(!newPass.equals(confpass) && !contSpaceConfirm){
+                String text2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
+                assertThat(text2).isEqualTo("Entered passwords should match");
+                System.out.println("Error message5: "+ text2);}
+            else if (contSpaceConfirm) {
+                String text1 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).getText();
+                assertThat(text1).isEqualTo("Whitespaces are not allowed");
+                System.out.println("Error message6: "+ text1);}
+            else {
+                boolean snackbox2 = getDriver().findElement(By.xpath("//mat-form-field[3]//mat-error[1]")).isDisplayed();
+                assertThat(snackbox2).isFalse();
+            }
+        }
+
     }
+
+
