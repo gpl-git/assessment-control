@@ -36,9 +36,9 @@ public class QuizTotalQuestions_Ali_Stepdefs {
 
         By questionTypeRadioButton = questionType.equalsIgnoreCase("Single-Choice") ? By.xpath("(.//mat-radio-button)[2]") : By.xpath("(.//mat-radio-button)[3]");
         By correctAnswerChoice = questionType.equalsIgnoreCase("Single-Choice") ? By.xpath("(.//mat-radio-button)[4]") : By.xpath("(.//mat-checkbox)[1]");
-
         for (int i = 0; i < questionsNumber; i++) {
             getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            Thread.sleep(200);
             getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
             WebElement questionPanel = getDriver().findElements(By.xpath("//mat-expansion-panel")).get(i);
             Thread.sleep(300);
@@ -84,6 +84,7 @@ public class QuizTotalQuestions_Ali_Stepdefs {
 
     @And("I find the quiz {string} and push Edit button")
     public void iFindTheQuizAndPushEditButton(String quizName) {
+        getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         getDriver().get("http://ask-qa.portnov.com/#/quizzes");
         List<WebElement> quizzes = getDriver().findElements(By.xpath("//mat-expansion-panel"));
         for (WebElement quiz : quizzes) {
@@ -103,6 +104,7 @@ public class QuizTotalQuestions_Ali_Stepdefs {
         List<WebElement> questionsList = getDriver().findElements(By.xpath("//mat-expansion-panel"));
         for (int i = questionsList.size(); i < questionsList.size() + questionsNumber; i++) {
             getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            Thread.sleep(200);
             getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
             WebElement questionPanel = getDriver().findElements(By.xpath("//mat-expansion-panel")).get(i);
             questionPanel.click();
@@ -115,10 +117,10 @@ public class QuizTotalQuestions_Ali_Stepdefs {
         }
     }
 
-//    @Then("error message {string} should be displayed")
-//    public void errorMessageShouldBeDisplayed(String errorMessage) {
-//        Assert.assertTrue(getDriver().getPageSource().contains(errorMessage));
-//    }
+    @Then("error message {string} should be appeared")
+    public void errorMessageShouldBeAppeared(String errorMessage) {
+        Assert.assertTrue(getDriver().getPageSource().contains(errorMessage));
+    }
 
     @And("I create new quiz {string}")
     public void iCreateNewQuiz(String quizName) {
@@ -138,6 +140,7 @@ public class QuizTotalQuestions_Ali_Stepdefs {
 
     @Then("title of quiz {string} should contain {string}")
     public void titleOfQuizShouldContain(String quizName, String numberOfQuestions) {
+        getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         List<WebElement> quizzes = getDriver().findElements(By.xpath("//mat-expansion-panel-header"));
         for (WebElement quiz : quizzes) {
             if (quiz.getText().contains(quizName)) {
@@ -146,5 +149,6 @@ public class QuizTotalQuestions_Ali_Stepdefs {
             }
         }
     }
+
 }
 

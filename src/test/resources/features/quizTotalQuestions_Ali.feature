@@ -27,15 +27,16 @@ Feature: Quiz - Total Questions
     And I add 1 "multiple-choice" question
     And I save the quiz
     And I wait for 1 sec
-    #Then error message "Accept only 50 questions" should be displayed
+    Then error message "Accept only 50 questions" should be appeared
 
   @totalQuestions4
   Scenario: To delete questions
     And I find the quiz "Maximum number of questions in the quiz" and push Edit button
     And I delete question number 1
-    And I wait for 1 sec
+    And I wait for 2 sec
     And I save the quiz
     And I wait for 1 sec
     Then title of quiz "Maximum number of questions in the quiz" should contain "50 Question(s)"
     Then I delete the quiz "Maximum number of questions in the quiz"
     And I wait for 1 sec
+
