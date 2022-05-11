@@ -10,7 +10,6 @@ Feature: Quiz
     When I click "Quizzes" menu item
     And I wait for 2 sec
 
-
   @smoke
   Scenario: Create a quiz
     When I click button "Create New Quiz"
