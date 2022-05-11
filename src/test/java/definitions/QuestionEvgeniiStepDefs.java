@@ -65,4 +65,6 @@ public class QuestionEvgeniiStepDefs {
         getDriver().findElement(By.xpath("//div[@mat-dialog-actions]//span[text()='Delete']/..")).click();
         Thread.sleep(1000);
     }
-}
+
+    }
+
