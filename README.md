@@ -1,6 +1,6 @@
 git assessment-control project
 
-**How to push your changes to GitHub**
+**How to push your changes to GitHub** 
 1
 Cut your own branch from master locally:
 **git checkout -b name_of_your_branch**
