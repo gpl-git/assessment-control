@@ -1,3 +1,4 @@
 Feature:
+
   Scenario:
-    Given
+    Given I create a conflict with Galina
