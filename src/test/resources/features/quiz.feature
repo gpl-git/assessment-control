@@ -1,4 +1,4 @@
-@quiz
+out @quiz
 Feature:  Quiz Scenarios
 
   Background:
