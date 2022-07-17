@@ -120,6 +120,14 @@
       When I type enter into email field
       And I enter "lmislinski@nbobd.com" into email field
       Then email field should contain error message
+      @LogIn14
+      Scenario: Copy menu item on "Password" field is disabled
+        Given I navigate to "login" page
+        And I wait for 4 seconds
+        When I enter "lmislinski@nbobd.com" into email field
+        And I type password "123456"
+        Then I do right click on password field to see a menu where copy is disable
+
 
 
 

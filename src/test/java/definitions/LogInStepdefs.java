@@ -198,6 +198,14 @@ public class LogInStepdefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(Keys.SPACE);
 
     }
+
+    @Then("I do right click on password field to see a menu where copy is disable")
+    public void iDoRightClickOnPasswordFieldToSeeAMenuWhereCopyIsDisable() {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='password']"));
+        assertThat(getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type").
+                equals("password")).isTrue();
+
+    }
 }
 
 
