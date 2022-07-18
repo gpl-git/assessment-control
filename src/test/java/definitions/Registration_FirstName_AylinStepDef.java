@@ -43,9 +43,25 @@ public class Registration_FirstName_AylinStepDef {
 
     @When("I clear the firstname field")
     public void iClearTheFirstnameField() {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='firstName'])")).clear();
+    }
+
+    @Then("alert message should be displayed")
+    public void alertMessageShouldBeDisplayed() {
+    }
+
+    @Then("alert message should contain text {string}")
+    public void alertMessageShouldContainText(String alert) {
+    }
+
+    @Then("should contain text {string}")
+    public void shouldContainText(String message) {
+    }
+
+    @When("I leave a space into first name field")
+    public void iLeaveASpaceIntoFirstNameField() {
     }
 }
+
 
 
 
