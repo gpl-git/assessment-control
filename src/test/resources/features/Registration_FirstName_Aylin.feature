@@ -1,11 +1,12 @@
 @userName
-Feature:  Registration: First Name Scenarios
+Feature:Registration First Name Scenarios
 
   Background:
-    Given I go to "Registration" page
+    Given I go to "registration" page
 
   @userName1
-  Scenario : Verify FirstName Field Behavior: Alphanumeric & Special Characters
+    Scenario: FirstName Field Behavior: Alphanumeric & Special Characters
+    And I wait for 2 sec
     When I type "ab!!*123@$" into first name field
     When I type "Bozoklar" into last name field
     When I type "breenguyen@golviage.com" into email field
@@ -13,13 +14,12 @@ Feature:  Registration: First Name Scenarios
     And I enter "12346" as password
     And I enter "12346" as confirm password
     When I click button "Register Me"
-    Then element with xpath "//label[@id='username-error']" should be displayed
-    Then element with xpath "//label[@id='username-error']" should contain text "This field is required"
+    Then registration confirmation page "You have been registered" should be displayed
     And I wait for 2 sec
 
 @userName2
   Scenario: Verify Firstname Field Behavior: Empty Field
-  When I clear element with xpath "//input[@name='firstname']"
+  When I clear the firstname field
   When I type "Bozoklar" into last name field
   When I type "breenguyen@golviage.com" into email field
   When I type "123" into group code field
