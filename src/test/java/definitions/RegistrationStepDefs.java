@@ -1,5 +1,6 @@
 package definitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
@@ -56,5 +57,14 @@ public class RegistrationStepDefs {
         assertThat(getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).isDisplayed()).isTrue();
     }
 
+    @Then("I leave password field blank")
+    public void iLeavePasswordFieldBlank() {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='password']"));
+    }
+
+    @And("I verify that {string} message is displayed")
+    public void iVerifyThatMessageIsDisplayed(String message) {
+        assertThat(getDriver().findElement(By.xpath("//mat-card[@class='mat-card']")).isDisplayed()).isTrue();
+    }
 }
 
