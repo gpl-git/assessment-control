@@ -121,12 +121,12 @@ Feature:  Quiz - Quiz Title - Neta
     And I type "Option 2" as "Option 2*" into "Q1"
     And I select "Option 1*" as correct option in "Q1"
     When I click button "Save"
-    And I wait for 2 sec
-    Then quiz "gjhgjhgjhgjhgjghjhgjhgjhgjhfhgfhfhfgjhgjgjhgjhgjgjhgjjjjh@jhkjjhkjhkhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhgjfhgjhgjh.comfhgfjhfjhgfhgfhgfhgfhgfhgfhgfhjgfkjfkjhgjhgkjhgkjhgkjhgkhgkhjgkjhgjhgkjhgkjhgkjhgkjhgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh1" should not be displayed on the list of quizzes
-    And I wait for 2 sec
+    # This is known issue
+    Then error message should be displayed
+
 
   @quiz8
-  Scenario: Quiz - Quiz Title with spaces character - Negative
+  Scenario: Quiz - Quiz Title with spaces between the characters - Negative
     When I click button "Create New Quiz"
     And I wait for 1 sec
     When I type "bn  bn" as quiz title
@@ -139,4 +139,40 @@ Feature:  Quiz - Quiz Title - Neta
     And I select "Option 1*" as correct option in "Q1"
     When I click button "Save"
     And I wait for 2 sec
-    Then quiz "bn  bn" should not be displayed on the list of quizzes
+    # this is known issue
+    Then error message should be displayed
+
+    @quiz9
+    Scenario: Quiz - Quiz Title with leading characters - Negative
+      When I click button "Create New Quiz"
+      And I wait for 1 sec
+      When I type "  bn bn" as quiz title
+      And I add a question
+      And I wait for 1 sec
+      When I select "Single" question type
+      And I type "Question 1 name" into "Q1"
+      When I type "Option 1" as "Option 1*" into "Q1"
+      And I type "Option 2" as "Option 2*" into "Q1"
+      And I select "Option 1*" as correct option in "Q1"
+      When I click button "Save"
+      And I wait for 2 sec
+    # this is known issue
+      Then error message should be displayed
+
+      @quiz10
+      Scenario: Quiz - Quiz Title with trailing characters - Negative
+        When I click button "Create New Quiz"
+        And I wait for 1 sec
+        When I type "bn bn     " as quiz title
+        And I add a question
+        And I wait for 1 sec
+        When I select "Single" question type
+        And I type "Question 1 name" into "Q1"
+        When I type "Option 1" as "Option 1*" into "Q1"
+        And I type "Option 2" as "Option 2*" into "Q1"
+        And I select "Option 1*" as correct option in "Q1"
+        When I click button "Save"
+        And I wait for 2 sec
+    # this is known issue
+        Then error message should be displayed
+

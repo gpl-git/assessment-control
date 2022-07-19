@@ -106,4 +106,9 @@ public class QuizStepDefs {
         assertThat(actualError.equals(error)).isTrue();
 
     }
+
+    @Then("error message should be displayed")
+    public void errorMessageShouldBeDisplayed() {
+        getDriver().findElement(By.xpath("//mat-error")).isDisplayed();
+    }
 }
