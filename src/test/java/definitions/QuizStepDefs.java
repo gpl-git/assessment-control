@@ -88,4 +88,22 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[contains(text(),'Delete')]")).click();
         Thread.sleep(1000);
     }
+
+
+    @Then("quiz {string} should not be displayed on the list of quizzes")
+    public void quizShouldNotBeDisplayedOnTheListOfQuizzes(String quizTitle) {
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isFalse();
+    }
+
+    @And("I click outside")
+    public void iClickOutside() {
+        getDriver().findElement(By.xpath("//ac-quiz-builder-page")).click();
+    }
+
+    @Then("I get error {string}")
+    public void iGetError(String error) {
+        String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
+        assertThat(actualError.equals(error)).isTrue();
+
+    }
 }

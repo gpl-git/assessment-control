@@ -26,3 +26,9 @@ Feature:  Quiz Scenarios
     Then quiz "00Test Quiz - Galina" should be displayed on the list of quizzes
     And I wait for 2 sec
     And I delete "00Test Quiz - Galina"
+
+
+
+
+
+
