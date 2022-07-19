@@ -54,6 +54,7 @@ Feature:Registration First Name Scenarios
     And I enter "12346" as confirm password
     When I click button "Register Me"
     Then alert message should be displayed
+    # This is a known issue Bug JUN22-119
     Then alert message should contain text "Please enter max 254 characters"
     And I wait for 1 sec
 
@@ -70,10 +71,10 @@ Feature:Registration First Name Scenarios
     Then registration confirmation page "You have been registered" should be displayed
     And I wait for 1 sec
 
-  @userName5
-  Scenario: Verify Firstname Field Behavior: Trailing Characters
-    When I type "Aylin" into first name field
-    When I leave a space into first name field
+
+
+  Scenario Outline: Scenario: Verify FirstName Field Behavior:Error messages
+    When I type <firstName> into first name field
     When I type "Bozoklar" into last name field
     When I type "breenguyen@golviage.com" into email field
     When I type "123" into group code field
@@ -81,35 +82,11 @@ Feature:Registration First Name Scenarios
     And I enter "12346" as confirm password
     When I click button "Register Me"
     Then alert message should be displayed
-    Then alert message should contain text "Whitespaces are not allowed"
+    Then alert message should contain text <alert>
     And I wait for 1 sec
-
-
-  @userName6
-  Scenario: Verify Firstname Field Behavior: Leading Characters
-    When I leave a space into first name field
-    When I type "Aylin" into first name field
-    When I type "Bozoklar" into last name field
-    When I type "breenguyen@golviage.com" into email field
-    When I type "123" into group code field
-    And I enter "12346" as password
-    And I enter "12346" as confirm password
-    When I click button "Register Me"
-    Then alert message should be displayed
-    Then alert message should contain text "Whitespaces are not allowed"
-    And I wait for 1 sec
-
-  @userName7
-  Scenario: Verify FirstName Field Behavior: White Spaces Characters
-    When I type "Ay" into first name field
-    And I leave a space into first name field
-    When I type "lin" into first name field
-    When I type "Bozoklar" into last name field
-    When I type "breenguyen@golviage.com" into email field
-    When I type "123" into group code field
-    And I enter "12346" as password
-    And I enter "12346" as confirm password
-    When I click button "Register Me"
-    Then alert message should be displayed
-    Then alert message should contain text "Whitespaces are not allowed"
-    And I wait for 1 sec
+    Examples:
+      | firstName |  alert                         |
+      | "Ay lin"  |  "Whitespaces are not allowed" |
+      | "  Aylin"  |  "Whitespaces are not allowed" |
+      | "Aylin  "  |  "Whitespaces are not allowed" |
+      | ""          |  "This field is required" |

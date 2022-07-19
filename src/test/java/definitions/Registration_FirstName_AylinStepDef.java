@@ -57,9 +57,7 @@ public class Registration_FirstName_AylinStepDef {
     public void shouldContainText(String message) {
     }
 
-    @When("I leave a space into first name field")
-    public void iLeaveASpaceIntoFirstNameField() {
-    }
+
 }
 
 
