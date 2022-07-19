@@ -16,6 +16,7 @@
       And I wait for 2 sec
       Then I click button "Register Me"
       And I NK see verification message
+      And I wait for 2 sec
 
 
     @RegistrationNK2
@@ -37,6 +38,7 @@
       And I wait for 2 sec
 
     @RegistrationNK3
+#      This is a known issue Bug JUN22-729
     Scenario: Verify more than Max Characters in the Password And Confirm Password Fields are not allowed
       When I NK enter "Eva" into First Name field
       And I NK enter "Tomas" into Last Name field
@@ -48,6 +50,7 @@
       And I wait for 2 sec
       Then I click button "Register Me"
       Then NK verification message not displayed
+      And I wait for 2 sec
 
     @RegistrationNK4
     Scenario: Verify that leading and trailing spaces in the Password And Confirm Password Fields are not allowed
