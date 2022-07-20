@@ -10,7 +10,7 @@
       And I wait for 3 sec
 
 
-    @QuizTQ1
+    @QuizTQ1 @smoke
     Scenario: Allow to create 51 questions total
       When I click button "Create New Quiz"
       And I wait for 1 sec
