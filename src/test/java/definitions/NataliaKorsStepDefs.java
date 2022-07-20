@@ -108,7 +108,7 @@ public class NataliaKorsStepDefs {
 
     @And("I NK see verification message")
     public void iNKSeeVerificationMessage() {
-        getDriver().findElement(By.xpath("//mat-card[@class='mat-card']"));
+        getDriver().findElement(By.xpath("//mat-card[@class='mat-card']/h4"));
     }
 
     @Then("NK verification message not displayed")
