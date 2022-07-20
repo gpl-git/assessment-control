@@ -88,4 +88,29 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//span[contains(text(),'Delete')]")).click();
         Thread.sleep(1000);
     }
+
+    @And("I add question {string}")
+    public void iAddQuestion(String num) {
+//        iWaitForSec(1);
+        iSelectQuestionType("Single");
+        iTypeInto("Question " +  num +" text", "Q"+num);
+        iTypeAsInto("Option 1 " ,"Option 1*", "Q"+num);
+        iTypeAsInto("Option 2 " ,"Option 2*", "Q"+num);
+        iTypeAsInto("Option 2 " ,"Option 2*", "Q"+num);
+        iSelectAsCorrectOptionIn("Option 1*", "Q"+num);
+        iClickButton("Save");
+    }
+
+    @And("I create {int} questions")
+    public void iCreateQuestions(int num) {
+        for(int i =1; i<=num; i++){
+            String questionNumber = String.valueOf(i);
+            iAddQuestion(questionNumber);
+        }
+    }
+
+    @Then("^element with xpath \"([^\"]*)\" should be displayed$")
+    public void elementWithXpathShouldNotBeDisplayed(String xpath) {
+        assertThat(getDriver().findElement(By.xpath(xpath)).isDisplayed()).isTrue();
+    }
 }
