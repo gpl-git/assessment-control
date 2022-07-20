@@ -4,7 +4,13 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Listeners;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
@@ -122,6 +128,50 @@ public class SingleChoiceStepDefs {
     @And("I move Option Up rv")
     public void iMoveOptionUpRv() {
         getDriver().findElement(By.xpath("//span[contains(text(),'Move option up')]")).click();
+    }
+
+    @When("I enter {int} alphanumeric characters as {string} into {string} rv")
+    public void iEnterAlphanumericCharactersAsIntoRv(int numOfCharacters, String optionNum, String questionNum) {
+        int lenght = numOfCharacters;
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        String generatedString = RandomStringUtils.random(lenght, useLetters, useNumbers);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='"+optionNum+"']")).sendKeys(generatedString);
+    }
+
+    @When("I add up to {int} options in {string}")
+    public void iAddUpToOptionsIn(int num, String questionNum) {
+        String option = "Option ";
+        for (int i=3; i <= num; i++){
+            getDriver().findElement(By.xpath("//span[contains(text(),'Add Option')]")).click();
+            String xpath = "//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='"+option + i+ "*']";
+            getDriver().findElement(By.xpath(xpath)).sendKeys(option + i);
+        }
+    }
+
+
+    @And("I preview quiz {string} rv")
+    public void iPreviewQuizRv(String quizTitle) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//*[contains(text(),'Preview')]")).click();
+        getDriver().findElement(By.xpath("//div[@class='controls']//span[contains(text(),'Close')]")).click();
+        Thread.sleep(1000);
+    }
+
+    @Then("I verify that the number of options equals {int}")
+    public void iVerifyThatTheNumberOfOptionsEquals(int options) {
+       ArrayList<WebElement> optionsList = new ArrayList<>();
+        List<WebElement> listOptions = getDriver().findElements(By.xpath("//textarea[@formcontrolname='option']"));
+        optionsList=new ArrayList<WebElement>(getDriver().findElements(By.xpath("//textarea[@formcontrolname='option']")));
+        int numOptions = optionsList.size();
+        System.out.println(numOptions);
+        assertThat(numOptions == options).isTrue();
+    }
+
+
+    @And("button Delete Option is disabled rv")
+    public void buttonDeleteOptionIsDisabledRv() {
+       getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@placeholder='Option 2*']/../../../../..//mat-icon")).click();
     }
 }
 
