@@ -11,111 +11,23 @@
 
 
     @QuizTQ1
-    Scenario: Allow to create 100 questions total
+    Scenario: Allow to create 51 questions total
       When I click button "Create New Quiz"
       And I wait for 1 sec
-      When I type "00Test Quiz - Zhanna" as quiz title
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      And I add a question
-      Then element with xpath "//mat-panel-title[contains(text(),'Q100: new empty question')]" should be displayed
+      When I type "QA Questions" as quiz title
+      When I add up to 51 questions
+      Then element with xpath "//mat-panel-title[contains(text(),'Q51: new empty question')]" should be displayed
+
+    @QuizTQ2
+    Scenario: Total Questions should not be 0
+      When I click button "Create New Quiz"
+      And I wait for 1 sec
+      When I type "QA Questions" as quiz title
+      When I add a question
+      And I wait for 2 sec
+      And I click button 'Save'
+      Then element with xpath "//*[contains(text(),'Quiz is not completed')]" should be displayed
+      
+
 
 

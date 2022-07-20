@@ -89,28 +89,17 @@ public class QuizStepDefs {
         Thread.sleep(1000);
     }
 
-    @And("I add question {string}")
-    public void iAddQuestion(String num) {
-//        iWaitForSec(1);
-        iSelectQuestionType("Single");
-        iTypeInto("Question " +  num +" text", "Q"+num);
-        iTypeAsInto("Option 1 " ,"Option 1*", "Q"+num);
-        iTypeAsInto("Option 2 " ,"Option 2*", "Q"+num);
-        iTypeAsInto("Option 2 " ,"Option 2*", "Q"+num);
-        iSelectAsCorrectOptionIn("Option 1*", "Q"+num);
-        iClickButton("Save");
-    }
 
-    @And("I create {int} questions")
-    public void iCreateQuestions(int num) {
-        for(int i =1; i<=num; i++){
-            String questionNumber = String.valueOf(i);
-            iAddQuestion(questionNumber);
+    @When("I add up to {int} questions")
+    public void iAddUpToQuestions(int numberOfQuestions) throws InterruptedException {
+        for(int i =0; i<numberOfQuestions; i++){
+            getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
         }
     }
 
     @Then("^element with xpath \"([^\"]*)\" should be displayed$")
-    public void elementWithXpathShouldNotBeDisplayed(String xpath) {
+    public void elementWithXpathShouldBeDisplayed(String xpath) {
         assertThat(getDriver().findElement(By.xpath(xpath)).isDisplayed()).isTrue();
     }
+
 }
