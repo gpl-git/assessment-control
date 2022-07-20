@@ -1,4 +1,3 @@
-@quiz
 Feature:  Quiz Scenarios
 
   Background:
