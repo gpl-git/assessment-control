@@ -148,7 +148,8 @@ public class LogInStepdefs {
 
     @Then("pop up window with error message text should show up")
     public void popUpWindowWithErrorMessageTextShouldShowUp() {
-        getDriver().findElement(By.xpath("//div[@class='cdk-visually-hidden']"));
+    getDriver().findElement(By.xpath("//div[@class='cdk-visually-hidden']"));
+
     }
 
     @Then("password should be masked")
@@ -205,6 +206,47 @@ public class LogInStepdefs {
         assertThat(getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type").
                 equals("password")).isTrue();
 
+    }
+
+    @Then("I click on tab {string}")
+    public void iClickOnTab(String tab) {
+        getDriver().findElement(By.xpath("//*[contains(text(),'Quizzes')]"));
+
+    }
+
+    @Then("message {string} is displayed in password field")
+    public void messageIsDisplayedInPasswordField(String errorMessage) {
+        String actualError= getDriver().findElement(By.xpath("//mat-error")).getText();
+        System.out.println(actualError);
+    }
+
+    @Then("message {string} is displayed in email field")
+    public void messageIsDisplayedInEmailField(String errorMessage) {
+        String actualError= getDriver().findElement(By.xpath("//mat-error")).getText();
+        System.out.println(actualError);
+    }
+
+    @When("I type {string} email into email field")
+    public void iTypeEmailIntoEmailField(String email) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(email);
+
+
+    }
+
+    @Then("message {string} is displayed")
+    public void messageIsDisplayed(String error) {
+        assertThat(getDriver().findElement(By.xpath("//mat-error")).isDisplayed()).isTrue();
+    }
+
+    @When("I clear email field")
+    public void iClearEmailField() {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).clear();
+    }
+
+
+    @And("I click confirm {string}")
+    public void iClickConfirm(String button) {
+        getDriver().findElement(By.xpath("//span[text()='Log Out']")).click();
     }
 }
 
