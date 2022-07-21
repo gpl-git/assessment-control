@@ -172,7 +172,6 @@ public class LogInStepdefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(Keys.SPACE);
     }
 
-
     @Then("email field should contain error message should be present")
     public void emailFieldShouldContainErrorMessageShouldBePresent() {
         getDriver().findElement(By.xpath("//*[@id='mat-error-0']"));
