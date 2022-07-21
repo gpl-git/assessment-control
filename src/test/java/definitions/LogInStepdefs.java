@@ -73,7 +73,6 @@ public class LogInStepdefs {
         }
     }
 
-
     @Then("{string}page should be appear")
     public void pageShouldBeAppear(String page) {
         getDriver().navigate().to("http://ask-qa.portnov.com/#/registration");
@@ -153,14 +152,12 @@ public class LogInStepdefs {
 
     }
 
-
     @Then("I do right click on password field to see a menu where cut is disable")
     public void iDoRightClickOnPasswordFieldToSeeAMenuWhereCutIsDisable() {
         getDriver().findElement(By.xpath("//input[@formcontrolname='password']"));
         assertThat(getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type").
                 equals("password")).isTrue();
     }
-
 
     @And("I type {string} into password field")
     public void iTypeIntoPasswordField(String password) {
@@ -177,7 +174,6 @@ public class LogInStepdefs {
         getDriver().findElement(By.xpath("//*[@id='mat-error-0']"));
 
     }
-
 
     @When("I type enter into email field")
     public void iTypeEnterIntoEmailField() {
