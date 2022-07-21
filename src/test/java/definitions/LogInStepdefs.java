@@ -77,14 +77,8 @@ public class LogInStepdefs {
     @Then("{string}page should be appear")
     public void pageShouldBeAppear(String page) {
         getDriver().navigate().to("http://ask-qa.portnov.com/#/registration");
-
-
     }
 
-    @When("I type {string} into first name field")
-    public void iTypeIntoFirstNameField(String firstname) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='firstName']")).sendKeys(firstname);
-    }
 
     @And("I type {string} into last name field")
     public void iTypeIntoLastNameField(String lastname) {
