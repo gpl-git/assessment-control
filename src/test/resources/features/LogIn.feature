@@ -7,8 +7,6 @@ Given I navigate to "login" page
 When I enter "lmislinski@nbobd.com" into email field
 And I type password "123456"
 When I hit button "Sign In"
-#And I wait for 4 seconds
-#When I click "Quizzes" menu item
 And I wait for 2 sec
 Then I click "Log Out" menu item
 And I wait for 2 sec
