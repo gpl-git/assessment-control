@@ -179,14 +179,6 @@ public class LogInStepdefs {
 
     }
 
-    @When("I enter email into email field")
-    public void iEnterEmailIntoEmailField(String message) {
-        if (message.isEmpty()) {
-            System.out.println("Test not passed");
-        } else {
-            System.out.println("Test passed");
-        }
-    }
 
     @When("I type enter into email field")
     public void iTypeEnterIntoEmailField() {
