@@ -79,10 +79,10 @@ public class LogInStepdefs {
     }
 
 
-    @And("I type {string} into last name field")
-    public void iTypeIntoLastNameField(String lastname) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='lastName']")).sendKeys(lastname);
-    }
+   // @And("I type {string} into last name field")
+    //public void iTypeIntoLastNameField(String lastname) {
+        //getDriver().findElement(By.xpath("//input[@formcontrolname='lastName']")).sendKeys(lastname);
+    //}
 
     @And("I enter {string} in email field")
     public void iEnterInEmailField(String email) {
@@ -141,13 +141,14 @@ public class LogInStepdefs {
 
     @Then("pop up window with error message text should show up")
     public void popUpWindowWithErrorMessageTextShouldShowUp() {
-    getDriver().findElement(By.xpath("//div[@class='cdk-visually-hidden']"));
+    assertThat(getDriver().findElement(By.xpath("//simple-snack-bar")).isDisplayed()).isTrue();
 
     }
 
     @Then("password should be masked")
     public void passwordShouldBeMasked() {
-        getDriver().findElement(By.xpath("//input[@placeholder='Password *']"));
+        assertThat(getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type").
+                equals("password")).isTrue();
 
 
     }

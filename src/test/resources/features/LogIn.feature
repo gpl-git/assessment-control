@@ -54,6 +54,7 @@ And I wait for 4 seconds
 When I enter "lmislinski@nbobd.com" into email field
 And I type password "12345"
 And I hit button "Sign In"
+  And I wait for 2 seconds
 Then pop up window with error message text should show up
 
 @LogIn6
