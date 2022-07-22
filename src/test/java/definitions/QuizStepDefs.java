@@ -16,6 +16,7 @@ public class QuizStepDefs {
             getDriver().get("http://ask-qa.portnov.com/#/login");
         } else if (url.equals("registration")) {
             getDriver().get("http://ask-qa.portnov.com/#/registration");
+
         }else{
             System.out.println("This sie " +url + " is not supported.");
         }
