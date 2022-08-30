@@ -1,5 +1,5 @@
 Feature: test
 
   Scenario: first
-    Given
+    Given I do
 
