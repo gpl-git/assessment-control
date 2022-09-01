@@ -3,4 +3,4 @@
 
     @test1
     Scenario: My first branch
-      Given I
+      Given I create a conflict with Sandra
