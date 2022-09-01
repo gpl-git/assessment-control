@@ -2,5 +2,5 @@
 Feature: Learning Git
 
   @test1
-  Scenario: My first branch
+  Scenario: My second branch
     Given
