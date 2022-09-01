@@ -1,6 +1,6 @@
 @test
-  Feature: Learning Git
+  Feature: learning Git
 
     @test1
     Scenario: My first branch
-      Given I open
+      Given
