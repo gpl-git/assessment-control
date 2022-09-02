@@ -21,7 +21,7 @@ Feature:  Quiz Scenarios
     And I type "Option2" as "Option 2*" into "Q1"
     When I select "Option 2*" as correct option in "Q1"
     When I click "Save" button
-    And I wait for 1 sec
-    Then I verify that "000 UI Automation - Galina" is displayed on the list of quizzes
     And I wait for 3 sec
+    Then I verify that "000 UI Automation - Galina" is displayed on the list of quizzes
+    And I wait for 5 sec
     And I delete "000 UI Automation - Galina" from the list of quizzes
