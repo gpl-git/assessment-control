@@ -71,12 +71,16 @@ public class PasswordCofirmPasswordHannaStepdefs {
 
     @And("error message should be displayed and contain text {string} h")
     public void errorMessageShouldBeDisplayedAndContainText(String message) {
+        assertThat(getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).isDisplayed()).isTrue();
         Assert.assertEquals(message, getDriver().findElement(By.xpath("//mat-error[@class='mat-error ng-star-inserted']")).getAttribute("textContent"));
     }
 
     @And("errors messages should be displayed and contain text {string} h")
     public void errorsMessagesShouldBeDisplayedAndContainText(String message) {
+        assertThat(getDriver().findElement(By.xpath("(//mat-error[@class='mat-error ng-star-inserted'])[1]")).isDisplayed()).isTrue();
         Assert.assertEquals(message, getDriver().findElement(By.xpath("(//mat-error[@class='mat-error ng-star-inserted'])[1]")).getAttribute("textContent"));
+
+        assertThat(getDriver().findElement(By.xpath("(//mat-error[@class='mat-error ng-star-inserted'])[2]")).isDisplayed()).isTrue();
         Assert.assertEquals(message, getDriver().findElement(By.xpath("(//mat-error[@class='mat-error ng-star-inserted'])[2]")).getAttribute("textContent"));
 }
 
