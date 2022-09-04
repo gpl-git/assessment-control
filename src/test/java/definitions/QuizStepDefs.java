@@ -67,15 +67,7 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@formcontrolname='question']")).sendKeys(questionText);
           }
 
-    @And("I type {string} as {string} into {string}")
-    public void iTypeAsInto(String optionText, String optionNumber, String questionNumber) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@placeholder='"+optionNumber+"']")).sendKeys(optionText);
-    }
 
-    @When("I select {string} as correct option in {string}")
-    public void iSelectAsCorrectOptionIn(String optionNumber, String questionNumber) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@placeholder='"+optionNumber+"']/../../../../../mat-radio-button")).click();
-    }
 
     @Then("I verify that {string} is displayed on the list of quizzes")
     public void iVerifyThatIsDisplayedOnTheListOfQuizzes(String quizTitle) {
@@ -89,5 +81,30 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//*[contains(text(),'Delete')]")).click();
         getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//*[contains(text(),'Delete')]")).click();
         Thread.sleep(1000);
+    }
+
+    @Then("I verify that {string} is not displayed on the list of quizzes")
+    public void iVerifyThatIsNotDisplayedOnTheListOfQuizzes(String quizTitleZero) {
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitleZero+"')]")).isDisplayed()).isFalse();
+    }
+
+
+
+    @Then("I see error message {string}")
+    public void iSeeErrorMessage(String errorMessage) {
+        assertThat(getDriver().findElement(By.xpath("//*[contains(text(), 'Quiz is not completed.')])")).isDisplayed()).isTrue();
+
+
+    }
+
+    @Then("error message appear")
+    public void errorMessageAppear() {
+        assertThat(getDriver().findElement(By.xpath("//*[contains(text(), 'Quiz is not completed.')]")).isDisplayed()).isTrue();
+    }
+
+    @Then("error message {string} is displayed")
+    public void errorMessageIsDisplayed(String expectedError) {
+        String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
+        assertThat(actualError.contains(expectedError)).isTrue();
     }
 }
