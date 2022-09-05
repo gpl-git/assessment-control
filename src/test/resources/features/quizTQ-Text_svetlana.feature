@@ -68,20 +68,20 @@ Feature:  Textual Question - Text
     And I delete "000 UI Automation - Svetlana" from the list of quizzes
 
   @quiz5
-#       Bug because accepts 1001 characters
+#       Bug: because accepts 1001 characters
   Scenario: Verify TQ field allows max 1000  characters
     When I click "Create New Quiz" button
     And I wait for 1 sec
     When I type "000 UI Automation - Svetlana" as quiz title
     And I add a question
     When I select "Textual" question type
+#    And I type 1000 alpanumeric characters into "Q1"
     When I enter "rhlkrphkmhbkdfmbkdsfkbipdfjbijdigjisdfjgbksdfmbvkdmksdgpijriogjeriojgkdsfmbksdfjbpidjgpioeragjipbmkpdsfjbpidfj ifmikmdfbmidpfjbidfmbdkbmkdfmbipdfjbiodfjbikdfmbkdfmbikdfmbipodfbmikfdmbkdfmbkdfmbkfdmblf rhlkrphkmhbkdfmbkdsfkbipdfjbijdigjisdfjgbksdfmbvkdmksdgpijriogjeriojgkdsfmbksdfjbpidjgpioeragjipbmkpdsfjbpidfj ifmikmdfbmidpfjbidfmbdk bmkdfmbipdfjbiodfjbikdfmbkdfmbikdfmbipodfbmikfdmbkdfmbkdfmbkfdmblf rhlkrphkmhbkdfmbkdsfkbipdfjbijdigjisdfjgbksdfmbvkdmksdgpijriogjeriojgkdsfmbksdfjbpidjgpioeragjipbmkpdsfjbpidfj ifmikmdfbmidpfjbidfmbdkbmkdfmbipdfjbi odfjbikdfmbkdfmbikdfmbipodfbmikfdmbkdfmbkdfmbkfdmblf rhlkrphkmhbkdfmbkdsfkbipdfjbijdigjisdfjgbksdfmbvkdmksdgpijriogjeriojgkdsfmbksdfjbpidjgpioeragjipbmkpdsfjbpidfj ifmikmdfbmidpfjbidfmbdkbmkdfmbipdfjbiodfjbikdfmbkdfmbikdfmbipodfbmikfdmbkdfmbkdfmbkfdmblfrhlkrphkmhbkdfmbkdsfkbipdfjbijdigjisdfjgbksdfmbvkdmksdgpijriogjeriojgkdsfmbksdfjbpidjgpioeragjipbmkpdsfjbpidfj ifmikmdfbmidpfjbidfmbdkb  cvx bv bv vhn nb b hgmyhuyluyuujjnmn,jykuyyk,yuityhkjuhggg" into "Q1"
     When I click "Save" button
-    And I wait for 1 sec
+    And I wait for 3 sec
     Then I verify that "000 UI Automation - Svetlana" is displayed on the list of quizzes
     And I wait for 3 sec
     And I delete "000 UI Automation - Svetlana" from the list of quizzes
-
     When I click "Create New Quiz" button
     And I wait for 1 sec
     When I type "000 UI Automation - Svetlana" as quiz title
@@ -95,17 +95,17 @@ Feature:  Textual Question - Text
     And I delete "000 UI Automation - Svetlana" from the list of quizzes
 
   @quiz6
-
-  Scenario: Create a Quiz (Happy Path)
+#    Bug: The quiz appears in the list of quizzes
+  Scenario: Textual Question shouldn't accept an empty space as minimum 1 character
     When I click "Create New Quiz" button
     And I wait for 1 sec
     When I type "000 UI Automation - Svetlana" as quiz title
     And I add a question
     When I select "Textual" question type
-    When I enter "Question 1 Text" into "Q1"
+    When I enter an empty space " " into "Q1"
     When I click "Save" button
     And I wait for 1 sec
-    Then I verify that "000 UI Automation - Svetlana" is displayed on the list of quizzes
+    Then I verify that "000 UI Automation - Svetlana" is not displayed on the list of quizzes
     And I wait for 3 sec
     And I delete "000 UI Automation - Svetlana" from the list of quizzes
 

@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -107,4 +108,21 @@ public class QuizStepDefs {
         String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
         assertThat(actualError.contains(expectedError)).isTrue();
     }
+
+    @When("I enter an empty space {string} into {string}")
+    public void iEnterAnEmptySpaceInto(String emptySpace, String questionNumber) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@formcontrolname='question']")).sendKeys(emptySpace);
+
+
+    }
+
+    @And("I type {int} alpanumeric characters into {string}")
+    public void iTypeAlpanumericCharactersInto(int num, String questionNumber) {
+
+        boolean useLetters = true;
+        boolean useNumbers = true;
+
+        String generatedString = RandomStringUtils.random(num, useLetters, useNumbers);
+        System.out.println(generatedString);
+}
 }
