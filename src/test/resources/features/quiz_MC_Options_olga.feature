@@ -28,32 +28,10 @@ Feature: Quiz - Multiple Choice Option Scenarios
     And I type "Actual Result" as "Option 3*" into "Q1"
     Then I click on checkbox of "Option 3*" as correct option in "Q1"
     Then I click "Add Option" button
-    And I type "Test set" as "Option 4*" into "Q1"
+    And I type "Short Description" as "Option 4*" into "Q1"
+    Then I click on checkbox of "Option 4*" as correct option in "Q1"
     Then I click "Add Option" button
-    And I type "Short Description" as "Option 5*" into "Q1"
-    Then I click on checkbox of "Option 5*" as correct option in "Q1"
-    Then I click "Add Option" button
-    And I type "Story points" as "Option 6*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Use Case" as "Option 7*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Test Strategy" as "Option 8*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Backlog" as "Option 9*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Sprint Backlog" as "Option 10*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Entry Criteria" as "Option 11*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Requirements" as "Option 12*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Specifications" as "Option 13*" into "Q1"
-    Then I click "Add Option" button
-    And I type "User Story" as "Option 14*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Test case" as "Option 15*" into "Q1"
-    Then I click "Add Option" button
-    And I type "Test plan" as "Option 16*" into "Q1"
+    And I add up to 16 options to "Q1" ok
     When I click "Save" button
     And I wait for 1 sec
     Then error message "15" is displayed
@@ -65,7 +43,7 @@ Feature: Quiz - Multiple Choice Option Scenarios
     And I add a question
     Then I select "Multiple-Choice" question type
     Then I enter "What are the main components of bug report?" into "Q1"
-    And I type "wewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewr" as "Option 1*" into "Q1"
+    And I enter 1000 alphanumeric characters into "Option 1*" in "Q1" ok
     And I click on checkbox of "Option 1*" as correct option in "Q1"
     Then I type "Expected Result" as "Option 2*" into "Q1"
     And I click on checkbox of "Option 2*" as correct option in "Q1"
@@ -110,7 +88,7 @@ Feature: Quiz - Multiple Choice Option Scenarios
       And I add a question
       Then I select "Multiple-Choice" question type
       Then I enter "What are the main components of bug report?" into "Q1"
-      And I type "wewrewfwcewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewrewfwewr" as "Option 1*" into "Q1"
+      And I enter 1001 alphanumeric characters into "Option 1*" in "Q1" ok
       Then I type "Expected Result" as "Option 2*" into "Q1"
       And I click on checkbox of "Option 2*" as correct option in "Q1"
       When I click "Save" button

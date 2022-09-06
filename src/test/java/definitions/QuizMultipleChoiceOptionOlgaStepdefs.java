@@ -2,6 +2,7 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,14 +51,34 @@ public class QuizMultipleChoiceOptionOlgaStepdefs {
     }
 
     @Then("I verify that {string} is located in {string}")
-    public void iVerifyThatIsLocatedIn(String expectedText, String optionNumber) {
-        String actualText = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]//../../..//*[@placeholder='"+optionNumber+"']")).getText();
-        assertThat(actualText.equalsIgnoreCase(expectedText));
+    public void  iVerifyThatIsLocatedIn(String expectedText, String optionNumber) {
+        String actualText = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]//../../..//*[@placeholder='"+optionNumber+"']")).getAttribute("value");
+        assertThat(actualText.equalsIgnoreCase(expectedText)).isTrue();
     }
 
     @Then("error message in snack-bar {string} is displayed")
     public void errorMessageInSnackBarIsDisplayed(String message) {
         assertThat(getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'"+message+"')]")).isDisplayed()).isTrue();
+    }
 
+    @And("I enter {int} alphanumeric characters into {string} in {string} ok")
+    public void iEnterAlphanumericCharactersIntoInOk(int num, String optionNumber, String questionNumber) {
+
+        boolean useLetters = true;
+        boolean useNumbers = true;
+
+        String generatedString = RandomStringUtils.random(num, useLetters, useNumbers);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@placeholder='"+optionNumber+"']")).sendKeys(generatedString);
+
+    }
+
+    @And("I add up to {int} options to {string} ok")
+    public void iAddUpToOptionsToOk(int num, String questionNumber) {
+
+        for (int i = 5; i <= num; i ++ ) {
+            getDriver().findElement(By.xpath("//span[contains(text(),'Add Option')]")).click();
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@placeholder='Option "+i+"*']")).sendKeys("Option "+ i);
+
+        }
     }
 }
