@@ -31,7 +31,7 @@ Feature:  Textual Question - Text
       When I type "000 UI Automation - Svetlana" as quiz title
       And I add a question
       When I select "Textual" question type
-      When I enter "DRA2@#$*_gasani()]}`" into "Q1"
+      When I enter "DRA2@#$*_gasan()]}`" into "Q1"
       When I click "Save" button
       And I wait for 1 sec
       Then I verify that "000 UI Automation - Svetlana" is displayed on the list of quizzes
