@@ -67,6 +67,7 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@formcontrolname='question']")).sendKeys(questionText);
           }
 
+
     @And("I type {string} as {string} into {string}")
     public void iTypeAsInto(String optionText, String optionNumber, String questionNumber) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@placeholder='"+optionNumber+"']")).sendKeys(optionText);
