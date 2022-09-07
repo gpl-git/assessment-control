@@ -28,7 +28,7 @@ public class ChengyuRegistrationFirstNameStepdefs {
 
     @Then("I click the {string} button")
     public void iClickTheButton(String btnName) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'Register Me')]")).click();
+        getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
     }
 
     @When("I clear first name file")
