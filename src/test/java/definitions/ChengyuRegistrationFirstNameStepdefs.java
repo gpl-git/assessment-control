@@ -32,7 +32,7 @@ public class ChengyuRegistrationFirstNameStepdefs {
     }
 
 
-    @Then("error message {string} is displayed")
+   // @Then("error message {string} is displayed")
     public void errorMessageIsDisplayed(String expectedMessage) {
         String actualMessage = getDriver().findElement(By.xpath("//mat-error")).getText();
         assertThat(actualMessage.equals(expectedMessage)).isTrue();
