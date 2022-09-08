@@ -31,10 +31,6 @@ public class ChengyuRegistrationFirstNameStepdefs {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
     }
 
-    @When("I clear first name file")
-    public void iClearFirstNameFile() {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='firstName']")).clear();
-    }
 
     @Then("error message {string} is displayed")
     public void errorMessageIsDisplayed(String expectedMessage) {
@@ -65,11 +61,6 @@ public class ChengyuRegistrationFirstNameStepdefs {
 
     }
 
-    @And("a error message {string} is displayed")
-    public void aErrorMessageIsDisplayed(String expectedMessage) {
-        String actualMessage = getDriver().findElement(By.xpath("//div[@class='cdk-overlay-container']")).getText();
-        assertThat(actualMessage.equals(expectedMessage)).isTrue();
-    }
 
     @And("a error message {string} should be present")
     public void aErrorMessageShouldBePresent(String expectedMessage) {
