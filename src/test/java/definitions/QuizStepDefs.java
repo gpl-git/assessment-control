@@ -22,10 +22,10 @@ public class QuizStepDefs {
 
     }
 
-    @And("I wait for {int} sec")
-    public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000* sec);
-    }
+//    @And("I wait for {int} sec")
+//    public void iWaitForSec(int sec) throws InterruptedException {
+//        Thread.sleep(1000* sec);
+//    }
 
     @When("I type {string} into email field")
     public void iTypeIntoEmailField(String email) {
@@ -65,7 +65,8 @@ public class QuizStepDefs {
     @When("I enter {string} into {string}")
     public void iEnterInto(String questionText, String questionNumber) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//*[@formcontrolname='question']")).sendKeys(questionText);
-          }
+    }
+
 
     @And("I type {string} as {string} into {string}")
     public void iTypeAsInto(String optionText, String optionNumber, String questionNumber) {
