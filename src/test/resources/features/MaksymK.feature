@@ -3,4 +3,3 @@
 
     @gitPractice1
     Scenario: Testing Something
-      
