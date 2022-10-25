@@ -100,28 +100,28 @@ public class QuizStepDefs {
         Thread.sleep(1000);
     }
 
-    @Then("I type {string} into FirstOption")
+    @Then("I type {string} into FirstOption [MKs]")
     public void iTypeIntoFirstOption(String text) {
         getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).sendKeys(text);
     }
 
-    @Then("I type {string} into SecondOption")
+    @Then("I type {string} into SecondOption [MKs]")
     public void iTypeIntoSecondOption(String text) {
         getDriver().findElement(By.xpath("//textarea[@placeholder='Option 2*']")).sendKeys(text);
     }
 
-    @Then("required quontity of characters should be present in OptionFiedld{int}")
+    @Then("required quontity of characters should be present in OptionFiedld{int} [MKs]")
     public void requiredQuontityOfCharactersShouldBePresentInOptionFiedld(int arg0) {
 
     }
 
-    @Then("required quantity of characters {string} should be present in OptionField1")
+    @Then("required quantity of characters {string} should be present in OptionField1 [MKs]")
     public void requiredQuantityOfCharactersShouldBePresentInOptionFeild(String expText) {
         String actText = getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).getText();
         assertThat(actText.equals(expText)).isTrue();
     }
 
-    @Then("required quantity of characters {string} should not be present in OptionField1")
+    @Then("required quantity of characters {string} should not be present in OptionField1 [MKs]")
     public void requiredQuantityOfCharactersShouldNotBePresentInOptionField(String expText) {
         String actText = getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).getText();
         assertThat(actText.equals(expText)).isFalse();
@@ -132,7 +132,7 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
     }
 
-    @Then("Option1 quiz error should be displayed")
+    @Then("Option1 quiz error should be displayed [MKs]")
     public void optionQuizErrorShouldBeDisplayed() {
         assertThat(getDriver().findElement(By.xpath("//mat-error[@id='mat-error-2']")).isDisplayed()).isTrue();
     }
@@ -142,7 +142,7 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath(path)).click();
     }
 
-    @Then("error messages should not be displayed")
+    @Then("error messages should not be displayed [MKs]")
     public void errorMessagesShouldNotBeDisplayed() {
         assertThat(getDriver().findElement(By.xpath("//mat-error[@id='mat-error-5']")).isDisplayed()).isFalse();
     }
