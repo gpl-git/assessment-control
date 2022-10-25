@@ -1,4 +1,4 @@
 @test
   Feature: Git Commands
 
-    Scenario:
+    Scenario:Practice Git
