@@ -2,4 +2,4 @@
   Feature: Registration password confirm password
 
     @git1
-    Scenario: Test 1
+    Scenario: Test
