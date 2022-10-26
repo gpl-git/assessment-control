@@ -12,18 +12,13 @@ import static support.TestContext.getDriver;
 public class QuizTitleMargaretaStepDefs {
     @Given("I'm opening {string} page")
     public void iMOpeningPage(String url) {
-        if (url.equals("login")) {
+        if (url.equals("Login")) {
             getDriver().get("http://ask-qa.portnov.com/#/login");
-        } else if (url.equals("registration")) {
+        } else if (url.equals("Registration")) {
             getDriver().get("http://ask-qa.portnov.com/#/registration");
         } else {
-            System.out.println("This url is not supported: " + url);
+            System.out.println("This url is not opening: " + url);
         }
-    }
-
-    @And("I wait for {int} sec")
-    public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000);
     }
 
     @When("I type {string} as an email")
@@ -31,18 +26,18 @@ public class QuizTitleMargaretaStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(email);
     }
 
-    @And("I type {string} as password")
-    public void iTypeAsPassword(String password) {
+    @And("I type {string} into password field")
+    public void iTypeIntoPasswordField(String password) {
         getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(password);
     }
 
-    @When("I click {string} button")
-    public void iClickButton(String buttonName) {
+    @When("I click on {string} button")
+    public void iClickOnButton(String buttonName) {
         getDriver().findElement(By.xpath("//span[contains(text(),'" + buttonName + "')]")).click();
     }
 
-    @Then("{string} page will be displayed")
-    public void pageWillBeDisplayed(String expectedUrl) {
+    @Then("{string} page should be displayed")
+    public void pageShouldBeDisplayed(String expectedUrl) {
         String currentUrl = getDriver().getCurrentUrl();
         assertThat(currentUrl.contains(expectedUrl)).isTrue();
     }
@@ -52,29 +47,55 @@ public class QuizTitleMargaretaStepDefs {
         getDriver().findElement(By.xpath("//h5[contains(text(),'" + menuItem + "')]")).click();
     }
 
-    @When("I type {string} as a quiz title")
-    public void iTypeAsAQuizTitle(String title) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(title);
+    @When("I'm clicking on {string} button")
+    public void iMClickingOnButton(String button) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Create New Quiz')]/../..//button")).click();
     }
 
-    @And("I add a question")
-    public void iAddAQuestion() {
-        getDriver().findElement(By.xpath("//mat-icon[text()='add_circle']")).click();
+    @When("I'm typing {string} as a quiz title")
+    public void iMTypingAsAQuizTitle(String quizTitle) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(quizTitle);
     }
 
-    @Then("I clear element with xpath {string}")
-    public void iClearElementWithXpath(String textName) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).clear();
+    @And("I add the question")
+    public void iAddTheQuestion() {
+        getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
+    }
+
+    @And("I click outside from input field")
+    public void iClickOutsideFromInputField() {
+        getDriver().findElement(By.xpath("//form")).click();
+    }
+
+    @And("I select the {string} question")
+    public void iSelectTheQuestion(String questionType) {
+        getDriver().findElement(By.xpath("//div[contains(text(),'" + questionType + "')]")).click();
+    }
+
+    @When("I type {string} in {string} question field")
+    public void iTypeInQuestionField(String questionText, String questionNumber) {
+        getDriver().findElement(By.xpath("//textarea[@formcontrolname='question']")).sendKeys(questionText);
+    }
+
+    @Then("the quiz {string} is displaying on the list of quizzes")
+    public void theQuizIsDisplayingOnTheListOfQuizzes(String quizTitle) {
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'MargoB')]")).isDisplayed()).isTrue();
+    }
+
+    @Then("I delete quiz with name {string}")
+    public void iDeleteQuizWithName(String title) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'MargoB')]")).click();
+        Thread.sleep(1000);
+    }
+
+    @Then("No error message is displayed under the {string} field")
+    public void noErrorMessageIsDisplayedUnderTheField(String titleOfTheQuiz) {
+        assertThat(getDriver().findElement(By.xpath("//div[@class='header-form-group']")).isDisplayed()).isTrue();
     }
 
     @Then("error message should be displayed")
     public void errorMessageShouldBeDisplayed() {
         assertThat(getDriver().findElement(By.xpath("//mat-error[(text()='This field is required')]")).isDisplayed()).isTrue();
-    }
-
-    @And("I click outside input field")
-    public void iClickOutsideInputField() {
-        getDriver().findElement(By.xpath("//form")).click();
     }
 
     @Then("error message {string} should be displayed")
@@ -83,29 +104,25 @@ public class QuizTitleMargaretaStepDefs {
         assertThat(actualError.equals(expectedError)).isTrue();
     }
 
-    @Then("element {string} should be present")
-    public void elementShouldBePresent(String required) {
-        assertThat(getDriver().findElement(By.xpath("//input[@aria-required='false']")).isDisplayed()).isTrue();
+
+    @And("{string} field is marked with asterisk is displayed")
+    public void fieldIsMarkedWithAsteriskIsDisplayed(String asterisk) {
+        assertThat(getDriver().findElement(By.xpath("//input")).getAttribute("placeholder").contains("*")).isTrue();
     }
 
-    @When("element with xpath should be present")
-    public void elementWithXpathShouldBePresent() {
-        assertThat(getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).isDisplayed()).isTrue();
+    @When("I'm selecting the {string} question")
+    public void iMSelectingTheQuestion(String questionType) {
+        getDriver().findElement(By.xpath("//div[contains(text(),'"+questionType+"')]")).click();
     }
 
-    @When("I select {string} question")
-    public void iSelectQuestion(String questionType) {
-        getDriver().findElement(By.xpath("//*[contains(text(),'"+questionType+"')]")).click();
-    }
+    @Then("I type {string} as {string} in {string} MB")
+    public void iTypeAsInMB(String optionText, String optionNumber, String questionNumber) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//textarea[@placeholder='"+optionNumber+"']")).sendKeys(optionText);
 
-    @When("I type {string} into {string}")
-    public void iTypeInto(String questionText, String questionNumber) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText);
     }
 }
 
 
 
 
- 
-    
+
