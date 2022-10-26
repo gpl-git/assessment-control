@@ -12,4 +12,4 @@
       
       @option1
       Scenario: Testing the first scenario
-        When I wait for 2 sec
+        When I wait for 3 sec
