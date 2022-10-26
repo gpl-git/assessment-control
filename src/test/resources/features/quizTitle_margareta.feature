@@ -19,6 +19,12 @@ Feature: Quiz Title Behavior
     And I add a question
     And I wait for 1 sec
     Then I clear element with xpath "Title Of The Quiz"
+    And I wait for 2 sec
+    And I click outside input field
+    And I wait for 2 sec
+    Then error message should be displayed
+
+
 
   @quizTitle2
     Scenario: Quiz Title Field Accepts Numbers
@@ -78,10 +84,15 @@ Feature: Quiz Title Behavior
      Scenario: Quiz Title can not have 1001 character
        When I click "Create New Quiz" button
        And I wait for 2 sec
-       When I type "jfhgvjshgshgvsfhgjshvghvghjvjghvjhgvjhg" as a quiz title
+       When I type "xcbvncrgfrehfkehrfefghfgcbvnjsefhbvhjerbvhjefbvhjfebvhfbvhfbvhfjbvhjfdbhjsbvhjfbdhjvbfdhjbv fjhdbvhjfd bvjhfbdvhjfbvjhbfdjvb fhjbvjfdb vm,fbdvmn,fdbvjkfdb vh,dfbvbfd,hvbfdbvjdfnvm,ndfbvjfdbvjbdfjvbfdbvjfdbvjhfdsbvjdfbvjhdfsbvsbvhbsnvbmnscbvnsbvhjsfbvfsbvnsfbvnsfbkjdfbnvjfnvjkfnvjfdnvjkdfnvjkfnvkjfdnjkfngjksfnbgjkfsngkjfsnjkngjksgjksgfsjkbjskbgjkfsbgjksbgjksfbgjkfsbgfjsbgjkfsbgjksfbgjksbgjksfbgjksbfgjksbgjksbgjksbgjksbgjksbgjfksbgfjksbgjksfbgjkfsbgjkfsbgsjkbgjkfsgbjksfbgjksfbgjksfbgjkfsbgkjsbgjkxcbvncrgfrehfkehrfefghfgcbvnjsefhbvhjerbvhjefbvhjfebvhfbvhfbvhfjbvhjfdbhjsbvhjfbdhjvbfdhjbvfjhdbvhjfd bvjhfbdvhjfbvjhbfdjvb fhjbvjfdbvm,fbdvmn,fdbvjkfdlmvh,dfbvbfdhvbfdbvjdfnvmndfbvjfdbvjbdfjvbfdbvjfdbvjhfdsbvjdfbvjhdfsbvsbvhbsnvbmnscbvnsbvhjsfbvfsbvnsfbvnsfbkjdfbnvjfnvjkfnvjfdnvjkdfnvjkfnvkjfdnjkfngjksfnbgjkfsngkjfsnjkngjksgjksgfsjkbjskbgjkfsbgjksbgjksfbgjkfsbgfjsbgjkfsbgjksfbgjksbgjksfbgjksbfgjksbgjksbgjksbgjksbgjksbgjfksbgfjksbgjksfbgjkfsbgjkfsbgsjkbgjkfsgbjksfbgjksfbgjksfbgjkfsbgkjsbgjkdqtyujg" as a quiz title
        And I add a question
+       And I select "Textual" question
+       When I type "What is Quality Assurance?" into "Q1"
+       And I click "Save" button
+#      This is a known issue SEP22-
+       Then error message "No more than 1001 characters" should be displayed
        And I wait for 1 sec
-       Then I clear element with xpath "jfhgvjshgshgvsfhgjs..."
+
 
       @quizTitle9
       Scenario: Quiz Title can not have only space characters
