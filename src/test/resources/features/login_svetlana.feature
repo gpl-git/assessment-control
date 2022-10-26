@@ -18,7 +18,6 @@
      When I click button "Sign In"
      And I wait for 1 sec
      Then "Authentication failed" error message should be displayed
-     And "home" page should not be displayed
      And I wait for 1 sec
 
 @login3
@@ -29,7 +28,6 @@
       When I click button "Sign In"
       And I wait for 1 sec
       Then "Authentication failed" error message should be displayed
-      And  "home" page should not be displayed
       And I wait for 1 sec
 @login4
     Scenario: Login with invalid email and valid password as a teacher
@@ -39,7 +37,6 @@
        When I click button "Sign In"
        And I wait for 1 sec
        Then "Authentication failed" error message should be displayed
-       And "home" page should not be displayed
        And I wait for 1 sec
 
 @login5
@@ -49,7 +46,6 @@
        And I click button "Sign In"
        And I wait for 1 sec
        Then password error message "This field is required" is displayed
-       And  "home" page should not be displayed
        And I wait for 1 sec
 @login6
     Scenario: Login with empty email and valid password as a teacher
@@ -58,7 +54,6 @@
         And  I click button "Sign In"
         And I wait for 1 sec
         Then email error message "This field is required" is displayed
-        And "home" page should not be displayed
         And I wait for 1 sec
 @login7
      Scenario: Login with empty email and password fields
@@ -67,7 +62,6 @@
         And I wait for 1 sec
         Then email error message "This field is required" is displayed
         Then password error message "This field is required" is displayed
-        And "home" page should not be displayed
         And I wait for 1 sec
 @login8
      Scenario: Login with valid credentials as a student
@@ -86,7 +80,6 @@
         When I click button "Sign In"
         And I wait for 1 sec
         Then "Authentication failed" error message should be displayed
-        And "home" page should not be displayed
         And I wait for 1 sec
 @login10
      Scenario: Password field is masked
@@ -147,5 +140,4 @@
      When I click button "Sign In"
      And I wait for 1 sec
      Then "Authentication failed" error message should be displayed
-     And "home" page should not be displayed
      And I wait for 1 sec
