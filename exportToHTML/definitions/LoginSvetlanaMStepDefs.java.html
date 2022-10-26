@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>LoginSvetlanaMStepDefs.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+LoginSvetlanaMStepDefs.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">definitions</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">cucumber.api.java.en.And</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">cucumber.api.java.en.Given</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">cucumber.api.java.en.Then</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">cucumber.api.java.en.When</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.By</span><span class="s0">;</span>
+
+<span class="s0">import static </span><span class="s1">org.assertj.core.api.Assertions.assertThat</span><span class="s0">;</span>
+<span class="s0">import static </span><span class="s1">support.TestContext.getDriver</span><span class="s0">;</span>
+
+
+<span class="s0">public class </span><span class="s1">LoginSvetlanaMStepDefs {</span>
+    <span class="s1">@Given(</span><span class="s2">&quot;I navigate to {string} page&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iNavigateToPage(String url) {</span>
+        <span class="s0">if </span><span class="s1">(url.equals(</span><span class="s2">&quot;login&quot;</span><span class="s1">)){</span>
+            <span class="s1">getDriver().get(</span><span class="s2">&quot;http://ask-qa.portnov.com/#/login&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">}</span><span class="s0">else if </span><span class="s1">(url.equals(</span><span class="s2">&quot;registration&quot;</span><span class="s1">)){</span>
+            <span class="s1">getDriver().get(</span><span class="s2">&quot;http://ask-qa.portnov.com/#/registration&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">}</span><span class="s0">else</span><span class="s1">{</span>
+            <span class="s1">System.out.println(</span><span class="s2">&quot;This url is not supported: &quot; </span><span class="s1">+ url)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@When(</span><span class="s2">&quot;I type {string} into email field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iTypeIntoEmailField(String email) {</span>
+        <span class="s1">getDriver().findElement(By.xpath(</span><span class="s2">&quot;//input[@formcontrolname='email']&quot;</span><span class="s1">)).sendKeys(email)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;I type {string} into password field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iTypeIntoPasswordField(String password) {</span>
+        <span class="s1">getDriver().findElement(By.xpath(</span><span class="s2">&quot;//input[@formcontrolname='password']&quot;</span><span class="s1">)).sendKeys(password)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@When(</span><span class="s2">&quot;I click button {string}&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iClickButton(String buttonName) {</span>
+        <span class="s1">getDriver().findElement(By.xpath(</span><span class="s2">&quot;//span[contains(text(), '&quot;</span><span class="s1">+buttonName+</span><span class="s2">&quot;')]&quot;</span><span class="s1">)).click()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Then(</span><span class="s2">&quot;{string} page should be displayed&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">pageShouldBeDisplayed(String expectedUrl) {</span>
+       <span class="s1">String actualUrl = getDriver().getCurrentUrl()</span><span class="s0">;</span>
+       <span class="s1">assertThat(actualUrl.contains(expectedUrl)).isTrue()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Then(</span><span class="s2">&quot;{string} error message should be displayed&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">errorMessageShouldBeDisplayed(String errorMessage) {</span>
+        <span class="s1">String actualMessage = getDriver().findElement(By.xpath(</span><span class="s2">&quot;//simple-snack-bar[contains(text(), 'Authentication failed. User not found or password does not match')]&quot;</span><span class="s1">)).getText()</span><span class="s0">;</span>
+        <span class="s1">assertThat(actualMessage.contains(errorMessage)).isTrue()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Then(</span><span class="s2">&quot;password error message {string} is displayed&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">passwordErrorMessageIsDisplayed(String errorPassword) {</span>
+        <span class="s1">String actualError = getDriver().findElement(By.xpath(</span><span class="s2">&quot;//input[@formcontrolname='password']/../../..//mat-error[contains(text(), '&quot;</span><span class="s1">+errorPassword+</span><span class="s2">&quot;')]&quot;</span><span class="s1">)).getText()</span><span class="s0">;</span>
+        <span class="s1">assertThat(actualError.equals(errorPassword)).isTrue()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Then(</span><span class="s2">&quot;{string} page should not be displayed&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">pageShouldNotBeDisplayed(String expectedUrl) {</span>
+        <span class="s1">String actualUrl = getDriver().getCurrentUrl()</span><span class="s0">;</span>
+        <span class="s1">assertThat(actualUrl.contains(expectedUrl)).isFalse()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Then(</span><span class="s2">&quot;email error message {string} is displayed&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">emailErrorMessageIsDisplayed(String errorEmail) {</span>
+        <span class="s1">String actualError = getDriver().findElement(By.xpath(</span><span class="s2">&quot;//input[@formcontrolname='email']/../../..//mat-error[contains(text(), '&quot;</span><span class="s1">+errorEmail+</span><span class="s2">&quot;')]&quot;</span><span class="s1">)).getText()</span><span class="s0">;</span>
+        <span class="s1">assertThat(actualError.equals(errorEmail)).isTrue()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Then(</span><span class="s2">&quot;I verify that password field is masked&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iVerifyThatPasswordFieldIsMasked() {</span>
+        <span class="s1">assertThat(getDriver().findElement(By.xpath(</span><span class="s2">&quot;//input[@formcontrolname='password']&quot;</span><span class="s1">)).getAttribute(</span><span class="s2">&quot;type&quot;</span><span class="s1">)).isEqualTo(</span><span class="s2">&quot;password&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;I click into password field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iClickIntoPasswordField() {</span>
+        <span class="s1">getDriver().findElement(By.xpath(</span><span class="s2">&quot;//input[@formcontrolname='password']&quot;</span><span class="s1">)).click()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@And(</span><span class="s2">&quot;I click into email field&quot;</span><span class="s1">)</span>
+    <span class="s0">public void </span><span class="s1">iClickIntoEmailField() {</span>
+        <span class="s1">getDriver().findElement(By.xpath(</span><span class="s2">&quot;//input[@formcontrolname='email']&quot;</span><span class="s1">)).click()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
