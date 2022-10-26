@@ -27,8 +27,8 @@ Feature: Quiz Scenarios
     Then I wait for 2 sec
     Then question "Q1" option "Option 1*" should contain "1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000ch" characters Assertion
      And I click "Save" button
-     And I wait for 1 sec
-     Then quiz "Demo Quiz - Automation" is displayed on the list of quizzes
+     And I wait for 3 sec
+     Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
      And I delete quiz "Demo Quiz - Automation"
 
 
@@ -47,9 +47,9 @@ Feature: Quiz Scenarios
     Then I wait for 2 sec
     Then question "Q1" option "Option 1*" should not contain "1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001cha" characters Assertion
     And I click "Save" button
-    And I wait for 1 sec
-    Then quiz "Demo Quiz - Automation" is displayed on the list of quizzes
-    And I delete quiz "Demo Quiz - Automation"
+    And I wait for 3 sec
+    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
+    And I delete quiz "111Maksym Demo Quiz - Automation"
 
 
 
@@ -69,9 +69,9 @@ Feature: Quiz Scenarios
     Then I wait for 2 sec
     Then question "Q1" option "Option 1*" should contain "1" characters Assertion
     And I click "Save" button
-    And I wait for 1 sec
-    Then quiz "Demo Quiz - Automation" is displayed on the list of quizzes
-    And I delete quiz "Demo Quiz - Automation"
+    And I wait for 3 sec
+    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
+    And I delete quiz "111Maksym Demo Quiz - Automation"
 
 
 
@@ -106,8 +106,8 @@ Feature: Quiz Scenarios
     Then I wait for 1 sec
     Then I click on "Save" button
     And I wait for 1 sec
-    Then quiz "Demo Quiz - Automation" is displayed on the list of quizzes
-    And I delete quiz "Demo Quiz - Automation"
+    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
+    And I delete quiz "111Maksym Demo Quiz - Automation"
 
   @quiz6
   Scenario: [SEP22-424] Options could be deleted (Passed)
@@ -145,3 +145,55 @@ Scenario: [SEP22-431] >15  options can be added to question in Single Choice que
   Then I wait for 1 sec
   Then in question "Q1" option number "Option 18*" should be present
   Then I wait for 3 sec
+
+  @quiz8
+  Scenario: [SEP22-427] Options could be moved up (Assertions passed)
+    When I click "Create New Quiz" button
+    And I wait for 1 sec
+    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    And I add a question
+    When I select "Single" question
+    And I wait for 1 sec
+    When I type "This is a Question #1 " into "Q1"
+    Then I wait for 2 sec
+    And I add 3 options to question "Q1"
+    Then I wait for 3 sec
+    Then in question "Q1" option number "Option 3*" should be present
+    Then I select "Option 1*" as correct option in "Q1"
+    Then I type "#1" as "Option 1*" in "Q1"
+    Then I type "#2" as "Option 2*" in "Q1"
+    Then I clear "Q1" option "Option 3*" text field
+    Then I type "------ moving question #3------" as "Option 3*" in "Q1"
+    Then I wait for 2 sec
+    Then I click on settings button in option "Option 3*"
+    Then I wait for 1 sec
+    Then I click on button element using JavaScript with button name "Move option up"
+    Then I wait for 1 sec
+    Then question "Q1" option "Option 2*" should contain "------ moving question #3------" characters Assertion
+    Then I wait for 3 sec
+
+  @quiz9
+  Scenario: [SEP22-425] Options could be moved down (Assertion passed)
+    When I click "Create New Quiz" button
+    And I wait for 1 sec
+    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    And I add a question
+    When I select "Single" question
+    And I wait for 1 sec
+    When I type "This is a Question #1 " into "Q1"
+    Then I wait for 2 sec
+    And I add 3 options to question "Q1"
+    Then I wait for 3 sec
+    Then in question "Q1" option number "Option 3*" should be present
+    Then I select "Option 1*" as correct option in "Q1"
+    Then I type "#1" as "Option 1*" in "Q1"
+    Then I type "------ moving question #2------" as "Option 2*" in "Q1"
+    Then I wait for 2 sec
+    Then I click on settings button in option "Option 2*"
+    Then I wait for 1 sec
+    Then I click on button element using JavaScript with button name "Move option down"
+    Then I wait for 1 sec
+    Then question "Q1" option "Option 3*" should contain "------ moving question #2------" characters Assertion
+    Then I wait for 3 sec
+
+

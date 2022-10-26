@@ -225,18 +225,14 @@ public class MaksymQuizStepDefs {
 
   @Then("question {string} option {string} should contain {string} characters Assertion")
   public void questionOptionShouldContainCharactersAssertion(
-      String questionNum, String optionNum, String expectedText) {
-    String actualText =
-        getDriver()
-            .findElement(
-                By.xpath(
-                    "//mat-panel-title[contains(text(),'"
-                        + questionNum
-                        + "')]/..//..//..//textarea[@placeholder='"
-                        + optionNum
-                        + "']"))
-            .getAttribute("value");
-    assertThat(actualText.equals(expectedText)).isTrue();
+          String questionNum, String optionNum, String expectedText) {
+      String actualText = getDriver().findElement(
+              By.xpath("//mat-panel-title[contains(text(),'"
+                      + questionNum
+                      + "')]/..//..//..//textarea[@placeholder='"
+                      + optionNum
+                      + "']")).getAttribute("value");
+      assertThat(actualText.equals(expectedText)).isTrue();
   }
 
   @Then("question {string} option {string} should not contain {string} characters Assertion")
@@ -306,5 +302,23 @@ public class MaksymQuizStepDefs {
     String actuaOptNum = getDriver().findElement(By.xpath("//*[contains(text(),'" + questionNum + "')]/../../..//*[@placeholder='"+optionNum+"']")).getAttribute("value");
     System.out.println(actuaOptNum);
 //    assertThat(actuaOptNum.equals(optionNum)).isTrue();
+  }
+
+    @Then("I click on settings button in option {string}")
+    public void iClickOnSettingsButtonInOption(String optionNum) {
+      getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/..//..//.//mat-panel-title[contains(text(),'Q1')]/..//..//..//textarea[@placeholder='"+optionNum+"']/..//..//..//..//..//../mat-icon[@role='img']")).click();
+    }
+
+    @Then("I click on button element using JavaScript with button name {string}")
+    public void iClickOnButtonElementUsingJavaScriptWithButtonName(String btnName) {
+
+            WebElement element = getDriver().findElement(By.xpath("//button/*[contains(text(),'"+btnName+"')]"));
+            JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+            executor.executeScript("arguments[0].click();", element);
+    }
+
+  @Then("I clear {string} option {string} text field")
+  public void iClearOptionTextField(String questionNum, String optionNum) {
+    getDriver().findElement(By.xpath("//*[contains(text(),'" + questionNum + "')]/../../..//*[@placeholder='"+optionNum+"']")).clear();
   }
 }
