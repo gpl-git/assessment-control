@@ -6,6 +6,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
+import java.util.Locale;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
@@ -81,5 +83,17 @@ public class LoginSvetlanaMStepDefs {
     @And("I click into email field")
     public void iClickIntoEmailField() {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).click();
+    }
+
+    @And("I verify user role is {string}")
+    public void iVerifyUserRoleIs(String role) {
+        String  userInfo=getDriver().findElement(By.xpath("//div[@class='info']")).getText();
+        assertThat(userInfo.contains(role.toUpperCase(Locale.ROOT))).isTrue();
+    }
+
+    @Then("I verify that password field has attribute type=password")
+    public void iVerifyThatPasswordFieldHasAttributeTypePassword() {
+        assertThat(getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type")).isEqualTo("password");
+
     }
 }
