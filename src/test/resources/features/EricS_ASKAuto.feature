@@ -20,7 +20,7 @@
         When I type "haffvbnamgftsgh5698@@@@!!!%" into "1"
         And I add a question
         Then I click on element with xpath "//mat-panel-title[contains(text(),'Q1')]"
-        And I wait for 2 sec
+        And I wait for 3 sec
         Then element with xpath "//textarea[@placeholder='Question *'][@id='mat-input-3']" should be present
         Then element with xpath "//mat-panel-title[@class='mat-expansion-panel-header-title']" should have text as "Q1: haffvbnamgftsgh5698@@@@!!!%"
         And I wait for 2 sec
