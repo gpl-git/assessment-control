@@ -11,62 +11,43 @@
       And I wait for 1 sec
       
       @option1
-      Scenario: Testing the first scenario
-        When I click "Create New Quiz" button
-        And I wait for 2 sec
-        When I type "Demo Quiz Textual Question" as quiz title
-        And I add a question
-        When I select "Textual" question
-        When I type "haffvbnamgftsgh5698@@@@!!!%" into "1"
-        And I add a question
-        Then I click on element with xpath "//mat-panel-title[contains(text(),'Q1')]"
-        And I wait for 3 sec
-        Then element with xpath "//textarea[@placeholder='Question *'][@id='mat-input-3']" should be present
-        Then element with xpath "//mat-panel-title[@class='mat-expansion-panel-header-title']" should have text as "Q1: haffvbnamgftsgh5698@@@@!!!%"
-        And I wait for 2 sec
-
-      @option2
-      Scenario: Verify that Question field is required and marked with asterisks
+      Scenario: Verify that Question field is required
         When I click "Create New Quiz" button
         And I wait for 1 sec
         When I type "Demo Quiz Textual Question" as quiz title
         And I add a question
         When I select "Textual" question
-        And I add a question
-        Then I click on element with xpath "//mat-panel-title[contains(text(),'Q1')]"
+        And I click "Save" button
         And I wait for 1 sec
-        Then element with xpath "//mat-error[@id='mat-error-3'][contains(text(),'This field is required')]" should be present
+        Then error message "Quiz is not completed" should be displayed
+        Then error message "This field is required" should be displayed
 
-      @option3
-      Scenario: Make sure you can put one letter into question name
-        When I click "Create New Quiz" button
-        And I wait for 2 sec
-        When I type "Demo Quiz Textual Question" as quiz title
-        And I add a question
-        When I select "Textual" question
-        And I wait for 1 sec
-        When I type "h" into "1"
-        And I add a question
-        Then I click on element with xpath "//mat-panel-title[contains(text(),'Q1')]"
-        And I wait for 2 sec
-        Then element with xpath "//textarea[@placeholder='Question *'][@id='mat-input-3']" should be present
-        Then element with xpath "//mat-panel-title[@class='mat-expansion-panel-header-title']" should have text as "Q1: h"
-        And I wait for 2 sec
-
-    @option4
-    Scenario: Make sure you can put 1001 letter into question name
+    @option2
+    Scenario Outline: enter 1, 27, 999, 1000, 1002 characters into question
       When I click "Create New Quiz" button
-      And I wait for 2 sec
+      And I wait for 1 sec
       When I type "Demo Quiz Textual Question" as quiz title
       And I add a question
       When I select "Textual" question
       And I wait for 1 sec
-      When I enter 1001 of alphanumeric characters as title of the Question
+      When I type <questionText> into "1"
       And I wait for 1 sec
-      Then element with xpath "//span[contains(text(), 'Preview')]" should be present
-      Then I click on element with xpath "//span[contains(text(), 'Preview')]"
+      And I click "Save" button
       And I wait for 1 sec
-      Then element with xpath "//textarea[@formcontrolname='textAnswer']" should be present
+      Then quiz "Demo Quiz Textual Question" is displayed on the list of quizzes
+      When I click on quiz name "Demo Quiz Textual Question"
+      When Total Questions in quiz "Demo Quiz Textual Question" should be equal to 1
+      When I click on quiz name "Demo Quiz Textual Question"
+      And I wait for 2 sec
+      And I delete quiz "Demo Quiz Textual Question"
+      Examples:
+        | questionText |
+        | "h" |
+        | "haffvbnamgftsgh5698@@@@!!!%" |
+        | "0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c12" |
+        | "0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c122" |
+        | "0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c1234d56789d0123456789a123456789b123456789c124" |
 
 
-          
+
+
