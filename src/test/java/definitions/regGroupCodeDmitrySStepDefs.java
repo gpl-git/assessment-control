@@ -57,9 +57,9 @@ public class regGroupCodeDmitrySStepDefs {
         Thread.sleep(1000);
     }
 
-    @And("I push on {string} button")
-    public void iPushOnButton(String registerMeBtn) throws InterruptedException {
-        getDriver().findElement(By.xpath("//span[contains(text(),'Register Me')]")).click();
+    @And("I push on {string} button DS")
+    public void iPushOnButtonDS(String registerMeBtn) throws InterruptedException {
+        getDriver().findElement(By.xpath("//span[contains(text(),'"+registerMeBtn+"')]")).click();
         Thread.sleep(1000);
     }
 
@@ -117,5 +117,16 @@ public class regGroupCodeDmitrySStepDefs {
     @And("I wait for {int} sec DS")
     public void iWaitForSecDS(int sec) throws InterruptedException {
         Thread.sleep(sec * 1000);
+    }
+
+    @Given("I will type {int} alphanumeric character into Group Code input field DS")
+    public void iWillTypeAlphanumericCharacterIntoGroupCodeInputFieldDS(int number) throws InterruptedException {
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
+
+        //System.out.println(generatedString);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='group']")).sendKeys(generatedString);
+        Thread.sleep(1000);
     }
 }
