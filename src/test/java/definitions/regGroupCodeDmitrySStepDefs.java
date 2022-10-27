@@ -92,7 +92,7 @@ public class regGroupCodeDmitrySStepDefs {
 
     @And("error message {string} should be displayed")
     public void errorMessageShouldBeDisplayed(String expectedError) throws InterruptedException {
-        String actualError = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-3']/../..")).getText();
+        String actualError = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-3']")).getText();
         //System.out.println(actualError);
         Thread.sleep(1000);
         assertThat(actualError.equals(expectedError)).isTrue();
