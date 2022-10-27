@@ -216,10 +216,7 @@ public class MaksymSingleChoiseOptionsStepDefs {
     assertThat(pop_upMessage.contains("This field is required")).isTrue();
   }
 
-  @Then("I click on {string} button")
-  public void iClickOnButton(String buttonName) {
-    getDriver().findElement(By.xpath("//button/*[contains(text(),'" + buttonName + "')]")).click();
-  }
+
 
   @Then("warning message should not appear")
   public void warningMessageShouldNotAppear() {
@@ -261,10 +258,7 @@ public class MaksymSingleChoiseOptionsStepDefs {
     getDriver().findElement(By.xpath("//*[contains(text(),'" + questionNum + "')]/../../..//*[@placeholder='"+optionNum+"']")).clear();
   }
 
-  @Then("the error message {string} should be displayed")
-  public void theErrorMessageShouldBeDisplayed(String errMess) {
-    assertThat(getDriver().findElement(By.xpath("//message[contains(text(),'"+errMess+"')]")).isDisplayed()).isTrue();
-  }
+
 
   @Then("no error messages like {string}")
   public void noErrorMessagesLikeRed(String arg0, String arg1) {
