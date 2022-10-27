@@ -1,4 +1,4 @@
-@questiontext
+@singlechoice_questiontext
 Feature: Quiz Scenarios
   Background:
     Given I navigate to "login" page ASK
@@ -10,7 +10,7 @@ Feature: Quiz Scenarios
     When I click on "Quizzes" from menu
     And I wait for 1 sec
 
-  @questiontext1
+  @singlechoice_questiontext1
   Scenario: Question text field accepts Alphanumeric & Sp. characters
     When I click on "Create New Quiz" button
     And I wait for 1 sec
@@ -28,7 +28,7 @@ Feature: Quiz Scenarios
     And I wait for 2 sec
     And I delete the quiz "Test_GalinaG - Automation"
 
-  @questiontext2
+  @singlechoice_questiontext2
   Scenario: Question text field accepts min 1 character
     When I click on "Create New Quiz" button
     And I wait for 1 sec
@@ -46,7 +46,7 @@ Feature: Quiz Scenarios
     And I wait for 1 sec
     And I delete the quiz "Test_GalinaG - Automation"
 
-  @questiontext3
+  @singlechoice_questiontext3
   Scenario: Question text field accepts 1000 characters
     When I click on "Create New Quiz" button
     And I wait for 1 sec
@@ -64,7 +64,7 @@ Feature: Quiz Scenarios
     And I wait for 1 sec
     And I delete the quiz "Test_GalinaG - Automation1"
 
-  @questiontext4
+  @singlechoice_questiontext4
   Scenario: Question text field accepts 1001 characters
     When I click on "Create New Quiz" button
     And I wait for 1 sec
@@ -84,7 +84,7 @@ Feature: Quiz Scenarios
     Then the error message "The field does not accepts more than 1001 characters" should be displayed
 
 
-  @questiontext5
+  @singlechoice_questiontext5
   Scenario: Question text field is required
     When I click on "Create New Quiz" button
     And I wait for 1 sec

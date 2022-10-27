@@ -22,16 +22,6 @@ public class QuizTitleGalinaGStepDefs {
         }
     }
 
-    @When("I type email {string} for teacher user")
-    public void iTypeEmailForTeacherUser(String email) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys(email);
-    }
-
-    @And("I type password {string}")
-    public void iTypePassword(String password) {
-        getDriver().findElement(By.xpath("//*[@formcontrolname='password']")).sendKeys(password);
-    }
-
     @When("I click the {string} button")
     public void iClickTheButton(String signinbutton) {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+signinbutton+"')]")).click();
@@ -46,11 +36,6 @@ public class QuizTitleGalinaGStepDefs {
     @When("I click on {string} from menu")
     public void iClickOnFromMenu(String item) {
         getDriver().findElement(By.xpath("//h5[contains(text(),'"+item+"')]")).click();
-    }
-
-    @When("I click on {string} button")
-    public void iClickOnButton(String quizbutton) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'"+quizbutton+"')]")).click();
     }
 
     @When("I type the title of the Quiz {string}")
@@ -92,14 +77,6 @@ public class QuizTitleGalinaGStepDefs {
     @Then("quiz {string} is present on the list of quizzes")
     public void quizIsPresentOnTheListOfQuizzes(String Quiztitle) {
         assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+Quiztitle+"')]")).isDisplayed()).isTrue();
-    }
-
-    @And("I delete the quiz {string}")
-    public void iDeleteTheQuiz(String quiztitle) throws InterruptedException{
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quiztitle+"')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quiztitle+"' )]/../../..//*[contains(text(),'Delete')]")).click();
-        getDriver().findElement(By.xpath("//div[@class='mat-dialog-actions']//*[contains(text(),'Delete')]")).click();
-        Thread.sleep(1000);
     }
 
     @When("I enter {int} of alphanumeric characters as title of the Question")
