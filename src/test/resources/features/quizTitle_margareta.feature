@@ -5,7 +5,7 @@
       Given I'm opening "Login" page
       When I type "bbd100@filevino.com" as an email
       And I type "Test1234" into password field
-      When I click on "Sign In" button
+      When I click on "Sign In" button MB
       And I wait for 2 sec
       Then "home" page should be displayed
       When I click on "Quizzes" from menu item
@@ -24,7 +24,7 @@ Scenario: Whole workflow for a quiz
   And I wait for 2 sec
   When I type "What is Quality Assurance?" in "Q1" question field
   And I wait for 2 sec
-  Then I click on "Save" button
+  Then I click on "Save" button MB
   And I wait for 3 sec
   Then the quiz "MargoB" is displaying on the list of quizzes
   And I wait for 2 sec
@@ -111,7 +111,7 @@ Scenario: Quiz Title field can have 1001 characters
   And I wait for 2 sec
   And I select "Textual" question
   When I type "What is Exploratory Testing?" into "Q1"
-  And I click on "Save" button
+  And I click on "Save" button MB
 #  This is a known issue Sep22-331
   Then error message "No more than 1001 characters" should be displayed
   And I wait for 2 sec
@@ -125,34 +125,53 @@ Scenario: Quiz Title can not have only space characters
   And I wait for 2 sec
   When I type "What is Quality?" into "Q1"
   And I wait for 2 sec
-  Then  I click on "Save" button
+  Then  I click on "Save" button MB
   And I wait for 1 sec
 #  This is a known issue Sep22-392
   Then error message "Quiz Title can not be empty" should be displayed
   And I wait for 1 sec
 
 @quizTitle11
-Scenario: Quiz Title must have at least one non space character
-  When I type " +1 " as quiz title
+Scenario: Create a quiz- Leading characters
+  When I type " Lead" as quiz title
   And I add a question
+  When I select the "Single" question
   And I wait for 2 sec
-  When I'm selecting the "Single-Choice" question
+  When I type "What is Gray box Testing" into "Q1"
+  And I type "Black box testing plus utilizing partial knowledge of software internals" as "Option 1*" in "Q1" MB
+  And I type "Testing done from user perspective" as "Option 2*" in "Q1"
+  Then I select "Option 1*" as correct option in "Q1" MB
+  And I click on "Save" button MB
   And I wait for 2 sec
-  When I type "What is a bug?" into "Q1"
+  Then quiz "Lead" is displayed on the list of quizzes MB
   And I wait for 2 sec
-  Then I type "mismatch between actual and expected behavior" as "Option 1*" in "Q1" MB
+  Then I verify that "Lead" quiz title has a leading white space MB
   And I wait for 1 sec
-  Then I type "defect into software" as "Option 2*" in "Q1" MB
-  And I wait for 2 sec
-  Then I select "Option 1*" as correct option in "Q1"
-  And I wait for 2 sec
-  And I click on "Save" button
+  And I click on "Save" button MB
   And I wait for 1 sec
-  Then quiz " +1 " is displayed on the list of quizzes
-  And I delete quiz with name " +1 "
+  Then I delete quiz with name "Lead"
   And I wait for 2 sec
 
 
+@quizTitle12
+Scenario: Creat Quiz- Trailing characters
+When I type "TrailMB " as quiz title
+  And I add a question
+  When I select the "Single" question
+  And I wait for 2 sec
+  When I type "What is purpose of software Testing?" into "Q1"
+  And I type "Verification" as "Option 1*" in "Q1" MB
+  And I type "Acceptance" as "Option 2*" in "Q1" MB
+  Then I select "Option 1*" as correct option in "Q1" MB
+  And I wait for 2 sec
+  And I click on "Save" button MB
+  And I wait for 2 sec
+  Then quiz "TrailMB" is displayed on the list of quizzes
+  And I wait for 2 sec
+  Then I verify that "TrailMB" quiz title has a trailing white space MB
+  And I click on "Save" button MB
+  And I wait for 2 sec
+  And I delete quiz with name "TrailMB "
 
 
 

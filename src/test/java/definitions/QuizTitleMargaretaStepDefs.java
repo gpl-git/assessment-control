@@ -31,10 +31,11 @@ public class QuizTitleMargaretaStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(password);
     }
 
-    @When("I click on {string} button")
-    public void iClickOnButton(String buttonName) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'" + buttonName + "')]")).click();
+    @And("I click on {string} button MB")
+    public void iClickOnButtonMB(String buttonNameMB) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'"+buttonNameMB+"')]")).click();
     }
+
 
     @Then("{string} page should be displayed")
     public void pageShouldBeDisplayed(String expectedUrl) {
@@ -110,15 +111,47 @@ public class QuizTitleMargaretaStepDefs {
         assertThat(getDriver().findElement(By.xpath("//input")).getAttribute("placeholder").contains("*")).isTrue();
     }
 
-    @When("I'm selecting the {string} question")
-    public void iMSelectingTheQuestion(String questionType) {
-        getDriver().findElement(By.xpath("//div[contains(text(),'"+questionType+"')]")).click();
+    @And("I type {string} as {string} in {string} MB")
+    public void iTypeAsInMB(String optionTextMB, String optionNumMB, String questionNumMB) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumMB+"')]/../../..//textarea[@placeholder='"+optionNumMB+"']")).sendKeys(optionTextMB);
     }
 
-    @Then("I type {string} as {string} in {string} MB")
-    public void iTypeAsInMB(String optionText, String optionNumber, String questionNumber) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumber+"')]/../../..//textarea[@placeholder='"+optionNumber+"']")).sendKeys(optionText);
+    @Then("I select {string} as correct option in {string} MB")
+    public void iSelectAsCorrectOptionInMB(String optionNumMB, String questionNumMB) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNumMB+"')]/../../..//textarea[@placeholder='"+ optionNumMB+ "']/../../../../../mat-radio-button")).click();
+    }
 
+    @Then("quiz {string} is displayed on the list of quizzes MB")
+    public void quizIsDisplayedOnTheListOfQuizzesMB(String titleMB) {
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+titleMB+"')]")).isDisplayed()).isTrue();
+    }
+
+    @Then("I verify that {string} quiz title has a leading white space MB")
+    public void iVerifyThatQuizTitleHasALeadingWhiteSpaceMB(String spaceMB) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+spaceMB+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" +spaceMB+"')]/../../..//*[contains(text(),'Edit')]")).click();
+        Thread.sleep(1000);
+        String actualTitleMB = getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).getAttribute("value");
+        System.out.println(actualTitleMB);
+        System.out.println(actualTitleMB.length());
+        char firstMB = actualTitleMB.charAt(0);
+        System.out.println("The first character in the title:" + firstMB);
+
+        assertThat(Character.isWhitespace(firstMB)).isTrue();
+    }
+
+    @Then("I verify that {string} quiz title has a trailing white space MB")
+    public void iVerifyThatQuizTitleHasATrailingWhiteSpaceMB(String titleSpaceMB) throws InterruptedException{
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+titleSpaceMB+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+titleSpaceMB+"')]/../../..//*[contains(text(),'Edit')]")).click();
+        Thread.sleep(2000);
+        String actualTitleMB = getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).getAttribute("value");
+        System.out.println(actualTitleMB);
+        System.out.println(actualTitleMB.length());
+        char lastSpace = actualTitleMB.charAt(actualTitleMB.length()-1);
+        System.out.println("The last character in the title:" + lastSpace);
+
+        assertThat(Character.isWhitespace(lastSpace)).isTrue();
     }
 }
 
