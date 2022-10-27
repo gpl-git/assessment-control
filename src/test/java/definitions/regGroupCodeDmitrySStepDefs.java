@@ -14,20 +14,19 @@ public class regGroupCodeDmitrySStepDefs {
     public void iNeedOpenPage(String url) {
         if (url.equals("ask-qa")){
             getDriver().get("http://ask-qa.portnov.com/#/login");
+        }else {
+            System.out.println("This site is not supported: " + url);
         }
     }
 
     @Then("I need click on {string} button")
-    public void iNeedClickOnButton(String registerNow) {
-        if (registerNow.equals("Register Now")){
-            getDriver().findElement(By.xpath("//span[contains(text(),'Register Now')]")).click();
-        }
+    public void iNeedClickOnButton(String button) {
+
+            getDriver().findElement(By.xpath("//span[contains(text(),'"+button+"')]")).click();
+
     }
 
-    @Then("I need type {string} into {string} field")
-    public void iNeedTypeIntoField(String firstName, String firstNameField) {
-        getDriver().findElement(By.xpath("//input[@id='mat-input-2']")).sendKeys(firstName);
-    }
+
 
     @And("I also type {string} into {string} field")
     public void iAlsoTypeIntoField(String lastName, String lastNameField) {
@@ -92,7 +91,7 @@ public class regGroupCodeDmitrySStepDefs {
 
     @And("error message {string} should be displayed")
     public void errorMessageShouldBeDisplayed(String expectedError) throws InterruptedException {
-        String actualError = getDriver().findElement(By.xpath("//mat-error[@id='mat-error-3']")).getText();
+        String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
         //System.out.println(actualError);
         Thread.sleep(1000);
         assertThat(actualError.equals(expectedError)).isTrue();
@@ -101,5 +100,10 @@ public class regGroupCodeDmitrySStepDefs {
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
         Thread.sleep(sec * 1000);
+    }
+
+    @Then("I need type {string} into First Name field")
+    public void iNeedTypeIntoFirstNameField(String firstName) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='firstName']")).sendKeys(firstName);
     }
 }

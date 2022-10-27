@@ -4,7 +4,7 @@
     Background:
       Given  I need open "ask-qa" page
       Then I need click on "Register Now" button
-      Then I need type "DmitryS" into "First Name" field
+      Then I need type "DmitryS" into First Name field
       And I also type "Student" into "Last Name" field
       Then I input "youngned@gmailni.com" into "Email" field
       And I need input "qwerty" into "Password" field
