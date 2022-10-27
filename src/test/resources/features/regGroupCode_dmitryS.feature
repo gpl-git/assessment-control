@@ -94,31 +94,3 @@
       And error message "White spaces are not allowed" should be displayed DS
       # Bug report  https://jira.portnov.com/browse/SEP22-373
       And I wait for 2 sec DS
-
-
-
-
-
-
-
-
-
-
-
-#    @regGroupCode5
-#    Scenario: Group code allows min 1 numeric character
-#      Given  I will type "5" into "Group Code" input field
-#      And I push on "Register Me" button
-#      And element with xpath "//h4[contains(text(),'You have been Registered.')]" is displayed
-#
-#    @regGroupCode6
-#    Scenario: Group code allows min 1 special character
-#      Given  I will type "%" into "Group Code" input field
-#      And I push on "Register Me" button
-#      And element with xpath "//h4[contains(text(),'You have been Registered.')]" is displayed
-#
-#    @regGroupCode7
-#    Scenario: Group code allows max 10 alpha characters
-#      Given  I will type "a" into "Group Code" input field
-#      And I push on "Register Me" button
-#      And element with xpath "//h4[contains(text(),'You have been Registered.')]" is displayed
