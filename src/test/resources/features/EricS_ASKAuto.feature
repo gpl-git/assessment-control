@@ -53,4 +53,20 @@
         Then element with xpath "//mat-panel-title[@class='mat-expansion-panel-header-title']" should have text as "Q1: h"
         And I wait for 2 sec
 
+    @option4
+    Scenario: Make sure you can put 1001 letter into question name
+      When I click "Create New Quiz" button
+      And I wait for 2 sec
+      When I type "Demo Quiz Textual Question" as quiz title
+      And I add a question
+      When I select "Textual" question
+      And I wait for 1 sec
+      When I enter 1001 of alphanumeric characters as title of the Question
+      And I wait for 1 sec
+      Then element with xpath "//span[contains(text(), 'Preview')]" should be present
+      Then I click on element with xpath "//span[contains(text(), 'Preview')]"
+      And I wait for 1 sec
+      Then element with xpath "//textarea[@formcontrolname='textAnswer']" should be present
+
+
           
