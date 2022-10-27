@@ -26,31 +26,34 @@ public class regGroupCodeDmitrySStepDefs {
 
     }
 
-
-
-    @And("I also type {string} into {string} field")
-    public void iAlsoTypeIntoField(String lastName, String lastNameField) {
-        getDriver().findElement(By.xpath("//input[@id='mat-input-3']")).sendKeys(lastName);
+    @Then("I need type {string} into First Name field")
+    public void iNeedTypeIntoFirstNameField(String firstName) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='firstName']")).sendKeys(firstName);
     }
 
-    @Then("I input {string} into {string} field")
-    public void iInputIntoField(String email, String emailField) {
-        getDriver().findElement(By.xpath("//input[@id='mat-input-4']")).sendKeys(email);
+    @And("I also type {string} into Last Name field")
+    public void iAlsoTypeIntoField(String lastName) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='lastName']")).sendKeys(lastName);
     }
 
-    @And("I need input {string} into {string} field")
-    public void iNeedInputIntoField(String password, String passwordField) {
-        getDriver().findElement(By.xpath("//input[@id='mat-input-6']")).sendKeys(password);
+    @Then("I input {string} into Email field")
+    public void iInputIntoField(String email) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(email);
     }
 
-    @And("I also need input {string} into {string} field")
-    public void iAlsoNeedInputIntoField(String confirmPassword, String confirmPasswordField) {
-        getDriver().findElement(By.xpath("//input[@id='mat-input-7']")).sendKeys(confirmPassword);
+    @And("I need input {string} into Password field")
+    public void iNeedInputIntoField(String password) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(password);
     }
 
-    @Given("I will type {string} into {string} input field")
-    public void iWillTypeIntoInputField(String groupCode, String groupCodeField) throws InterruptedException {
-        getDriver().findElement(By.xpath("//input[@id='mat-input-5']")).sendKeys(groupCode);
+    @And("I also need input {string} into Confirm Password field")
+    public void iAlsoNeedInputIntoField(String confirmPassword) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(confirmPassword);
+    }
+
+    @Given("I will type {string} into Group Code input field")
+    public void iWillTypeIntoInputField(String groupCode) throws InterruptedException {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='group']")).sendKeys(groupCode);
         Thread.sleep(1000);
     }
 
@@ -60,50 +63,59 @@ public class regGroupCodeDmitrySStepDefs {
         Thread.sleep(1000);
     }
 
-    @And("element with xpath {string} is displayed")
-    public void elementWithXpathIsDisplayed(String confirmationMessage) throws InterruptedException {
-        Thread.sleep(1000);
-        getDriver().findElement(By.xpath(confirmationMessage)).isDisplayed();
-        //Thread.sleep(1000);
+//    @And("element with xpath {string} is displayed")
+//    public void elementWithXpathIsDisplayed(String confirmationMessage) throws InterruptedException {
+//        Thread.sleep(1000);
+//        getDriver().findElement(By.xpath(confirmationMessage)).isDisplayed();
+//        //Thread.sleep(1000);
+//    }
+
+    @Then("success message {string} should be displayed DS")
+    public void successMessageShouldBeDisplayedDS(String expectedMessage) {
+        String actualMessage = getDriver().findElement(By.xpath("//h4[contains(text(),'You have been Registered.')]")).getText();
+        // System.out.println(actError);
+        assertThat(actualMessage.equals(expectedMessage)).isTrue();
     }
 
-    @Given("I will type {int} alpha character into {string} input field")
-    public void iWillTypeAlphaCharacterIntoInputField(int number, String groupCodeField) throws InterruptedException {
+//    @Then("email error message {string} should be displayed")
+//    public void emailErrorMessageShouldBeDisplayed(String expError) {
+//        String actError = getDriver().findElement(By.xpath("//label[@id='email-error']")).getText();
+//        // System.out.println(actError);
+//        assertThat(actError.equals(expError)).isTrue();
+//    }
+
+    @Given("I will type {int} alpha character into Group Code input field")
+    public void iWillTypeAlphaCharacterIntoInputField(int number) throws InterruptedException {
         boolean useLetters = true;
         boolean useNumbers = false;
         String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
 
         //System.out.println(generatedString);
-        getDriver().findElement(By.xpath("//input[@id='mat-input-5']")).sendKeys(generatedString);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='group']")).sendKeys(generatedString);
         Thread.sleep(1000);
     }
 
-    @Given("I will type {int} numeric character into {string} input field")
-    public void iWillTypeNumericCharacterIntoInputField(int number, String groupCodeField) throws InterruptedException {
+    @Given("I will type {int} numeric character into Group Code input field")
+    public void iWillTypeNumericCharacterIntoInputField(int number) throws InterruptedException {
         boolean useLetters = false;
         boolean useNumbers = true;
         String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
 
         //System.out.println(generatedString);
-        getDriver().findElement(By.xpath("//input[@id='mat-input-5']")).sendKeys(generatedString);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='group']")).sendKeys(generatedString);
         Thread.sleep(1000);
     }
 
-    @And("error message {string} should be displayed")
-    public void errorMessageShouldBeDisplayed(String expectedError) throws InterruptedException {
+    @And("error message {string} should be displayed DS")
+    public void errorMessageShouldBeDisplayedDS(String expectedError) throws InterruptedException {
         String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
         //System.out.println(actualError);
         Thread.sleep(1000);
         assertThat(actualError.equals(expectedError)).isTrue();
     }
 
-    @And("I wait for {int} sec")
-    public void iWaitForSec(int sec) throws InterruptedException {
+    @And("I wait for {int} sec DS")
+    public void iWaitForSecDS(int sec) throws InterruptedException {
         Thread.sleep(sec * 1000);
-    }
-
-    @Then("I need type {string} into First Name field")
-    public void iNeedTypeIntoFirstNameField(String firstName) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='firstName']")).sendKeys(firstName);
     }
 }
