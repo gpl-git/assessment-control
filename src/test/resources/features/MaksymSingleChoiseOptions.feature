@@ -1,5 +1,5 @@
-@quiz
-Feature: Quiz Scenarios
+@optionTesting
+Feature: Single Choise Question options automation
 
   Background:
     Given I open "login" page
@@ -12,57 +12,55 @@ Feature: Quiz Scenarios
     And I wait for 1 sec
 
 
-  @quiz1
+  @optionTesting1
   Scenario: [SEP22-414] Option text field accepts 1000 characters (Assertion Passed)
-    When I click "Create New Quiz" button
+    Then I click "Create New Quiz" button
     And I wait for 1 sec
-    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
     And I add a question
-    When I select "Single" question
+    Then I select "Single" question
     And I wait for 1 sec
-    When I type " This is a Question 1" into "Q1"
+    Then I type " This is a Question 1" into "Q1"
+    Then I wait for 3 sec
     And I type "1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000ch" as "Option 1*" in "Q1"
     And I type "1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000ch" as "Option 2*" in "Q1"
     Then I select "Option 1*" as correct option in "Q1"
     Then I wait for 2 sec
     Then question "Q1" option "Option 1*" should contain "1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000characters1000ch" characters Assertion
-     And I click "Save" button
-     And I wait for 3 sec
-     Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
-     And I delete quiz "Demo Quiz - Automation"
+    And I click "Save" button
+    And I wait for 3 sec
+    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
+    And I delete quiz "Demo Quiz - Automation"
 
 
-  @quiz2
-  Scenario: [SEP22-416] Option text field doesn't accept 1001 characters (Assertion Failed)
-    When I click "Create New Quiz" button
+  @optionTesting2
+  Scenario: [SEP22-416] Option text field doesn't accept 1001 characters (Assertion Passed)
+    Then I click "Create New Quiz" button
     And I wait for 1 sec
-    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
     And I add a question
-    When I select "Single" question
+    Then I select "Single" question
     And I wait for 1 sec
-    When I type " This is a Question 1" into "Q1"
+    Then I type " This is a Question 1" into "Q1"
     And I type "1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001cha" as "Option 1*" in "Q1"
     And I type "1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001cha" as "Option 2*" in "Q1"
     Then I select "Option 1*" as correct option in "Q1"
     Then I wait for 2 sec
-    Then question "Q1" option "Option 1*" should not contain "1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001characters1001cha" characters Assertion
-    And I click "Save" button
-    And I wait for 3 sec
-    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
-    And I delete quiz "111Maksym Demo Quiz - Automation"
+    Then the error message "No more than 1001 characters required" should be displayed
+#    [Bug Report: https://jira.portnov.com/browse/SEP22-706  ]
+#  
+#
 
-
-
-
-  @quiz3
+  @optionTesting3
   Scenario: [SEP22-419] Option text field accepts 1 character (Assertion Passed)
-    When I click "Create New Quiz" button
     And I wait for 1 sec
-    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    Then I click "Create New Quiz" button
+    And I wait for 1 sec
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
     And I add a question
-    When I select "Single" question
+    Then I select "Single" question
     And I wait for 1 sec
-    When I type " This is a Question 1" into "Q1"
+    Then I type " This is a Question 1" into "Q1"
     And I type "1" as "Option 1*" in "Q1"
     And I type "1" as "Option 2*" in "Q1"
     Then I select "Option 1*" as correct option in "Q1"
@@ -74,126 +72,151 @@ Feature: Quiz Scenarios
     And I delete quiz "111Maksym Demo Quiz - Automation"
 
 
-
-  @quiz4
+  @optionTesting4
   Scenario: [SEP22-421] Unable to create a Single choice question with an empty Option text field (Assertion Passed)
-    When I click "Create New Quiz" button
+    Then I click "Create New Quiz" button
     And I wait for 1 sec
-    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
     And I add a question
-    When I select "Single" question
+    Then I select "Single" question
     And I wait for 1 sec
-    When I type " This is a Question 1" into "Q1"
+    Then I type " This is a Question 1" into "Q1"
     Then I select "Option 1*" as correct option in "Q1"
-   Then I click on "Save" button
+    Then I click on "Save" button
     Then I wait for 2 sec
     Then warning message should appear
     And I wait for 1 sec
 
 
-  @quiz5
+  @optionTesting5
   Scenario: [SEP22-423] Option text field accepts special characters (Passed)
-    When I click "Create New Quiz" button
-     And I wait for 1 sec
-    When I type "111Maksym Demo Quiz - Automation" as quiz title
-    And I add a question
-    When I select "Single" question
+    Then I click "Create New Quiz" button
     And I wait for 1 sec
-    When I type "This is a Question 1" into "Q1"
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
+    And I add a question
+    Then I select "Single" question
+    And I wait for 1 sec
+    Then I type "This is a Question 1" into "Q1"
     And I type "@" as "Option 1*" in "Q1"
     And I type "@" as "Option 2*" in "Q1"
     Then I select "Option 1*" as correct option in "Q1"
     Then I wait for 1 sec
     Then I click on "Save" button
-    And I wait for 1 sec
+    And I wait for 3 sec
     Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
     And I delete quiz "111Maksym Demo Quiz - Automation"
 
-  @quiz6
-  Scenario: [SEP22-424] Options could be deleted (Passed)
-    When I click "Create New Quiz" button
+  @optionTesting6
+  Scenario: [SEP22-424] Options could be deleted (Assertion Passed)
+    Then I click "Create New Quiz" button
     And I wait for 1 sec
-    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
     And I add a question
-    When I select "Single" question
+    Then I select "Single" question
     And I wait for 1 sec
-    When I type "This is a Question 1" into "Q1"
+    Then I type "This is a Question 1" into "Q1"
+    Then I type "#1" as "Option 1*" in "Q1"
+    And I wait for 1 sec
+    Then I type "#2" as "Option 2*" in "Q1"
+    Then I select "Option 1*" as correct option in "Q1"
     And I click on "Add Option" button
     Then I wait for 1 sec
     And  I click on "Add Option" button
     And I wait for 1 sec
-    Then I click on element with xpath "//ac-question-body-form/div[1]/div[2]/div[1]/mat-radio-group[4]/button[1]/span[1]/mat-icon[1]"
+    Then number of options is equal to 4
+    Then I delete input field for option "Option 4*"
     And I wait for 1 sec
-    Then I click on element using JavaScript with xpath "//*[text()='Delete Option']"
+    Then I delete input field for option "Option 3*"
+    Then number of options is equal to 2
     And I wait for 1 sec
-    Then I click on element with xpath "//ac-question-body-form/div[1]/div[2]/div[1]/mat-radio-group[3]/button[1]/span[1]/mat-icon[1]"
-    And I wait for 1 sec
-    Then I click on element using JavaScript with xpath "//*[text()='Delete Option']"
-    And I wait for 1 sec
+    Then I click on "Save" button
+    And I wait for 3 sec
+    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
+    And I delete quiz "111Maksym Demo Quiz - Automation"
 
-@quiz7
-Scenario: [SEP22-431] >15  options can be added to question in Single Choice question (Assertion passed)
-  When I click "Create New Quiz" button
-  And I wait for 1 sec
-  When I type "111Maksym Demo Quiz - Automation" as quiz title
-  And I add a question
-  When I select "Single" question
-  And I wait for 1 sec
-  When I type "This is a Question #1 " into "Q1"
-  Then I wait for 2 sec
-  And I add 18 options to question "Q1"
-  Then I wait for 1 sec
-  Then in question "Q1" option number "Option 18*" should be present
-  Then I wait for 3 sec
 
-  @quiz8
-  Scenario: [SEP22-427] Options could be moved up (Assertions passed)
-    When I click "Create New Quiz" button
+  @optionTesting7
+  Scenario: [SEP22-431] >15  options can be added to question in Single Choice question (Assertion passed)
+    Then I click "Create New Quiz" button
     And I wait for 1 sec
-    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
     And I add a question
-    When I select "Single" question
+    Then I select "Single" question
     And I wait for 1 sec
-    When I type "This is a Question #1 " into "Q1"
-    Then I wait for 2 sec
-    And I add 3 options to question "Q1"
+    Then I type "This is a Question #1 " into "Q1"
+    And I type "@" as "Option 1*" in "Q1"
+    And I type "@" as "Option 2*" in "Q1"
+    Then I wait for 1 sec
+    And I add 15 options to question "Q1"
+    Then I wait for 1 sec
+    Then I select "Option 15*" as correct option in "Q1"
     Then I wait for 3 sec
-    Then in question "Q1" option number "Option 3*" should be present
-    Then I select "Option 1*" as correct option in "Q1"
+    Then number of options is equal to 15
+    Then I click on "Save" button
+    And I wait for 3 sec
+    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
+    And I delete quiz "111Maksym Demo Quiz - Automation"
+
+
+  @optionTesting8
+  Scenario: [SEP22-427] Options could be moved up (Assertions passed)
+    Then I click "Create New Quiz" button
+    And I wait for 1 sec
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
+    And I add a question
+    Then I select "Single" question
+    And I wait for 1 sec
+    Then I type "This is a Question #1 " into "Q1"
+    Then I wait for 2 sec
     Then I type "#1" as "Option 1*" in "Q1"
+    Then I wait for 1 sec
     Then I type "#2" as "Option 2*" in "Q1"
+    Then I wait for 1 sec
+    Then I select "Option 1*" as correct option in "Q1"
+    Then I wait for 1 sec
+    And I add 3 options to question "Q1"
+    Then I wait for 2 sec
+    Then number of options is equal to 3
     Then I clear "Q1" option "Option 3*" text field
+    Then I wait for 1 sec
     Then I type "------ moving question #3------" as "Option 3*" in "Q1"
     Then I wait for 2 sec
-    Then I click on settings button in option "Option 3*"
-    Then I wait for 1 sec
-    Then I click on button element using JavaScript with button name "Move option up"
+    Then I move up option "Option 3*"
     Then I wait for 1 sec
     Then question "Q1" option "Option 2*" should contain "------ moving question #3------" characters Assertion
-    Then I wait for 3 sec
+    Then I wait for 1 sec
+    Then I click on "Save" button
+    And I wait for 3 sec
+    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
+    And I delete quiz "111Maksym Demo Quiz - Automation"
 
-  @quiz9
+
+  @optionTesting9
   Scenario: [SEP22-425] Options could be moved down (Assertion passed)
-    When I click "Create New Quiz" button
+    Then I click "Create New Quiz" button
     And I wait for 1 sec
-    When I type "111Maksym Demo Quiz - Automation" as quiz title
+    Then I type "111Maksym Demo Quiz - Automation" as quiz title
     And I add a question
-    When I select "Single" question
+    Then I select "Single" question
     And I wait for 1 sec
-    When I type "This is a Question #1 " into "Q1"
-    Then I wait for 2 sec
-    And I add 3 options to question "Q1"
-    Then I wait for 3 sec
-    Then in question "Q1" option number "Option 3*" should be present
-    Then I select "Option 1*" as correct option in "Q1"
+    Then I type "This is a Question #1 " into "Q1"
+    Then I wait for 1 sec
     Then I type "#1" as "Option 1*" in "Q1"
+    Then I select "Option 1*" as correct option in "Q1"
+    Then I wait for 1 sec
     Then I type "------ moving question #2------" as "Option 2*" in "Q1"
+    Then I wait for 1 sec
+    And I add 3 options to question "Q1"
     Then I wait for 2 sec
-    Then I click on settings button in option "Option 2*"
-    Then I wait for 1 sec
-    Then I click on button element using JavaScript with button name "Move option down"
-    Then I wait for 1 sec
+    Then number of options is equal to 3
+    Then I wait for 2 sec
+    Then I move down option "Option 2*"
+    Then I wait for 2 sec
     Then question "Q1" option "Option 3*" should contain "------ moving question #2------" characters Assertion
-    Then I wait for 3 sec
+    Then I wait for 2 sec
+    Then I click on "Save" button
+    And I wait for 3 sec
+    Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
+    And I delete quiz "111Maksym Demo Quiz - Automation"
 
 

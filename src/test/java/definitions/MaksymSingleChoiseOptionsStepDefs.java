@@ -5,17 +5,22 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import groovyjarjarpicocli.CommandLine;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static io.restassured.RestAssured.expect;
+import static io.restassured.RestAssured.get;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.Assert.assertEquals;
 import static support.TestContext.getDriver;
 
-public class MaksymQuizStepDefs {
+public class MaksymSingleChoiseOptionsStepDefs {
   @Given("I open {string} page ")
   public void iOpenPage(String url) {
     if (url.equals("login")) {
@@ -30,11 +35,6 @@ public class MaksymQuizStepDefs {
   @And("I wait for {int} sec ")
   public void iWaitForSec(int sec) throws InterruptedException {
     Thread.sleep(sec * 1000);
-  }
-
-  @When("I type {string} for teacher user ")
-  public void iTypeForTeacherUser(String email) {
-    getDriver().findElement(By.xpath("//*[@formcontrolname='email']")).sendKeys(email);
   }
 
   @And("I type {string} as password ")
@@ -142,38 +142,14 @@ public class MaksymQuizStepDefs {
     getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).sendKeys(text);
   }
 
-  @Then("I type {string} into SecondOption ")
-  public void iTypeIntoSecondOption(String text) {
-    getDriver().findElement(By.xpath("//textarea[@placeholder='Option 2*']")).sendKeys(text);
-  }
 
-  @Then("required quontity of characters should be present in OptionFiedld{int} ")
-  public void requiredQuontityOfCharactersShouldBePresentInOptionFiedld(int arg0) {}
-
-  @Then("required quantity of characters {string} should be present in OptionField1 ")
-  public void requiredQuantityOfCharactersShouldBePresentInOptionFeild(String expText) {
-    String actText =
-        getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).getText();
-    assertThat(actText.equals(expText)).isTrue();
-  }
-
-  @Then("required quantity of characters {string} should not be present in OptionField1 ")
-  public void requiredQuantityOfCharactersShouldNotBePresentInOptionField(String expText) {
-    String actText =
-        getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).getText();
-    assertThat(actText.equals(expText)).isFalse();
-  }
 
   @And("I click on Save button ")
   public void iClickOnSaveButtonMKs() {
     getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
   }
 
-  @Then("Option1 quiz error should be displayed ")
-  public void optionQuizErrorShouldBeDisplayed() {
-    assertThat(getDriver().findElement(By.xpath("//mat-error[@id='mat-error-2']")).isDisplayed())
-        .isTrue();
-  }
+
 
   @And("I click on element with xpath {string} ")
   public void iClickOnElementWithXpathMKs(String path) {
@@ -186,19 +162,7 @@ public class MaksymQuizStepDefs {
         .isFalse();
   }
 
-  @Then("I type {string} into FirstOption")
-  public void iTypeIntoFirstOption1(String text) {
-    getDriver()
-        .findElement(By.xpath("//textarea[contains(@placeholder,'Option 1*')]"))
-        .sendKeys(text);
-  }
 
-  @Then("I type {string} into SecondOption")
-  public void iTypeIntoSecondOption2(String text) {
-    getDriver()
-        .findElement(By.xpath("//textarea[contains(@placeholder,'Option 2*')]"))
-        .sendKeys(text);
-  }
 
   @Then("the field alert messages should not be displayed")
   public void theFieldAlertMessagesShouldNotBeDisplayed() {
@@ -211,17 +175,7 @@ public class MaksymQuizStepDefs {
     getDriver().findElement(By.xpath(arg0)).click();
   }
 
-  @Then("{string} should contain {string} characters Assertion")
-  public void shouldContainCharacters(String text2, String questionNum) {
-    String actualRes =
-        getDriver()
-            .findElement(
-                By.xpath(
-                    "//mat-panel-title[contains(text(),'Q1')]/..//..//..//textarea[@placeholder='Option 1*']"))
-            .getAttribute("value");
-    //  assertThat(actualRes.equals(text1)).isTrue();
-    System.out.println("your test is:" + actualRes);
-  }
+
 
   @Then("question {string} option {string} should contain {string} characters Assertion")
   public void questionOptionShouldContainCharactersAssertion(
@@ -297,28 +251,68 @@ public class MaksymQuizStepDefs {
   }
 
 
-  @Then("in question {string} option number {string} should be present")
-  public void inQuestionOptionNumberShouldBePresent(String questionNum, String optionNum) {
-    String actuaOptNum = getDriver().findElement(By.xpath("//*[contains(text(),'" + questionNum + "')]/../../..//*[@placeholder='"+optionNum+"']")).getAttribute("value");
-    System.out.println(actuaOptNum);
-//    assertThat(actuaOptNum.equals(optionNum)).isTrue();
-  }
-
     @Then("I click on settings button in option {string}")
     public void iClickOnSettingsButtonInOption(String optionNum) {
       getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/..//..//.//mat-panel-title[contains(text(),'Q1')]/..//..//..//textarea[@placeholder='"+optionNum+"']/..//..//..//..//..//../mat-icon[@role='img']")).click();
-    }
-
-    @Then("I click on button element using JavaScript with button name {string}")
-    public void iClickOnButtonElementUsingJavaScriptWithButtonName(String btnName) {
-
-            WebElement element = getDriver().findElement(By.xpath("//button/*[contains(text(),'"+btnName+"')]"));
-            JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-            executor.executeScript("arguments[0].click();", element);
     }
 
   @Then("I clear {string} option {string} text field")
   public void iClearOptionTextField(String questionNum, String optionNum) {
     getDriver().findElement(By.xpath("//*[contains(text(),'" + questionNum + "')]/../../..//*[@placeholder='"+optionNum+"']")).clear();
   }
+
+  @Then("the error message {string} should be displayed")
+  public void theErrorMessageShouldBeDisplayed(String errMess) {
+    assertThat(getDriver().findElement(By.xpath("//message[contains(text(),'"+errMess+"')]")).isDisplayed()).isTrue();
+  }
+
+  @Then("no error messages like {string}")
+  public void noErrorMessagesLikeRed(String arg0, String arg1) {
+
+  }
+
+  @Then("number of options is equal to {int}")
+  public void numberOfOptionsIsEqualTo(int numOfOptions) {
+    List <WebElement> options = new ArrayList();
+    options = getDriver().findElements(By.xpath("//textarea[contains(@placeholder, 'Option')]"));
+    int size = options.size();
+    System.out.println("the number of options: "+size);
+    assertThat(size==numOfOptions).isTrue();
+  }
+
+  @Then("I delete input field for option {string}")
+  public void iDeleteInputField(String optionNum) throws InterruptedException {
+    getDriver().findElement(By.xpath("//textarea[@placeholder='"+optionNum+"']/../../../../..//mat-icon")).click();
+    Thread.sleep(1000);
+    getDriver().findElement(By.xpath("//*[text()='Delete Option']")).click();
+  }
+
+  @Then("I move down option {string}")
+  public void iMoveDownOption(String optionNum) throws InterruptedException {
+    getDriver().findElement(By.xpath("//textarea[@placeholder='"+optionNum+"']/../../../../..//mat-icon")).click();
+    Thread.sleep(1000);
+    getDriver().findElement(By.xpath("//*[text()='Move option down']")).click();
+  }
+
+  @Then("I move up option {string}")
+  public void iMoveUpOption(String optionNum) throws InterruptedException {
+    getDriver().findElement(By.xpath("//textarea[@placeholder='"+optionNum+"']/../../../../..//mat-icon")).click();
+    Thread.sleep(1000);
+    getDriver().findElement(By.xpath("//*[text()='Move option up']")).click();
+  }
+
+
+  @Then("I enter {int} alphanumeric characters to option {string}")
+  public void iEnterAlphanumericCharactersToOption(int number, String optionNum) {
+    boolean useLetters = true;
+    boolean useNumbers = true;
+    String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
+    // System.out.println(generatedString);
+    getDriver()
+            .findElement(
+                    By.xpath(
+                            "//textarea[@placeholder='"+optionNum+"']"))
+            .sendKeys(generatedString);
+  }
 }
+
