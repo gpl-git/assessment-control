@@ -146,9 +146,9 @@ Scenario: Create a quiz- Leading characters
   Then quiz "Lead" is displayed on the list of quizzes MB
   And I wait for 2 sec
   Then I verify that "Lead" quiz title has a leading white space MB
-  And I wait for 1 sec
+  And I wait for 2 sec
   And I click on "Save" button MB
-  And I wait for 1 sec
+  And I wait for 2 sec
   Then I delete quiz with name "Lead"
   And I wait for 2 sec
 
@@ -157,21 +157,24 @@ Scenario: Create a quiz- Leading characters
 Scenario: Creat Quiz- Trailing characters
 When I type "TrailMB " as quiz title
   And I add a question
-  When I select the "Single" question
+  And I wait for 2 sec
+  When I select the "Single-Choice" question
   And I wait for 2 sec
   When I type "What is purpose of software Testing?" into "Q1"
   And I type "Verification" as "Option 1*" in "Q1" MB
   And I type "Acceptance" as "Option 2*" in "Q1" MB
   Then I select "Option 1*" as correct option in "Q1" MB
-  And I wait for 2 sec
   And I click on "Save" button MB
   And I wait for 2 sec
   Then quiz "TrailMB" is displayed on the list of quizzes
   And I wait for 2 sec
   Then I verify that "TrailMB" quiz title has a trailing white space MB
-  And I click on "Save" button MB
+  And I wait for 2 sec
+  And I click on "Edit" button MB
   And I wait for 2 sec
   And I delete quiz with name "TrailMB "
+  And I wait for 2 sec
+
 
 
 

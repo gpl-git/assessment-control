@@ -26,10 +26,10 @@ public class QuizTitleMargaretaStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(email);
     }
 
-    @And("I type {string} into password field")
-    public void iTypeIntoPasswordField(String password) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(password);
-    }
+//    @And("I type {string} into password field")
+//    public void iTypeIntoPasswordField(String password) {
+//        getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(password);
+//    }
 
     @And("I click on {string} button MB")
     public void iClickOnButtonMB(String buttonNameMB) {
@@ -37,11 +37,11 @@ public class QuizTitleMargaretaStepDefs {
     }
 
 
-    @Then("{string} page should be displayed")
-    public void pageShouldBeDisplayed(String expectedUrl) {
-        String currentUrl = getDriver().getCurrentUrl();
-        assertThat(currentUrl.contains(expectedUrl)).isTrue();
-    }
+//    @Then("{string} page should be displayed")
+//    public void pageShouldBeDisplayed(String expectedUrl) {
+//        String currentUrl = getDriver().getCurrentUrl();
+//        assertThat(currentUrl.contains(expectedUrl)).isTrue();
+//    }
 
     @When("I click on {string} from menu item")
     public void iClickOnFromMenuItem(String menuItem) {
@@ -99,11 +99,11 @@ public class QuizTitleMargaretaStepDefs {
         assertThat(getDriver().findElement(By.xpath("//mat-error[(text()='This field is required')]")).isDisplayed()).isTrue();
     }
 
-    @Then("error message {string} should be displayed")
-    public void errorMessageShouldBeDisplayed(String expectedError) {
-        String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
-        assertThat(actualError.equals(expectedError)).isTrue();
-    }
+//    @Then("error message {string} should be displayed")
+//    public void errorMessageShouldBeDisplayed(String expectedError) {
+//        String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
+//        assertThat(actualError.equals(expectedError)).isTrue();
+//    }
 
 
     @And("{string} field is marked with asterisk is displayed")
@@ -130,7 +130,7 @@ public class QuizTitleMargaretaStepDefs {
     public void iVerifyThatQuizTitleHasALeadingWhiteSpaceMB(String spaceMB) throws InterruptedException {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+spaceMB+"')]")).click();
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" +spaceMB+"')]/../../..//*[contains(text(),'Edit')]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         String actualTitleMB = getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).getAttribute("value");
         System.out.println(actualTitleMB);
         System.out.println(actualTitleMB.length());
@@ -141,19 +141,20 @@ public class QuizTitleMargaretaStepDefs {
     }
 
     @Then("I verify that {string} quiz title has a trailing white space MB")
-    public void iVerifyThatQuizTitleHasATrailingWhiteSpaceMB(String titleSpaceMB) throws InterruptedException{
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+titleSpaceMB+"')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+titleSpaceMB+"')]/../../..//*[contains(text(),'Edit')]")).click();
+    public void iVerifyThatQuizTitleHasATrailingWhiteSpaceMB(String trailingSpaceMB) throws InterruptedException{
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+trailingSpaceMB+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+trailingSpaceMB+ "')]/../../..//*[contains(text(),'Edit')]")).click();
         Thread.sleep(2000);
-        String actualTitleMB = getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).getAttribute("value");
-        System.out.println(actualTitleMB);
-        System.out.println(actualTitleMB.length());
-        char lastSpace = actualTitleMB.charAt(actualTitleMB.length()-1);
-        System.out.println("The last character in the title:" + lastSpace);
+        String actualTitleMB1 = getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).getAttribute("value");
+        System.out.println(actualTitleMB1);
+        System.out.println(actualTitleMB1.length());
+        char trailingSpace = actualTitleMB1.charAt(actualTitleMB1.length()-1);
+        System.out.println("The last character in the title is: " + trailingSpace);
 
-        assertThat(Character.isWhitespace(lastSpace)).isTrue();
+        assertThat(Character.isWhitespace(trailingSpace)).isTrue();
     }
 }
+
 
 
 
