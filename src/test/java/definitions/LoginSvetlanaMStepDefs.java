@@ -13,17 +13,7 @@ import static support.TestContext.getDriver;
 
 
 public class LoginSvetlanaMStepDefs {
-    @Given("I navigate to {string} page")
-    public void iNavigateToPage(String url) {
-        if (url.equals("login")){
-            getDriver().get("http://ask-qa.portnov.com/#/login");
-
-        }else if (url.equals("registration")){
-            getDriver().get("http://ask-qa.portnov.com/#/registration");
-        }else{
-            System.out.println("This url is not supported: " + url);
-        }
-    }
+    
 
     @When("I type {string} into email field")
     public void iTypeIntoEmailField(String email) {
@@ -35,10 +25,7 @@ public class LoginSvetlanaMStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(password);
     }
 
-    @When("I click button {string}")
-    public void iClickButton(String buttonName) {
-        getDriver().findElement(By.xpath("//span[contains(text(), '"+buttonName+"')]")).click();
-    }
+
 
     @Then("{string} page should be displayed")
     public void pageShouldBeDisplayed(String expectedUrl) {
@@ -95,5 +82,22 @@ public class LoginSvetlanaMStepDefs {
     public void iVerifyThatPasswordFieldHasAttributeTypePassword() {
         assertThat(getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type")).isEqualTo("password");
 
+    }
+
+    @Given("I navigate to {string} page SM")
+    public void iNavigateToPageSM(String url) {
+        if (url.equals("login")){
+            getDriver().get("http://ask-qa.portnov.com/#/login");
+
+        }else if (url.equals("registration")){
+            getDriver().get("http://ask-qa.portnov.com/#/registration");
+        }else{
+            System.out.println("This url is not supported: " + url);
+        }
+    }
+
+    @When("I click button {string} SM")
+    public void iClickButtonSM(String buttonName) {
+        getDriver().findElement(By.xpath("//span[contains(text(), '"+buttonName+"')]")).click();
     }
 }
