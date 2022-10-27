@@ -23,7 +23,7 @@ public class QuizStepDefs {
     }
 
     @And("I wait for {int} sec")
-    public void iWaitForSec(int sec) throws InterruptedException {
+    public void iWaitForSec(long sec) throws InterruptedException {
         Thread.sleep(sec*1000);
     }
 
