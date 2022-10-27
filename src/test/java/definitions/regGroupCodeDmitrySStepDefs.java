@@ -63,26 +63,12 @@ public class regGroupCodeDmitrySStepDefs {
         Thread.sleep(1000);
     }
 
-//    @And("element with xpath {string} is displayed")
-//    public void elementWithXpathIsDisplayed(String confirmationMessage) throws InterruptedException {
-//        Thread.sleep(1000);
-//        getDriver().findElement(By.xpath(confirmationMessage)).isDisplayed();
-//        //Thread.sleep(1000);
-//    }
-
     @Then("success message {string} should be displayed DS")
     public void successMessageShouldBeDisplayedDS(String expectedMessage) {
         String actualMessage = getDriver().findElement(By.xpath("//h4[contains(text(),'You have been Registered.')]")).getText();
         // System.out.println(actError);
         assertThat(actualMessage.equals(expectedMessage)).isTrue();
     }
-
-//    @Then("email error message {string} should be displayed")
-//    public void emailErrorMessageShouldBeDisplayed(String expError) {
-//        String actError = getDriver().findElement(By.xpath("//label[@id='email-error']")).getText();
-//        // System.out.println(actError);
-//        assertThat(actError.equals(expError)).isTrue();
-//    }
 
     @Given("I will type {int} alpha character into Group Code input field")
     public void iWillTypeAlphaCharacterIntoInputField(int number) throws InterruptedException {
