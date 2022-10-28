@@ -98,21 +98,4 @@ public class QuizStepDefs {
         Thread.sleep(1000);
     }
 
-    @Then("element with xpath {string} should have text as {string}")
-    public void elementWithXpathShouldHaveTextAs(String xpath, String text) {
-        String actualText = getDriver().findElement(By.xpath(xpath)).getText();
-        assertThat(actualText).isEqualTo(text);
-    }
-
-    @Then("I click on element with xpath {string}")
-    public void iClickOnElementWithXpath(String xpath) {
-        getDriver().findElement(By.xpath(xpath)).click();
-    }
-
-    @Then("element with xpath {string} should be present")
-    public void elementWithXpathShouldBePresent(String xpath) {
-        assertThat(getDriver().findElements(By.xpath(xpath))).hasSize(1);
-    }
-
-
 }
