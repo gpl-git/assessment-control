@@ -164,12 +164,8 @@ public class MaksymSingleChoiseOptionsStepDefs {
         .isFalse();
   }
 
-  @Then("I click on element with xpath {string}")
-  public void iClickOnElementWithXpath(String arg0) {
-    getDriver().findElement(By.xpath(arg0)).click();
-  }
 
-  @Then("question {string} option {string} should contain {string} characters Assertion")
+  @Then("question {string} option {string} should contain {string} Assertion")
   public void questionOptionShouldContainCharactersAssertion(
       String questionNum, String optionNum, String expectedText) {
     String actualText =

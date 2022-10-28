@@ -68,7 +68,7 @@ Feature: Single Choise Question options automation
     And I type "1" as "Option 2*" in "Q1"
     Then I select "Option 1*" as correct option in "Q1"
     Then I wait for 2 sec
-    Then question "Q1" option "Option 1*" should contain "1" characters Assertion
+    Then question "Q1" option "Option 1*" should contain "1" Assertion
     And I click "Save" button
     And I wait for 3 sec
     Then quiz "111Maksym Demo Quiz - Automation" is displayed on the list of quizzes
@@ -186,7 +186,7 @@ Feature: Single Choise Question options automation
     Then I wait for 2 sec
     Then I move up option "Option 3*"
     Then I wait for 1 sec
-    Then question "Q1" option "Option 2*" should contain "------ moving question #3------" characters Assertion
+    Then question "Q1" option "Option 2*" should contain "------ moving question #3------" Assertion
     Then I wait for 1 sec
     Then I click on "Save" button
     And I wait for 3 sec
@@ -215,7 +215,7 @@ Feature: Single Choise Question options automation
     Then I wait for 2 sec
     Then I move down option "Option 2*"
     Then I wait for 2 sec
-    Then question "Q1" option "Option 3*" should contain "------ moving question #2------" characters Assertion
+    Then question "Q1" option "Option 3*" should contain "------ moving question #2------" Assertion
     Then I wait for 2 sec
     Then I click on "Save" button
     And I wait for 3 sec
