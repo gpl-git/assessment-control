@@ -149,12 +149,13 @@ public class MaksymSingleChoiseOptionsStepDefs {
     getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
   }
 
-
-
+  /*
   @And("I click on element with xpath {string} ")
   public void iClickOnElementWithXpathMKs(String path) {
     getDriver().findElement(By.xpath(path)).click();
   }
+
+   */
 
   @Then("error messages should not be displayed ")
   public void errorMessagesShouldNotBeDisplayed() {
@@ -170,11 +171,12 @@ public class MaksymSingleChoiseOptionsStepDefs {
         .isFalse();
   }
 
+  /*
   @Then("I click on element with xpath {string}")
   public void iClickOnElementWithXpath(String arg0) {
     getDriver().findElement(By.xpath(arg0)).click();
   }
-
+*/
 
 
   @Then("question {string} option {string} should contain {string} characters Assertion")
