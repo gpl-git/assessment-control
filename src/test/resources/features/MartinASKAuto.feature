@@ -41,7 +41,6 @@ Feature: Automate test set - Multiple choice question: Options. SEP22-274 Report
     And I verify that question "Q1" option number "Option 2*" field does NOT allow more than ONE THOUSAND characters - ASSERTION
 
 
-
   @option3
 #    TC PASS
   Scenario: Test 3. Option text field accepts 1 character
@@ -106,6 +105,7 @@ Feature: Automate test set - Multiple choice question: Options. SEP22-274 Report
     And I select "Option 10*" as the correct answer
     And I delete "Option 12*"
     And I delete "Option 11*"
+#    NOT SURE HOW TO ASSERT
     And I click on "Back To Quizzes List" button
     And I click on "Discard" option button
     And I wait for 1 Sec
@@ -172,6 +172,7 @@ Feature: Automate test set - Multiple choice question: Options. SEP22-274 Report
     And I add up to 15 additional options
     And I select "Option 15*" as the correct answer
     And I click on "Save" button
+#    NOT SURE HOW TO ASSERT
     And I wait for 2 Sec
     And I verify saved "Quiz Demo Martin - Automation" in displayed in quizzes
     And I wait for 1 Sec
@@ -191,6 +192,7 @@ Feature: Automate test set - Multiple choice question: Options. SEP22-274 Report
     And I add up to 16 additional options
     And I select "Option 15*" as the correct answer
     And I select "Option 16*" as the correct answer
+#    NOT SURE HOW TO ASSERT
     And I click on "Back To Quizzes List" button
     And I click on "Discard" option button
 

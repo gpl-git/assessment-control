@@ -292,20 +292,6 @@ public class MartinASKAuto {
         
     }
 
-    @Then("I verify option {string} contains only special characters {string} value - ASSERTION")
-    public void iVerifyOptionContainsOnlySpecialCharactersValueASSERTION(String optionNum, String spesChar) {
-        String regex = "[^a-zA-Z0-9]+";
-        Pattern p = Pattern.compile(regex);
-        if (spesChar == null) {
-            System.out.println("No");
-            return;
-        }
-        Matcher m = p.matcher(spesChar);
-        if (m.matches())
-            System.out.println("Yes");
-        else
-            System.out.println("No");
-    }
 }
 
 
