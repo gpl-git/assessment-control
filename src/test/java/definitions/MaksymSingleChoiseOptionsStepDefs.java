@@ -142,14 +142,10 @@ public class MaksymSingleChoiseOptionsStepDefs {
     getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).sendKeys(text);
   }
 
-
-
   @And("I click on Save button ")
   public void iClickOnSaveButtonMKs() {
     getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
   }
-
-
 
   @And("I click on element with xpath {string} ")
   public void iClickOnElementWithXpathMKs(String path) {
@@ -162,8 +158,6 @@ public class MaksymSingleChoiseOptionsStepDefs {
         .isFalse();
   }
 
-
-
   @Then("the field alert messages should not be displayed")
   public void theFieldAlertMessagesShouldNotBeDisplayed() {
     assertThat(getDriver().findElement(By.xpath("//mat-error[@role='alert']")).isDisplayed())
@@ -175,18 +169,20 @@ public class MaksymSingleChoiseOptionsStepDefs {
     getDriver().findElement(By.xpath(arg0)).click();
   }
 
-
-
   @Then("question {string} option {string} should contain {string} characters Assertion")
   public void questionOptionShouldContainCharactersAssertion(
-          String questionNum, String optionNum, String expectedText) {
-      String actualText = getDriver().findElement(
-              By.xpath("//mat-panel-title[contains(text(),'"
-                      + questionNum
-                      + "')]/..//..//..//textarea[@placeholder='"
-                      + optionNum
-                      + "']")).getAttribute("value");
-      assertThat(actualText.equals(expectedText)).isTrue();
+      String questionNum, String optionNum, String expectedText) {
+    String actualText =
+        getDriver()
+            .findElement(
+                By.xpath(
+                    "//mat-panel-title[contains(text(),'"
+                        + questionNum
+                        + "')]/..//..//..//textarea[@placeholder='"
+                        + optionNum
+                        + "']"))
+            .getAttribute("value");
+    assertThat(actualText.equals(expectedText)).isTrue();
   }
 
   @Then("question {string} option {string} should not contain {string} characters Assertion")
@@ -216,8 +212,6 @@ public class MaksymSingleChoiseOptionsStepDefs {
     assertThat(pop_upMessage.contains("This field is required")).isTrue();
   }
 
-
-
   @Then("warning message should not appear")
   public void warningMessageShouldNotAppear() {
     assertThat(
@@ -239,62 +233,86 @@ public class MaksymSingleChoiseOptionsStepDefs {
   @And("I add {int} options to question {string}")
   public void iAddOptionsToQuestion(int num, String questionN) {
     String option = "Option ";
-    String button = "//*[contains(text(),'" + questionN + "')]/../../..//*[contains(text(),'Add Option')]";
+    String button =
+        "//*[contains(text(),'" + questionN + "')]/../../..//*[contains(text(),'Add Option')]";
     for (int i = 3; i <= num; i++) {
       getDriver().findElement(By.xpath(button)).click();
-      String xpath = "//*[contains(text(),'" + questionN + "')]/../../..//*[@placeholder='" + option+ i + "*']";
+      String xpath =
+          "//*[contains(text(),'"
+              + questionN
+              + "')]/../../..//*[@placeholder='"
+              + option
+              + i
+              + "*']";
       getDriver().findElement(By.xpath(xpath)).sendKeys(option + i);
     }
   }
 
-
-    @Then("I click on settings button in option {string}")
-    public void iClickOnSettingsButtonInOption(String optionNum) {
-      getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]/..//..//.//mat-panel-title[contains(text(),'Q1')]/..//..//..//textarea[@placeholder='"+optionNum+"']/..//..//..//..//..//../mat-icon[@role='img']")).click();
-    }
+  @Then("I click on settings button in option {string}")
+  public void iClickOnSettingsButtonInOption(String optionNum) {
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//mat-panel-title[contains(text(),'Q1')]/..//..//.//mat-panel-title[contains(text(),'Q1')]/..//..//..//textarea[@placeholder='"
+                    + optionNum
+                    + "']/..//..//..//..//..//../mat-icon[@role='img']"))
+        .click();
+  }
 
   @Then("I clear {string} option {string} text field")
   public void iClearOptionTextField(String questionNum, String optionNum) {
-    getDriver().findElement(By.xpath("//*[contains(text(),'" + questionNum + "')]/../../..//*[@placeholder='"+optionNum+"']")).clear();
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//*[contains(text(),'"
+                    + questionNum
+                    + "')]/../../..//*[@placeholder='"
+                    + optionNum
+                    + "']"))
+        .clear();
   }
-
-
 
   @Then("no error messages like {string}")
-  public void noErrorMessagesLikeRed(String arg0, String arg1) {
-
-  }
+  public void noErrorMessagesLikeRed(String arg0, String arg1) {}
 
   @Then("number of options is equal to {int}")
   public void numberOfOptionsIsEqualTo(int numOfOptions) {
-    List <WebElement> options = new ArrayList();
+    List<WebElement> options = new ArrayList();
     options = getDriver().findElements(By.xpath("//textarea[contains(@placeholder, 'Option')]"));
     int size = options.size();
-    System.out.println("the number of options: "+size);
-    assertThat(size==numOfOptions).isTrue();
+    System.out.println("the number of options: " + size);
+    assertThat(size == numOfOptions).isTrue();
   }
 
   @Then("I delete input field for option {string}")
   public void iDeleteInputField(String optionNum) throws InterruptedException {
-    getDriver().findElement(By.xpath("//textarea[@placeholder='"+optionNum+"']/../../../../..//mat-icon")).click();
+    getDriver()
+        .findElement(
+            By.xpath("//textarea[@placeholder='" + optionNum + "']/../../../../..//mat-icon"))
+        .click();
     Thread.sleep(1000);
     getDriver().findElement(By.xpath("//*[text()='Delete Option']")).click();
   }
 
   @Then("I move down option {string}")
   public void iMoveDownOption(String optionNum) throws InterruptedException {
-    getDriver().findElement(By.xpath("//textarea[@placeholder='"+optionNum+"']/../../../../..//mat-icon")).click();
+    getDriver()
+        .findElement(
+            By.xpath("//textarea[@placeholder='" + optionNum + "']/../../../../..//mat-icon"))
+        .click();
     Thread.sleep(1000);
     getDriver().findElement(By.xpath("//*[text()='Move option down']")).click();
   }
 
   @Then("I move up option {string}")
   public void iMoveUpOption(String optionNum) throws InterruptedException {
-    getDriver().findElement(By.xpath("//textarea[@placeholder='"+optionNum+"']/../../../../..//mat-icon")).click();
+    getDriver()
+        .findElement(
+            By.xpath("//textarea[@placeholder='" + optionNum + "']/../../../../..//mat-icon"))
+        .click();
     Thread.sleep(1000);
     getDriver().findElement(By.xpath("//*[text()='Move option up']")).click();
   }
-
 
   @Then("I enter {int} alphanumeric characters to option {string}")
   public void iEnterAlphanumericCharactersToOption(int number, String optionNum) {
@@ -303,10 +321,42 @@ public class MaksymSingleChoiseOptionsStepDefs {
     String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
     // System.out.println(generatedString);
     getDriver()
+        .findElement(By.xpath("//textarea[@placeholder='" + optionNum + "']"))
+        .sendKeys(generatedString);
+  }
+
+  @When("I enter {int} alphanumeric characters to {string} in {string}")
+  public void iEnterAlphanumericCharacters(int number, String optionNum, String questionNum) {
+    boolean useLetters = true;
+    boolean useNumbers = true;
+    String generatedString = RandomStringUtils.random(number, useLetters, useNumbers);
+    // System.out.println(generatedString);
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//*[contains(text(),'"
+                    + questionNum
+                    + "')]/../../..//*[@placeholder='"
+                    + optionNum
+                    + "']"))
+        .sendKeys(generatedString);
+  }
+
+  @Then("question {string} option {string} should contain {int} characters ASSERTION")
+  public void questionOptionShouldContainCharacters(
+      String questionNum, String optionNum, int quontityOfCharacters) {
+    int actulLength =
+        getDriver()
             .findElement(
-                    By.xpath(
-                            "//textarea[@placeholder='"+optionNum+"']"))
-            .sendKeys(generatedString);
+                By.xpath(
+                    "//*[contains(text(),'"
+                        + questionNum
+                        + "')]/../../..//*[@placeholder='"
+                        + optionNum
+                        + "']"))
+            .getAttribute("value")
+            .length();
+    System.out.println("actual length of characters is: " + actulLength);
+    assertThat(actulLength == quontityOfCharacters).isTrue();
   }
 }
-
