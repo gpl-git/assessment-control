@@ -12,39 +12,44 @@
 
     @regGroupCode1
     Scenario: Group code field allows alphanumeric characters
-      Given  I will type "abc123" into Group Code input field
+      Given  I will type "abc123" into Group Code input field DS
       And I push on "Register Me" button DS
+      And I wait for 1 sec DS
       Then success message "You have been Registered." should be displayed DS
-
 
     @regGroupCode2
     Scenario: Group code field allows special characters
-      Given  I will type "#$%" into Group Code input field
+      Given  I will type "#$%" into Group Code input field DS
       And I push on "Register Me" button DS
+      And I wait for 1 sec DS
       Then success message "You have been Registered." should be displayed DS
 
     @regGroupCode3
     Scenario: Group code field allows alphanumeric and special characters
-      Given  I will type "abc#$%" into Group Code input field
+      Given  I will type "abc#$%" into Group Code input field DS
       And I push on "Register Me" button DS
+      And I wait for 1 sec DS
       Then success message "You have been Registered." should be displayed DS
 
     @regGroupCode4
     Scenario: Group code allows min 1 alpha character
       Given  I will type 1 alpha character into Group Code input field
       And I push on "Register Me" button DS
+      And I wait for 1 sec DS
       Then success message "You have been Registered." should be displayed DS
 
     @regGroupCode5
     Scenario: Group code allows min 1 numeric character
       Given  I will type 1 numeric character into Group Code input field
       And I push on "Register Me" button DS
+      And I wait for 1 sec DS
       Then success message "You have been Registered." should be displayed DS
 
     @regGroupCode6
     Scenario: Group code allows min 1 special character
-      Given  I will type "%" into Group Code input field
+      Given  I will type "%" into Group Code input field DS
       And I push on "Register Me" button DS
+      And I wait for 1 sec DS
       Then success message "You have been Registered." should be displayed DS
 
     @regGroupCode7
@@ -61,13 +66,14 @@
 
     @regGroupCode9
     Scenario: Group code allows max 10 special characters
-      Given  I will type "%$#@&^%$#@" into Group Code input field
+      Given  I will type "%$#@&^%$#@" into Group Code input field DS
       And I push on "Register Me" button DS
+      And I wait for 1 sec DS
       Then success message "You have been Registered." should be displayed DS
 
     @regGroupCode10
     Scenario: Validate that group code field required, can’t be empty
-      Given  I will type "" into Group Code input field
+      Given  I will type "" into Group Code input field DS
       And I push on "Register Me" button DS
       And I wait for 1 sec DS
       And error message "This field is required" should be displayed DS
@@ -81,16 +87,26 @@
 
     @regGroupCode12
     Scenario: Verify if group code field allows 11 special characters
-      Given  I will type "%$#@&^%$#@#" into Group Code input field
+      Given  I will type "%$#@&^%$#@#" into Group Code input field DS
       And I push on "Register Me" button DS
       And I wait for 0 sec DS
       And error message "Should no more than 10 characters" should be displayed DS
 
     @regGroupCode13
     Scenario: Verify if group code field allows 10 white spaces
-      Given  I will type "          " into Group Code input field
+      Given  I will type "          " into Group Code input field DS
       And I push on "Register Me" button DS
-      And I wait for 0 sec DS
+      And I wait for 1 sec DS
       And error message "White spaces are not allowed" should be displayed DS
       # Bug report  https://jira.portnov.com/browse/SEP22-373
-      And I wait for 2 sec DS
+      And I wait for 0 sec DS
+
+#    @regGroupCode14
+#    Scenario Outline: Verify if group code field allows 11 special characters
+#      Given I will type <groupCode> into Group Code input field DS
+#      And I push on <registerMeBtn> button DS
+#      And I wait for <sec> sec DS
+#      And error message <expectedError> should be displayed DS
+#      Examples:
+#        | groupCode     | registerMeBtn | sec | expectedError                       |
+#        | "%$#@&^%$#@#" | "Register Me" | 0   | "Should no more than 10 characters" |

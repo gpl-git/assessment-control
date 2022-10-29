@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,8 +52,8 @@ public class regGroupCodeDmitrySStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).sendKeys(confirmPassword);
     }
 
-    @Given("I will type {string} into Group Code input field")
-    public void iWillTypeIntoInputField(String groupCode) throws InterruptedException {
+    @Given("I will type {string} into Group Code input field DS")
+    public void iWillTypeIntoInputFieldDS(String groupCode) throws InterruptedException {
         getDriver().findElement(By.xpath("//input[@formcontrolname='group']")).sendKeys(groupCode);
         Thread.sleep(1000);
     }
