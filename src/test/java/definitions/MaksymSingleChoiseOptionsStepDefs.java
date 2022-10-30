@@ -142,11 +142,6 @@ public class MaksymSingleChoiseOptionsStepDefs {
     getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']")).sendKeys(text);
   }
 
-  @And("I click on Save button ")
-  public void iClickOnSaveButton() {
-    getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
-  }
-
 
 
   @Then("error messages should not be displayed ")
