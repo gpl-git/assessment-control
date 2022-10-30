@@ -1,5 +1,5 @@
 @quizTotal
-Feature: Quiz - total questions'
+Feature: Quiz - total questions
 
   Background:
     Given I open "login" page
@@ -38,7 +38,7 @@ Feature: Quiz - total questions'
     And I delete quiz "Total Questions Quiz Automation"
 
   @quizTotal3
-  Scenario Outline: Create a quiz with several question outline
+  Scenario Outline: Create a quiz with several textual question
     When I click "Create New Quiz" button
     And I wait for 1 sec
     When I type "Total Questions Quiz Automation" as quiz title
@@ -57,7 +57,7 @@ Feature: Quiz - total questions'
       | 50            |
 
   @quizTotal4
-  Scenario Outline: Create a quiz with different single-choice questions outline
+  Scenario Outline: Create a quiz with several single-choice questions
     When I click "Create New Quiz" button
     And I wait for 1 sec
     When I type "Total Questions Quiz Automation" as quiz title
@@ -101,7 +101,7 @@ Feature: Quiz - total questions'
     And I delete quiz "Total Questions Quiz Automation"
 
   @quizTotal6
-  Scenario Outline: Create a quiz with several different multiple-choice questions
+  Scenario Outline: Create a quiz with several multiple-choice questions
     When I click "Create New Quiz" button
     And I wait for 1 sec
     When I type "Total Questions Quiz Automation" as quiz title
