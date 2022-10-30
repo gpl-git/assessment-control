@@ -143,14 +143,11 @@ public class MaksymSingleChoiseOptionsStepDefs {
   }
 
   @And("I click on Save button ")
-  public void iClickOnSaveButtonMKs() {
+  public void iClickOnSaveButton() {
     getDriver().findElement(By.xpath("//span[contains(text(),'Save')]")).click();
   }
 
-  @And("I click on element with xpath {string} ")
-  public void iClickOnElementWithXpathMKs(String path) {
-    getDriver().findElement(By.xpath(path)).click();
-  }
+
 
   @Then("error messages should not be displayed ")
   public void errorMessagesShouldNotBeDisplayed() {
