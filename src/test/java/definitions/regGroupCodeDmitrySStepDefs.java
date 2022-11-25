@@ -116,4 +116,5 @@ public class regGroupCodeDmitrySStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='group']")).sendKeys(generatedString);
         Thread.sleep(1000);
     }
+
 }
