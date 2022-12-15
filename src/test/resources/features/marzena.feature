@@ -4,4 +4,4 @@
 
     @testGit1
     Scenario: My first branch
-      Given I create a conflict with Marzena
+      Given I create conflict with Danil
