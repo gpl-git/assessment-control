@@ -15,8 +15,7 @@ Feature: Verifying "Multiple Choice Question - Options" Behavior : NOV-210
     And I add a new question -EF
     When I select "Multiple-Choice" question -EF
     And I wait for 1 sec -EF
-  #    maybe add verification of existing elements?
-#  //mat-panel-title[contains(text(),'Option 1*')]/../../..//textarea[@placeholder='Q1']
+
 
   @multiChoiceQuOptions1
   Scenario: Verifying all required fields : NOV-569
@@ -28,18 +27,13 @@ Feature: Verifying "Multiple Choice Question - Options" Behavior : NOV-210
     Then error message is displayed under "Option 1*" input field and contains text: "This field is required" -EF
     When I click on "Option 1*" field in "Q1" -EF
     Then error message is displayed under "Option 2*" input field and contains text: "This field is required" -EF
- # //mat-panel-title[contains(text(),'Q1')]/../../..//mat-form-field[contains(@class, 'question')]//mat-error
- # //mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@placeholder='Option 1*']/../../..//mat-error
- # //mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@placeholder='Option 2*']/../../..//mat-error
 
 
   @multiChoiceQuOptions2
   Scenario: Verify indelible options : NOV-570
     When I click on Settings button at "Option 1*" field in "Q1" -EF
-#  //mat-panel-title[contains(text(),'Q1')]/../../..//textarea[@placeholder='Option 1*']/../../../../../button
     And I wait for 2 sec -EF
     Then the Delete element will be inactive -EF
-#  //div[contains(@class, 'cdk-overlay-pane')]//span[contains(text(), 'Delete Option')]/../
     And I click on Close button
     When I add a new option -EF
     And I click on Settings button at "Option 1*" field in "Q1" -EF
@@ -51,13 +45,13 @@ Feature: Verifying "Multiple Choice Question - Options" Behavior : NOV-210
   @multiChoiceQuOptions3
   Scenario: Verify that only Max. 15 options can be created : NOV-571
     When I add 16 new options
-      # NOV-527
+      #  bug NOV-527
     Then too many error message is displayed and contains text: "Max. 15 options are possible"
-     #  //body//*[contains(text(), 'Max. 15 options are possible']
+
 
   @multiChoiceQuOptions4
   Scenario: Verify Preview/Save functionality after creating a new question : Nov-574
-#    Why do we test it within this set?
+#    why is this a separate test though
     When I type "Question 1" into "Q1" textarea -EF
     And I type "Option 1" into "Option 1*" field in "Q1" -EF
     And I type "Option 2" into "Option 2*" field in "Q1" -EF
@@ -101,5 +95,5 @@ Feature: Verifying "Multiple Choice Question - Options" Behavior : NOV-210
     And I type "12" into "Option 2*" field in "Q1" -EF
     And I type 1001 symbol(s) into "Option 1*" field in "Q1" -EF
     And I select "Option 1*" as correct option in "Q1" -EF
-#   bug NOV-534
+#   bug #NOV-534
     Then error message is displayed under "Option 1*" input field and contains text: "The Error Message max.1000 characters" -EF
