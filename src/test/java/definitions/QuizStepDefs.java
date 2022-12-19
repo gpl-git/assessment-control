@@ -89,4 +89,7 @@ public class QuizStepDefs {
         getDriver().findElement(By.xpath("//ac-modal-confirmation//span[contains(text(),'Delete')]")).click();
         Thread.sleep(1000);
     }
+
 }
+
+
