@@ -56,8 +56,10 @@ public class LogInVakhtangStepDefs {
 
     @Then("email error message {string} is displayed VT")
     public void emailErrorMessageIsDisplayedVt(String expectedMessage) {
-        String actualMessage = getDriver().findElement(By.xpath("//mat-error[contains(text(),'valid email address')]")).getText();
+        String actualMessage = getDriver().findElement(By.xpath("//input[@formcontrolname='email']/../../../..//mat-error[@role='alert']")).getText();
         assertThat(expectedMessage.equals(actualMessage)).isTrue();
+        System.out.println(getDriver().findElement(By.xpath("//input[@formcontrolname='email']/../../../..//mat-error[@role='alert']")).getText());
+
     }
 
     @When("I type email with a whitespace in from of it {string} into email text field VT")
@@ -72,13 +74,30 @@ public class LogInVakhtangStepDefs {
 
     @Then("password error message {string} should be displayed VT")
     public void passwordErrorMessageShouldBeDisplayedVt(String expectedMessage) {
-        String actualMessage = getDriver().findElement(By.xpath("//mat-error[contains(text(),'Whitespaces')]")).getText();
+        String actualMessage = getDriver().findElement(By.xpath("//input[@formcontrolname='password']/../../../..//mat-error[@role='alert']")).getText();
         assertThat(expectedMessage.equals(actualMessage)).isTrue();
+        System.out.println(getDriver().findElement(By.xpath("//input[@formcontrolname='password']/../../../..//mat-error[@role='alert']")).getText());
+
     }
 
 
     @Then("password Authentication error message should be displayed VT")
     public void passwordAuthenticationErrorMessageShouldBeDisplayedVT() {
         assertThat(getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Authentication')]")).isDisplayed()).isTrue();
+    }
+
+    @Then("user role {string} is displayed VT")
+    public void userRoleIsDisplayedVt(String expectedRole) {
+        String actualRole = getDriver().findElement(By.xpath("//div[@class='info']//p")).getText();
+//        System.out.println(getDriver().findElement(By.xpath("//div[@class='info']//p")).getText());
+        assertThat(expectedRole.equals(actualRole)).isTrue();
+
+    }
+
+    @Then("I verify that password field has type {string} VT")
+    public void iVerifyThatPasswordFieldHasTypeVt(String expectedType) {
+        assertThat(getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type")).isEqualTo(expectedType);
+        System.out.println(getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type"));
+
     }
 }
