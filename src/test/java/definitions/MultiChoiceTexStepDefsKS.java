@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -106,6 +107,20 @@ public class MultiChoiceTexStepDefsKS {
             getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questionNum + "')]/../../..//textarea[@placeholder='" + optionNum + "']")).sendKeys(optionNum);
         }
 
+    }
+
+
+    @And("I type {int} characters  into question  field in {string} KS")
+    public void iTypeCharactersIntoFieldInKS(int numChar,  String questionNum) {
+        boolean useLetters =true;
+        boolean useNumbers =true;
+        String generatedString = RandomStringUtils.random(numChar, useLetters,useNumbers);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questionNum + "')]/../../..//textarea[@formcontrolname='question']")).sendKeys(generatedString);
+    }
+
+    @Then("error message should be displayed KS")
+    public void errorMessageShouldBeDisplayedKS() {
+        assertThat(getDriver().findElement(By.xpath("//div[contains(@class, 'error')]")).isDisplayed()).isTrue();
     }
 }
 

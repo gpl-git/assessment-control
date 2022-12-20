@@ -69,8 +69,16 @@
       And I wait for 1 sec
       When I enter "Maximum character limit" as quiz title KS
       And I add a question
-      And I type 1001 symbol(s) into "Option 1* " field in "Q1" KS
-
+      And I select "Multiple" question
+      And I type 1001 characters  into question  field in "Q1" KS
+    And I type "Special! 1 %" into "Option 1*" field in "Q1" KS
+      And I type "Special! 2 #" into "Option 2*" field in "Q1" KS
+      When I select "Option 1*" as correct option in "Q1" KS
+      And I wait for 1 sec
+      When I click "Save" button KS
+#      THis is a known issue
+      Then error message should be displayed KS
+      Then I delete quiz "Maximum character limit"
 
 
 
