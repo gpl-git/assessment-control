@@ -1,4 +1,6 @@
 @test
-  Feature Olga
+  Feature Learning Git Commands
 
-Scenario:
+@test1
+Scenario: Git
+  Given I learn git
