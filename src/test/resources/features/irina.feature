@@ -4,4 +4,4 @@
 
     @test1
     Scenario: Git
-      Given I learn git
+      Given I create a conflict with Irina
