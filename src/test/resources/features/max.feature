@@ -4,4 +4,4 @@
 
     @test1
     Scenario: Git
-      Given I learn Git
+      Given I learn Git 2
