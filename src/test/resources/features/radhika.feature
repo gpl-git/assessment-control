@@ -3,4 +3,4 @@
 
     @test1
     Scenario: Git
-      Given I create a conflict with shuhui
+      Given I learn git
