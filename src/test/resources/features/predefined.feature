@@ -5,7 +5,7 @@
     @predefined1
     Scenario: Registration Demo
       Given I open "registration" website
-      When I type "" into firstname field
+      When I type "John" into firstname field
       And I type "Smith" into lastname field
       When I type "abc@efg.com" into email field
       And I type "111" into group code field
@@ -13,9 +13,10 @@
       Then I verify the password is masked
       And I type "12345" into confirmPassword field
       When I click "Register Me" button
-      Then "This field is required" error message should be displayed
-#      Then "You have been Registered." confirmation message should be displayed
-      And I wait for 5 sec
+      And I wait for 1 sec
+#      Then "This field is required" error message should be displayed
+      Then "You have been Registered." confirmation message should be displayed
+      And I wait for 3 sec
 
       @predefined2
       Scenario: Quiz Demo
