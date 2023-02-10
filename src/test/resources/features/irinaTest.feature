@@ -1,3 +1,0 @@
-@guiz
-
-  Feature: Test
