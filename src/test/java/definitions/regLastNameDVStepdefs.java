@@ -1,6 +1,8 @@
 package definitions;
 
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,4 +21,15 @@ public class regLastNameDVStepdefs {
         assertThat(getDriver().findElement(By.xpath("//h4[contains(text(), 'You have been Registered.')]")).isDisplayed()).isTrue();
 
     }
-}
+
+    @When("I type {int} characters into {string} field -DV")
+    public void iTypeCharactersIntoField(int num, String lastname) {
+    boolean useLetters = true;
+    boolean useNumbers = true;
+    String generatedString = RandomStringUtils.random(num, useLetters, useNumbers);
+        System.out.println(generatedString);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='lastName']")).sendKeys(generatedString);
+
+
+}}
+

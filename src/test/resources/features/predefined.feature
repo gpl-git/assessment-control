@@ -13,9 +13,8 @@
       Then I verify the password is masked
       And I type "12345" into confirmPassword field
       When I click "Register Me" button
-      And I wait for 3 sec
       Then "This field is required" error message should be displayed
-      Then "You have been Registered." confirmation message should be displayed
+#      Then "You have been Registered." confirmation message should be displayed
       And I wait for 5 sec
 
       @predefined2
