@@ -50,14 +50,14 @@ public class TitleOfQuizAnaStepDefs {
         getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(generatedString);
     }
 
-    @Then("title with {int} characters should be displayed on the list of quizzes")
-    public void titleWithCharactersShouldBeDisplayedOnTheListOfQuizzes(int arg0) {
-
+    @When("I type {string} as quiz title with trailing space")
+    public void iTypeAsQuizTitleWithTrailingSpace(String quizTitle) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(quizTitle);
     }
 
-    @And("I delete quiz with {int} characters")
-    public void iDeleteQuizWithCharacters(int arg0) {
-
+    @When("I type {string} as quiz title with leading space")
+    public void iTypeAsQuizTitleWithLeadingSpace(String quizTitle) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(quizTitle);
     }
 }
 
