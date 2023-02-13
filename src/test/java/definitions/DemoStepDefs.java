@@ -16,14 +16,14 @@ public class DemoStepDefs {
             getDriver().get("http://ask-qa.portnov.com/#/registration");
         } else if (url.equals("login")) {
             getDriver().get("http://ask-qa.portnov.com/#/login");
-        } else {
-            System.out.println("This website is not supported: " + url);
+        }else {
+            System.out.println("This website is not supported: " +url);
         }
     }
 
     @And("I wait for {int} sec")
     public void iWaitForSec(int sec) throws InterruptedException {
-        Thread.sleep(1000 * sec);
+        Thread.sleep(1000*sec);
     }
 
     @When("I type {string} into firstname field")
@@ -58,7 +58,7 @@ public class DemoStepDefs {
 
     @When("I click {string} button")
     public void iClickButton(String btnName) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'" + btnName + "')]")).click();
+        getDriver().findElement(By.xpath("//span[contains(text(),'"+btnName+"')]")).click();
     }
 
     @Then("{string} confirmation message should be displayed")
@@ -83,7 +83,7 @@ public class DemoStepDefs {
 
     @When("I click {string} menu item")
     public void iClickMenuItem(String menuItem) {
-        getDriver().findElement(By.xpath("//h5[contains(text(),'" + menuItem + "')]")).click();
+       getDriver().findElement(By.xpath("//h5[contains(text(),'"+menuItem+"')]")).click();
     }
 
     @When("I type {string} as quiz title")
@@ -98,35 +98,35 @@ public class DemoStepDefs {
 
     @When("I select {string} question type")
     public void iSelectQuestionType(String questionType) {
-        getDriver().findElement(By.xpath("//*[contains(text(), '" + questionType + "')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(text(), '"+questionType+"')]")).click();
     }
 
     @When("I type {string} into {string}")
     public void iTypeInto(String questionText, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questionNum + "')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText);
     }
 
     @And("I type {string} into {string} as {string}")
     public void iTypeIntoAs(String optionText, String questionNum, String optionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questionNum + "')]/../../..//textarea[@placeholder='" + optionNum + "']")).sendKeys(optionText);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='"+optionNum+"']")).sendKeys(optionText);
 
     }
 
     @When("I select {string} as correct option in {string}")
     public void iSelectAsCorrectOptionIn(String optionNum, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questionNum + "')]/../../..//textarea[@placeholder='" + optionNum + "']/../../../../../mat-radio-button")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='"+optionNum+"']/../../../../../mat-radio-button")).click();
     }
 
     @Then("title {string} should be displayed on the list of quizzes")
     public void titleShouldBeDisplayedOnTheListOfQuizzes(String quizTitle) {
-        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).isDisplayed()).isTrue();
+        assertThat(getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).isDisplayed()).isTrue();
     }
 
     @And("I delete quiz  {string}")
     public void iDeleteQuiz(String quizTitle) throws InterruptedException {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
         Thread.sleep(1000);
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/../../..//span[contains(text(),'Delete')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//span[contains(text(),'Delete')]")).click();
         Thread.sleep(1000);
         getDriver().findElement(By.xpath("//div[@mat-dialog-actions]//span[contains(text(),'Delete')]")).click();
         Thread.sleep(1000);
