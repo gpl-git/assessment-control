@@ -15,14 +15,14 @@
       When I type "@AB" into group code field
       And I click "Register Me" button
       And I wait for 2 sec
-      Then "you have been registered" confirmation message should be displayed
+      Then "You have been Registered." confirmation message should be displayed
 
     @registration_GroupCode2
     Scenario: Group code field required, can’t be empty (Negative)
       When I type "" into group code field
       And I click "Register Me" button
       And I wait for 2 sec
-      Then "this field cannot be empty" error message should be displayed
+      Then "This field is required" error message should be displayed
 
 
     @registration_GroupCode3
@@ -30,7 +30,7 @@
       When I type "B" into group code field
       And I click "Register Me" button
       And I wait for 2 sec
-      Then "you have been registered" confirmation message should be displayed
+      Then "You have been Registered." confirmation message should be displayed
 
     @registration_GroupCode4
     Scenario: Group code does not accept more than 10 charactetrs(Max 10 characters- 10 characters+1)
@@ -44,7 +44,7 @@
       When I type "12dse2agfe" into group code field
       And I click "Register Me" button
       And I wait for 2 sec
-      Then "you have been registered" confirmation message should be displayed
+      Then "You have been Registered." confirmation message should be displayed
 
     @registration_GroupCode6
     Scenario: White spaces are not allowed in Group code
@@ -52,7 +52,7 @@
       And I click "Register Me" button
       And I wait for 2 sec
 #      Known issue JAN23-275
-      Then "white spaces are not allowed" error message should be displayed
+      Then "Whitespaces are not allowed" error message should be displayed
 
     Scenario Outline: Group code field error messages - Outline
       When I type <group> into group code field
@@ -63,18 +63,18 @@
         | group  | expectedError                  |
         | "" | "this field cannot be empty" |
         | "1@3$56&8(12" | "should no more than 10 characters" |
-        | "AB C" | "white spaces are not allowed" |
+        | "AB C" | "Whitespaces are not allowed" |
 
-    Scenario Outline: Registration Group code allowable characters: Alphanumeric & Special characters
+    Scenario Outline: Registration confirmation message - Outline
       When I type <group> into group code field
       And I click "Register Me" button
       And I wait for 2 sec
       Then <expectedMessage> confirmation message should be displayed
       Examples:
         | group | expectedMessage            |
-        | "@AB" | "you have been registered" |
-        | "B" | "you have been registered" |
-        | "12dse2agfe" | "you have been registered" |
+        | "@AB" | "You have been Registered." |
+        | "B" | "You have been Registered." |
+        | "12dse2agfe" | "You have been Registered." |
 
 
 
