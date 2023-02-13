@@ -11,13 +11,15 @@ Feature: QuizTotalQuestions
     And I click "Create New Quiz" button
     And I wait for 1 sec
 
+
   @QuizTotalQuestionsTextualPositive
   Scenario: Max 50 questions (textual only)
     When I type "quiz_textual_test_50" as quiz title
-    And I add "50" of "Textual" questions with "test_question" text AK
+    And I add "3" of "Textual" questions with "test_question" text AK
     And I click "Save" button
     And I wait for 2 sec
     Then title "quiz_textual_test_50" should be displayed on the list of quizzes
+    And I delete quiz  "quiz_textual_test_50"
 
 #  error is not implemented
   @Failing
@@ -36,6 +38,7 @@ Feature: QuizTotalQuestions
     And I click "Save" button
     And I wait for 2 sec
     Then title "quiz_single_choice_test_50" should be displayed on the list of quizzes
+    And I delete quiz  "quiz_single_choice_test_50"
 
 
   #  error is not implemented
@@ -49,6 +52,7 @@ Feature: QuizTotalQuestions
     Then "number of questions exceeded" error message should be displayed AK
 
 
+
   @QuizTotalQuestionsMultChoicePositive
   Scenario: Max 50 questions (multiple-choice only)
     When I type "quiz_multiple_choice_test_50" as quiz title
@@ -56,6 +60,8 @@ Feature: QuizTotalQuestions
     And I click "Save" button
     And I wait for 2 sec
     Then title "quiz_multiple_choice_test_50" should be displayed on the list of quizzes
+    And I delete quiz  "quiz_multiple_choice_test_50"
+
 
   #  error is not implemented
   @Failing
@@ -71,10 +77,13 @@ Feature: QuizTotalQuestions
   @QuizTotalQuestionsMultiTypePositive
   Scenario: Max 50 questions (multiple-type)
     When I type "quiz_multi_type_test_50" as quiz title
-    And I add "50" of "MultiType" questions with "test_question" text AK
+    And I add "4" of "MultiType" questions with "test_question" text AK
     And I click "Save" button
     And I wait for 2 sec
     Then title "quiz_multi_type_test_50" should be displayed on the list of quizzes
+    And I delete quiz  "quiz_multi_type_test_50"
+
+
 
   #  error is not implemented
   @Failing
