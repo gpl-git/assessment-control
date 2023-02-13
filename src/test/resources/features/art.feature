@@ -15,7 +15,7 @@ Feature: QuizTotalQuestions
   @QuizTotalQuestionsTextualPositive
   Scenario: Max 50 questions (textual only)
     When I type "quiz_textual_test_50" as quiz title
-    And I add "3" of "Textual" questions with "test_question" text AK
+    And I add "50" of "Textual" questions with "test_question" text AK
     And I click "Save" button
     And I wait for 2 sec
     Then title "quiz_textual_test_50" should be displayed on the list of quizzes
@@ -46,7 +46,7 @@ Feature: QuizTotalQuestions
   @QuizTotalQuestionsSingleChoiceNegative
   Scenario: Max 51 questions (single-choice only)
     When I type "quiz_single_choice_test_51" as quiz title
-    And I add "50" of "Single-Choice" questions with "test_question" text AK
+    And I add "51" of "Single-Choice" questions with "test_question" text AK
     And I click "Save" button
     And I wait for 2 sec
     Then "number of questions exceeded" error message should be displayed AK
@@ -77,7 +77,7 @@ Feature: QuizTotalQuestions
   @QuizTotalQuestionsMultiTypePositive
   Scenario: Max 50 questions (multiple-type)
     When I type "quiz_multi_type_test_50" as quiz title
-    And I add "4" of "MultiType" questions with "test_question" text AK
+    And I add "50" of "MultiType" questions with "test_question" text AK
     And I click "Save" button
     And I wait for 2 sec
     Then title "quiz_multi_type_test_50" should be displayed on the list of quizzes
