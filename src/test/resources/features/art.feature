@@ -11,34 +11,77 @@ Feature: QuizTotalQuestions
     And I click "Create New Quiz" button
     And I wait for 1 sec
 
-    @QuizTotalQuestions
-    Scenario: Max 50 questions (textual only)
-      When I type "quiz_textual_test_50" as quiz title
-      And I add "50" of "Textual" questions with "test_question" text AK
-      And I click "Save" button
-      And I wait for 2 sec
-      Then title "quiz_textual_test" should be displayed on the list of quizzes
+  @QuizTotalQuestionsTextualPositive
+  Scenario: Max 50 questions (textual only)
+    When I type "quiz_textual_test_50" as quiz title
+    And I add "50" of "Textual" questions with "test_question" text AK
+    And I click "Save" button
+    And I wait for 2 sec
+    Then title "quiz_textual_test_50" should be displayed on the list of quizzes
 
-  @QuizTotalQuestions
-  Scenario: Max 50+1 questions (textual only)
+#  error is not implemented
+  @Failing
+  @QuizTotalQuestionsTextualNegative
+  Scenario: Max 51 questions (textual only)
     When I type "quiz_textual_test_51" as quiz title
     And I add "51" of "Textual" questions with "test_question" text AK
     And I click "Save" button
     And I wait for 2 sec
     Then "number of questions exceeded" error message should be displayed AK
 
-  @QuizTotalQuestions
+  @QuizTotalQuestionsSingleChoicePositive
   Scenario: Max 50 questions (single-choice only)
-    When I type "quiz_single_choice_test_test_50" as quiz title
+    When I type "quiz_single_choice_test_50" as quiz title
     And I add "50" of "Single-Choice" questions with "test_question" text AK
     And I click "Save" button
     And I wait for 2 sec
-    Then title "quiz_textual_test" should be displayed on the list of quizzes
+    Then title "quiz_single_choice_test_50" should be displayed on the list of quizzes
 
-  @QuizTotalQuestions
+
+  #  error is not implemented
+  @Failing
+  @QuizTotalQuestionsSingleChoiceNegative
   Scenario: Max 51 questions (single-choice only)
-    When I type "quiz_single_choice_test_test_51" as quiz title
+    When I type "quiz_single_choice_test_51" as quiz title
     And I add "50" of "Single-Choice" questions with "test_question" text AK
+    And I click "Save" button
+    And I wait for 2 sec
+    Then "number of questions exceeded" error message should be displayed AK
+
+
+  @QuizTotalQuestionsMultChoicePositive
+  Scenario: Max 50 questions (multiple-choice only)
+    When I type "quiz_multiple_choice_test_50" as quiz title
+    And I add "50" of "Multiple-Choice" questions with "test_question" text AK
+    And I click "Save" button
+    And I wait for 2 sec
+    Then title "quiz_multiple_choice_test_50" should be displayed on the list of quizzes
+
+  #  error is not implemented
+  @Failing
+  @QuizTotalQuestionsMultiChoiceNegative
+  Scenario: Max 51 questions (multiple-choice only)
+    When I type "quiz_multiple_choice_test_51" as quiz title
+    And I add "51" of "Multiple-Choice" questions with "test_question" text AK
+    And I click "Save" button
+    And I wait for 2 sec
+    Then "number of questions exceeded" error message should be displayed AK
+
+
+  @QuizTotalQuestionsMultiTypePositive
+  Scenario: Max 50 questions (multiple-type)
+    When I type "quiz_multi_type_test_50" as quiz title
+    And I add "50" of "MultiType" questions with "test_question" text AK
+    And I click "Save" button
+    And I wait for 2 sec
+    Then title "quiz_multi_type_test_50" should be displayed on the list of quizzes
+
+  #  error is not implemented
+  @Failing
+  @QuizTotalQuestionsMultiTypePositive
+  Scenario: Max 51 questions (multiple-type)
+    When I type "quiz_multi_type_test_51" as quiz title
+    And I add "51" of "MultiType" questions with "test_question" text AK
     And I click "Save" button
     And I wait for 2 sec
     Then "number of questions exceeded" error message should be displayed AK
