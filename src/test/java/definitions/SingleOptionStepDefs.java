@@ -31,8 +31,8 @@ public class SingleOptionStepDefs {
 
     @Then("I add Other text area")
     public void iAddOtherTextArea() {
-        getDriver().findElement(By.xpath("//*[@id='mat-checkbox-6']")).click();
-    }
+            getDriver().findElement(By.xpath("(//div[@class='mat-checkbox-inner-container'])[1]")).click();
+        }
 
     @Then("{string} error message should be displayed on webpage")
     public void errorMessageShouldBeDisplayedOnWebpage(String expectedError) {
