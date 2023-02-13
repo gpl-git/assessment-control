@@ -49,6 +49,16 @@ public class TitleOfQuizAnaStepDefs {
         System.out.println(generatedString);
         getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(generatedString);
     }
+
+    @Then("title with {int} characters should be displayed on the list of quizzes")
+    public void titleWithCharactersShouldBeDisplayedOnTheListOfQuizzes(int arg0) {
+
+    }
+
+    @And("I delete quiz with {int} characters")
+    public void iDeleteQuizWithCharacters(int arg0) {
+
+    }
 }
 
 
