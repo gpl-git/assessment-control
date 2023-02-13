@@ -1,73 +1,59 @@
 @registrationEmail
 
-  Feature: Registration Email Field
-    Background:
-      Given I open "registration" website
+Feature: Registration Email Field
 
-    @registrationEmail1
-    Scenario:Email field does not accept special chars other than "@", "_" and "." (Positive)
-      When I type "a.b_c@efg.com" into email field
-      And I click "Register Me" button
-      And I wait for 2 sec
+  Background:
+    Given I open "registration" website
+    When I type "Irina" into firstname field
+    And I type "Zhevner" into lastname field
+    And I type "888" into group code field
+    When  I type "12345" into password field
+    And I type "12345" into confirmPassword field
 
-      @registrationEmail2
-      Scenario: Email field does not accept special chars other than "@", "_" and "." (Negative "!")
-        When I type "!bc@efg.com" into email field
-        And I click on group code field
-        Then  "Should be a valid email address" error message should be displayed
-        And I wait for 2 sec
+  @registrationEmail1
+  Scenario:Email field does not accept special chars other than "@", "_" and "." (Positive)
+    When I type "a.b_c@efg.com" into email field
+    And I click "Register Me" button
+    Then "You have been Registered." confirmation message should be displayed
+    And I wait for 2 sec
 
-        @registrationEmail3
-        Scenario: Email field required, can’t be empty
-          When I type "" into email field
-          And I click on group code field
-          Then  "This field is required" error message should be displayed
-          And I wait for 2 sec
+  @registrationEmail2
+  Scenario Outline: Email field error message (Negative scenarios)
+    When I type <email> into email field
+    And I click "Register Me" button
+    And I wait for 2 sec
+    Then <expectedError> error message should be displayed
 
-          @registrationEmail4
-          Scenario: Email Field allows Max 128 characters
-            When I type "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" into email field
-            And I click on group code field
-            And I wait for 2 sec
+    Examples:
+      | email                  | expectedError
+      | "!bc@efg.com"          | "Should be a valid email address"
+#      Known issue
+      | ""                     | "This field is required"
+      | "student11 @gmail.com" | "Should be a valid email address"
+      | "student11@ gmail.com" | "Should be a valid email address"
+      | "student11@gmail. com" | "Should be a valid email address"
+      | "+bc@efg.com"          | "Should be a valid email address"
+#      Known issue
+      | "$bc@efg.com"          | "Should be a valid email address"
+#      Known issue
+      | "$bc@efg"              | "Should be a valid email address"
+#         Known issues Jan23-460
 
-    @registrationEmail5
-    Scenario: Email Field allows Max 128 characters(129,negative)
-      When I type "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" into email field
-      And I click on group code field
-      Then  "Should be a valid email address" error message should be displayed
-      And I wait for 2 sec
 
-    @registrationEmail6
-    Scenario: Email Field does not allow White spaces(local port)
-      When I type "student11 @gmail.com" into email field
-      And I click on group code field
-      Then  "Should be a valid email address" error message should be displayed
-      And I wait for 2 sec
 
-    @registrationEmail7
-    Scenario: Email Field does not allow White spaces(domain)
-      When I type "student11@ gmail.com" into email field
-      And I click on group code field
-      Then  "Should be a valid email address" error message should be displayed
-      And I wait for 2 sec
+  @registrationEmail3
+  Scenario: Email Field allows Max 128 characters
+    When I type "irinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairi@gmail.com" into email field
+    And I click "Register Me" button
+    And I wait for 2 sec
+    Then "You have been Registered." confirmation message should be displayed
 
-    @registrationEmail8
-    Scenario: Email Field does not allow White spaces(last part of the domain)
-      When I type "student11@gmail. com" into email field
-      And I click on group code field
-      Then  "Should be a valid email address" error message should be displayed
-      And I wait for 2 sec
+  @registrationEmail4
+  Scenario: Email Field allows Max 128 characters (129,negative)
+    When I type "irinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairinairin@gmail.com" into email field
+    And I click "Register Me" button
+    Then  "Should be a valid email address" error message should be displayed
+    And I wait for 2 sec
 
-    @registrationEmail9
-    Scenario: Email field does not accept special chars other than "@", "_" and "." (Negative "+")
-      When I type "+bc@efg.com" into email field
-      And I click on group code field
-      Then  "Should be a valid email address" error message should be displayed
-      And I wait for 2 sec
 
-    @registrationEmail10
-    Scenario: Email field does not accept special chars other than "@", "_" and "." (Negative "$")
-      When I type "$bc@efg.com" into email field
-      And I click on group code field
-      Then  "Should be a valid email address" error message should be displayed
-      And I wait for 2 sec
+
