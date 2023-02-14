@@ -7,7 +7,7 @@ import support.TestContext;
 
 import javax.xml.xpath.XPathExpression;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class RadhikaStepdefs {
@@ -15,9 +15,8 @@ public class RadhikaStepdefs {
 
     @Then("{string} confirmation message should be displayed RA")
     public void confirmationMessageShouldBeDisplayedRA(String expectedMessage) {
-        String actualMessage = getDriver().findElement(By.xpath("//body")).getText();
-        System.out.println(getDriver().getCurrentUrl());
-        Assertions.assertThat(actualMessage.equals(expectedMessage)).isTrue();
+        String actualMessage = getDriver().findElement(By.xpath("//h4")).getText();
+        assertThat(actualMessage.equals(expectedMessage)).isTrue();
 
 
 
