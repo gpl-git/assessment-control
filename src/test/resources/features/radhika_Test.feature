@@ -15,7 +15,7 @@
       When I type "@AB" into group code field
       And I click "Register Me" button
       And I wait for 2 sec
-      Then "You have been Registered." confirmation message should be displayed
+      Then "You have been Registered." confirmation message should be displayed RA
 
     @registration_GroupCode2
     Scenario: Group code field required, can’t be empty (Negative)
@@ -30,7 +30,7 @@
       When I type "B" into group code field
       And I click "Register Me" button
       And I wait for 2 sec
-      Then "You have been Registered." confirmation message should be displayed
+      Then "You have been Registered." confirmation message should be displayed RA
 
     @registration_GroupCode4
     Scenario: Group code does not accept more than 10 charactetrs(Max 10 characters- 10 characters+1)
@@ -44,7 +44,7 @@
       When I type "12dse2agfe" into group code field
       And I click "Register Me" button
       And I wait for 2 sec
-      Then "You have been Registered." confirmation message should be displayed
+      Then "You have been Registered." confirmation message should be displayed RA
 
     @registration_GroupCode6
     Scenario: White spaces are not allowed in Group code
@@ -69,7 +69,7 @@
       When I type <group> into group code field
       And I click "Register Me" button
       And I wait for 2 sec
-      Then <expectedMessage> confirmation message should be displayed
+      Then <expectedMessage> confirmation message should be displayed RA
       Examples:
         | group | expectedMessage            |
         | "@AB" | "You have been Registered." |
