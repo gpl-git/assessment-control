@@ -1,7 +1,7 @@
 @predefined
   Feature: ASK Demo
     @perdefined1
-    Scenario: Registration
+    Scenario: positive
       Given I open "http://ask-qa.portnov.com/#/registration" page site
       When I type "1" into pass word field
       Then error message "Should be at least 5 characters" should be display SJ
