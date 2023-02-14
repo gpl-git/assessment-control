@@ -20,6 +20,7 @@
     @registration_GroupCode2
     Scenario: Group code field required, can’t be empty (Negative)
       When I type "" into group code field
+
       And I click "Register Me" button
       And I wait for 2 sec
       Then "This field is required" error message should be displayed
