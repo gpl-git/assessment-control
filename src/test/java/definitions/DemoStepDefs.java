@@ -132,18 +132,4 @@ public class DemoStepDefs {
         getDriver().findElement(By.xpath("//div[@mat-dialog-actions]//span[contains(text(),'Delete')]")).click();
         Thread.sleep(1000);
     }
-
-    @And("I clear quiz title")
-    public void iClearQuizTitle() {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(Keys.BACK_SPACE);
-        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(Keys.BACK_SPACE);
-    }
-
-    @And("I add up to {int} options in {string}")
-    public void iAddUpToOptionsIn(int num, String questionNum) {
-        for (int i = 3 ; i <= num; i++){
-            getDriver().findElement(By.xpath("//*[contains(text(),'Q1')]/../../..//*[contains(text(),'Add Option')]")).click();
-            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[@placeholder='Option " + i + "*']")).sendKeys("Option " +i);
-        }
-    }
 }

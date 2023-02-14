@@ -1,5 +1,6 @@
 package definitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -15,4 +16,14 @@ public class Zakar_SC_TextStepDefs {
         System.out.println(generatedString);
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@formcontrolname='question']")).sendKeys(generatedString);
     }
+
+    @And("I add up to {int} options in {string}")
+    public void iAddUpToOptionsIn(int num, String questionNum) {
+        for (int i = 3 ; i <= num; i++){
+            getDriver().findElement(By.xpath("//*[contains(text(),'Q1')]/../../..//*[contains(text(),'Add Option')]")).click();
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[@placeholder='Option " + i + "*']")).sendKeys("Option " +i);
+        }
+    }
 }
+
+
