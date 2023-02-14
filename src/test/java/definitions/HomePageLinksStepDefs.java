@@ -4,12 +4,23 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
+import java.util.Locale;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static support.TestContext.getDriver;
 
 public class HomePageLinksStepDefs {
+
+
     @When("I click on the {string} button")
     public void iClickOnTheButton(String Submissions) {
         getDriver().findElement(By.xpath("//h5[contains(text(),'Submissions')]")).click();
+    }
+
+    @Then("current url should contain {string}")
+    public void currentUrlShouldContain(String text) {
+        String actualText = getDriver().getCurrentUrl();
+        assertThat(actualText.contains(text.toLowerCase())).isTrue();
     }
 
     @When("I click on {string} button")
