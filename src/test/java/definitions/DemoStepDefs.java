@@ -65,7 +65,7 @@ public class DemoStepDefs {
     public void confirmationMessageShouldBeDisplayed(String expectedMessage) {
         String actualMessage = getDriver().findElement(By.xpath("//body")).getText();
         System.out.println(getDriver().getCurrentUrl());
-//        assertThat(actualMessage.equals(expectedMessage)).isTrue();
+        assertThat(actualMessage.equals(expectedMessage)).isTrue();
 
     }
 
