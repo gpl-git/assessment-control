@@ -3,5 +3,4 @@
 
     @test
     Scenario: Git Commands
-      And
-      Given
+   Given go to url
