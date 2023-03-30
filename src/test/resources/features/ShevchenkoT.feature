@@ -4,3 +4,7 @@
     @test
     Scenario: Git Commands
    Given go to url
+
+    @test
+    Scenario: Git Commands
+      Given go to url
