@@ -4,4 +4,4 @@
 
     @test1
     Scenario: Git Commands
-      Given I go to
+      Given
