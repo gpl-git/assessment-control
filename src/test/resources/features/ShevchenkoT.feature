@@ -3,4 +3,4 @@
 
     @test
     Scenario: Git Commands
-      Given
+      And
