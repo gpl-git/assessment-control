@@ -3,3 +3,4 @@
 
     @test
     Scenario: Git Command
+      When I
