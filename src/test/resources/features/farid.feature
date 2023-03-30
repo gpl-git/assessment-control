@@ -3,4 +3,4 @@
   Feature: Learning Git
 
     @test
-    Scenario: Git Commandsgit
+    Scenario: Git Commands Git
