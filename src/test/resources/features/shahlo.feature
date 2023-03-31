@@ -2,6 +2,6 @@
 
   Feature: Learning Git
 
-    @test1
+    @test
     Scenario: Git Commands
-      Given I go
+      Given
