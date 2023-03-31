@@ -8,4 +8,3 @@
     @test
     Scenario: Git Commands
       Given go to url
-      And

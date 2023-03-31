@@ -4,3 +4,4 @@
 
     @test
     Scenario: Git Commands
+      Create conflict with Galina
