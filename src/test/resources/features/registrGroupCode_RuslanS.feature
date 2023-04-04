@@ -3,7 +3,7 @@
     Background:
       Given navigate to "http://ask-qa.portnov.com"
 
-    @registration
+    @registration1
     Scenario: Registration
       When I click on "Register Now" button
       And I wait 1 sec
@@ -17,7 +17,24 @@
       Then I press "Register Me" button
       And I wait 3 sec
 
-    @groupCodeValidation
+    @registration2
+    Scenario Outline: Registration outlined
+      When I click on "Register Now" button
+      And I wait 1 sec
+      Then I type <keyText> into "First Name" field
+      Then I type <keyText1> into "Last Name" field
+      Then I type <keyText2> into "Email" field
+      Then I type <keyText3> into "Group Code" field
+      Then I type <keyText4> into "Password" field
+      Then I type <keyText4> into "Confirm Password" field
+      And I wait 1 sec
+      Then I press "Register Me" button
+      And I wait 1 sec
+      Examples:
+        | keyText |  keyText1 |  keyText2             |  keyText3 |  keyText4 |
+        | "Zack"  |  "Greene" |  "reihanreihan@54.mk" |  "GHJ"    |  "12345"  |
+
+    @groupCodeValidation1
     Scenario: Validate group code and delete user
       When I type "ask_instr@aol.com" into "Email *" field
       And I type "12345" into "Password *" field
@@ -33,3 +50,24 @@
       And I wait 1 sec
       Then I press delete user menu item
       And I wait 3 sec
+
+    @groupCodeValidation2
+    Scenario Outline: Validate group code and delete user
+      When I type "ask_instr@aol.com" into "Email *" field
+      And I type "12345" into "Password *" field
+      And I wait 1 sec
+      Then I press "Sign In" button
+      And I wait 1 sec
+      Then I press "Users Management" menu item
+      And I wait 1 sec
+      Then I press <usName> in student list
+      And I wait 1 sec
+      Then Group should contain <grCode> code
+      Then I press option button
+      And I wait 1 sec
+      Then I press delete user menu item
+      And I wait 3 sec
+      Examples:
+        | usName        | grCode |
+        | "Zack Greene" | "GHJ"  |
+
