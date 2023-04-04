@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 import static support.TestContext.getDriver;
-
 public class QuizStepDefs {
     @Given("I go to {string} page")
     public void iGoToPage(String url) {
