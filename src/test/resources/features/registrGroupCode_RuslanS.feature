@@ -31,8 +31,12 @@
       Then I press "Register Me" button
       And I wait 1 sec
       Examples:
-        | keyText |  keyText1 |  keyText2             |  keyText3 |  keyText4 |
-        | "Zack"  |  "Greene" |  "reihanreihan@54.mk" |  "GHJ"    |  "12345"  |
+        | keyText |  keyText1 |  keyText2              |  keyText3         |  keyText4 |
+        | "Zack"  |  "Greene" |  "reihanreihan@54.mk1" |  "GHJ"            |  "12345"  |
+        | "John"  |  "Greene" |  "reihanreihan@54.mk2" |  "G"              |  "12345"  |
+        | "Jack"  |  "Greene" |  "reihanreihan@54.mk3" |  "ASDFGHJKLP"     |  "12345"  |
+        | "Sam"   |  "Greene" |  "reihanreihan@54.mk4" |  "1234567890A"    |  "12345"  |
+
 
     @groupCodeValidation1
     Scenario: Validate group code and delete user
@@ -70,4 +74,6 @@
       Examples:
         | usName        | grCode |
         | "Zack Greene" | "GHJ"  |
-
+        | "John Greene"   |  "G"              |
+        | "Jack Greene"   |  "ASDFGHJKLP"     |
+        | "Sam Greene"    |  "1234567890A"    |
