@@ -4,44 +4,72 @@
       Given navigate to "http://ask-qa.portnov.com"
 
     @registration1
-    Scenario: Registration
+#      In this scenario I realize happy path for creating new user
+#      with some preset group code
+    Scenario: Registration Happy Path
       When I click on "Register Now" button
       And I wait 1 sec
-      Then I type "Zack" into "First Name" field
-      Then I type "Greene" into "Last Name" field
-      Then I type "reihanreihan@54.mk" into "Email" field
-      Then I type "GHJ" into "Group Code" field
-      Then I type "12345" into "Password" field
-      Then I type "12345" into "Confirm Password" field
+      And I type "Adam" into "First Name" field
+      And I type "Greene" into "Last Name" field
+      And I fill Email field with random generated email
+      And I type "ABC" into "Group Code" field
+      And I type "12345" into "Password" field
+      And I type "12345" into "Confirm Password" field
       And I wait 1 sec
-      Then I press "Register Me" button
+      And I press "Register Me" button
+      And I wait 1 sec
+      Then I verify that "You have been Registered." message displayed
+
+
+    @groupCodeVerification1
+#      In this scenario i verify group code that was created during
+#      happy path scenario and deleting user
+    Scenario: Verificate group code and delete user
+      When I type "ask_instr@aol.com" into "Email *" field
+      And I type "12345" into "Password *" field
+      And I wait 1 sec
+      And I press "Sign In" button
+      And I wait 1 sec
+      And I press "Users Management" menu item
+      And I wait 1 sec
+      Then I press "Adam Greene" in student list
+      And I wait 1 sec
+      Then Group should contain "ABC" code
+      And I press option button
+      And I wait 1 sec
+      And I press delete user menu item
       And I wait 3 sec
+
 
     @registration2
-    Scenario Outline: Registration outlined
+#      In this scenario I validate functional specification about group code
+#      by creating bunch of new users with different group codes
+    Scenario Outline: Registration With Different Group Codes
       When I click on "Register Now" button
       And I wait 1 sec
-      Then I type <keyText> into "First Name" field
-      Then I type <keyText1> into "Last Name" field
-      Then I type <keyText2> into "Email" field
-      Then I type <keyText3> into "Group Code" field
-      Then I type <keyText4> into "Password" field
-      Then I type <keyText4> into "Confirm Password" field
+      And I type <userName> into "First Name" field
+      And I type <userLastName> into "Last Name" field
+      And I fill Email field with random generated email
+      And I type <gropCode> into "Group Code" field
+      And I type "12345" into "Password" field
+      And I type "12345" into "Confirm Password" field
       And I wait 1 sec
-      Then I press "Register Me" button
+      And I press "Register Me" button
       And I wait 1 sec
+      Then I verify that "You have been Registered." message displayed
       Examples:
-        | keyText |  keyText1 |  keyText2              |  keyText3         |  keyText4 |
-        | "Zack"  |  "Greene" |  "reihanreihan@54.mk1" |  "GHJ"            |  "12345"  |
-        | "John"  |  "Greene" |  "reihanreihan@54.mk2" |  "G"              |  "12345"  |
-        | "Jack"  |  "Greene" |  "reihanreihan@54.mk3" |  "ASDFGHJKLP"     |  "12345"  |
-        | "Sam"   |  "Greene" |  "reihanreihan@54.mk4" |  "1234567890A"    |  "12345"  |
-        | "Don"   |  "Greene" |  "reihanreihan@54.mk4" |  ""    |  "12345"  |
-        | "Micah"   |  "Greene" |  "reihanreihan@54.mk4" |  "   "    |  "12345"  |
+        | userName | userLastName  | gropCode     |
+        | "Zack"   | "Greene"      | "!@#$%"      |
+        | "John"   | "Greene"      | "123"        |
+        | "Jack"   | "Greene"      | "ASD321"     |
+        | "Sam"    | "Greene"      | "1234567890" |
+        | "Don"    | "Greene"      | "   "        |
 
 
-    @groupCodeValidation1
-    Scenario: Validate group code and delete user
+    @groupCodeVerification2
+#      In this scenario i verify group code that was created during
+#      scenario with multiply group code created
+    Scenario Outline: Verify group code and delete user
       When I type "ask_instr@aol.com" into "Email *" field
       And I type "12345" into "Password *" field
       And I wait 1 sec
@@ -49,24 +77,7 @@
       And I wait 1 sec
       Then I press "Users Management" menu item
       And I wait 1 sec
-      Then I press "Zack Greene" in student list
-      And I wait 1 sec
-      Then Group should contain "GHJ" code
-      Then I press option button
-      And I wait 1 sec
-      Then I press delete user menu item
-      And I wait 3 sec
-
-    @groupCodeValidation2
-    Scenario Outline: Validate group code and delete user
-      When I type "ask_instr@aol.com" into "Email *" field
-      And I type "12345" into "Password *" field
-      And I wait 1 sec
-      Then I press "Sign In" button
-      And I wait 1 sec
-      Then I press "Users Management" menu item
-      And I wait 1 sec
-      Then I press <usName> in student list
+      Then I press <usFullName> in student list
       And I wait 1 sec
       Then Group should contain <grCode> code
       Then I press option button
@@ -74,10 +85,9 @@
       Then I press delete user menu item
       And I wait 3 sec
       Examples:
-        | usName        | grCode |
-        | "Zack Greene" | "GHJ"  |
-        | "John Greene" |  "G"              |
-        | "Jack Greene" |  "ASDFGHJKLP"     |
-        | "Sam Greene"  |  "1234567890A"    |
-        | "Don Greene" |    ""    |
-        | "Micah Greene" |   "   "  |
+        | usFullName     | grCode       |
+        | "Zack Greene"  | "!@#$%"      |
+        | "John Greene"  | "123"        |
+        | "Jack Greene"  | "ASD321"     |
+        | "Sam Greene"   | "1234567890" |
+        | "Don Greene"   | "   "        |
