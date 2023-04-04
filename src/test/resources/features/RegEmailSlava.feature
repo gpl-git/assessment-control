@@ -154,7 +154,6 @@
       And I click on Register Button
       And I wait for 1 sec
       Then I should get message "Should be a valid email address"
-      Given
 
 
 
