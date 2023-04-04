@@ -12,7 +12,7 @@
       And I wait for 1 sec
 
     @totalQuestions1
-    Scenario: Quiz allows up to 50 questions
+    Scenario: Quiz allows up to 50 questionsg
       When I type "RS test Quiz 1 (49)" in title field
       Then I create 49 questions
       And I click "Save" button
