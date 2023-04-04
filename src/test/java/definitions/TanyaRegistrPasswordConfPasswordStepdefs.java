@@ -50,4 +50,24 @@ public class TanyaRegistrPasswordConfPasswordStepdefs {
     public void iClickOnTheElementWithXPath(String xpath) {
         getDriver().findElement(By.xpath(xpath)).click();
     }
+
+    @Then("I verify that {string} field is masked in the Registration form")
+    public void iVerifyThatFieldIsMaskedInTheRegistrationForm(String fieldName) {
+          if (fieldName.equals("Password")) {
+        String type=getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).getAttribute("type");
+        assertThat(type.equals("password")).isTrue();
+              System.out.println(type);
+    }else if (fieldName.equals("Confirm Password")) {
+              String type=getDriver().findElement(By.xpath("//input[@formcontrolname='confirmPassword']")).getAttribute("type");
+              assertThat(type.equals("password")).isTrue();
+              System.out.println(type);
+    }else{
+              System.out.println("Field name should be exact as in the registration form. Should be Password or Confirm Password");
+          }
+    }
+
+    @And("I click on the random element on the Registration page")
+    public void iClickOnTheRandomElementOnTheRegistrationPage() {
+        getDriver().findElement(By.xpath("//mat-card[@class='mat-card']")).click();
+    }
 }
