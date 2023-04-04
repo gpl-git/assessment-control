@@ -36,6 +36,8 @@
         | "John"  |  "Greene" |  "reihanreihan@54.mk2" |  "G"              |  "12345"  |
         | "Jack"  |  "Greene" |  "reihanreihan@54.mk3" |  "ASDFGHJKLP"     |  "12345"  |
         | "Sam"   |  "Greene" |  "reihanreihan@54.mk4" |  "1234567890A"    |  "12345"  |
+        | "Don"   |  "Greene" |  "reihanreihan@54.mk4" |  ""    |  "12345"  |
+        | "Micah"   |  "Greene" |  "reihanreihan@54.mk4" |  "   "    |  "12345"  |
 
 
     @groupCodeValidation1
@@ -74,6 +76,8 @@
       Examples:
         | usName        | grCode |
         | "Zack Greene" | "GHJ"  |
-        | "John Greene"   |  "G"              |
-        | "Jack Greene"   |  "ASDFGHJKLP"     |
-        | "Sam Greene"    |  "1234567890A"    |
+        | "John Greene" |  "G"              |
+        | "Jack Greene" |  "ASDFGHJKLP"     |
+        | "Sam Greene"  |  "1234567890A"    |
+        | "Don Greene" |    ""    |
+        | "Micah Greene" |   "   "  |
