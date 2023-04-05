@@ -36,10 +36,7 @@ public class annaBtQshowStopperAsteriskStepDefs {
     @And("{string} should have text {string}")
     public void shouldHaveText(String questName, String showStopper) {
         String showStopText = getDriver().findElement(By.xpath("//h5[contains(.,'"+questName+"')]/../p[contains(text(),'Show-Stopper Question')]")).getText();
-        System.out.println("Found text: " + showStopText);
-        System.out.println("Checking text: " + showStopper);
         assertThat(showStopText.contains(showStopper)).isTrue();
-        System.out.println("Question number 2 is Show-Stopper Question");
     }
 
     @Then("I click {string} on quiz")
@@ -51,4 +48,15 @@ public class annaBtQshowStopperAsteriskStepDefs {
     public void iConfirmDelete() {
         getDriver().findElement(By.xpath("//ac-modal-confirmation//span[contains(text(),'Delete')]")).click();
     }
+
+    @And("I check showstopper for {string}")
+    public void iClickOnTheCheckButtonFor(String arg0) throws InterruptedException{
+        Thread.sleep(1000);
+        getDriver().findElement(By.xpath("(//input[@class=\"mat-checkbox-input cdk-visually-hidden\"])[last()]/../../..//*[contains(text(),'Show-Stopper')]")).click();
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),"+ arg0 +")]/../../..//input[@type='checkbox']")).click();
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),"+ arg0 +")]/../../..//*[contains(text(),'Show-Stopper')]")).click();
+    }
 }
+
+//(//input[@class="mat-checkbox-input cdk-visually-hidden"])[last()]/../../..//*[contains(text(),'Show-Stopper')]
+//mat-panel-title[contains(text(),'Q3')]/../../..//span[contains(text(),'Show-Stopper')]
