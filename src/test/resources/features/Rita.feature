@@ -4,4 +4,4 @@
 
     @test
     Scenario: Git Commands
-      Given
+      Given I
