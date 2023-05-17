@@ -31,7 +31,7 @@ public class TestContext {
     }
 
     public static void initialize() {
-        initialize("chrome", "local", true);
+        initialize("chrome", "local", false);
     }
 
     public static void teardown() {
@@ -53,7 +53,14 @@ public class TestContext {
                     chromePreferences.put("password_manager_enabled", false);
                     chromePreferences.put("safebrowsing.enabled", true);
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--start-maximized");
+                    // In class settings
+                    // chromeOptions.addArguments("--start-maximized");
+                    
+                    // Jenkins settings
+                    chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                    // End Jenkins settings
                     chromeOptions.setExperimentalOption("prefs", chromePreferences);
                     System.setProperty("webdriver.chrome.silentOutput", "true");
                     if (isHeadless) {
