@@ -7,6 +7,7 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
@@ -51,18 +52,10 @@ public class TestContext {
                     chromePreferences.put("download.directory_upgrade", true);
                     chromePreferences.put("credentials_enable_service", false);
                     chromePreferences.put("password_manager_enabled", false);
-                    chromePreferences.put("safebrowsing.enabled", true);
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    // In class settings
-                    // chromeOptions.addArguments("--start-maximized");
-                    
-                    // Jenkins settings
-                    chromeOptions.addArguments("--headless");
-                    chromeOptions.addArguments("--no-sandbox");
-                    chromeOptions.addArguments("--disable-dev-shm-usage");
-                    // End Jenkins settings
+                    chromeOptions.addArguments("--start-maximized");
                     chromeOptions.setExperimentalOption("prefs", chromePreferences);
-                    System.setProperty("webdriver.chrome.silentOutput", "true");
+                    System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
                     if (isHeadless) {
                         chromeOptions.setHeadless(true);
                         chromeOptions.addArguments("--window-size=" + size.getWidth() + "," + size.getWidth());
