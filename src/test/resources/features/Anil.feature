@@ -18,6 +18,8 @@
       And I click on the element with xpath "//span[contains(text(),'Sign In')]"
       And I wait 2 sec
       Then I should see the message that "Galina Teacher" into the element with xpath "//header/div[1]"
+      Then I print the text on the element with xpath "//ac-home-teacher[@class='ng-star-inserted']"
+
 
 
 

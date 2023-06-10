@@ -44,4 +44,9 @@ public class AnilStepDefs {
     public void iClearTheElementWithXpath(String xpath) {
         TestContext.getDriver().findElement(By.xpath(xpath)).clear();
     }
+
+    @Then("I print the text on the element with xpath {string}")
+    public void iPrintTheTextOnTheElementWithXpath(String xpath) {
+        System.out.println(TestContext.getDriver().findElement(By.xpath(xpath)).getText());
+    }
 }
