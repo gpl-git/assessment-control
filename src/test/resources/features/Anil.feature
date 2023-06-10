@@ -14,6 +14,10 @@
       And I type "ask_instr@aol.com" into the element with xpath "//input[@formcontrolname='email']"
       And I click on the element with xpath "//span[contains(text(),'Sign In')]"
       Then I should see the message that "This field is required" into the element with xpath "//mat-error[contains(text(),'This field')]"
+      When I type "abcde" into the element with xpath "//input[@formcontrolname='password']"
+      And I click on the element with xpath "//span[contains(text(),'Sign In')]"
+      And I wait 1 sec
+      When I clear the element with xpath "//input[@formcontrolname='password']"
       When I type "12345" into the element with xpath "//input[@formcontrolname='password']"
       And I click on the element with xpath "//span[contains(text(),'Sign In')]"
       And I wait 2 sec
