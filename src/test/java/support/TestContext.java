@@ -26,6 +26,7 @@ import java.util.Map;
 public class TestContext {
 
     private static WebDriver driver;
+
     public static WebDriver getDriver() {
         return driver;
     }
