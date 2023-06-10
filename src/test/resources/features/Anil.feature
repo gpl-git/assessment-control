@@ -3,3 +3,5 @@
 
     @Test1
     Scenario: Learning git commands
+      Given I open
+
