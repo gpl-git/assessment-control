@@ -4,3 +4,4 @@
     Scenario: Learning git commands
       Given I open url
       And I open url
+      And I add something
