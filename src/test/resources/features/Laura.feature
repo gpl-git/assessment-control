@@ -1,3 +1,4 @@
-Feature:
-  Scenario: Laura
-    Given
+@test
+  Feature: laura learning atutom
+    Scenario:
+      Given
