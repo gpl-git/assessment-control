@@ -1,6 +1,6 @@
-@test
-  Feature: Test git
+@quiz_sample
+  Feature: Quiz Creation Sample
 
-    @test1
-    Scenario: Learning git commands
-      Given I create a conflict with Galina
+    @quiz_sample1
+    Scenario: Create a quiz
+      Given I go to "login" page
