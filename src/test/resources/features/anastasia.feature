@@ -3,3 +3,4 @@
 
     @test1
     Scenario: Learning git commands
+      Given I create a conflict with Galina
