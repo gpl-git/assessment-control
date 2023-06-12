@@ -4,4 +4,4 @@
     @test1
     Scenario: Learning git commands
       @test2
-      Scenario: Exampllr
+      Scenario: Example
