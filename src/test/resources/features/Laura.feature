@@ -1,4 +1,4 @@
 @test
   Feature: laura learning atutom
     Scenario:
-      Given
+      Given I created a conflict with Galina
