@@ -5,3 +5,4 @@
       Given I open url
       And I open url
       And I add something
+      Given I create a conflict with Galina
