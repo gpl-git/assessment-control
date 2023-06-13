@@ -77,7 +77,10 @@ public class QuizStepDefs {
 
     @When("I select {string} as a correct option in {string}")
     public void iSelectAsACorrectOptionIn(String optionNum, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//textarea[@placeholder='"+optionNum+"*']/../../../../..//mat-radio-button")).click();
+        getDriver().findElement(By.xpath(
+                "//mat-panel-title[contains(text(),'"+questionNum+"')]" +
+                        "/../../..//textarea[@placeholder='"+optionNum+"*']" +
+                        "/../../../../..//mat-radio-button")).click();
     }
 
     @Then("{string} is displayed on the list of quizzes")
@@ -94,7 +97,8 @@ public class QuizStepDefs {
     @And("I delete {string} from the list of quizzes")
     public void iDeleteFromTheListOfQuizzes(String quizTitle) throws InterruptedException {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//span[text()='Delete']")).click();
+        getDriver().findElement(By.xpath(
+                "//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//span[text()='Delete']")).click();
         getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='Delete']")).click();
         Thread.sleep(1000);
 
