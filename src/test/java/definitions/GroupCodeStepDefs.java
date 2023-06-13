@@ -32,12 +32,17 @@ public class GroupCodeStepDefs {
     @Then("confirmation message {string} should be displayed DD")
     public void confirmationMessageShouldBeDisplayed(String expectedMessage) {
         String actualMessage = getDriver().findElement(By.xpath("//h4")).getText();
-        assertThat(actualMessage.equals(expectedMessage)).isTrue();
-    }
+        assertThat(actualMessage).isEqualTo(expectedMessage);
+
+}
 
     @Then("error message {string} should be displayed DD")
     public void errorMessageShouldBeDisplayedDD(String expectedError) {
         String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
-        assertThat(actualError.equals(expectedError)).isTrue();
+        assertThat(actualError.equals(expectedError)).isTrue();{
+    }
+
     }
 }
+
+

@@ -11,7 +11,7 @@
 
 
     @reg_group1
-    Scenario: Alphaneumerical and special characters
+    Scenario: Alphanumerical and special characters and 10 characters
       And I type "hal123#$as" into group code field DD
       When I click "Register Me" button
       And I wait for 1 sec
@@ -22,6 +22,35 @@
         When I type "" into group code field DD
         When I click "Register Me" button
         Then error message "This field is required" should be displayed DD
+
+      @reg_group3
+      Scenario: 11 characters in Group code field
+        When I type "12#45,15679" into group code field DD
+        When I click "Register Me" button
+        Then error message "Should no more than 10 characters" should be displayed DD
+        
+      @reg_group4
+      Scenario: 1 character in Group code field
+        When I type "a" into group code field DD
+        When I click "Register Me" button
+        And I wait for 1 sec
+        Then confirmation message "You have been Registered." should be displayed DD
+
+      @reg_group5
+      Scenario: White spaces in Group code field
+        When I type "  " into group code field DD
+        When I click "Register Me" button
+        And I wait for 1 sec
+        Then confirmation message "You have been Registered." should be displayed DD
+
+
+
+        
+
+
+
+
+
       
       
       
