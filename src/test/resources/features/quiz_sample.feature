@@ -1,8 +1,8 @@
 @quiz_sample
 Feature: Quiz Creation Sample
-  Background:
+   Background:
     Given I go to "login" page
-    When I type "ask_instr@aol.com" into email field
+     When I type "ask_instr@aol.com" into email field
     And I type "12345" into password field
     When I click "Sign In" button
     And I wait for 1 sec
@@ -10,7 +10,8 @@ Feature: Quiz Creation Sample
     And I wait for 1 sec
     When I click "Create New Quiz" button
     And I wait for 2 sec
-    
+
+
   @quiz_sample1
   Scenario: Create a quiz
     When I type "Quiz Sample" as quiz title
