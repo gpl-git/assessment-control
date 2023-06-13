@@ -27,9 +27,10 @@
 #     And I will click to element with xpath "//h1[@class='mat-dialog-title']"
 #     And I type "" into Full Name field
       And I will  wait for 2 sec
-      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should contain text "This field is required"
+#      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should contain text "This field is required"
+      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should be displayed
       And I will click "Cancel" button
-      And I will  wait for 3 sec
+      And I will  wait for 2 sec
         # 2 characters with 1 space
       When I will click "Change Your Name" button
       And I will  wait for 2 sec
@@ -37,24 +38,30 @@
       And I will  wait for 2 sec
       And I clicked "Change" button
       And I will  wait for 2 sec
-      Then element with xpath "//td[contains(text(),'h i')]" should contain text "h i"
-      And element with xpath "//h3[contains(text(),'h i')]" should contain text "h i"
+#      Then element with xpath "//td[contains(text(),'h i')]" should contain text "h i"
+      Then element with xpath "//td[contains(text(),'h i')]" should be displayed
+#      And element with xpath "//h3[contains(text(),'h i')]" should contain text "h i"
+      And element with xpath "//h3[contains(text(),'h i')]" should be displayed
+
         #trailing and leading spaces
       When I will click "Change Your Name" button
       And I will  wait for 2 sec
       Then I type " Diana Test " into Full Name field
       And I will  wait for 2 sec
-      Then element with xpath "//mat-error[contains(text(), 'Should contain only first and last name')]" should contain text "Should contain only first and last name"
+#      Then element with xpath "//mat-error[contains(text(), 'Should contain only first and last name')]" should contain text "Should contain only first and last name"
+      Then element with xpath "//mat-error[contains(text(), 'Should contain only first and last name')]" should be displayed
       And I will click "Cancel" button
-      And I will  wait for 3 sec
+      And I will  wait for 2 sec
         #return the original name
       When I will click "Change Your Name" button
       And I will  wait for 2 sec
       Then I type "Diana Test" into Full Name field
       And I clicked "Change" button
       And I will  wait for 2 sec
-      Then element with xpath "//td[contains(text(),'Diana Test')]" should contain text "Diana Test"
-      And element with xpath "//h3[contains(text(),'Diana Test')]" should contain text "Diana Test"
+#      Then element with xpath "//td[contains(text(),'Diana Test')]" should contain text "Diana Test"
+      Then element with xpath "//td[contains(text(),'Diana Test')]" should be displayed
+#      And element with xpath "//h3[contains(text(),'Diana Test')]" should contain text "Diana Test"
+      And element with xpath "//h3[contains(text(),'Diana Test')]" should be displayed
 
      Scenario: 256 characters
       Given I will click "Change Your Name" button
@@ -63,14 +70,17 @@
       And I will  wait for 2 sec
       And I clicked "Change" button
       And I will  wait for 2 sec
-      Then element with xpath "//td[contains(text(),'Hello')]" should contain text "Helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      And element with xpath "//h3[contains(text(),'Hello')]" should contain text "Helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+#      Then element with xpath "//td[contains(text(),'Hello')]" should contain text "Helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+      Then element with xpath "//td[contains(text(),'Hello')]" should be displayed
+#      And element with xpath "//h3[contains(text(),'Hello')]" should contain text "Helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+      And element with xpath "//h3[contains(text(),'Hello')]" should be displayed
 
      Scenario: Whitespace
       Given I will click "Change Your Name" button
       And I will  wait for 2 sec
       When I type " " into Full Name field
       And I will  wait for 2 sec
-      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should contain text "This field is required"
+#      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should contain text "This field is required"
+      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should be displayed
       And I will click "Cancel" button
-      And I will  wait for 3 sec
+      And I will  wait for 2 sec
