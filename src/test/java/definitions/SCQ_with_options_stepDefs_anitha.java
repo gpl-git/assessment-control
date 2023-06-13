@@ -90,8 +90,8 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @And("I type the question as {string} into question field of {string}")
     public void iTypeTheQuestionAsIntoQuestionFieldOf(String questText, String questNum) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@formcontrolname='question']")).sendKeys(questText);
         this.questionText=questText;
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@formcontrolname='question']")).sendKeys(questText);
     }
 
     @And("I type {string} into the {string} of {string}")
@@ -129,10 +129,10 @@ public class SCQ_with_options_stepDefs_anitha {
 //    }
 
 
-    @Then("I should see an error message on the snack-bar")
-    public void iShouldSeeAnErrorMessageOnTheSnackBar() {
-        getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Quiz is not completed. Check highlighted')]")).isDisplayed();
-    }
+//    @Then("I should see an error message on the snack-bar")
+//    public void iShouldSeeAnErrorMessageOnTheSnackBar() {
+//        getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Quiz is not completed. Check highlighted')]")).isDisplayed();
+//    }
 
     @And("I should an error message on the {string} field")
     public void iShouldAnErrorMessageOnTheField(String option) {
@@ -157,7 +157,13 @@ public class SCQ_with_options_stepDefs_anitha {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='"+btnName+"']")).click();
         getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='"+btnName+"']")).click();
-//        getDriver().findElement(By.xpath("//span[contains(text(),'Close')]")).click();
+
+//        WebElement btnDelete=getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='"+btnName+"']"));
+//        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+//        executor.executeScript("arguments[0].click();", btnDelete);
+//        btnDelete.click();
+
+
     }
 
 
@@ -175,12 +181,7 @@ public class SCQ_with_options_stepDefs_anitha {
     @Then("I verify the content displayed on the Preview mode is correct")
     public void iVerifyTheContentDisplayedOnThePreviewModeIsCorrect() {
         getDriver().findElement(By.xpath("//h3[contains(text(),'"+this.questionText+"')]")).isDisplayed();
-        getDriver().findElement(By.xpath("//h4[contains(text(),'"+this.quiztitle+"')]"));
-//        List<WebElement> options=getDriver().findElements(By.xpath("//div[@class='mat-radio-label-content']"));
-//        for(WebElement option:options){
-//            option.getText().contains(option1);
-//        }
-
+        getDriver().findElement(By.xpath("//h4[contains(text(),'"+this.quiztitle+"')]")).isDisplayed();
     }
 
     @And("I enter {int} character into the {string} of {string}")
@@ -189,8 +190,18 @@ public class SCQ_with_options_stepDefs_anitha {
         boolean useNumbers=false;
         String optionText= RandomStringUtils.random(charCount,useLetters,useNumbers);
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@placeholder='" + option + "*']")).sendKeys(optionText);
+    }
 
+    @Then("I should see an error message {string} on the snack-bar")
+    public void iShouldSeeAnErrorMessageOnTheSnackBar(String errMsg) {
+        //getDriver().findElement(By.xpath("//*[contains(text(),'"+errMsg+"')]")).isDisplayed();
+        getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Quiz is not completed. Check highlighted')]")).isDisplayed();
 
+    }
+
+    @And("I should an error message {string} on the {string} field")
+    public void iShouldAnErrorMessageOnTheField(String errorMsg, String optNum) {
+        getDriver().findElement(By.xpath("//textarea[@placeholder='" + optNum + "*']/following::mat-error[contains(text(),'"+errorMsg+"')]")).isDisplayed();
     }
 
 }

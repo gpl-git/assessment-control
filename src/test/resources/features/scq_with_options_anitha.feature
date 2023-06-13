@@ -31,9 +31,9 @@ Feature:Single Choice Question - Options
     And I select the question type as "Single-Choice"
     And I type the question as "What is BDD?" into question field of "Q1"
     And I click the "Save" button
-    Then I should see an error message on the snack-bar
-    And I should an error message on the "Option 1" field
-    And I should an error message on the "Option 2" field
+    Then I should see an error message "Quiz is not completed. Check highlighted with 'red' areas" on the snack-bar
+    And I should an error message "This field is required" on the "Option 1" field
+    And I should an error message "This field is required" on the "Option 2" field
 
   @negative #Issue ID: MAY23-349
   Scenario:Options 1 and 2 are empty, the radio button is checked
@@ -43,9 +43,9 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I select the "Option 1" from the list of options for question "Q1"
     And I click the "Save" button
-    Then I should see an error message on the snack-bar
-    And I should an error message on the "Option 1" field
-    And I should an error message on the "Option 2" field
+    Then I should see an error message "Quiz is not completed. Check highlighted with red areas" on the snack-bar
+    And I should an error message "This field is required" on the "Option 1" field
+    And I should an error message "This field is required" on the "Option 2" field
 
   @negative #Issue ID: MAY23-354
   Scenario:Option 1 is filled out, Options 2 is empty, the radio button is checked
@@ -56,8 +56,8 @@ Feature:Single Choice Question - Options
     And I type "Behavior Driven Development" into the "Option 1" of "Q1"
     And I select the "Option 1" from the list of options for question "Q1"
     And I click the "Save" button
-    Then I should see an error message on the snack-bar
-    And I should an error message on the "Option 2" field
+    Then I should see an error message "Quiz is not completed. Check highlighted with red areas" on the snack-bar
+    And I should an error message "This field is required" on the "Option 2" field
 
   @negative #Issue ID: MAY23-357
   Scenario: Option 1 and Option 2 are filled out, the radio button is not checked
@@ -68,7 +68,7 @@ Feature:Single Choice Question - Options
     And I type "Behavior Driven Development" into the "Option 1" of "Q1"
     And I type "Behavior Driven Deployment" into the "Option 2" of "Q1"
     And I click the "Save" button
-    Then I should see an error message on the snack-bar
+    Then I should see an error message "Quiz is not completed. Check highlighted with red areas" on the snack-bar
     And I should see an error message "*Choose correct answer"
 
   @positive #Issue ID: MAY23-365
@@ -89,7 +89,7 @@ Feature:Single Choice Question - Options
 
    @positive #Issue ID: MAY23-367
    Scenario: Option 1 - 1 character Option 2 - 999 characters and the radio button is checked
-     When I type "Single Choice Question" in the quiz title field
+     When I type "Single Choice Question with 999 characters in option fields" in the quiz title field
      And I add a question by clicking the button Add question
      And I select the question type as "Single-Choice"
      And I type the question as "What is BDD?" into question field of "Q1"
@@ -97,11 +97,23 @@ Feature:Single Choice Question - Options
      And I enter 999 character into the "Option 2" of "Q1"
      And I select the "Option 1" from the list of options for question "Q1"
      And I click the "Save" button
-     Then I should see the quiz name "Single Choice Question" in the list of quizzes section
-     And I wait for 1 sec for the presence of all the elements on the page
-     And I "Delete" the quiz name "Single Choice Question" from the list of quizzes
+     Then I should see the quiz name "Single Choice Question with 999 characters in option fields" in the list of quizzes section
+     And I "Preview" the quiz name "Single Choice Question with 999 characters in option fields" from the list of quizzes section
+     Then I verify the content displayed on the Preview mode is correct
+     And I click "Close" in the confirmation window
+     And I wait for 2 sec for the presence of all the elements on the page
+     And I "Delete" the quiz name "Single Choice Question with 999 characters in option fields" from the list of quizzes
 
-
-
-
+     @negative #Issue ID: MAY23-368
+     Scenario: Option 1 - 1000 characters, Option 2 - 1001 characters, the radio button is checked
+       When I type "Single Choice Question with 1001 characters in option fields" in the quiz title field
+       And I add a question by clicking the button Add question
+       And I select the question type as "Single-Choice"
+       And I type the question as "What is BDD?" into question field of "Q1"
+       And I enter 1000 character into the "Option 1" of "Q1"
+       And I enter 1001 character into the "Option 2" of "Q1"
+       And I select the "Option 1" from the list of options for question "Q1"
+       And I click the "Save" button
+       #known issue please refer the Bug_ID:MAY23-369
+       Then I should see an error message "User can't insert more than 1000 characters into the text field"
 
