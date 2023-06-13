@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import javax.security.auth.kerberos.KeyTab;
 import java.security.Key;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class Almaz_settings_nameDefs {
@@ -70,6 +71,11 @@ public class Almaz_settings_nameDefs {
        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(Keys.ADD);
        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(Keys.BACK_SPACE);
+    }
+
+    @Then("element with xpath {string} should be displayed")
+    public void elementWithXpathShouldBeDisplayed(String element) {
+        assertThat(getDriver().findElement(By.xpath(element)).isEnabled()).isTrue();
     }
 
 //    @And("I will click to element with xpath {string}")
