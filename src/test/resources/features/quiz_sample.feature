@@ -10,6 +10,7 @@ Feature: Quiz Creation Sample
     And I wait for 1 sec
     When I click "Create New Quiz" button
     And I wait for 2 sec
+
     
   @quiz_sample1
   Scenario: Create a quiz
