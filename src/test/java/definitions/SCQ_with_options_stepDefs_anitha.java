@@ -112,12 +112,12 @@ public class SCQ_with_options_stepDefs_anitha {
         }
     }
 
-    @And("I delete the quiz name {string} from the list of quizzes")
-    public void iDeleteTheQuizNameFromTheListOfQuizzes(String quizTitle) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='Delete']")).click();
-        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='Delete']")).click();
-    }
+//    @And("I delete the quiz name {string} from the list of quizzes")
+//    public void iDeleteTheQuizNameFromTheListOfQuizzes(String quizTitle) {
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='Delete']")).click();
+//        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='Delete']")).click();
+//    }
 
 
     @Then("I should see an error message on the snack-bar")
@@ -137,30 +137,34 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @And("I click the {string} from the list of quizzes section")
     public void iClickTheFromTheListOfQuizzesSection(String quizTitle) throws InterruptedException {
-
-//        WebElement title= getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]"));
-//        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
-//        wait.until(ExpectedConditions.elementToBeClickable(title));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")));
-//        Actions action = new Actions(getDriver());
-//        action.moveToElement(title);
-
-//        WebElement ele = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'\"+quizTitle+\"')]"));
-//        JavascriptExecutor executor = (JavascriptExecutor)getDriver();
-//        executor.executeScript("arguments[0].click();", ele);
-
-        WebElement element = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]"));
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        WebElement title = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]"));
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", title);
         Thread.sleep(500);
-        element.click();
+        title.click();
     }
 
-    @And("I click the {string} button until")
-    public void iClickTheButtonUntil(String btnName) throws InterruptedException {
-        WebElement btn_Name = getDriver().findElement(By.xpath("//span[contains(text(),'" +btnName+"')]"));
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", btn_Name);
-        Thread.sleep(500);
-        btn_Name.click();
-
+    @And("I {string} the quiz name {string} from the list of quizzes")
+    public void iTheQuizNameFromTheListOfQuizzes(String btnName, String quizTitle) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='"+btnName+"']")).click();
+        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='"+btnName+"']")).click();
+//        getDriver().findElement(By.xpath("//span[contains(text(),'Close')]")).click();
     }
+
+
+    @And("I click {string} in the confirmation window")
+    public void iClickInTheConfirmationWindow(String btnName) {
+        getDriver().findElement(By.xpath("//span[contains(text(),'Close')]")).click();
+    }
+
+    @And("I {string} the quiz name {string} from the list of quizzes section")
+    public void iTheQuizNameFromTheListOfQuizzesSection(String btnName, String quizTitle) {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='"+btnName+"']")).click();
+    }
+
+//    @And("I {string} the quiz name {string} from the list of quizzes section")
+//    public void iTheQuizNameFromTheListOfQuizzesSection(String arg0, String arg1) {
+//        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='"+btnName+"']")).click();
+//    }
 }

@@ -22,7 +22,8 @@ Feature:Single Choice Question - Options
     And I select the "Option 1" from the list of options for question "Q1"
     And I click the "Save" button
     Then I should see the quiz name "Single Choice Question with two options" in the list of quizzes section
-    And I delete the quiz name "Single Choice Question with two options" from the list of quizzes
+    And I "Delete" the quiz name "Single Choice Question with two options" from the list of quizzes
+#    And I click "Delete" in the confirmation window
 
   @negative #Issue ID: MAY23-341
   Scenario:Options 1 and 2 are empty, the radio button is not checked
@@ -83,9 +84,9 @@ Feature:Single Choice Question - Options
     And I click the "Save" button
     And I wait for 2 sec for the presence of all the elements on the page
     Then I should see the quiz name "Single Choice allowable characters" in the list of quizzes section
-#    And I click the "Single Choice allowable characters" from the list of quizzes section
-    And I wait for 2 sec for the presence of all the elements on the page
-    And I click the "Preview" button until
+    And I "Preview" the quiz name "Single Choice allowable characters" from the list of quizzes section
+    And I click "Close" in the confirmation window
+
 
 
 
