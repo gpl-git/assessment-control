@@ -4,12 +4,10 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +15,10 @@ import java.util.concurrent.TimeUnit;
 import static support.TestContext.getDriver;
 
 public class SCQ_with_options_stepDefs_anitha {
+    public String questionText;
+    public String quiztitle;
+//    public String option1;
+//    public String option2;
 
     @Given("I navigate to {string} page")
     public void iNavigateToPage(String page) {
@@ -72,6 +74,7 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @When("I type {string} in the quiz title field")
     public void iTypeInTheQuizTitleField(String quizTitle) {
+        this.quiztitle=quizTitle;
         getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(quizTitle);
     }
 
@@ -88,10 +91,16 @@ public class SCQ_with_options_stepDefs_anitha {
     @And("I type the question as {string} into question field of {string}")
     public void iTypeTheQuestionAsIntoQuestionFieldOf(String questText, String questNum) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@formcontrolname='question']")).sendKeys(questText);
+        this.questionText=questText;
     }
 
     @And("I type {string} into the {string} of {string}")
     public void iTypeIntoTheOf(String optText, String optNum, String questNum) {
+//        if(optNum.contains("Option 1"))
+//            this.option1=optText;
+//        else
+//            this.option2=optText;
+
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@placeholder='" + optNum + "*']")).sendKeys(optText);
     }
 
@@ -163,8 +172,25 @@ public class SCQ_with_options_stepDefs_anitha {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='"+btnName+"']")).click();
     }
 
-//    @And("I {string} the quiz name {string} from the list of quizzes section")
-//    public void iTheQuizNameFromTheListOfQuizzesSection(String arg0, String arg1) {
-//        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='"+btnName+"']")).click();
-//    }
+    @Then("I verify the content displayed on the Preview mode is correct")
+    public void iVerifyTheContentDisplayedOnThePreviewModeIsCorrect() {
+        getDriver().findElement(By.xpath("//h3[contains(text(),'"+this.questionText+"')]")).isDisplayed();
+        getDriver().findElement(By.xpath("//h4[contains(text(),'"+this.quiztitle+"')]"));
+//        List<WebElement> options=getDriver().findElements(By.xpath("//div[@class='mat-radio-label-content']"));
+//        for(WebElement option:options){
+//            option.getText().contains(option1);
+//        }
+
+    }
+
+    @And("I enter {int} character into the {string} of {string}")
+    public void iEnterCharacterIntoTheOf(int charCount, String option, String questNum) {
+        boolean useLetters=true;
+        boolean useNumbers=false;
+        String optionText= RandomStringUtils.random(charCount,useLetters,useNumbers);
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@placeholder='" + option + "*']")).sendKeys(optionText);
+
+
+    }
+
 }
