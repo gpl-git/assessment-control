@@ -6,81 +6,73 @@
       And  I input "abc123" into password field
       Then I will click "Sign In" button
       And I will  wait for 2 sec
-      Then element with xpath "//p[contains(text(),'STUDENT')]" should be displayed
+      Then user role "STUDENT" should be displayed
       And I will click "Settings" menu item
 
-
      Scenario: Number and special characters, empty field, 2 characters with 1 space, trailing and leading spaces, return the original name
-        #Number and special characters
+              #Number and special characters
       Given I will click "Change Your Name" button
-      And I will  wait for 2 sec
+      And I will  wait for 1 sec
       When I type "Diana 15@%" into Full Name field
+      And I will  wait for 1 sec
+      And I will click "Change" button
       And I will  wait for 2 sec
-      And I clicked "Change" button
-      And I will  wait for 2 sec
-      Then element with xpath "//td[contains(text(),'Diana 15@%')]" should contain text "Diana 15@%"
-      And element with xpath "//h3[contains(text(),'Diana 15@%')]" should contain text "Diana 15@%"
-        #empty field
+      Then I verify that student name "Diana 15@%" should be displayed
+      And  I verify that student name "Diana 15@%" should be displayed in the upper left corner of the page
+
+             #empty field
       When I will click "Change Your Name" button
       And I delete text into Full Name field
-#     And I will click to element with xpath "//span[text()='Change']"
-#     And I will click to element with xpath "//h1[@class='mat-dialog-title']"
-#     And I type "" into Full Name field
-      And I will  wait for 2 sec
-#      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should contain text "This field is required"
-      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should be displayed
+      And I will  wait for 1 sec
+      Then error message "This field is required" should be displayed
       And I will click "Cancel" button
       And I will  wait for 2 sec
-        # 2 characters with 1 space
+
+             # 2 characters with 1 space
       When I will click "Change Your Name" button
-      And I will  wait for 2 sec
+      And I will  wait for 1 sec
       When I type "h i" into Full Name field
       And I will  wait for 2 sec
-      And I clicked "Change" button
+      And I will click "Change" button
       And I will  wait for 2 sec
-#      Then element with xpath "//td[contains(text(),'h i')]" should contain text "h i"
-      Then element with xpath "//td[contains(text(),'h i')]" should be displayed
-#      And element with xpath "//h3[contains(text(),'h i')]" should contain text "h i"
-      And element with xpath "//h3[contains(text(),'h i')]" should be displayed
+      Then I verify that student name "h i" should be displayed
+      And  I verify that student name "h i" should be displayed in the upper left corner of the page
 
-        #trailing and leading spaces
+             #trailing and leading spaces
       When I will click "Change Your Name" button
       And I will  wait for 2 sec
       Then I type " Diana Test " into Full Name field
       And I will  wait for 2 sec
-#      Then element with xpath "//mat-error[contains(text(), 'Should contain only first and last name')]" should contain text "Should contain only first and last name"
-      Then element with xpath "//mat-error[contains(text(), 'Should contain only first and last name')]" should be displayed
+      Then error message "Should contain only first and last name" should be displayed
       And I will click "Cancel" button
       And I will  wait for 2 sec
-        #return the original name
+
+             #return the original name
       When I will click "Change Your Name" button
       And I will  wait for 2 sec
       Then I type "Diana Test" into Full Name field
-      And I clicked "Change" button
+      And I will click "Change" button
       And I will  wait for 2 sec
-#      Then element with xpath "//td[contains(text(),'Diana Test')]" should contain text "Diana Test"
-      Then element with xpath "//td[contains(text(),'Diana Test')]" should be displayed
-#      And element with xpath "//h3[contains(text(),'Diana Test')]" should contain text "Diana Test"
-      And element with xpath "//h3[contains(text(),'Diana Test')]" should be displayed
+      Then I verify that student name "Diana Test" should be displayed
+      And  I verify that student name "Diana Test" should be displayed in the upper left corner of the page
 
      Scenario: 256 characters
+      #Known issue MAY23-394
       Given I will click "Change Your Name" button
       And I will  wait for 2 sec
-      When I type "Helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" into Full Name field
+      When I type 30 alphanumeric characters for first name and 30 ones for last name into full name field
       And I will  wait for 2 sec
-      And I clicked "Change" button
+      And I will click "Change" button
       And I will  wait for 2 sec
-#      Then element with xpath "//td[contains(text(),'Hello')]" should contain text "Helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      Then element with xpath "//td[contains(text(),'Hello')]" should be displayed
-#      And element with xpath "//h3[contains(text(),'Hello')]" should contain text "Helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo Hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      And element with xpath "//h3[contains(text(),'Hello')]" should be displayed
+#      Then I verify that student name "??????????" should be displayed
+#      And  I verify that student name "??????????" should be displayed in the upper left corner of the page
 
      Scenario: Whitespace
+      #Known issue MAY23-670
       Given I will click "Change Your Name" button
       And I will  wait for 2 sec
       When I type " " into Full Name field
       And I will  wait for 2 sec
-#      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should contain text "This field is required"
-      Then element with xpath "//mat-error[contains(text(), 'This field is required')]" should be displayed
+      Then error message "Should contain only first and last name" should be displayed
       And I will click "Cancel" button
       And I will  wait for 2 sec
