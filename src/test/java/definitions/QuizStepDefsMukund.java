@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class QuizStepDefsMukund {
@@ -66,16 +67,23 @@ public class QuizStepDefsMukund {
 
     @When("I tap Options button")
     public void iTapOptionsButton() {
-        getDriver().findElement(By.xpath("//body/ac-root[1]/mat-sidenav-container[1]/mat-sidenav-content[1]/main[1]/ac-user-details-page[1]/mat-card[1]/div[2]/div[2]/button[1]")).click();
+        getDriver().findElement(By.xpath("//h2/../..//span")).click();
     }
 
     @And("I change users role")
     public void iChangeUsersRole() {
-        getDriver().findElement(By.xpath("//body/div[2]/div[2]/div[1]/div[1]/button[2]/mat-icon[1]")).click();
+        getDriver().findElement(By.xpath("//button[2]")).click();
     }
 
     @And("I confirm {string}")
     public void iConfirm(String confirmButton) {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+ confirmButton +"')]")).click();
+    }
+
+    @Then("I verify that user role {string} is displayed")
+    public void iVerifyThatUserRoleIsDisplayed(String role) {
+        String result = getDriver().findElement(By.xpath("//mat-card")).getText();
+        System.out.println(result);
+        assertThat(result.contains(role)).isTrue();
     }
 }
