@@ -32,6 +32,7 @@ public class GroupCodeStepDefs {
     @Then("confirmation message {string} should be displayed DD")
     public void confirmationMessageShouldBeDisplayed(String expectedMessage) {
         String actualMessage = getDriver().findElement(By.xpath("//h4")).getText();
+        System.out.println(actualMessage);
         assertThat(actualMessage).isEqualTo(expectedMessage);
 
 }

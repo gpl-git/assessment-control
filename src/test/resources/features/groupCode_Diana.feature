@@ -41,7 +41,8 @@
         When I type "  " into group code field DD
         When I click "Register Me" button
         And I wait for 1 sec
-        Then confirmation message "You have been Registered." should be displayed DD
+#        Jira defect MAY23-438
+        Then confirmation message "Whitespaces are not allowed" should be displayed DD
 
 
 
