@@ -6,9 +6,15 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.assertj.core.api.Assertions.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -17,8 +23,11 @@ import static support.TestContext.getDriver;
 public class SCQ_with_options_stepDefs_anitha {
     public String questionText;
     public String quiztitle;
-//    public String option1;
-//    public String option2;
+    public int optCount;
+    public int currentOptionCount;
+    public List<String> optionValues;
+    public String optiontoDelete;
+
 
     @Given("I navigate to {string} page")
     public void iNavigateToPage(String page) {
@@ -47,7 +56,9 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @And("I click the {string} button")
     public void iClickTheButton(String btnName) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'" + btnName + "')]")).click();
+        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'" + btnName + "')]")));
+        element.click();
     }
 
     @And("I wait for {int} sec for the presence of all the elements on the page")
@@ -74,7 +85,7 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @When("I type {string} in the quiz title field")
     public void iTypeInTheQuizTitleField(String quizTitle) {
-        this.quiztitle=quizTitle;
+        this.quiztitle = quizTitle;
         getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(quizTitle);
     }
 
@@ -90,17 +101,12 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @And("I type the question as {string} into question field of {string}")
     public void iTypeTheQuestionAsIntoQuestionFieldOf(String questText, String questNum) {
-        this.questionText=questText;
+        this.questionText = questText;
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@formcontrolname='question']")).sendKeys(questText);
     }
 
     @And("I type {string} into the {string} of {string}")
     public void iTypeIntoTheOf(String optText, String optNum, String questNum) {
-//        if(optNum.contains("Option 1"))
-//            this.option1=optText;
-//        else
-//            this.option2=optText;
-
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@placeholder='" + optNum + "*']")).sendKeys(optText);
     }
 
@@ -119,20 +125,8 @@ public class SCQ_with_options_stepDefs_anitha {
                 title.click();
             }
         }
+
     }
-
-//    @And("I delete the quiz name {string} from the list of quizzes")
-//    public void iDeleteTheQuizNameFromTheListOfQuizzes(String quizTitle) {
-//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
-//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='Delete']")).click();
-//        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='Delete']")).click();
-//    }
-
-
-//    @Then("I should see an error message on the snack-bar")
-//    public void iShouldSeeAnErrorMessageOnTheSnackBar() {
-//        getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Quiz is not completed. Check highlighted')]")).isDisplayed();
-//    }
 
     @And("I should an error message on the {string} field")
     public void iShouldAnErrorMessageOnTheField(String option) {
@@ -146,24 +140,23 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @And("I click the {string} from the list of quizzes section")
     public void iClickTheFromTheListOfQuizzesSection(String quizTitle) throws InterruptedException {
-        WebElement title = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]"));
+        WebElement title = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]"));
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", title);
         Thread.sleep(500);
         title.click();
     }
 
     @And("I {string} the quiz name {string} from the list of quizzes")
-    public void iTheQuizNameFromTheListOfQuizzes(String btnName, String quizTitle) {
+    public void iTheQuizNameFromTheListOfQuizzes(String btnName, String quizTitle) throws InterruptedException {
+        WebElement element = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]"));
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript("arguments[0].focus();", element);
+
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='"+btnName+"']")).click();
-        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='"+btnName+"']")).click();
-
-//        WebElement btnDelete=getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='"+btnName+"']"));
-//        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-//        executor.executeScript("arguments[0].click();", btnDelete);
-//        btnDelete.click();
-
-
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='" + btnName + "']")).click();
+        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+        WebElement btnDelete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ac-modal-confirmation//span[text()='" + btnName + "']")));
+        btnDelete.click();
     }
 
 
@@ -175,33 +168,88 @@ public class SCQ_with_options_stepDefs_anitha {
     @And("I {string} the quiz name {string} from the list of quizzes section")
     public void iTheQuizNameFromTheListOfQuizzesSection(String btnName, String quizTitle) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='"+btnName+"']")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='" + btnName + "']")).click();
     }
 
     @Then("I verify the content displayed on the Preview mode is correct")
     public void iVerifyTheContentDisplayedOnThePreviewModeIsCorrect() {
-        getDriver().findElement(By.xpath("//h3[contains(text(),'"+this.questionText+"')]")).isDisplayed();
-        getDriver().findElement(By.xpath("//h4[contains(text(),'"+this.quiztitle+"')]")).isDisplayed();
+        getDriver().findElement(By.xpath("//h3[contains(text(),'" + this.questionText + "')]")).isDisplayed();
+        getDriver().findElement(By.xpath("//h4[contains(text(),'" + this.quiztitle + "')]")).isDisplayed();
     }
 
     @And("I enter {int} character into the {string} of {string}")
     public void iEnterCharacterIntoTheOf(int charCount, String option, String questNum) {
-        boolean useLetters=true;
-        boolean useNumbers=false;
-        String optionText= RandomStringUtils.random(charCount,useLetters,useNumbers);
+        boolean useLetters = true;
+        boolean useNumbers = false;
+        String optionText = RandomStringUtils.random(charCount, useLetters, useNumbers);
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@placeholder='" + option + "*']")).sendKeys(optionText);
     }
 
     @Then("I should see an error message {string} on the snack-bar")
     public void iShouldSeeAnErrorMessageOnTheSnackBar(String errMsg) {
-        //getDriver().findElement(By.xpath("//*[contains(text(),'"+errMsg+"')]")).isDisplayed();
-        getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'Quiz is not completed. Check highlighted')]")).isDisplayed();
+        getDriver().findElement(By.xpath("//simple-snack-bar[contains(text(),'" + errMsg + "')]")).isDisplayed();
 
     }
 
     @And("I should an error message {string} on the {string} field")
     public void iShouldAnErrorMessageOnTheField(String errorMsg, String optNum) {
-        getDriver().findElement(By.xpath("//textarea[@placeholder='" + optNum + "*']/following::mat-error[contains(text(),'"+errorMsg+"')]")).isDisplayed();
+        getDriver().findElement(By.xpath("//textarea[@placeholder='" + optNum + "*']/following::mat-error[contains(text(),'" + errorMsg + "')]")).isDisplayed();
+    }
+
+
+    @And("I enter {int} character into the option text fields of {string}")
+    public void iEnterCharacterIntoTheOptionTextFieldsOf(int charCount, String questNum) {
+        boolean useLetters = true;
+        boolean useNumbers = false;
+
+        List<String> optionValues = new ArrayList<>();
+        for (int i = 1; i <= this.currentOptionCount + this.optCount; i++) {
+            String optionText = RandomStringUtils.random(charCount, useLetters, useNumbers);
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@placeholder='Option " + i + "*']")).sendKeys(optionText);
+            optionValues.add(i - 1, optionText);
+        }
+        this.optionValues = optionValues;
+    }
+
+    @And("I add {int} new options to {string}")
+    public void iAddNewOptionsTo(int optionCount, String qustNum) {
+        this.optCount = optionCount;
+        List<WebElement> currentCount = getDriver().findElements(By.xpath("//textarea[contains(@placeholder,'Option ')]"));
+        this.currentOptionCount = currentCount.size();
+
+        for (int i = 3; i <= currentCount.size() + optionCount; i++) {
+            getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + qustNum + "')]/following::span[contains(text(),'Add Option')]")).click();
+        }
+    }
+
+
+    @And("I click the settings icon present next to {string} from {string}")
+    public void iClickTheSettingsIconPresentNextToFrom(String optionNum, String qustNum) {
+        getDriver().findElement(By.xpath("//textarea[contains(@placeholder,'" + optionNum + "*')]/following::mat-icon[contains(text(),'settings')]")).click();
+        this.optiontoDelete = getDriver().findElement(By.xpath("//textarea[contains(@placeholder,'" + optionNum + "*')]")).getAttribute("value");
+    }
+
+
+    @And("I click the {string} from the menu panel")
+    public void iClickTheFromTheMenuPanel(String btnName) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'" + btnName + "')]")));
+        element.click();
+    }
+
+    @Then("I verify the {string} gets deleted successfully")
+    public void iVerifyTheGetsDeletedSuccessfully(String optionNum) {
+        List<WebElement> actualOptions = getDriver().findElements(By.xpath("//textarea[contains(@placeholder,'Option ')]"));
+        for (int i = 1; i <= actualOptions.size(); i++) {
+            assertThat(getDriver().findElement(By.xpath("//textarea[contains(@placeholder,'" + optionNum + "*')]")).getAttribute("value")).doesNotContain(this.optiontoDelete);
+        }
+    }
+
+
+    @And("I resize the browser window to the mobile Dimension {int} by {int}")
+    public void iResizeTheBrowserWindowWithTheDimensionBy(int width, int height) {
+        Dimension size = new Dimension(800, 600);
+        getDriver().manage().window().setSize(size);
     }
 
 }
