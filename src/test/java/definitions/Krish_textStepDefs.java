@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.Assert.assertTrue;
 import static support.TestContext.getDriver;
 
 public class Krish_textStepDefs {
@@ -66,18 +67,6 @@ public class Krish_textStepDefs {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+Qno+"')]/../../..//textarea[@formcontrolname='question']")).sendKeys(Qn);
     }
 
-   /* @Then("I click {string} checkbox")
-    public void iClickCheckbox(String txt) {
-        getDriver().findElement(By.xpath("//span[contains(text(),'"+txt+"')]")).click();
-    }*/
-
-    @Then("{string} is displayed near the question")
-    public void isDisplayedNearTheQuestion(String txt) {
-        WebElement title = getDriver().findElement(By.xpath("//p[contains(text(),'Show-Stopper Question')]"));
-        if(title.equals(txt)){
-            title.isDisplayed();
-        }
-    }
 
     @Then("{string} is displayed on the list")
     public void isDisplayedOnTheList(String qTitle) {
@@ -88,25 +77,6 @@ public class Krish_textStepDefs {
             }
 
         }
-    }
-
-
-    @Then("check * is displayed near both question as show stopper")
-    public void checkIsDisplayedNearBothQuestionAsShowStopper() {
-        WebElement Q1 = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]"));
-        WebElement Q2 = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q2')]"));
-        if(Q1.getText().contains("*")){
-            System.out.println("Q1 is the showstopper");
-        }else if (Q2.getText().contains("*")){
-            System.out.println("Q2 is the showstopper");
-        }else if(Q1.getText().contains("*") && Q2.getText().contains("*")){
-            System.out.println("Its a bug");
-        }
-        else{
-            System.out.println("no showstopper");
-        }
-
-
     }
 
     @When("I choose {string} question type for qn number {int}")
@@ -122,5 +92,43 @@ public class Krish_textStepDefs {
     @Then("I click {string} checkbox for qn {int}")
     public void iClickCheckboxForQn(String txt, int no) {
         getDriver().findElement(By.xpath("(//span[contains(text(),'"+txt+"')])["+no+"]")).click();
+    }
+
+    @Then("{string} label is displayed near the question")
+    public void labelIsDisplayedNearTheQuestion(String txt) {
+        WebElement label = getDriver().findElement(By.xpath("//p[contains(text(),'"+txt+"')]"));
+        if(label.equals(txt)) {
+            label.isDisplayed();
+        }
+
+    }
+
+    @Then("I should check an asterisk displayed near both questions")
+    public void iShouldCheckAnAsteriskDisplayedNearBothQuestions() {
+        WebElement Q1 = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q1')]"));
+        WebElement Q2 = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'Q2')]"));
+        if(Q1.getText().contains("*")){
+            System.out.println("Q1 is the showstopper");
+        }else if (Q2.getText().contains("*")){
+            System.out.println("Q2 is the showstopper");
+        }else if(Q1.getText().contains("*") && Q2.getText().contains("*")){
+            System.out.println("Its a bug");
+        }
+        else{
+            System.out.println("no showstopper");
+        }
+    }
+    @And("I remove {string} from the list of quizzes")
+    public void iRemoveFromTheListOfQuizzes(String qTitle) throws InterruptedException {
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+qTitle+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+qTitle+"')]/../../..//span[text()='Delete']")).click();
+        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='Delete']")).click();
+        Thread.sleep(1000);
+    }
+
+    @Then("I should check an asterisk displayed near only {string}")
+    public void iShouldCheckAnAsteriskDisplayedNearOnly(String qNo) {
+        WebElement Q2 = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+qNo+"')]"));
+        assertTrue(Q2.getText().contains("*"));
     }
 }

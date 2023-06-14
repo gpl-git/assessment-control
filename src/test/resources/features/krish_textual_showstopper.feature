@@ -7,7 +7,7 @@
       When I press "Sign In" button
       And I waited for 1 sec
       And I press "Quizzes" menu item
-      And I waited for 1 sec
+      And I waited for 2 sec
       When I press "Create New Quiz" button
       And I waited for 1 sec
     @texts1
@@ -21,7 +21,7 @@
       Then I click "Show-Stopper" checkbox for qn 1
       And I waited for 1 sec
       And I press "Preview" button
-      Then "Show-Stopper Question" is displayed near the question
+      Then "Show-Stopper Question" label is displayed near the question
       And I waited for 1 sec
       And I press "Close" button
       Then I waited for 1 sec
@@ -29,6 +29,7 @@
       And I waited for 1 sec
       Then "Krishna_textual_showstopper" is displayed on the list
       And I waited for 1 sec
+      And I remove "Krishna_textual_showstopper" from the list of quizzes
       @texts2
       Scenario: Verify only one show stopper per quiz
         When I give "textual_showstopper_krish" as quiz title
@@ -47,5 +48,5 @@
         And I waited for 1 sec
         Then I click "Show-Stopper" checkbox for qn 2
         And I waited for 1 sec
-        Then check * is displayed near both question as show stopper
+        Then I should check an asterisk displayed near only "Q2"
         And I waited for 1 sec
