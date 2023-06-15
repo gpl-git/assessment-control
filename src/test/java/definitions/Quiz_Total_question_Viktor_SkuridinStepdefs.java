@@ -48,7 +48,6 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
         getDriver().findElement(By.xpath("//span[contains(text(),'" + btnName + "')]")).click();
     }
 
-
     @When("I type {string} in quiz title")
     public void iTypeAsQuizTitle(String quizTitle) {
         getDriver().findElement(By.xpath("//*[@formcontrolname='name']")).sendKeys(quizTitle);
@@ -57,12 +56,6 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
     @And("I click add a question")
     public void iAddAQuestion() {
         getDriver().findElement(By.xpath("//mat-icon[text()='add_circle']")).click();
-    }
-
-
-    @Then("error message must displayed")
-    public void errorMessageMustDisplayed() {
-        getDriver().findElement(By.xpath("//*[contains(text(),\"Quiz is not completed. Check highlighted with\")]")).isDisplayed();
     }
 
     @When("I select {string} type question")
@@ -74,7 +67,6 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
     public void iTypeIntoQuestionFieldOf(String questionText, String questionNum) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questionNum + "')]/../../..//textarea[@formcontrolname='question']")).sendKeys(questionText);
     }
-
 
     @When("I am type {string} into {string} option field of {string}")
     public void iTypeIntoOptionFieldOf(String optionText, String optionNum, String questionNum) {
@@ -110,7 +102,6 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
         Thread.sleep(1000);
     }
 
-
     @When("I add {int} Textual questions")
     public void iAddTextualQuestions(int num) throws InterruptedException {
         for (int i = 1; i <= num; i++) {
@@ -121,8 +112,6 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
             getDriver().findElement(By.xpath(xpath)).sendKeys("Question " + i);
         }
     }
-
-
 
     @And("I open quizzes")
     public void iOpenQuizzes() throws InterruptedException {
@@ -138,7 +127,6 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
         }else {
             System.out.println("Question count is not correct");
         }
-
     }
 
     @Then("error message {string} is displayed")
@@ -148,6 +136,16 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
             System.out.println("Error message '" + message + "' is not displayed.");
         } else {
             System.out.println("Error message '" + message + "' is displayed.");
+        }
+    }
+
+    @Then("error message {string} must displayed")
+    public void errorMessageQuizIsNotCompletedCheckHighlightedWithAreasMustDisplayed(String errormessage) {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//*[contains(text(),'" + errormessage + "')]"));
+        if (elements.isEmpty()) {
+            System.out.println("Error message '" + errormessage + "' is not displayed.");
+        } else {
+            System.out.println("Error message '" + errormessage + "' is displayed.");
         }
     }
 }

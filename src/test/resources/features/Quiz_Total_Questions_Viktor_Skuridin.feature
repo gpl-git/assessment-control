@@ -17,7 +17,7 @@ Feature: Quiz Creation Sample
     And I click add a question
     And I click on "Save" button
     And I wait for 1 sec
-    Then error message must displayed
+    Then error message 'Quiz is not completed. Check highlighted with "red" areas ' must displayed
     And I wait for 5 sec
 
   @quiz_1
