@@ -19,8 +19,10 @@ public class Almaz_settings_nameDefs {
     boolean useNumbers1 = false;
     boolean useLetters2 = true;
     boolean useNumbers2 = false;
-    public String firstName = RandomStringUtils.random(127, useLetters1, useNumbers1);
-    public String lastName = RandomStringUtils.random(128, useLetters2, useNumbers2);
+//    public int number1;
+//    public int number2;
+    public String firstName = RandomStringUtils.random(128, useLetters1, useNumbers1);
+    public String lastName = RandomStringUtils.random(127, useLetters2, useNumbers2);
     public String fullname = firstName + " " + lastName;
 
     @Given("I navigate to {string} page")
@@ -108,14 +110,21 @@ public class Almaz_settings_nameDefs {
     public void iWillVerifyThatStudentNameShouldBeDisplayed() {
        String displayedText = getDriver().findElement(By.xpath("//mat-card")).getText();
        System.out.println(displayedText);
-       assertThat(displayedText.equals(fullname));
+       assertThat(displayedText.contains(fullname)).isTrue();
        }
 
     @And("I will verify that student name should be displayed in the upper left corner of the page")
     public void iWillVerifyThatStudentNameShouldBeDisplayedInTheUpperLeftCornerOfThePage() {
         String displayedText = getDriver().findElement(By.xpath("//h3")).getText();
         System.out.println(displayedText);
-        assertThat(displayedText.equals(fullname));
+        assertThat(displayedText.contains(fullname)).isTrue();
 
+    }
+
+    @When("I type {int} characters in First name and {int} in Last name into  full name field")
+    public void iTypeCharactersInFirstNameAndInLastNameIntoFullNameField(int number1, int number2) {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
+        System.out.println(fullname);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(fullname);
     }
 }

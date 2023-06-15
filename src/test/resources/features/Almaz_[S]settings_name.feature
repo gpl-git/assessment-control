@@ -38,6 +38,7 @@
              #trailing and leading spaces
       When I will click "Change Your Name" button
       Then I type " Diana Test " into Full Name field
+      And I will  wait for 2 sec
       Then error message "Should contain only first and last name" should be displayed
       And I will click "Cancel" button
       And I will  wait for 1 sec
@@ -47,7 +48,7 @@
       Given I will click "Change Your Name" button
       When I type Full name that is 256 characters long into  full name field
       And I will click "Change" button
-      And I will  wait for 1 sec
+      And I will  wait for 2 sec
 #      Then I will verify that student name should be displayed
 #      And  I will verify that student name should be displayed in the upper left corner of the page
       And I will click "Cancel" button
@@ -55,6 +56,7 @@
            #Whitespace
            #Known issue MAY23-670
       Given I will click "Change Your Name" button
+      And I will  wait for 2 sec
       When I type " " into Full Name field
       And I will  wait for 2 sec
 #      Then error message "Should contain only first and last name" should be displayed
