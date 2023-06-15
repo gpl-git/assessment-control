@@ -2,9 +2,11 @@ package definitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class HomePageLinksAnastasiaStepDefs {
@@ -46,4 +48,11 @@ public class HomePageLinksAnastasiaStepDefs {
         getDriver().findElement(By.xpath("//span[contains(text(),'"+buttonName+"')]")).click();
 
     }
+
+    @Then("I verify current url {string}")
+    public void iVerifyCurrentUrl(String curUrl) {
+        String url= getDriver().getCurrentUrl();
+        assertThat(url.contains(curUrl)).isTrue();
+    }
+
 }
