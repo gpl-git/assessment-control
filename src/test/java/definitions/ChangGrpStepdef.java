@@ -9,7 +9,9 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
+import org.openqa.selenium.Keys;
 
 public class ChangGrpStepdef {
     @Given("I go to {string} page -DA")
@@ -56,11 +58,6 @@ public class ChangGrpStepdef {
         getDriver().findElement(By.xpath("//h4[contains(text(),'" + studentName + "')]")).click();
     }
 
-    @And("I Click on {string} button")
-    public void iClickOnButton(String btnName) {
-        getDriver().findElement(By.xpath("//span//..//mat-icon")).click();
-
-    }
 
     @And("I select {string} from list")
     public void iSelectFromList(String optlist) {
@@ -79,23 +76,120 @@ public class ChangGrpStepdef {
     }
 
 
-    @Then("I Click on {string} Button -DA")
-    public void iClickOnButtonDA(String Change) {
-        getDriver().findElement(By.xpath("//ac-modal-adjust-user//span[text()='Change']")).click();
-    }
-
     @Then("{string} is displayed on the user-details page")
-    public void isDisplayedOnTheUserDetailsPage(String NewUsrGrP) {
-        List<WebElement> titles = getDriver().findElements(By.xpath("//*[text()='Group']/../td[text()='"+NewUsrGrP+"']"));
-        for (WebElement title : titles) {
-            if (title.getText().contains(NewUsrGrP)) {
-                title.isDisplayed();
-                System.out.println(NewUsrGrP);
-            }
+    public void isDisplayedOnTheUserDetailsPage(String NewGrp) {
+        List<WebElement> titles = getDriver().findElements(By.xpath("//*[text()='Group']/../td[text()='" + NewGrp + "']"));
+        WebElement errorMessage = getDriver().findElement(By.xpath("//mat-error[contains(text(),'Should contain only first and last name')]"));
+
+        if (!titles.isEmpty() && titles.get(0).isDisplayed() && !errorMessage.isDisplayed()) {
+            System.out.println(NewGrp);
+
+        } else {
+            assertThat(errorMessage.isDisplayed()).isFalse();
+            System.out.println("This Group code " + NewGrp + " is not displayed");
 
         }
     }
+
+
+    @Then("I should see modal window with {string} -DA")
+    public void iShouldSeeModalWindowWithDA(String expectedText) {
+        WebElement modalWindow = getDriver().findElement(By.xpath("//h1"));
+        String actualText = modalWindow.getText();
+        assertThat(actualText).contains(expectedText);
+        System.out.println(actualText);
+//        This is known issue JIRA MAY23-400
+    }
+
+    @Then("I should see input field placeholder as {string} -DA")
+    public void iShouldSeeInputFieldPlaceholderAsDA(String expectedPlaceholder) {
+        WebElement inputField = getDriver().findElement(By.xpath("//input[@placeholder='Full Name']"));
+        String actualPlaceholder = inputField.getAttribute("placeholder");
+        assertThat(actualPlaceholder).isEqualTo(expectedPlaceholder);
+        System.out.println(actualPlaceholder);
+    }
+
+    @And("I click on {string} button -DA")
+    public void iClickOnButtonDA(String ChangBtn) {
+        getDriver().findElement(By.xpath("//ac-modal-adjust-user//span[text()='Change']")).click();
+    }
+
+    @And("I Click on {string} button at mat-card -DA")
+    public void iClickOnButtonAtMatCardDA(String OptionsBtn) {
+        getDriver().findElement(By.xpath("//span")).click();
+
+    }
+
+
+    @When("I click on the {string} tap")
+    public void iClickOnTheTap(String Tap) {
+        getDriver().findElement(By.xpath("//div[contains(text(),'Teachers')]")).click();
+
+    }
+
+    @And("I Select a Teacher name {string} from the list of Students")
+    public void iSelectATeacherNameFromTheListOfStudents(String TeacherName) {
+        getDriver().findElement(By.xpath("//h4[contains(text(),'" + TeacherName + "')]")).click();
+
+    }
+
+    @Then("I should see {string} window -DA")
+    public void iShouldSeeWindowDA(String expectedNotification) {
+        WebElement notificationWindow = getDriver().findElement(By.xpath("//h1"));
+        String actualNotification = notificationWindow.getText();
+        assertThat(actualNotification).isEqualTo(expectedNotification);
+    }
+
+
+    @Then("{string} is not displayed on the user-details page -DA")
+    public void isNotDisplayedOnTheUserDetailsPageDA(String NewGrpcod) {
+            List<WebElement> titles = getDriver().findElements(By.xpath("//*[text()='Group']/../td[text()='" + NewGrpcod + "']"));
+            if (titles.isEmpty()) {
+                System.out.println("This Group code " + NewGrpcod + " is not displayed");
+            } else {
+                for (WebElement title : titles) {
+                    if (title.isDisplayed()) {
+                        System.out.println("The Group code " + NewGrpcod + " is unexpectedly displayed");
+                    }
+                }
+            }
+        }
+
+    @And("error message {string} shold be displayed -DA")
+    public void errorMessageSholdBeDisplayedDA(String error) {
+        WebElement modalWindow = getDriver().findElement(By.xpath("//mat-error[@role='alert']"));
+        String actualText = modalWindow.getText();
+        assertThat(actualText).contains(error);
+        System.out.println(actualText);
+
+    }
+
+
+
+
+
+    @And("I press {string} key")
+    public void iPressKey(WebElement element) {
+        element.sendKeys(Keys.RETURN);
+    }
+
+
+
+    @And("I clear and backspace User's Group filed  -DA")
+    public void iClearAndBackspaceUserSGroupFiledDA() {
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
+//        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys("AAAA");
+//        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(Keys.ENTER);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).click();
+
+
+    }
 }
+
+
+
 
 
 
