@@ -23,6 +23,8 @@ public class StudentChangePasswordAnilStepDefs {
             getDriver().get("http://ask-qa.portnov.com/#/my-grades");
         }else if (end.equalsIgnoreCase("settings")){
             getDriver().get("http://ask-qa.portnov.com/#/settings");
+        }else if (end.equalsIgnoreCase("quizzes")){
+            getDriver().get("http://ask-qa.portnov.com/#/quizzes");
         }else {
             System.out.println("Website does not have a page named as "+end);
         }

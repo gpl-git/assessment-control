@@ -10,6 +10,7 @@ Feature: Student Settings - Change Password
     Then I will see my name "Anil" on the header - Anil
     And I go to the "Settings" page - Anil
     And I click on the "Change Password" button - Anil
+    And I will wait 1 sec - Anil
 
   @Empty_1
   Scenario: Empty password field
