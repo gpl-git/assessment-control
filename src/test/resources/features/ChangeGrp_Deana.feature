@@ -72,6 +72,7 @@ Feature: Change User's Group
     And I wait for 2 sec -DA
     And I click on "change" button -DA
     Then "May 23" is not displayed on the user-details page -DA
+#  This is known issue JIRA MAY23-621
 
   @Testrequairments3
   Scenario:Verify Group code field required, can’t be empty
@@ -82,8 +83,6 @@ Feature: Change User's Group
     And I select "Change User's Group" from list
     And I wait for 2 sec -DA
     And I clear and backspace User's Group filed  -DA
-    And I wait for 3 sec -DA
-    And I click on "change" button -DA
     And I wait for 4 sec -DA
     And error message "This field is required" shold be displayed -DA
     Then "" is not displayed on the user-details page -DA

@@ -168,7 +168,7 @@ public class ChangGrpStepdef {
 
 
 
-    @And("I press {string} key")
+//    @And("I press {string} key")
     public void iPressKey(WebElement element) {
         element.sendKeys(Keys.RETURN);
     }
@@ -178,11 +178,10 @@ public class ChangGrpStepdef {
     @And("I clear and backspace User's Group filed  -DA")
     public void iClearAndBackspaceUserSGroupFiledDA() {
         getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
-//        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys("AAAA");
-//        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
-        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(Keys.ENTER);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(Keys.ADD);
+        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).sendKeys(Keys.BACK_SPACE);
         getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).clear();
-        getDriver().findElement(By.xpath("//input[@formcontrolname='name']")).click();
+
 
 
     }
