@@ -19,7 +19,7 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I type "Behavior Driven Development" into the "Option 1" of "Q1"
     And I type "Behavior Driven Deployment" into the "Option 2" of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
     Then I should see the quiz name "SCQ quiz with two options" in the list of quizzes section
     And I "Delete" the quiz name "SCQ quiz with two options" from the list of quizzes
@@ -32,14 +32,10 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I type "sT8uKp2R9`~@#$%^&*()_+|={}[]:”;’<>?,./®©£¥¢¦§«»€" into the "Option 1" of "Q1"
     And I type "sT8uKp2R9`~@#$%^&*()_+|={}[]:”;’<>?,./®©£¥¢¦§«»€" into the "Option 2" of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
-    And I wait for 1 sec for the presence of all the elements on the page
     Then I should see the quiz name "Options text with allowable characters" in the list of quizzes section
-    And I "Preview" the quiz name "Options text with allowable characters" from the list of quizzes section
-    Then I verify the content displayed on the Preview mode is correct
-    And I click "Close" in the confirmation window
-
+    And I "Delete" the quiz name "Options text with allowable characters" from the list of quizzes
 
   @positive @positive_3 #Issue ID: MAY23-367
   Scenario: Option 1 has 1 character Option 2 has 999 characters and the radio button is checked
@@ -49,12 +45,9 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I enter 1 character into the "Option 1" of "Q1"
     And I enter 999 character into the "Option 2" of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
     Then I should see the quiz name "SCQ with 999 characters in option fields" in the list of quizzes section
-#    And I "Preview" the quiz name "SCQ with 999 characters in option fields" from the list of quizzes section
-#    Then I verify the content displayed on the Preview mode is correct
-#    And I click "Close" in the confirmation window
     And I "Delete" the quiz name "SCQ with 999 characters in option fields" from the list of quizzes
 
   @positive @positive_4 #Issue ID: MAY23-422
@@ -65,10 +58,9 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I add 12 new options to "Q1"
     And I enter 10 character into the option text fields of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
     Then I should see the quiz name "SCQ with 14 options" in the list of quizzes section
-#    And I wait for 2 sec for the presence of all the elements on the page
     And I "Delete" the quiz name "SCQ with 14 options" from the list of quizzes
 
   @positive @positive_5 #Issue ID: MAY23-429
@@ -79,8 +71,8 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I type "Behavior Driven Development" into the "Option 1" of "Q1"
     And I type "Behavior Driven Deployment" into the "Option 2" of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
-    And I select the "Option 2" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
+    And I choose the answer as "Option 2" for question "Q1"
     And I click the "Save" button
     Then I should see the quiz name "SCQ toggling the option radio button" in the list of quizzes section
     And I "Delete" the quiz name "SCQ toggling the option radio button" from the list of quizzes
@@ -93,10 +85,14 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I add 1 new options to "Q1"
     And I enter 10 character into the option text fields of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
+    And I click the "Preview" button
+    Then I verify the content displayed on the Preview mode is correct
+    And I click "Close" in the confirmation window
     And I click the settings icon present next to "Option 2" from "Q1"
     And I click the "Delete Option" from the menu panel
     Then I verify the "Option 2" gets deleted successfully
+
 
   @negative @negative_1 #Issue ID: MAY23-341
   Scenario:Options 1 and 2 are empty, the radio button is not checked
@@ -115,7 +111,7 @@ Feature:Single Choice Question - Options
     And I add a question by clicking the button Add question
     And I select the question type as "Single-Choice"
     And I type the question as "What is BDD?" into question field of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
     Then I should see an error message "Quiz is not completed." on the snack-bar
     And I should an error message "This field is required" on the "Option 1" field
@@ -128,7 +124,7 @@ Feature:Single Choice Question - Options
     And I select the question type as "Single-Choice"
     And I type the question as "What is BDD?" into question field of "Q1"
     And I type "Behavior Driven Development" into the "Option 1" of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
     Then I should see an error message "Quiz is not completed." on the snack-bar
     And I should an error message "This field is required" on the "Option 2" field
@@ -153,10 +149,11 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I enter 1000 character into the "Option 1" of "Q1"
     And I enter 1001 character into the "Option 2" of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
        #known issue please refer the Bug_ID:MAY23-369
     Then I should see an error message "User can't insert more than 1000 characters into the text field"
+
 
   @negative @negative_6 #Issue ID: MAY23-422
   Scenario: More than 15 Options for 1 Question
@@ -166,10 +163,10 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I add 14 new options to "Q1"
     And I enter 10 character into the option text fields of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
     #known issue
-    And I should see an error message "Not more than 15 options are allowed"
+    Then I should see an error message "Not more than 15 options are allowed"
 
   @negative @negative_7 #Issue ID: MAY23-418
   Scenario: White space in Option field
@@ -179,7 +176,7 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I type "   " into the "Option 1" of "Q1"
     And I type "   " into the "Option 2" of "Q1"
-    And I select the "Option 1" from the list of options for question "Q1"
+    And I choose the answer as "Option 1" for question "Q1"
     And I click the "Save" button
     #known issue please refer the Bug ID:MAY23-419
     Then I should see an error message "White spaces are not allowed"
@@ -192,7 +189,7 @@ Feature:Single Choice Question - Options
     And I type the question as "What is BDD?" into question field of "Q1"
     And I type "Behavior Driven Development" into the "Option 1" of "Q1"
     And I type "Behavior Driven Deployment" into the "Option 2" of "Q1"
-    And I resize the browser window to the mobile Dimension 1400 by 900
+    And I resize the browser window to the mobile Dimension 800 by 600
     And I wait for 1 sec for the presence of all the elements on the page
 
 

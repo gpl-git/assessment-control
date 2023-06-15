@@ -32,20 +32,20 @@ public class TestContext {
     }
 
     public static void initialize() {
-        initialize("chrome", "local", true, true);
+        initialize("chrome", "local", false);
     }
 
     public static void teardown() {
         driver.quit();
     }
 
-    public static void initialize(String browser, String testEnv, boolean isHeadless, boolean envLinux) {
+    public static void initialize(String browser, String testEnv, boolean isHeadless) {
         Dimension size = new Dimension(1920, 1080);
         Point position = new Point(0, 0);
         if (testEnv.equals("local")) {
             switch (browser) {
                 case "chrome":
-                    WebDriverManager.chromedriver().version("113").setup();
+                    WebDriverManager.chromedriver().setup();
                     Map<String, Object> chromePreferences = new HashMap<>();
                     chromePreferences.put("profile.default_content_settings.geolocation", 2);
                     chromePreferences.put("download.prompt_for_download", false);
@@ -60,9 +60,6 @@ public class TestContext {
                         chromeOptions.setHeadless(true);
                         chromeOptions.addArguments("--window-size=" + size.getWidth() + "," + size.getWidth());
                         chromeOptions.addArguments("--disable-gpu");
-                    }
-                    if (envLinux) {
-                        chromeOptions.setBinary("/usr/bin/chromium-browser");
                     }
                     driver = new ChromeDriver(chromeOptions);
                     break;
@@ -107,4 +104,3 @@ public class TestContext {
         }
     }
 }
-
