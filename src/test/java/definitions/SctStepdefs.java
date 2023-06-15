@@ -165,6 +165,7 @@ public class SctStepdefs {
         System.out.println("Question text field accepts only special characters");
 
 
-    }
-}
+    }}
+
+
 
