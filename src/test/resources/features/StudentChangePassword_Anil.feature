@@ -59,7 +59,7 @@ Feature: Student Settings - Change Password
     Given I enter a long password into the "password" field - Anil
     And I type "12345" into the new password field - Anil
     And I type "12345" into the confirm password field - Anil
-    #Known bug MAY23-316 Password field accepts more than 23 characters
+    #Known bug MAY23-316 Password field accepts more than 32 characters
     Then I should see "Can be max 32 characters" message under the "password" field - Anil
 
   @33Characters_2
@@ -67,7 +67,7 @@ Feature: Student Settings - Change Password
     Given I enter a long password into the "new password" field - Anil
     And I type "12345" into the password field - Anil
     And I type "12345" into the confirm password field - Anil
-    #Known bug MAY23-316 Password field accepts more than 23 characters
+    #Known bug MAY23-316 Password field accepts more than 32 characters
     Then I should see "Can be max 32 characters" message under the "password" field - Anil
 
   @33Characters_3
@@ -75,7 +75,7 @@ Feature: Student Settings - Change Password
     Given I enter a long password into the "confirm password" field - Anil
     And I type "12345" into the password field - Anil
     And I type "12345" into the new password field - Anil
-    #Known bug MAY23-316 Password field accepts more than 23 characters
+    #Known bug MAY23-316 Password field accepts more than 32 characters
     Then I should see "Can be max 32 characters" message under the "password" field - Anil
 
   @WhiteSpace_1
