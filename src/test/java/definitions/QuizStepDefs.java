@@ -21,7 +21,6 @@ public class QuizStepDefs {
         }else{
             System.out.println("This site " + url + " is not supported.");
         }
-
     }
 
     @And("I wait for {int} sec")
