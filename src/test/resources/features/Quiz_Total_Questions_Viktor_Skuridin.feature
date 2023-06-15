@@ -73,7 +73,7 @@ Feature: Quiz Creation Sample
   @quiz_51
   Scenario: Create quiz with 51 questions - error message is displayed
     When I type "Viktor automation quiz 51 questions" in quiz title
-    Then I add 51 Textual questions
+    Then I add 5 Textual questions
     And I click on "Save" button
     And I wait for 1 sec
     Then error message "Max 50 questions" is displayed

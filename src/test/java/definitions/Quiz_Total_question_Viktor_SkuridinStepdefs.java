@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class Quiz_Total_question_Viktor_SkuridinStepdefs {
@@ -122,21 +123,24 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
     @And("I verify that {string} total question is {string} \\(same as it was created)")
     public void iVerifyThatTotalQuestionIsSameAsItWasCreated(String quizname, String questioncount) {
         String total = ((getDriver().findElement(By.xpath("((//*[contains(text(),'" + quizname + "')])[1]/../../..//td[contains(text(),'" + questioncount + "')])[1]")).getText()));
-        if (total.equals(questioncount)) {
-            System.out.println("Question count is correct");
-        }else {
-            System.out.println("Question count is not correct");
-        }
+        assertThat(total.equals(questioncount)).isTrue();
+//        if (total.equals(questioncount)) {
+//            System.out.println("Question count is correct");
+//        }else {
+//            System.out.println("Question count is not correct");
+//        }
     }
 
     @Then("error message {string} is displayed")
     public void errorMessageIsDisplayed(String message) {
-        List<WebElement> elements = getDriver().findElements(By.xpath("//*[contains(text(),'" + message + "')]"));
-        if (elements.isEmpty()) {
-            System.out.println("Error message '" + message + "' is not displayed.");
-        } else {
-            System.out.println("Error message '" + message + "' is displayed.");
-        }
+        String text = (getDriver().findElements(By.xpath("//*[contains(text(),'" + message + "')]")).getText());
+        String total = ((getDriver().findElement(By.xpath("((//*[contains(text(),'" + quizname + "')])[1]/../../..//td[contains(text(),'" + questioncount + "')])[1]")).getText()));
+//        List<WebElement> elements = getDriver().findElements(By.xpath("//*[contains(text(),'" + message + "')]"));
+//        if (elements.isEmpty()) {
+//            System.out.println("Error message '" + message + "' is not displayed.");
+//        } else {
+//            System.out.println("Error message '" + message + "' is displayed.");
+//        }
     }
 
     @Then("error message {string} must displayed")
