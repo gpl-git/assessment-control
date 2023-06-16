@@ -73,6 +73,7 @@ Feature:Single Choice Question - Options
     And I type "Behavior Driven Deployment" into the "Option 2" of "Q1"
     And I choose the answer as "Option 1" for question "Q1"
     And I choose the answer as "Option 2" for question "Q1"
+    And verify that the "Option 2" is selected
     And I click the "Save" button
     Then I should see the quiz name "SCQ toggling the option radio button" in the list of quizzes section
     And I "Delete" the quiz name "SCQ toggling the option radio button" from the list of quizzes

@@ -276,5 +276,8 @@ public class SCQ_with_options_stepDefs_anitha {
     }
 
 
+    @And("verify that the {string} is selected")
+    public void verifyThatTheIsSelected(String optNum) {
 
+    }
 }
