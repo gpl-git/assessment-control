@@ -7,6 +7,7 @@ Feature: Home page
     When I type "ask_instr@aol.com" into email field AP
     And I type "12345" into password field AP
     When I click "Sign In" button AP
+    And I wait for 2 sec
     When I click "Submissions" menu item AP
     And I wait for 2 sec
     Then I verify current url "submissions"
@@ -39,7 +40,6 @@ Feature: Home page
     And I wait for 2 sec
     Then I verify current url "users-management"
     When I click "Log Out" menu item AP
-    And I wait for 2 sec
 
   @HomePageLinks2
   Scenario: Verify if Student Home Page links works
@@ -47,6 +47,7 @@ Feature: Home page
     When I type "student1@test.com" into email field AP
     And I type "ABC123" into password field AP
     When I click "Sign In" button AP
+    And I wait for 2 sec
     When I click "My Assignments" menu item AP
     And I wait for 2 sec
     Then I verify current url "my-assignments"
@@ -68,5 +69,5 @@ Feature: Home page
     And I wait for 2 sec
     Then I verify current url "my-grades"
     When I click "Log Out" menu item AP
-    And I wait for 2 sec
+
 
