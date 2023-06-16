@@ -122,37 +122,37 @@ public class Quiz_Total_question_Viktor_SkuridinStepdefs {
 
     @And("I verify that {string} total question is {string} \\(same as it was created)")
     public void iVerifyThatTotalQuestionIsSameAsItWasCreated(String quizname, String questioncount) {
-        String total = ((getDriver().findElement(By.xpath("((//*[contains(text(),'" + quizname + "')])[1]/../../..//td[contains(text(),'" + questioncount + "')])[1]")).getText()));
+        String total = (getDriver().findElement(By.xpath("((//*[contains(text(),'" + quizname + "')])[1]/../../..//td[contains(text(),'" + questioncount + "')])[1]")).getText());
         assertThat(total.equals(questioncount)).isTrue();
+    }
 //        if (total.equals(questioncount)) {
 //            System.out.println("Question count is correct");
 //        }else {
 //            System.out.println("Question count is not correct");
 //        }
-    }
+
 
     @Then("error message {string} is displayed")
     public void errorMessageIsDisplayed(String message) {
-        String text = (getDriver().findElements(By.xpath("//*[contains(text(),'" + message + "')]")).getText());
-        String total = ((getDriver().findElement(By.xpath("((//*[contains(text(),'" + quizname + "')])[1]/../../..//td[contains(text(),'" + questioncount + "')])[1]")).getText()));
+        WebElement errmessage = getDriver().findElement(By.xpath("//*[contains(text(),'" + message + "')]"));
+        assertThat(errmessage.isDisplayed()).isTrue();
+    }
 //        List<WebElement> elements = getDriver().findElements(By.xpath("//*[contains(text(),'" + message + "')]"));
 //        if (elements.isEmpty()) {
 //            System.out.println("Error message '" + message + "' is not displayed.");
 //        } else {
 //            System.out.println("Error message '" + message + "' is displayed.");
 //        }
-    }
+
 
     @Then("error message {string} must displayed")
     public void errorMessageQuizIsNotCompletedCheckHighlightedWithAreasMustDisplayed(String errormessage) {
-        List<WebElement> elements = getDriver().findElements(By.xpath("//*[contains(text(),'" + errormessage + "')]"));
-        if (elements.isEmpty()) {
-            System.out.println("Error message '" + errormessage + "' is not displayed.");
-        } else {
-            System.out.println("Error message '" + errormessage + "' is displayed.");
-        }
-    }
+//        String message = (getDriver().findElement(By.xpath("//*[contains(text(),'" + errormessage + "')]")).getText());
+//        assertThat(message.equals(errormessage)).isTrue();
 
+        WebElement message1 = getDriver().findElement(By.xpath("//*[contains(text(),'" + errormessage + "')]"));
+        assertThat(message1.isDisplayed()).isTrue();
+    }
 }
 
 
