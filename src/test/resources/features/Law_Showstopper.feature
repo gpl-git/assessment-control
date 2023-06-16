@@ -53,13 +53,13 @@ Feature: Automate Single Choice Question - Showstopper
     And I wait for 2 sec
     Then I add the second question Law
     When I select "Single" question type
-    And I wait for 12 sec
+    And I wait for 5 sec
     And I type "q2" into question field of "Q2"
     When I type "a1" into "Option 1" option field of "Q2"
     And I type "a2" into "Option 2" option field of "Q2"
     And I wait for 4 sec
-#    Then I click "a1" button as answer Law
-#    And I wait for 2 sec
+    Then I click "a1" button as answer Law
+    And I wait for 2 sec
     Then I click "Show-stopper" in "Q2" Law
     And I wait for 2 sec
     Then "Q2" displays "*" as a showstopper
