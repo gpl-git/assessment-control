@@ -75,7 +75,7 @@ public class SctStepdefs {
 
     @And("I select {string} option dp")
     public void iSelectOptionDp(String queType) {
-        getDriver().findElement(By.xpath("//*[contains(text(),'Single-Choice')]")).click();
+        getDriver().findElement(By.xpath("//*[contains(text(),'"+queType+"')]")).click();
     }
 
 
