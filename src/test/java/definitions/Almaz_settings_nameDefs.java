@@ -1,5 +1,4 @@
 package definitions;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -14,13 +13,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class Almaz_settings_nameDefs {
-
     boolean useLetters1 = true;
     boolean useNumbers1 = false;
     boolean useLetters2 = true;
     boolean useNumbers2 = false;
-//    public int number1;
-//    public int number2;
     public String firstName = RandomStringUtils.random(128, useLetters1, useNumbers1);
     public String lastName = RandomStringUtils.random(127, useLetters2, useNumbers2);
     public String fullname = firstName + " " + lastName;
