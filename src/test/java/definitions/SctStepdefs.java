@@ -7,11 +7,13 @@ import cucumber.api.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.Random;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class SctStepdefs {
@@ -124,26 +126,25 @@ public class SctStepdefs {
     }
 
     @Then("Error message of exceeded limit should be displayed")
-    public void errorMessageOfExceededLimitShouldBeDisplayed() {
+    public void errorMessageOfExceededLimitShouldBeDisplayed(String expectedError) {
+        String actualError = getDriver().findElement(By.xpath("//mat-error")).getText();
+        assertThat(actualError.equals(expectedError)).isTrue();
+
+
         boolean useLetters = true;
         boolean useNumbers = true;
 
         String generatedString = RandomStringUtils.random(1001, useLetters, useNumbers);
         System.out.println(generatedString);
         getDriver().findElement(By.xpath("//textarea[@formcontrolname='question']")).sendKeys(generatedString);
-        System.out.println("Error message is not displayed and question text field accepts more than 1000 characters.");
 
+        System.out.println("Error message is not displayed and question text field accepts more than 1000 characters.");
 
     }
 
     @When("I click in the text field of {string}")
     public void iClickInTheTextFieldOf(String queNum) {
         getDriver().findElement(By.xpath("//textarea[@formcontrolname='question']")).click();
-    }
-
-    @And("I click on option{int} button")
-    public void iClickOnOptionButton(int optNum) {
-        getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']/../../../../../mat-radio-button[contains(@class,'mat-radio-button')]")).click();
     }
 
     @Then("error message of required field should be displayed")
@@ -159,13 +160,40 @@ public class SctStepdefs {
         System.out.println("Question text field accepts both Alphanumeric and Special characters.");
     }
 
+
+
+
+    @And("I enter text {string} in the text field of {string} and delete the text")
+    public void iEnterTextInTheTextFieldOfAndDeleteTheText(String text, String queNum) {
+        getDriver().findElement(By.xpath("textarea[@formcontrolname='question']")).sendKeys(Keys.ADD);
+
+        getDriver().findElement(By.xpath("//textarea[@formcontrolname='question']")).sendKeys(Keys.BACK_SPACE);
+
+
+    }
+
+    @And("I enter text in the text field of {string} and delete the text")
+    public void iEnterTextInTheTextFieldOfAndDeleteTheText(String queNum) {
+        getDriver().findElement(By.xpath("textarea[@formcontrolname='question']")).sendKeys(Keys.ADD);
+        getDriver().findElement(By.xpath("textarea[@formcontrolname='question']")).clear();
+        getDriver().findElement(By.xpath("//textarea[@formcontrolname='question']")).sendKeys(Keys.BACK_SPACE);
+
+    }
+
     @When("I type {string} in the question text field area")
     public void iTypeInTheQuestionTextFieldArea(String text) {
         getDriver().findElement(By.xpath("//textarea[@formcontrolname='question']")).sendKeys(text);
-        System.out.println("Question text field accepts only special characters");
+    }
 
 
-    }}
+
+    @And("I click on {string} buttondp")
+    public void iClickOnButtondp(String opt1) {
+        getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']/../../../../../mat-radio-button[contains(@class,'mat-radio-button')]")).click();
+
+    }
+}
+
 
 
 

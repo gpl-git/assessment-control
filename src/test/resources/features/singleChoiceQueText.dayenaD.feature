@@ -59,7 +59,7 @@ Feature:Single choice question-text
   @scQueText4
   Scenario: Verify the Question text field with a blank value/Verify Question text field is mandatory
     When I click in the text field of "Q1"
-    And I click on option1 button
+    And I click on "option1" buttondp
     Then error message of required field should be displayed
     And I delay for 1 sec dp
 
