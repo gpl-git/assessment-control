@@ -21,28 +21,9 @@ public class Almaz_settings_nameDefs {
     public String lastName = RandomStringUtils.random(127, useLetters2, useNumbers2);
     public String fullname = firstName + " " + lastName;
 
-    @Given("I navigate to {string} page")
-    public void iNavigateToPage(String url) {
-        if (url.equals("login")) {
-            getDriver().get("http://ask-qa.portnov.com/#/login");
-        } else {
-            System.out.println("This site " + url + " is not supported.");
-        }
-    }
-
     @And("I will  wait for {int} sec")
     public void iWillWaitForSec(int sec) throws InterruptedException {
         Thread.sleep(1000 * sec);
-    }
-
-    @Then("I input {string} into email field")
-    public void iInputIntoEmailField(String email) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='email']")).sendKeys(email);
-    }
-
-    @And("I input {string} into password field")
-    public void iInputIntoPasswordField(String password) {
-        getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(password);
     }
 
     @Then("I will click {string} button")
