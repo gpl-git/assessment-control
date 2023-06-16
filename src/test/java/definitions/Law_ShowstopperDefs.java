@@ -35,7 +35,7 @@ public class Law_ShowstopperDefs {
     }
 
     @Then("I click {string} btn Law")
-    public void iClickBtn() {
+    public void iClickBtn(String btnName) {
         getDriver().findElement(By.xpath("//span[contains(text(),'Sign In')]")).click();
     }
 
@@ -53,7 +53,7 @@ public class Law_ShowstopperDefs {
 
 
     @Then("I click {string} radio button")
-    public void iClickRadioButton() {
+    public void iClickRadioButton(String radioBtn) {
         getDriver().findElement(By.xpath(
                 "//div[@class='mat-checkbox-inner-container']")).click();
     }
@@ -119,13 +119,13 @@ public class Law_ShowstopperDefs {
 
 
     @When("I check {string} in {string} Law")
-    public void iCheckInLaw() {
+    public void iCheckInLaw(String checkBox, String questionNum) {
         getDriver().findElement(By.xpath("//mat-checkbox[@id='mat-checkbox-2']")).click();
     }
 
 
     @Then("I click on {string} as correct answer Law")
-    public void iClickOnAsCorrectAnswerLaw() {
+    public void iClickOnAsCorrectAnswerLaw(String optionNum) {
         getDriver().findElement(By.xpath("//mat-radio-button[@id='mat-radio-6']")).click();
     }
 
