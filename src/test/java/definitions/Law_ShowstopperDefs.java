@@ -35,14 +35,11 @@ public class Law_ShowstopperDefs {
     }
 
     @Then("I click {string} btn Law")
-    public void iClickBtn(String btnName) {
+    public void iClickBtn() {
         getDriver().findElement(By.xpath("//span[contains(text(),'Sign In')]")).click();
     }
 
-    @Then("I click {string} on the sidebar")
-    public void iClickOnTheSidebar(String menuItem) {
-        getDriver().findElement(By.xpath("//h5[contains(text(), '"+menuItem+"')]")).click();
-    }
+
 
     @When("I type {string} as title for Quiz")
     public void iTypeAsTitleForQuiz(String quizTitle) {
@@ -56,7 +53,7 @@ public class Law_ShowstopperDefs {
 
 
     @Then("I click {string} radio button")
-    public void iClickRadioButton(String chkbox) {
+    public void iClickRadioButton() {
         getDriver().findElement(By.xpath(
                 "//div[@class='mat-checkbox-inner-container']")).click();
     }
@@ -88,7 +85,7 @@ public class Law_ShowstopperDefs {
     }
 
     @Then("I verify {string} is displayed")
-    public void iVerifyIsDisplayed(String xpath) {
+    public void iVerifyIsDisplayed() {
 
 
     }
@@ -112,15 +109,6 @@ public class Law_ShowstopperDefs {
         assertThat(actualText).isEqualTo(text);
     }
 
-    @Then("I click {string} to edit the quiz")
-    public void iClickToEditTheQuiz(String quizTitle) {
-        getDriver().findElement(By.xpath(
-                "//mat-panel-title[contains(text(),'Law Showstopper')]")).click();
-        getDriver().findElement(By.xpath(
-                "//mat-panel-title[contains(text(),'Law Showstopper')]/../../..//span[text()='Edit']")).click();
-    }
-
-
 
 
     @Then("{string} displays {string} as a showstopper")
@@ -131,13 +119,13 @@ public class Law_ShowstopperDefs {
 
 
     @When("I check {string} in {string} Law")
-    public void iCheckInLaw(String checkbox, String questionNum) {
+    public void iCheckInLaw() {
         getDriver().findElement(By.xpath("//mat-checkbox[@id='mat-checkbox-2']")).click();
     }
 
 
     @Then("I click on {string} as correct answer Law")
-    public void iClickOnAsCorrectAnswerLaw(String checkbox) {
+    public void iClickOnAsCorrectAnswerLaw() {
         getDriver().findElement(By.xpath("//mat-radio-button[@id='mat-radio-6']")).click();
     }
 
@@ -151,21 +139,6 @@ public class Law_ShowstopperDefs {
 
     }
 
-    @Then("I add {int} new question Law")
-    public void iAddNewQuestion(int num) {
-            getDriver().findElement(By.xpath("//mat-icon[contains(text(),'add_circle')]")).click();
-
-        }
-
-    @Then("I create a new question")
-    public void iCreateANewQuestion(String questionType) {
-        getDriver().findElement(By.xpath("//input[@id='mat-radio-14-input']")).click();
-    }
-
-    @And("I choose {string} the question type Law")
-    public void iChooseTheQuestionTypeLaw(String questionType) {
-        getDriver().findElement(By.xpath("")).click();
-    }
 
     @Then("I add the second question Law")
     public void iAddTheSecondQuestionLaw() {
@@ -174,12 +147,8 @@ public class Law_ShowstopperDefs {
 
     @Then("I click {string} in {string} Law")
     public void iClickInLaw(String checkBox, String questionNum) {
-        getDriver().findElement(By.xpath("//mat-checkbox[@id='mat-checkbox-17-input']")).click();
-    }
-
-    @When("I select second question type Law")
-    public void iSelectSecondQuestionTypeLaw() {
-        getDriver().findElement(By.xpath("//mat-radio-button[@id='mat-radio-72']")).click();
+        getDriver().findElement(By.xpath(
+                "//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[contains(text(),'"+checkBox+"')]")).click();
     }
 
     @Then("I close the dialog box Law")
@@ -196,9 +165,18 @@ public class Law_ShowstopperDefs {
     }
 
 
-    @Then("I click {string} button as answer Law")
-    public void iClickButtonAsAnswerLaw(String checkBox) {
-        getDriver().findElement(By.xpath("//mat-radio-button[@id='mat-radio-37']")).click();
+    @When("I select {string} question type in {string} Law")
+    public void iSelectQuestionTypeInLaw(String questionType, String questionNum) {
+        getDriver().findElement(By.xpath(
+                "//mat-panel-title[contains(text(),'"+questionNum+"')]/../../..//*[contains(text(),'"+questionType+"')]")).click();
+    }
+
+    @When("I select {string} as a correct option of {string} Law")
+    public void iSelectAsACorrectOptionOf(String optionNum, String questionNum) {
+        getDriver().findElement(By.xpath(
+                "//mat-panel-title[contains(text(),'"+questionNum+"')]" +
+                        "/../../..//textarea[@placeholder='"+optionNum+"*']" +
+                        "/../../../../..//mat-radio-button")).click();
     }
 }
 

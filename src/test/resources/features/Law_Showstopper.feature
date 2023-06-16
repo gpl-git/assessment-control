@@ -23,7 +23,7 @@ Feature: Automate Single Choice Question - Showstopper
     And I wait for 2 sec
     Then I click on "a1" as correct answer Law
     And I wait for 2 sec
-    When I check "Show-stopper" in "Q1" Law
+    When I check "Show-Stopper" in "Q1" Law
     And I wait for 2 sec
     #TestSet1 (Showstopper * should be required)
     Then "Q1" displays "*" as a showstopper
@@ -47,20 +47,21 @@ Feature: Automate Single Choice Question - Showstopper
     And I wait for 2 sec
     Then I click on "a1" as correct answer Law
     And I wait for 2 sec
-    When I check "Show-stopper" in "Q1" Law
+    When I check "Show-Stopper" in "Q1" Law
     And I wait for 2 sec
     Then "Q1" displays "*" as a showstopper
     And I wait for 2 sec
     Then I add the second question Law
-    When I select "Single" question type
+    And I wait for 1 sec
+    When I select "Single" question type in "Q2" Law
     And I wait for 5 sec
     And I type "q2" into question field of "Q2"
     When I type "a1" into "Option 1" option field of "Q2"
     And I type "a2" into "Option 2" option field of "Q2"
     And I wait for 4 sec
-    Then I click "a1" button as answer Law
+    When I select "Option 1" as a correct option of "Q2" Law
     And I wait for 2 sec
-    Then I click "Show-stopper" in "Q2" Law
+    Then I click "Show-Stopper" in "Q2" Law
     And I wait for 2 sec
     Then "Q2" displays "*" as a showstopper
     And I wait for 2 sec
@@ -83,7 +84,7 @@ Feature: Automate Single Choice Question - Showstopper
     And I wait for 2 sec
     Then I click on "a1" as correct answer Law
     And I wait for 2 sec
-    When I check "Show-stopper" in "Q1" Law
+    When I check "Show-Stopper" in "Q1" Law
     And I wait for 2 sec
     Then "Q1" displays "*" as a showstopper
     And I wait for 2 sec
