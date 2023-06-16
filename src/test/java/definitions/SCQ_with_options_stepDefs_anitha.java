@@ -111,7 +111,8 @@ public class SCQ_with_options_stepDefs_anitha {
     }
 
 
-    @And("I select the {string} from the list of options for question {string}")
+    //    @And("I select the {string} from the list of options for question {string}")
+    @And("I choose the answer as {string} for question {string}")
     public void iSelectTheFromTheListOfOptionsForQuestion(String optionNumber, String questNum) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@placeholder='" + optionNumber + "*']/preceding::mat-radio-button[1]")).click();
     }
@@ -122,7 +123,7 @@ public class SCQ_with_options_stepDefs_anitha {
         for (WebElement title : titles) {
             if (title.getText().contains(quizTitle)) {
                 title.isDisplayed();
-                title.click();
+//                title.click();
             }
         }
 
@@ -148,15 +149,21 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @And("I {string} the quiz name {string} from the list of quizzes")
     public void iTheQuizNameFromTheListOfQuizzes(String btnName, String quizTitle) throws InterruptedException {
-        WebElement element = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]"));
-        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-        executor.executeScript("arguments[0].focus();", element);
+//        WebElement element = getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]"));
+//        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+//        executor.executeScript("arguments[0].focus();", element);
+//
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='" + btnName + "']")).click();
+//        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+//        WebElement btnDelete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ac-modal-confirmation//span[text()='" + btnName + "']")));
+//        btnDelete.click();
 
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='" + btnName + "']")).click();
-        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
-        WebElement btnDelete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ac-modal-confirmation//span[text()='" + btnName + "']")));
-        btnDelete.click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]")).click();
+        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'"+quizTitle+"')]/../../..//span[text()='"+btnName+"']")).click();
+        getDriver().findElement(By.xpath("//ac-modal-confirmation//span[text()='"+btnName+"']")).click();
+        Thread.sleep(1000);
+
     }
 
 
@@ -167,14 +174,30 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @And("I {string} the quiz name {string} from the list of quizzes section")
     public void iTheQuizNameFromTheListOfQuizzesSection(String btnName, String quizTitle) {
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
-        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='" + btnName + "']")).click();
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]")).click();
+//        getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + quizTitle + "')]/following::span[text()='" + btnName + "']")).click();
+
+        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'" + btnName + "')]")));
+        element.click();
+
+
     }
+
+//    @Then("I verify the content displayed on the Preview mode is correct")
+//    public void iVerifyTheContentDisplayedOnThePreviewModeIsCorrect() {
+//        assertThat(getDriver().findElement(By.xpath("//h3[contains(text(),'" + this.questionText + "')]")).isDisplayed()).isTrue();
+//        assertThat(getDriver().findElement(By.xpath("//h4[contains(text(),'" + this.quiztitle + "')]")).isDisplayed()).isTrue();
+//    }
 
     @Then("I verify the content displayed on the Preview mode is correct")
     public void iVerifyTheContentDisplayedOnThePreviewModeIsCorrect() {
-        getDriver().findElement(By.xpath("//h3[contains(text(),'" + this.questionText + "')]")).isDisplayed();
-        getDriver().findElement(By.xpath("//h4[contains(text(),'" + this.quiztitle + "')]")).isDisplayed();
+        assertThat(getDriver().findElement(By.xpath("//mat-dialog-container//h3[contains(text(),'"+this.questionText+"')]")).isDisplayed()).isTrue();
+        assertThat(getDriver().findElement(By.xpath("//mat-dialog-container//h4[contains(text(),'" + this.quiztitle + "')]")).isDisplayed()).isTrue();
+        List<WebElement> actualOptions=getDriver().findElements(By.xpath("//mat-dialog-container//div[@class='mat-radio-label-content']"));
+        for(int i=0;i<this.optionValues.size();i++){
+            assertThat(getDriver().findElement(By.xpath("//mat-dialog-container//div[contains(text(),'"+this.optionValues.get(i)+"')]")).isDisplayed()).isTrue();
+        }
     }
 
     @And("I enter {int} character into the {string} of {string}")
@@ -248,8 +271,13 @@ public class SCQ_with_options_stepDefs_anitha {
 
     @And("I resize the browser window to the mobile Dimension {int} by {int}")
     public void iResizeTheBrowserWindowWithTheDimensionBy(int width, int height) {
-        Dimension size = new Dimension(800, 600);
+        Dimension size = new Dimension(width,height);
         getDriver().manage().window().setSize(size);
     }
 
+
+    @And("verify that the {string} is selected")
+    public void verifyThatTheIsSelected(String optNum) {
+
+    }
 }
