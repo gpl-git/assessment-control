@@ -111,7 +111,7 @@ public class SCQ_with_options_stepDefs_anitha {
     }
 
 
-//    @And("I select the {string} from the list of options for question {string}")
+    //    @And("I select the {string} from the list of options for question {string}")
     @And("I choose the answer as {string} for question {string}")
     public void iSelectTheFromTheListOfOptionsForQuestion(String optionNumber, String questNum) {
         getDriver().findElement(By.xpath("//mat-panel-title[contains(text(),'" + questNum + "')]/following::textarea[@placeholder='" + optionNumber + "*']/preceding::mat-radio-button[1]")).click();
@@ -276,5 +276,8 @@ public class SCQ_with_options_stepDefs_anitha {
     }
 
 
+    @And("verify that the {string} is selected")
+    public void verifyThatTheIsSelected(String optNum) {
 
+    }
 }
