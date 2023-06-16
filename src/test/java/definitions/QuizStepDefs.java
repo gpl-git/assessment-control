@@ -99,9 +99,5 @@ public class QuizStepDefs {
 
     }
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> master
 }
