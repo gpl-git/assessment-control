@@ -26,7 +26,7 @@ Feature:Single choice question-text
     And I delay for 1 sec dp
     And I enter "opt2" in "Option2" field of "Q1"
     And I delay for 1 sec dp
-    When I select "opt1" as a correct answer in "Q1"
+    When I select "opt1" as a correct answer in "Q1" dp
     And I click on "Save" butten
     And I delay for 1 sec dp
     Then "Dayena's test quiz" is dispalyed on the Quizzes list

@@ -120,7 +120,7 @@ public class SctStepdefs {
 
     }
 
-    @When("I select {string} as a correct answer in {string}")
+    @When("I select {string} as a correct answer in {string} dp")
     public void iSelectAsACorrectAnswerIn(String optNum, String queNum) {
         getDriver().findElement(By.xpath("//textarea[@placeholder='Option 1*']/../../../../../mat-radio-button[contains(@class,'mat-radio-button')]")).click();
     }
