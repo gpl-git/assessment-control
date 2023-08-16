@@ -76,6 +76,7 @@ public class SCQ_with_options_stepDefs_anitha {
     @And("I click the {string} menu item from the home page")
     public void iClickTheMenuItemFromTheHomePage(String menuItem) {
         getDriver().findElement(By.xpath("//h5[contains(text(),'" + menuItem + "')]")).click();
+
     }
 
     @And("I click {string} button under the list of quizzes section")
